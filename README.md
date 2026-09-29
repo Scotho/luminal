@@ -33,7 +33,7 @@ Play it: **https://luminal-game.web.app**
 | Rendering | Three.js + pmndrs/postprocessing |
 | Build | Vite |
 | Backend | Firebase: Auth, Firestore, Realtime Database, Cloud Functions, Hosting, App Check |
-| Match transport | Firebase RTDB, or a small Node WebSocket relay (`relay/`) |
+| Match transport | WebSocket relay (`relay/`, Node), with Firebase Realtime Database as the fallback |
 | Tests | Vitest + jsdom for unit tests, Playwright for browser tests |
 | Lint | ESLint + typescript-eslint |
 
