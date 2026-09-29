@@ -1,0 +1,41 @@
+  <!-- Friends Overlay -->
+  <div id="friends-overlay" class="overlay-screen hidden" role="dialog" aria-label="Friends" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <div class="overlay-header-bar"><div class="overlay-header-title"><svg class="icon" style="width:28px;height:28px;filter:drop-shadow(0 0 8px rgba(var(--c-gold),0.35))"><use href="/icons.svg#i-users"/></svg> FRIENDS</div></div>
+      <div class="friends-add-group">
+        <div class="friends-add-combined">
+          <input type="text" id="friends-add-input" aria-label="Add friend by username" class="friends-add-field" placeholder="Enter username..." maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other">
+          <div class="friends-add-btn" id="btn-friends-add" role="button" tabindex="0" aria-label="Send friend request"><svg class="icon" aria-hidden="true" style="width:14px;height:14px"><use href="/icons.svg#i-user-plus"/></svg></div>
+        </div>
+        <div id="friends-add-status"></div>
+      </div>
+      <div class="friends-body">
+        <div id="friends-requests" class="hidden">
+          <div class="friends-section-label">REQUESTS</div>
+          <div id="friends-requests-list" role="list" aria-label="Friend requests"></div>
+        </div>
+        <div id="friends-list-section">
+          <div class="friends-section-label">FRIENDS</div>
+          <div id="friends-list" role="list" aria-label="Friends list"></div>
+          <div id="friends-empty" class="friends-empty">No friends yet — add someone above!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- (Friend notification popup removed — unified notification system now) -->
+
+  <!-- Social Menu (controller / mobile / tablet) -->
+  <div id="social-overlay" class="overlay-screen hidden" role="dialog" aria-label="Social" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <div class="overlay-header-bar"><div class="overlay-header-title">SOCIAL</div><div class="overlay-header-utils"><div class="social-header-auth" id="btn-social-signin"><svg class="icon"><use href="/icons.svg#i-user"/></svg><span class="social-header-auth-label">SIGN IN</span></div></div></div>
+      <!-- Overlay clone of social-component. The dropdown instance in the top bar remains
+           the primary instance; this overlay clone stays permanently mounted and is kept in
+           sync via socialUI.ts helpers that target both clones by data-social-* attributes. -->
+      <div id="social-overlay-body">
+<!-- @include "src/partials/social-component-overlay.html" -->
+      </div>
+    </div>
+  </div>

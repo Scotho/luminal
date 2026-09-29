@@ -1,0 +1,42 @@
+:root {
+  --topbar-offset: 40px;
+}
+
+/* ── Top Bar (Titan Panel) ────────────────── */
+#auth-status {
+  position:fixed; top:0; left:0; right:0; z-index:25;
+  display:flex; align-items:center; justify-content:space-between;
+  height:40px; padding:0 10px;
+  /* Explicit visible-state values so transitions from .topbar--hidden back to
+     the base state have a concrete target (otherwise opacity default may not
+     transition cleanly on class removal). */
+  opacity:1;
+  transform:translateY(0);
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+  backdrop-filter: blur(10px) saturate(0.72);
+  background:
+    linear-gradient(180deg, rgba(var(--mist-100),0.02) 0%, transparent 100%),
+    linear-gradient(90deg, rgba(var(--c-orange),0.025) 0%, transparent 20%, transparent 80%, rgba(var(--c-teal),0.03) 100%),
+    rgba(var(--bg-body), 0.92);
+  border-bottom:1px solid rgba(var(--teal-600),0.08);
+  box-shadow: 0 6px 20px rgba(var(--c-black),0.48);
+  pointer-events:none;
+  font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:2px;
+  overflow:visible;
+
+  &.topbar--hidden {
+    transform: translateY(-100%); opacity:0; pointer-events:none !important;
+  }
+  /* Subtle top-edge highlight for glass separation */
+  &::after {
+    content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent 5%, rgba(var(--c-white),0.02) 30%, rgba(var(--c-gold),0.05) 50%, rgba(var(--c-white),0.02) 70%, transparent 95%);
+    pointer-events:none; z-index:0;
+  }
+  & .icon { width:14px; height:14px; }
+}
+
+/* #top-left must not shrink — shrinking collapses its audio section to zero
+   width, which manifested as the entire left half of the bar disappearing. */
+#top-left { display:flex; align-items:center; gap:0; pointer-events:auto; height:100%; flex-shrink:0; }
+#auth-row { display:flex; align-items:center; gap:0; pointer-events:auto; height:100%; flex-shrink:1; min-width:0; }

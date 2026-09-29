@@ -1,0 +1,30 @@
+/* ══════════════════════════════════════════════
+   3. PHABLET  (≤640px)
+   Mid-tier phones in landscape, large phones portrait
+   ══════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  #overlay .game-logo--menu {
+    width: min(360px, 80vw);
+  }
+  #menu-buttons, #result-buttons, #pause-buttons, #online-pause-buttons { width: 90vw; max-width: 100%; margin: 0 auto; }
+  #result h2 { font-size: clamp(24px, 7vw, 36px); }
+
+  .lobby-vehicle-tile { width: 120px; min-height: 120px; }
+  .lobby-card { width: 110px; min-height: 80px; }
+  .lobby-btn-hero { font-size: 13px; letter-spacing: 5px; }
+
+  /* Settings labels go full-width */
+  .setting-row { gap: 8px; }
+  .bestof-label { min-width: 130px; font-size: 10px; }
+  /* Prevent 4-option toggles from overflowing at narrow phablet widths */
+  .control-toggle .control-toggle__option { padding: 5px 10px; font-size: 12px; }
+
+  /* Compact overlays */
+  .overlay-screen .content { padding: 16px 14px; max-width: calc(100vw - 32px); max-height: calc(100vh - 32px); margin: calc(48px + var(--safe-top)) 16px 16px; }
+
+  /* Header bar — match phablet .content padding */
+  .overlay-header-bar {
+    --_ohb-px: 14px;
+    padding: 6px 14px;
+  }
+}

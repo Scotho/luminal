@@ -1,0 +1,49 @@
+#lobby-invite-row {
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin:16px 0 16px;
+}
+
+.lobby-link-icon {
+  width:14px; height:14px; opacity:0.5; margin-right:6px; vertical-align:middle;
+}
+
+.lobby-link-prefix {
+  font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:3px;
+  color:rgba(var(--c-teal),0.5);
+}
+
+#lobby-link-wrap {
+  position:relative; cursor:pointer; pointer-events:auto;
+  display:inline-flex; align-items:center;
+  padding:8px 16px; border-radius:4px;
+  background:rgba(var(--teal-600),0.04); border:1px solid rgba(var(--teal-600),0.12);
+  transition:background 0.2s, border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    background:rgba(var(--c-teal),0.1); border-color:rgba(var(--c-teal),0.35);
+    box-shadow:0 0 16px rgba(var(--c-teal),0.1);
+  }
+  &:hover #lobby-link-tooltip { opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+
+  &.lobby-link--copied {
+    background:rgba(var(--c-green),0.08); border-color:rgba(var(--c-green),0.35);
+    box-shadow:0 0 16px rgba(var(--c-green),0.1);
+  }
+  &.lobby-link--copied #lobby-code-display { color:rgba(var(--c-green),0.9); text-shadow:0 0 12px rgba(var(--c-green),0.4); }
+  &.lobby-link--copied #lobby-link-tooltip { opacity:1; transform:translateX(-50%) translateY(0); color:rgba(var(--c-green),0.9); background:rgba(var(--c-green),0.12); border-color:rgba(var(--c-green),0.3); }
+}
+
+#lobby-code-display {
+  font-family:'Orbitron',sans-serif; font-size:13px; letter-spacing:3px;
+  color:rgba(var(--c-teal),0.8); text-shadow:0 0 12px rgba(var(--c-teal),0.3);
+  transition:color 0.2s, text-shadow 0.2s;
+}
+
+#lobby-link-tooltip {
+  position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%) translateY(4px);
+  font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:2px;
+  color:rgba(var(--c-teal),0.7); background:rgba(var(--bg-surface-deep),0.85); border:1px solid rgba(var(--c-teal),0.2);
+  border-radius:3px; padding:5px 10px; white-space:nowrap;
+  opacity:0; pointer-events:none; transition:opacity 0.2s, transform 0.2s, color 0.2s, background 0.2s, border-color 0.2s;
+  backdrop-filter:blur(8px);
+}

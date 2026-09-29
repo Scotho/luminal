@@ -1,0 +1,430 @@
+  <!-- Settings Overlay -->
+  <div id="settings-overlay" class="settings-page overlay-screen hidden" role="dialog" aria-label="Settings" tabindex="-1">
+    <!-- Sidebar -->
+    <div class="settings-sidebar">
+      <div class="settings-sidebar-header">
+        <div class="settings-sidebar-title">SETTINGS</div>
+      </div>
+      <div class="settings-sidebar-nav" role="tablist" aria-label="Settings categories">
+        <div class="settings-sidebar-item" role="tab" tabindex="-1" aria-selected="false" aria-controls="settings-tab-gameplay" data-tab="gameplay">GAMEPLAY</div>
+        <div class="settings-sidebar-item settings-sidebar-item--active" role="tab" tabindex="0" aria-selected="true" aria-controls="settings-tab-video" data-tab="video">VIDEO</div>
+        <div class="settings-sidebar-item" role="tab" tabindex="-1" aria-selected="false" aria-controls="settings-tab-audio" data-tab="audio">AUDIO</div>
+        <div class="settings-sidebar-item" role="tab" tabindex="-1" aria-selected="false" aria-controls="settings-tab-camera" data-tab="camera">CAMERA</div>
+        <div class="settings-sidebar-item" role="tab" tabindex="-1" aria-selected="false" aria-controls="settings-tab-controls" data-tab="controls">CONTROLS</div>
+        <div class="settings-sidebar-item" role="tab" tabindex="-1" aria-selected="false" aria-controls="settings-tab-hud" data-tab="hud">HUD</div>
+        <div class="settings-sidebar-item" role="tab" tabindex="-1" aria-selected="false" aria-controls="settings-tab-account" data-tab="account">ACCOUNT</div>
+      </div>
+      <div class="settings-sidebar-back overlay-header-bar"></div>
+      <div class="settings-sidebar-bumpers">
+        <div class="settings-bumper-row"><span class="settings-bumper-key">LB</span><span class="settings-bumper-label">Previous</span></div>
+        <div class="settings-bumper-row"><span class="settings-bumper-key">RB</span><span class="settings-bumper-label">Next</span></div>
+      </div>
+    </div>
+
+    <!-- Mobile category list (hidden on desktop) -->
+    <div class="settings-category-list">
+      <div class="settings-cat-header overlay-header-bar">
+        <div class="overlay-header-title">SETTINGS</div>
+      </div>
+      <div class="settings-cat-row" data-tab="gameplay">
+        <div class="settings-cat-row-text">
+          <span class="settings-cat-row-name">GAMEPLAY</span>
+          <span class="settings-cat-row-desc">Assists and match behavior</span>
+        </div>
+        <span class="settings-cat-row-chevron">&#8250;</span>
+      </div>
+      <div class="settings-cat-row" data-tab="video">
+        <div class="settings-cat-row-text">
+          <span class="settings-cat-row-name">VIDEO</span>
+          <span class="settings-cat-row-desc">Graphics quality and visual effects</span>
+        </div>
+        <span class="settings-cat-row-chevron">&#8250;</span>
+      </div>
+      <div class="settings-cat-row" data-tab="audio">
+        <div class="settings-cat-row-text">
+          <span class="settings-cat-row-name">AUDIO</span>
+          <span class="settings-cat-row-desc">Volume levels</span>
+        </div>
+        <span class="settings-cat-row-chevron">&#8250;</span>
+      </div>
+      <div class="settings-cat-row" data-tab="camera">
+        <div class="settings-cat-row-text">
+          <span class="settings-cat-row-name">CAMERA</span>
+          <span class="settings-cat-row-desc">Field of view and distance</span>
+        </div>
+        <span class="settings-cat-row-chevron">&#8250;</span>
+      </div>
+      <div class="settings-cat-row" data-tab="controls">
+        <div class="settings-cat-row-text">
+          <span class="settings-cat-row-name">CONTROLS</span>
+          <span class="settings-cat-row-desc">Input method and key bindings</span>
+        </div>
+        <span class="settings-cat-row-chevron">&#8250;</span>
+      </div>
+      <div class="settings-cat-row" data-tab="hud">
+        <div class="settings-cat-row-text">
+          <span class="settings-cat-row-name">HUD</span>
+          <span class="settings-cat-row-desc">Minimap, top bar, and performance overlays</span>
+        </div>
+        <span class="settings-cat-row-chevron">&#8250;</span>
+      </div>
+      <div class="settings-cat-row" data-tab="account">
+        <div class="settings-cat-row-text">
+          <span class="settings-cat-row-name">ACCOUNT</span>
+          <span class="settings-cat-row-desc">Cloud sync and data management</span>
+        </div>
+        <span class="settings-cat-row-chevron">&#8250;</span>
+      </div>
+      <div class="settings-cat-footer">
+        <div class="menu-btn menu-btn--secondary" id="btn-settings-reset-mobile">RESET TO DEFAULTS</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="settings-content">
+      <div class="settings-content-header">
+        <span class="settings-content-title" id="settings-content-title">VIDEO</span>
+        <span class="settings-content-desc" id="settings-content-desc">Graphics quality and visual effects</span>
+      </div>
+      <div class="settings-content-body" id="settings-content-body">
+
+        <!-- Perf indicators (hidden, used by topbar code) -->
+        <span id="tb-perf" style="display:none"><span id="tb-mem-wrap" data-tip=""><span id="tb-mem">0</span></span><span id="tb-vram-wrap" data-tip=""><span id="tb-vram">0</span></span><span id="tb-ping-wrap" data-tip=""><span id="tb-ping">—</span></span></span>
+
+        <!-- GAMEPLAY TAB -->
+        <div id="settings-tab-gameplay" role="tabpanel" class="hidden">
+          <div class="settings-section-divider">ASSISTS</div>
+          <div class="setting-row">
+            <label>LINE RIDE ASSIST</label>
+            <span id="lineassist-toggle" class="control-toggle"><span class="control-toggle__option" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="on">ON</span></span>
+          </div>
+          <div class="settings-section-divider">RESULTS</div>
+          <div class="setting-row">
+            <label>AUTO SUBMIT</label>
+            <span id="autosubmit-toggle" class="control-toggle"><span class="control-toggle__option control-toggle__option--active" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option" data-val="on">ON</span></span>
+          </div>
+        </div>
+
+        <!-- VIDEO TAB (default active) -->
+        <div id="settings-tab-video" role="tabpanel">
+          <div class="settings-section-divider">QUALITY</div>
+          <div class="setting-row">
+            <label>QUALITY PRESET</label>
+            <span id="gfx-preset-toggle" class="control-toggle"><span class="control-toggle__option" data-val="low">LOW</span><span class="control-toggle__sep">|</span><span class="control-toggle__option" data-val="medium">MED</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="high">HIGH</span><span class="control-toggle__sep">|</span><span class="control-toggle__option" data-val="ultra">ULTRA</span><span class="control-toggle__sep control-toggle__sep--custom">|</span><span class="control-toggle__option control-toggle__option--custom" data-val="custom">CUSTOM</span></span>
+          </div>
+          <div class="setting-row">
+            <label>BLOOM</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="gfx-bloom-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="gfx-bloom-label">HIGH</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="gfx-bloom-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>RENDER SCALE</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="gfx-pr-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="gfx-pr-label">2.0</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="gfx-pr-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>ARENA DETAIL</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="gfx-arena-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="gfx-arena-label">FULL</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="gfx-arena-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+          <div class="settings-section-divider">EFFECTS</div>
+          <div class="setting-row">
+            <label>RAVE LIGHTS</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="gfx-rave-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="gfx-rave-label">8</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="gfx-rave-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>AUDIO REACTIVITY</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="gfx-react-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="gfx-react-label">FULL</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="gfx-react-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>PLAYER VFX</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="gfx-vfx-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="gfx-vfx-label">FULL</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="gfx-vfx-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>LIGHTING</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="gfx-light-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="gfx-light-label">FULL</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="gfx-light-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>FOG</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="gfx-atmo-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="gfx-atmo-label">FULL</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="gfx-atmo-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUDIO TAB -->
+        <div id="settings-tab-audio" role="tabpanel" class="hidden">
+          <div class="settings-section-divider">VOLUME</div>
+          <div class="setting-row">
+            <label>MASTER</label>
+            <div class="slider-wrap"><input type="range" id="vol-master" min="0" max="100" value="100" data-default="100"><div class="slider-notch"></div></div>
+          </div>
+          <div class="setting-row">
+            <label>MUSIC</label>
+            <div class="slider-wrap"><input type="range" id="vol-music" min="0" max="100" value="35" data-default="35"><div class="slider-notch"></div></div>
+          </div>
+          <div class="setting-row">
+            <label>SFX</label>
+            <div class="slider-wrap"><input type="range" id="vol-sfx" min="0" max="100" value="50" data-default="50"><div class="slider-notch"></div></div>
+          </div>
+          <div class="setting-row">
+            <label>VOICE</label>
+            <div class="slider-wrap"><input type="range" id="vol-voice" min="0" max="100" value="75" data-default="75"><div class="slider-notch"></div></div>
+          </div>
+        </div>
+
+        <!-- CAMERA TAB -->
+        <div id="settings-tab-camera" role="tabpanel" class="hidden">
+          <div class="settings-section-divider">VIEW</div>
+          <div class="setting-row">
+            <label>FOV</label>
+            <div class="slider-wrap"><input type="range" id="cam-fov" min="55" max="90" value="62" data-default="62"><div class="slider-notch"></div></div>
+          </div>
+          <div class="setting-row">
+            <label>CAMERA DISTANCE</label>
+            <div class="slider-wrap"><input type="range" id="cam-dist" min="9" max="37" value="30" data-default="30"><div class="slider-notch"></div></div>
+          </div>
+          <div class="setting-row">
+            <label>STIFFNESS</label>
+            <div class="slider-wrap"><input type="range" id="cam-stiffness" min="1" max="15" value="5" step="0.5" data-default="5"><div class="slider-notch"></div></div>
+          </div>
+          <div class="settings-section-divider">EFFECTS</div>
+          <div class="setting-row">
+            <label>CAMERA SHAKE</label>
+            <span id="cam-shake-toggle" class="control-toggle"><span class="control-toggle__option" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="on">ON</span></span>
+          </div>
+        </div>
+
+        <!-- CONTROLS TAB -->
+        <div id="settings-tab-controls" role="tabpanel" class="hidden">
+          <div class="settings-section-divider">INPUT</div>
+          <div class="setting-row">
+            <label>INPUT METHOD</label>
+            <div class="setting-select">
+              <span class="bestof-arrow setting-arrow setting-select-left" id="input-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+              <span class="bestof-label setting-val" id="input-label">KEYBOARD</span>
+              <span class="bestof-arrow setting-arrow setting-select-right" id="input-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+            </div>
+          </div>
+          <div class="setting-row">
+            <label>STICK DEADZONE</label>
+            <div class="slider-wrap"><input type="range" id="stick-deadzone" min="5" max="50" value="25" data-default="25"><div class="slider-notch"></div></div>
+          </div>
+          <div class="settings-section-divider">KEYBINDS</div>
+          <div class="setting-row keybind-row" data-action="left">
+            <label>TURN LEFT</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-left">A</span>
+              <span class="keybind-key" data-slot="1" id="kb-left-2">&#8592;</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="right">
+            <label>TURN RIGHT</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-right">D</span>
+              <span class="keybind-key" data-slot="1" id="kb-right-2">&#8594;</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="accelerate">
+            <label>ACCELERATE</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-accelerate">W</span>
+              <span class="keybind-key" data-slot="1" id="kb-accelerate-2">RMB</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="brake" data-slot-override="0">
+            <label>BRAKE / DRIFT</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-brake">SPACE</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="brake" data-slot-override="1">
+            <label>DECELERATE</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="1" id="kb-brake-2">S</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="dash">
+            <label>BOOST</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-dash">SHIFT</span>
+              <span class="keybind-key" data-slot="1" id="kb-dash-2">LMB</span>
+            </div>
+          </div>
+
+          <div class="settings-section-divider">REPLAY CONTROLS</div>
+          <div class="setting-row keybind-row" data-action="rPlayPause">
+            <label>PLAY / PAUSE</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-rPlayPause">SPACE</span>
+              <span class="keybind-key" data-slot="1" id="kb-rPlayPause-2">&mdash;</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="rCamPrev">
+            <label>CAMERA PREV</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-rCamPrev">Q</span>
+              <span class="keybind-key" data-slot="1" id="kb-rCamPrev-2">&mdash;</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="rCamNext">
+            <label>CAMERA NEXT</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-rCamNext">E</span>
+              <span class="keybind-key" data-slot="1" id="kb-rCamNext-2">C</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="rSkipBack">
+            <label>SKIP BACK 3S</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-rSkipBack">LEFT</span>
+              <span class="keybind-key" data-slot="1" id="kb-rSkipBack-2">&mdash;</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="rSkipFwd">
+            <label>SKIP FWD 3S</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-rSkipFwd">RIGHT</span>
+              <span class="keybind-key" data-slot="1" id="kb-rSkipFwd-2">&mdash;</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="rFineBack">
+            <label>FINE SKIP -1S</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-rFineBack">J</span>
+              <span class="keybind-key" data-slot="1" id="kb-rFineBack-2">&mdash;</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="rFineFwd">
+            <label>FINE SKIP +1S</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-rFineFwd">L</span>
+              <span class="keybind-key" data-slot="1" id="kb-rFineFwd-2">&mdash;</span>
+            </div>
+          </div>
+          <div class="setting-row keybind-row" data-action="rToggleUI">
+            <label>TOGGLE HUD</label>
+            <div class="keybind-keys">
+              <span class="keybind-key" data-slot="0" id="kb-rToggleUI">H</span>
+              <span class="keybind-key" data-slot="1" id="kb-rToggleUI-2">&mdash;</span>
+            </div>
+          </div>
+
+          <div class="settings-section-divider">KEYBIND RESET</div>
+          <div class="setting-row">
+            <div class="menu-btn menu-btn--secondary" id="btn-keybinds-reset">RESET KEYBINDS</div>
+          </div>
+        </div>
+
+        <!-- HUD TAB -->
+        <div id="settings-tab-hud" role="tabpanel" class="hidden">
+          <div class="settings-section-divider">MINIMAP</div>
+          <div class="setting-row">
+            <label>MAP</label>
+            <span id="radar-toggle" class="control-toggle"><span class="control-toggle__option" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="on">ON</span></span>
+          </div>
+          <div class="setting-row">
+            <label>MAP SIZE</label>
+            <div class="slider-wrap"><input type="range" id="radar-size" min="100" max="440" value="140" data-default="140"><div class="slider-notch"></div></div>
+          </div>
+          <div class="setting-row">
+            <label>HIDE MAP ON MOBILE</label>
+            <span id="radar-mobile-hide-toggle" class="control-toggle"><span class="control-toggle__option" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="on">ON</span></span>
+          </div>
+          <div class="settings-section-divider">TOP BAR</div>
+          <div class="setting-row">
+            <label>TOP BAR</label>
+            <span id="tb-vis-toggle" class="control-toggle"><span class="control-toggle__option" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="on">ON</span></span>
+          </div>
+          <div class="setting-row">
+            <label>MUSIC PLAYER</label>
+            <span id="tb-music-toggle" class="control-toggle"><span class="control-toggle__option" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="on">ON</span></span>
+          </div>
+          <div class="setting-row">
+            <label>PLAYERS ONLINE</label>
+            <span id="tb-online-toggle" class="control-toggle"><span class="control-toggle__option" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="on">ON</span></span>
+          </div>
+          <div class="settings-section-divider">PERFORMANCE</div>
+          <div class="setting-row">
+            <label>FPS COUNTER</label>
+            <span id="perf-fps-toggle" class="control-toggle"><span class="control-toggle__option control-toggle__option--active" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option" data-val="on">ON</span></span>
+          </div>
+          <div class="setting-row">
+            <label>RAM USAGE</label>
+            <span id="perf-mem-toggle" class="control-toggle"><span class="control-toggle__option control-toggle__option--active" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option" data-val="on">ON</span></span>
+          </div>
+          <div class="setting-row">
+            <label>SERVER PING</label>
+            <span id="perf-ping-toggle" class="control-toggle"><span class="control-toggle__option control-toggle__option--active" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option" data-val="on">ON</span></span>
+          </div>
+          <div class="setting-row">
+            <label>VRAM USAGE</label>
+            <span id="perf-vram-toggle" class="control-toggle"><span class="control-toggle__option control-toggle__option--active" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option" data-val="on">ON</span></span>
+          </div>
+        </div>
+
+        <!-- ACCOUNT TAB -->
+        <div id="settings-tab-account" role="tabpanel" class="hidden">
+          <div class="settings-section-divider">SYNC</div>
+          <div class="setting-row">
+            <label>SETTINGS SYNC</label>
+            <span id="settings-sync-toggle" class="control-toggle"><span class="control-toggle__option" data-val="off">OFF</span><span class="control-toggle__sep">|</span><span class="control-toggle__option control-toggle__option--active" data-val="on">ON</span></span>
+          </div>
+          <div class="settings-section-divider">DATA</div>
+          <div class="setting-row">
+            <div class="menu-btn menu-btn--secondary" id="btn-settings-reset">RESET TO DEFAULTS</div>
+          </div>
+          <div class="settings-section-divider">LEGAL</div>
+          <div class="setting-row settings-legal-links">
+            <a href="/privacy.html" target="_blank">Privacy Policy</a>
+            <span class="settings-legal-sep">&middot;</span>
+            <a href="/terms.html" target="_blank">Terms of Service</a>
+            <span class="settings-legal-sep">&middot;</span>
+            <a href="mailto:luminallive@gmail.com">Contact</a>
+          </div>
+          <div class="setting-row" id="btn-install-app" style="display:none">
+            <div class="menu-btn menu-btn--secondary">INSTALL APP</div>
+          </div>
+        </div>
+
+      </div><!-- end settings-content-body -->
+
+      <!-- Footer prompt bar -->
+      <div class="settings-footer">
+        <div class="settings-prompt"><span class="settings-prompt-key">LB/RB</span><span class="settings-prompt-label">Switch Tab</span></div>
+        <div class="settings-prompt"><span class="settings-prompt-key">D-PAD</span><span class="settings-prompt-label">Navigate</span></div>
+        <div class="settings-prompt"><span class="settings-prompt-key">◄ ►</span><span class="settings-prompt-label">Adjust</span></div>
+        <div class="settings-prompt"><span class="settings-prompt-key">X</span><span class="settings-prompt-label">Reset</span></div>
+        <div class="settings-prompt"><span class="settings-prompt-key">B</span><span class="settings-prompt-label">Back</span></div>
+      </div>
+    </div><!-- end settings-content -->
+  </div>
+
+  <!-- Keybinds overlay removed — keyboard keybinds are now inline in the Controls tab -->

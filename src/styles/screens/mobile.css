@@ -1,0 +1,17 @@
+/* ═══════════════════════════════════════════════════════
+   Mobile — Luminal
+   Granular breakpoints + native-feeling UI across all
+   mobile device classes. Uses env() safe-area insets,
+   fluid clamp() sizing, and touch-optimized targets.
+   ═══════════════════════════════════════════════════════ */
+
+@import './mobile/safe-area.css';
+@import './mobile/tablet.css';
+@import './mobile/phone-large.css';
+@import './mobile/phablet.css';
+@import './mobile/phone.css';
+@import './mobile/phone-small.css';
+@import './mobile/landscape.css';
+@import './mobile/touch.css';
+@import './mobile/pwa.css';
+@import './mobile/hidpi.css';

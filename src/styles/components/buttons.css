@@ -1,0 +1,261 @@
+/* ── 3. Buttons ────────────────────────────────────── */
+
+.menu-btn {
+  font-family: 'Orbitron', 'Courier New', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: rgba(var(--menu-cool),0.88);
+  text-shadow:
+    0 0 10px rgba(var(--menu-cool),0.22),
+    0 0 16px rgba(var(--menu-accent-core),0.05),
+    0 0 24px rgba(var(--menu-cool-deep),0.16);
+  padding: 11px 38px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(var(--menu-cool-dim),0.56);
+  border-radius: 2px;
+  background:
+    radial-gradient(circle at top center, rgba(var(--menu-cool),0.08) 0%, transparent 56%),
+    linear-gradient(90deg, rgba(var(--menu-cool),0.03) 0%, transparent 16%, transparent 70%, rgba(var(--menu-accent-warm),0.03) 88%, rgba(var(--menu-accent-core),0.06) 100%),
+    linear-gradient(180deg, rgba(var(--menu-cool-bright),0.02) 0%, transparent 26%),
+    linear-gradient(180deg, rgba(var(--menu-panel-top),0.92) 0%, rgba(var(--menu-panel-bottom),0.97) 100%);
+
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color 0.25s, background 0.25s, border-color 0.25s, opacity 0.25s;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, white);
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow:
+    inset 0 1px 0 rgba(var(--menu-cool-bright),0.06),
+    inset 0 -1px 0 rgba(var(--c-black),0.44),
+    0 0 0 1px rgba(var(--menu-cool),0.06),
+    0 0 14px rgba(var(--menu-accent-core),0.02),
+    0 10px 24px rgba(var(--c-black),0.48),
+    0 0 0 1px rgba(var(--c-black),0.38);
+
+  &:hover, &.menu-btn--selected {
+    background:
+      radial-gradient(circle at top center, rgba(var(--menu-accent-warm),0.13) 0%, transparent 58%),
+      linear-gradient(90deg, rgba(var(--menu-cool),0.045) 0%, transparent 14%, transparent 68%, rgba(var(--menu-accent-warm),0.07) 84%, rgba(var(--menu-accent-core),0.12) 100%),
+      linear-gradient(180deg, rgba(var(--menu-cool-bright),0.04) 0%, transparent 100%),
+      linear-gradient(180deg, rgba(20, 12, 12,0.96) 0%, rgba(var(--menu-panel-bottom),0.98) 100%);
+    border-color: rgba(var(--menu-accent-warm),0.82);
+    color: rgba(var(--menu-cool-bright),0.98);
+    text-shadow:
+      0 0 12px rgba(var(--menu-cool),0.34),
+      0 0 18px rgba(var(--menu-accent-warm),0.16),
+      0 0 28px rgba(var(--menu-accent-core),0.16),
+      0 0 34px rgba(var(--menu-glow-red),0.12);
+    box-shadow:
+      0 0 14px rgba(var(--menu-cool),0.12),
+      0 0 18px rgba(var(--menu-accent-warm),0.14),
+      0 0 22px rgba(var(--menu-accent-core),0.14),
+      0 0 38px rgba(var(--menu-glow-red),0.12),
+      0 18px 30px rgba(var(--c-black),0.42),
+      inset 0 0 18px rgba(var(--menu-glow-red),0.08),
+      inset 0 0 0 1px rgba(var(--menu-cool),0.1);
+  }
+  &.menu-btn--selected {
+    outline: 1px solid rgba(var(--c-orange), 0.35);
+    outline-offset: 2px;
+  }
+  &:active:not(.menu-btn--disabled) {
+    transform: scale(0.972) translateY(1px);
+    box-shadow:
+      0 0 10px rgba(var(--menu-cool),0.14),
+      0 0 14px rgba(var(--menu-accent-warm),0.16),
+      0 0 16px rgba(var(--menu-accent-core),0.18),
+      0 0 26px rgba(var(--menu-glow-red),0.14),
+      inset 0 0 12px rgba(var(--menu-glow-red),0.1);
+    transition: transform 0.06s, box-shadow 0.06s;
+  }
+  /* Scanlines overlay — intensity controlled by --scan-a (default 0.06) */
+  --scan-a: 0.06;
+  &::after {
+    content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
+    background:repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(var(--c-black), var(--scan-a)) 2px, rgba(var(--c-black), var(--scan-a)) 4px);
+    background-size:100% 4px;
+    animation:scanScroll 8s linear infinite;
+    border-radius:inherit;
+  }
+  &:hover { --scan-a: 0.10; }
+
+  /* Double-sweep shine with center glitch */
+  &::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(var(--c-orange),0.08) 45%, rgba(var(--c-orange),0.12) 50%, rgba(var(--c-orange),0.08) 55%, transparent 100%);
+    border-radius: inherit;
+    transform: translateX(-120%);
+    pointer-events: none;
+    transition: none;
+  }
+  &:hover::before {
+    animation: btnSweepGlitch var(--sheen-dur, 8s) linear infinite; animation-delay: var(--sheen-delay, 0s);
+  }
+  &.menu-btn--waiting {
+    background:rgba(var(--c-orange),0.08); border-color:rgba(var(--c-orange),0.4); color:rgba(var(--c-orange),0.7);
+    pointer-events:none; animation:acceptPulse 1.5s ease-in-out infinite;
+  }
+  &.menu-btn--opponent-ready {
+    overflow:visible;
+    background:
+      radial-gradient(circle at top center, rgba(var(--c-teal),0.13) 0%, transparent 58%),
+      linear-gradient(90deg, rgba(var(--c-teal),0.045) 0%, transparent 14%, transparent 68%, rgba(var(--c-teal),0.07) 84%, rgba(var(--c-teal),0.12) 100%),
+      linear-gradient(180deg, rgba(var(--c-teal),0.04) 0%, transparent 100%),
+      linear-gradient(180deg, rgba(20, 12, 12,0.96) 0%, rgba(var(--menu-panel-bottom),0.98) 100%);
+    border-color:rgba(var(--c-teal),0.72);
+    color:rgba(var(--c-teal),0.95);
+    text-shadow:0 0 12px rgba(var(--c-teal),0.34), 0 0 18px rgba(var(--c-teal),0.16);
+    box-shadow:0 0 14px rgba(var(--c-teal),0.12), 0 0 22px rgba(var(--c-teal),0.08), inset 0 0 18px rgba(var(--c-teal),0.06);
+    animation:opponentReadyPulse 1.8s ease-in-out infinite;
+  }
+  &.menu-btn--disabled {
+    cursor: not-allowed; pointer-events: auto;
+    background:
+      linear-gradient(180deg, rgba(var(--menu-panel-top),0.5) 0%, rgba(var(--menu-panel-bottom),0.55) 100%);
+    border-color: rgba(var(--menu-cool-dim),0.18);
+    color: rgba(var(--menu-cool),0.22);
+    text-shadow: none;
+    box-shadow: none;
+
+    & .btn-icon { opacity:0.25; }
+    &::before { display:none; }
+    &::after { animation:none; opacity:0.3; }
+    &:hover { background: linear-gradient(180deg, rgba(var(--menu-panel-top),0.5) 0%, rgba(var(--menu-panel-bottom),0.55) 100%); border-color: rgba(var(--menu-cool-dim),0.18); color: rgba(var(--menu-cool),0.22); text-shadow:none; box-shadow:none; --scan-a:0.03; }
+  }
+  & .btn-lobby-spinner {
+    width:14px; height:14px; border:2px solid rgba(var(--c-orange),0.2);
+    border-top-color:rgba(var(--c-orange),0.7); border-radius:50%;
+    animation:spin 0.8s linear infinite; margin-left:8px; flex-shrink:0;
+  }
+
+  &.menu-btn--secondary {
+    font-size: 12px; letter-spacing: 4px; padding: 9px 32px;
+    min-height: 44px;
+    border-color: rgba(var(--menu-cool-dim),0.48);
+    color: rgba(var(--menu-cool-bright),0.82);
+    border-radius: 2px;
+    background:
+      radial-gradient(circle at top center, rgba(var(--menu-cool),0.05) 0%, transparent 54%),
+      linear-gradient(90deg, transparent 0%, transparent 74%, rgba(var(--menu-accent-warm),0.035) 100%),
+      linear-gradient(180deg, rgba(var(--menu-cool-bright),0.015) 0%, transparent 100%),
+      linear-gradient(180deg, rgba(15, 11, 11,0.92) 0%, rgba(var(--menu-panel-bottom),0.97) 100%);
+    text-shadow:
+      0 0 8px rgba(var(--menu-cool),0.18),
+      0 0 10px rgba(var(--menu-accent-core),0.08),
+      0 0 18px rgba(var(--menu-cool-deep),0.12);
+    box-shadow:
+      inset 0 0 10px rgba(var(--menu-accent-core),0.02),
+      inset 0 1px 0 rgba(var(--mist-100),0.04),
+      0 10px 24px rgba(var(--c-black),0.42),
+      0 0 0 1px rgba(var(--c-black),0.3);
+
+    &::before {
+      background: linear-gradient(90deg, transparent 0%, rgba(var(--menu-accent-warm),0.04) 45%, rgba(var(--menu-accent-warm),0.07) 50%, rgba(var(--menu-accent-warm),0.04) 55%, transparent 100%);
+    }
+
+    &:hover:not(.menu-btn--disabled), &.menu-btn--selected {
+      border-color: rgba(var(--menu-accent-warm),0.68);
+      background:
+        radial-gradient(circle at top center, rgba(var(--menu-accent-warm),0.08) 0%, transparent 58%),
+        linear-gradient(180deg, rgba(var(--menu-cool-bright),0.03) 0%, transparent 42%),
+        rgba(var(--bg-panel-alt), 0.92);
+      text-shadow:
+        0 0 8px rgba(var(--menu-cool),0.24),
+        0 0 14px rgba(var(--menu-accent-warm),0.14),
+        0 0 28px rgba(var(--menu-accent-core),0.08);
+      box-shadow:
+        inset 0 0 14px rgba(var(--menu-glow-red),0.04),
+        inset 0 1px 0 rgba(var(--mist-100),0.05),
+        0 0 10px rgba(var(--menu-accent-warm),0.08),
+        0 18px 30px rgba(var(--c-black),0.36),
+        0 0 1px rgba(var(--menu-accent-warm),0.18);
+    }
+    /* Opponent-ready override — tighter text to fit "OPPONENT REQUESTED REMATCH" */
+    &.menu-btn--opponent-ready {
+      font-size:11px; letter-spacing:2px; padding-inline:16px;
+    }
+    /* Disabled override — must beat secondary base styles (same nesting = higher specificity) */
+    &.menu-btn--disabled {
+      background: linear-gradient(180deg, rgba(var(--menu-panel-top),0.5) 0%, rgba(var(--menu-panel-bottom),0.55) 100%);
+      border-color: rgba(var(--menu-cool-dim),0.18);
+      color: rgba(var(--menu-cool),0.22);
+      text-shadow: none; box-shadow: none;
+    }
+  }
+
+  &.menu-btn--confirm-pending {
+    color: rgba(var(--c-orange),0.9) !important; border-color: rgba(var(--c-orange),0.5) !important;
+    background: rgba(var(--c-orange),0.06) !important; box-shadow: 0 0 14px rgba(var(--c-orange),0.1) !important;
+    animation: confirmPulse 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes confirmPulse {
+  0%, 100% { border-color: rgba(var(--c-orange),0.5); }
+  50% { border-color: rgba(var(--c-orange),0.25); }
+}
+
+/* ── Dynamic Back Button (inside .overlay-header-bar) ──── */
+/* Matches lobby's .lobby-btn-sm sizing */
+.dyn-back {
+  font-size: 10px; letter-spacing: 3px;
+  padding: 9px 18px;
+  min-height: 38px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: min(40vw, 156px);
+  white-space: nowrap;
+  cursor: pointer; pointer-events: auto;
+  position: relative; z-index: 1;
+  transition: color 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s, text-shadow 0.2s, opacity 0.2s;
+}
+
+.dyn-back__glyph {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:0;
+  font-size:15px; line-height:1;
+  color:rgba(var(--c-hot-pale),0.94);
+  text-shadow:0 0 10px rgba(var(--c-orange),0.22);
+}
+
+.dyn-back__label {
+  display:inline-block;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.menu-btn.menu-btn--secondary:hover,
+.menu-btn.menu-btn--secondary.menu-btn--selected {
+  border-color: rgba(var(--menu-accent-warm), 0.62);
+  background:
+    radial-gradient(circle at top center, rgba(var(--menu-accent-warm),0.08) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(var(--menu-cool-bright),0.015) 0%, transparent 42%),
+    rgba(var(--bg-panel-alt), 0.92);
+  text-shadow:
+    0 0 8px rgba(var(--menu-cool),0.24),
+    0 0 14px rgba(var(--menu-accent-warm),0.14),
+    0 0 28px rgba(var(--menu-accent-core),0.08);
+  box-shadow:
+    inset 0 0 14px rgba(var(--menu-glow-red),0.04),
+    inset 0 1px 0 rgba(var(--mist-100),0.05),
+    0 0 10px rgba(var(--menu-accent-warm),0.08),
+    0 18px 30px rgba(var(--c-black),0.36),
+    0 0 1px rgba(var(--menu-accent-warm),0.18);
+}
+
+/* Secondary selected state — use orange outline to match primary selected */
+.menu-btn.menu-btn--secondary.menu-btn--selected,
+.menu-icon-btn.menu-btn--selected {
+  outline: 1px solid rgba(var(--c-orange), 0.35);
+  outline-offset: 2px;
+}

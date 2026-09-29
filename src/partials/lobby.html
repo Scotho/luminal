@@ -1,0 +1,137 @@
+  <!-- Lobby Overlay (shared by host and guest) -->
+  <div id="lobby-overlay" class="overlay-screen hidden" role="dialog" aria-label="Lobby" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <div class="lobby-panel">
+        <!-- Header bar — dyn-back injected here by navigation.ts -->
+        <div class="lobby-header-bar overlay-header-bar">
+          <div class="lobby-header-title overlay-header-title">LOBBY</div>
+          <div class="lobby-header-utils">
+            <div class="menu-btn menu-btn--secondary lobby-btn-sm lobby-invite-action" id="btn-lobby-invite"><svg class="icon" style="width:13px;height:13px;margin-right:3px"><use href="/icons.svg#i-link"/></svg>INVITE</div>
+          </div>
+          <!-- Party chip — visible on mobile only -->
+          <div class="lobby-party-chip" id="lobby-party-chip">
+            <svg class="icon lobby-party-chip-link"><use href="/icons.svg#i-link"/></svg>
+            <div class="lobby-party-chip-sep"></div>
+            <div class="lobby-party-chip-dots" id="lobby-party-chip-dots"></div>
+            <span class="lobby-party-chip-count" id="lobby-party-chip-count">0/4</span>
+          </div>
+        </div>
+
+        <!-- Lobby content area -->
+        <div class="lobby-body">
+          <!-- Vehicle select grid -->
+          <div id="lobby-vehicle-grid" role="radiogroup" aria-label="Select vehicle">
+            <div class="lobby-vehicle-tile" id="lobby-vtile-bike" data-vehicle="bike" role="radio" aria-checked="false" aria-label="Spectre" tabindex="0">
+              <div class="lobby-vehicle-tile-meta">
+                <span class="lobby-vehicle-tile-name">SPECTRE</span>
+                <div class="lobby-vehicle-tile-players" id="lobby-vtile-bike-players"></div>
+              </div>
+            </div>
+            <div class="lobby-vehicle-tile" id="lobby-vtile-car" data-vehicle="car" role="radio" aria-checked="false" aria-label="Slingshot" tabindex="0">
+              <div class="lobby-vehicle-tile-meta">
+                <span class="lobby-vehicle-tile-name">SLINGSHOT</span>
+                <div class="lobby-vehicle-tile-players" id="lobby-vtile-car-players"></div>
+              </div>
+            </div>
+            <div class="lobby-vehicle-tile" id="lobby-vtile-hoverboard" data-vehicle="hoverboard" role="radio" aria-checked="false" aria-label="Vector" tabindex="0">
+              <div class="lobby-vehicle-tile-meta">
+                <span class="lobby-vehicle-tile-name">VECTOR</span>
+                <div class="lobby-vehicle-tile-players" id="lobby-vtile-hoverboard-players"></div>
+              </div>
+            </div>
+            <div class="lobby-vehicle-tile lobby-vehicle-tile--locked">
+              <div class="lobby-vehicle-tile-meta">
+                <span class="lobby-vehicle-tile-name">???</span>
+                <span class="lobby-vehicle-tile-soon">COMING SOON</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Color selector row -->
+          <div class="lobby-color-floor">
+            <div id="lobby-color-row" role="radiogroup" aria-label="Select color"></div>
+          </div>
+
+          <!-- Map vote grid -->
+          <div id="lobby-map-grid" role="radiogroup" aria-label="Vote for map"></div>
+
+          <!-- Social section: party/friends tabs + inline settings -->
+          <div class="lobby-social-section" id="lobby-social-section">
+            <!-- Left: Social tabs -->
+            <div class="lobby-social-tabs">
+              <div class="lobby-social-tab-bar" role="tablist" aria-label="Lobby social tabs">
+                <button class="lobby-social-tab lobby-social-tab--active" id="lobby-tab-party" data-tab="party" role="tab" aria-controls="lobby-panel-party" aria-selected="true">PARTY</button>
+                <button class="lobby-social-tab" id="lobby-tab-friends" data-tab="friends" role="tab" aria-controls="lobby-panel-friends" aria-selected="false">FRIENDS</button>
+                <button class="lobby-social-tab" id="lobby-tab-chat" data-tab="chat" role="tab" aria-controls="lobby-panel-chat" aria-selected="false">CHAT</button>
+              </div>
+              <div class="lobby-social-panel" id="lobby-panel-party" role="tabpanel" aria-labelledby="lobby-tab-party"></div>
+              <div class="lobby-social-panel hidden" id="lobby-panel-friends" role="tabpanel" aria-labelledby="lobby-tab-friends"></div>
+              <div class="lobby-social-panel hidden" id="lobby-panel-chat" role="tabpanel" aria-labelledby="lobby-tab-chat"></div>
+            </div>
+            <!-- Right: Inline match settings -->
+            <div class="lobby-settings-inline" id="lobby-settings-inline">
+              <div class="lobby-settings-inline-title">MATCH SETTINGS</div>
+              <div class="lobby-setting-row">
+                <span class="lobby-setting-label">SIZE</span>
+                <div class="bestof-select" id="lobby-size-select" role="group" aria-label="Lobby size">
+                  <span class="bestof-arrow" id="lobby-size-left" role="button" tabindex="0" aria-label="Previous lobby size"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chev-l"/></svg></span>
+                  <span class="bestof-label" id="lobby-size-label" aria-live="polite">1v1</span>
+                  <span class="bestof-arrow" id="lobby-size-right" role="button" tabindex="0" aria-label="Next lobby size"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chev-r"/></svg></span>
+                </div>
+              </div>
+              <div class="lobby-setting-row">
+                <span class="lobby-setting-label">SERIES</span>
+                <div class="bestof-select" id="lobby-bestof" role="group" aria-label="Series format">
+                  <span class="bestof-arrow" id="lobby-bestof-left" role="button" tabindex="0" aria-label="Previous series format"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chev-l"/></svg></span>
+                  <span class="bestof-label" id="lobby-bestof-label" aria-live="polite">SINGLE MATCH</span>
+                  <span class="bestof-arrow" id="lobby-bestof-right" role="button" tabindex="0" aria-label="Next series format"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chev-r"/></svg></span>
+                </div>
+              </div>
+              <div class="lobby-setting-row">
+                <span class="lobby-setting-label">VISIBILITY</span>
+                <div class="bestof-select" id="lobby-invite-perm" role="group" aria-label="Visibility">
+                  <span class="bestof-arrow" id="lobby-invite-perm-left" role="button" tabindex="0" aria-label="Previous visibility"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chev-l"/></svg></span>
+                  <span class="bestof-label" id="lobby-invite-perm-label" aria-live="polite">INVITE ONLY</span>
+                  <span class="bestof-arrow" id="lobby-invite-perm-right" role="button" tabindex="0" aria-label="Next visibility"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chev-r"/></svg></span>
+                </div>
+              </div>
+              <div class="lobby-setting-row">
+                <span class="lobby-setting-label">ANONYMOUS</span>
+                <div class="bestof-select" id="lobby-anon-select" role="group" aria-label="Anonymous mode">
+                  <span class="bestof-arrow" id="lobby-anon-left" role="button" tabindex="0" aria-label="Previous anonymous mode"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chev-l"/></svg></span>
+                  <span class="bestof-label" id="lobby-anon-label" aria-live="polite">ALLOW</span>
+                  <span class="bestof-arrow" id="lobby-anon-right" role="button" tabindex="0" aria-label="Next anonymous mode"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chev-r"/></svg></span>
+                </div>
+              </div>
+              <!-- Copy invite link -->
+              <div class="lobby-settings-invite" id="lobby-settings-invite">
+                <svg class="icon" style="width:13px;height:13px;color:rgba(var(--c-teal),0.5)"><use href="/icons.svg#i-link"/></svg>
+                <span class="lobby-settings-invite-code" id="lobby-settings-invite-code" data-testid="lobby-invite-code"></span>
+                <span class="lobby-settings-invite-copy" id="lobby-settings-invite-copy">COPY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action bar divider -->
+          <div class="lobby-action-divider"></div>
+
+          <!-- Action buttons -->
+          <div id="lobby-actions">
+            <div class="menu-btn menu-btn--secondary lobby-btn-sm lobby-btn-leave" id="btn-lobby-leave"><svg class="icon" style="stroke-width:3;width:14px;height:14px;margin-right:2px"><use href="/icons.svg#i-chev-l"/></svg>LEAVE</div>
+            <div class="menu-btn lobby-btn-hero lobby-ready-btn" id="btn-lobby-ready">READY</div>
+            <div class="menu-btn menu-btn--secondary lobby-btn-sm lobby-start-btn" id="btn-lobby-start" data-testid="lobby-start-btn" style="opacity:0.3;pointer-events:none">START</div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile party bottom sheet -->
+      <div class="lobby-party-sheet" id="lobby-party-sheet">
+        <div class="lobby-party-sheet-backdrop" id="lobby-party-sheet-backdrop"></div>
+        <div class="lobby-party-sheet-content">
+          <div class="lobby-party-sheet-handle"></div>
+          <div class="lobby-party-sheet-invite" id="lobby-party-sheet-invite"></div>
+          <div class="lobby-party-sheet-players" id="lobby-party-sheet-players"></div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    // Redirect non-canonical domains to luminal.live (skip localhost + test site)
+    (function() {
+      var h = location.hostname;
+      if (h !== 'luminal.live' && h !== 'localhost' && h !== '127.0.0.1' && h !== 'hot' && h !== 'cold' && h !== 'admin' && h.indexOf('luminal-test') === -1 && h.indexOf('192.168') === -1) {
+        location.replace('https://luminal.live' + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>LUMINAL</title>
+  <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <meta name="theme-color" content="#04020e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  <link rel="stylesheet" href="/src/styles/animations.css">
+  <link rel="stylesheet" href="/src/styles/components.css">
+  <link rel="stylesheet" href="/src/styles/screens.css">
+  <link rel="stylesheet" href="/src/styles/a11y/reduced-motion.css">
+  <link rel="stylesheet" href="/src/styles/a11y/focus.css">
+  <style>
+    /* Inline overrides only — bulk CSS is in src/styles/ */
+  </style>
+</head>
+<body style="background:rgb(var(--bg-body))">
+<!-- Icons loaded from /icons.svg -->
+
+<!-- @include "src/partials/loading.html" -->
+<!-- @include "src/partials/topbar.html" -->
+<!-- @include "src/partials/online.html" -->
+<!-- @include "src/partials/lobby.html" -->
+<!-- @include "src/partials/matchmaking.html" -->
+<!-- @include "src/partials/auth.html" -->
+<!-- @include "src/partials/hud.html" -->
+<!-- @include "src/partials/main-menu.html" -->
+<!-- @include "src/partials/character-select.html" -->
+<!-- @include "src/partials/settings.html" -->
+<!-- @include "src/partials/social.html" -->
+<!-- @include "src/partials/stats.html" -->
+<!-- @include "src/partials/profile.html" -->
+<!-- @include "src/partials/music.html" -->
+<!-- @include "src/partials/gameplay.html" -->
+<!-- @include "src/partials/footer.html" -->
+  <script type="module" src="/src/main.js"></script>
+  <div id="recaptcha-container"></div>
+</body>
+</html>

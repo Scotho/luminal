@@ -1,0 +1,9 @@
+/* ── 14. Ambient EQ ────────────────────────────────── */
+
+.ambient-eq {
+  position:absolute; z-index:3; pointer-events:none; display:flex; gap:2px; opacity:0.3;
+  bottom:0; left:50%; transform:translateX(-50%); width:560px; justify-content:center; align-items:flex-end;
+
+  &.hidden { display:none; }
+  & .aeq-bar { width:3px; background:linear-gradient(180deg, rgba(var(--c-gold),0.6), rgba(var(--c-teal),0.3)); border-radius:1px; transition:height 0.1s ease-out; min-height:1px; }
+}

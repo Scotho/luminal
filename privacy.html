@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Luminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: rgb(2, 3, 5);
+      color: rgb(230, 241, 238);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: rgb(250, 195, 34);
+      font-size: 24px;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: rgb(73, 162, 178);
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(45, 100, 105, 0.5);
+      padding-bottom: 6px;
+    }
+    p, li { margin-bottom: 10px; }
+    ul { padding-left: 20px; }
+    a { color: rgb(73, 162, 178); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .effective {
+      font-size: 13px;
+      color: rgb(164, 189, 184);
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 12px;
+      border: 1px solid rgba(45, 100, 105, 0.5);
+    }
+    th {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: rgb(250, 195, 34);
+      background: rgba(3, 37, 39, 0.6);
+    }
+    td { color: rgb(201, 219, 215); }
+    @media (max-width: 600px) {
+      body { padding: 24px 16px; }
+      h1 { font-size: 18px; }
+      table { font-size: 12px; }
+      th, td { padding: 6px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link" onclick="window.close();return false">&larr; BACK TO LUMINAL</a>
+    <h1>PRIVACY POLICY</h1>
+    <p class="effective">Effective: April 2026</p>
+
+    <h2>1. WHO WE ARE</h2>
+    <p>Luminal is an online multiplayer browser game developed by an independent developer based in Nova Scotia, Canada.</p>
+    <p>Contact: <a href="mailto:luminallive@gmail.com">luminallive@gmail.com</a></p>
+
+    <h2>2. WHAT WE COLLECT</h2>
+    <table>
+      <thead>
+        <tr><th>Data</th><th>Source</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Email address</td><td>Signup (email, Google, Apple, GitHub, Microsoft, Facebook)</td><td>Account identity, password reset, sign-in links</td></tr>
+        <tr><td>Display name / username</td><td>User-chosen at signup</td><td>In-game identity, leaderboard</td></tr>
+        <tr><td>Auth provider UID</td><td>OAuth providers</td><td>Account creation</td></tr>
+        <tr><td>Phone number</td><td>Phone auth (optional)</td><td>Account verification</td></tr>
+        <tr><td>Game statistics</td><td>Gameplay</td><td>Wins, losses, streaks, match count, time played, fastest win</td></tr>
+        <tr><td>Settings &amp; preferences</td><td>User-configured</td><td>Audio, graphics, camera, keybinds — synced for cross-device use</td></tr>
+        <tr><td>Friends list</td><td>User-initiated</td><td>Social features</td></tr>
+        <tr><td>Lobby / matchmaking data</td><td>Multiplayer sessions</td><td>Connecting players to matches</td></tr>
+        <tr><td>Avatar icon</td><td>User-selected</td><td>Profile display</td></tr>
+        <tr><td>Device-local preferences</td><td>localStorage</td><td>Persisting settings before/without login</td></tr>
+      </tbody>
+    </table>
+
+    <h2>3. WHAT WE DON'T COLLECT</h2>
+    <ul>
+      <li>No analytics or tracking pixels</li>
+      <li>No advertising data</li>
+      <li>No cookies beyond Firebase Auth session management</li>
+      <li>No IP address logging beyond Firebase infrastructure defaults</li>
+      <li>No location or geolocation data</li>
+      <li>No payment or financial data</li>
+    </ul>
+
+    <h2>4. HOW WE STORE IT</h2>
+    <p>All data is stored in Google Firebase (Firestore, Firebase Auth) hosted in the US (us-central1). localStorage data remains on your device only.</p>
+    <p>For EU users: data is processed in the US under Google's standard data processing terms.</p>
+
+    <h2>5. WHO WE SHARE IT WITH</h2>
+    <p>No one. We do not sell, share, or provide your data to any third party. Firebase/Google serves as our infrastructure provider (data processor) under their standard data processing terms.</p>
+
+    <h2>6. YOUR RIGHTS</h2>
+    <ul>
+      <li><strong>Access:</strong> Request a copy of your data via email.</li>
+      <li><strong>Deletion:</strong> Request account deletion. We will remove your email, username, phone number, friends list, and avatar icon. Anonymized gameplay statistics (wins, losses, streaks, match count, time played) are retained for leaderboard integrity, with your identity replaced by a generic placeholder.</li>
+      <li><strong>Correction:</strong> Request updates to inaccurate data.</li>
+      <li><strong>GDPR (EU users):</strong> Right to object to processing, right to data portability, right to lodge a complaint with your supervisory authority.</li>
+      <li><strong>PIPEDA (Canadian users):</strong> Right to challenge compliance with the developer.</li>
+    </ul>
+
+    <h2>7. DATA RETENTION</h2>
+    <p>Account data is kept while your account is active. On deletion request, personally identifiable information is removed within 30 days. Anonymized gameplay stats are retained indefinitely.</p>
+
+    <h2>8. AGE RESTRICTION</h2>
+    <p>Luminal is not intended for children under 13. We do not knowingly collect personal data from users under 13. If we learn a user is under 13, we will delete their account and associated data.</p>
+
+    <h2>9. CHANGES TO THIS POLICY</h2>
+    <p>This policy may be updated. Changes will be posted on this page with an updated effective date. Continued use of Luminal after changes constitutes acceptance.</p>
+
+    <h2>10. CONTACT</h2>
+    <p>For privacy questions, data requests, or concerns: <a href="mailto:luminallive@gmail.com">luminallive@gmail.com</a></p>
+  </div>
+</body>
+</html>

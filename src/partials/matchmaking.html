@@ -1,0 +1,36 @@
+  <!-- Queue Overlay -->
+  <div id="queue-overlay" class="overlay-screen hidden" role="dialog" aria-label="Searching for match" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <h2>SEARCHING</h2>
+      <div id="queue-spinner" aria-hidden="true"></div>
+      <div id="queue-timer" role="timer" aria-live="off" aria-label="Search time">0:00</div>
+      <div id="queue-count" role="status" aria-live="polite">0 players in queue</div>
+      <div class="menu-btn menu-btn--secondary" id="btn-queue-cancel">CANCEL</div>
+    </div>
+  </div>
+
+  <!-- Match Found Overlay -->
+  <div id="match-found-overlay" class="overlay-screen hidden" role="alertdialog" aria-label="Match found" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <h2 aria-live="assertive">MATCH FOUND</h2>
+      <div id="match-opponent-name"></div>
+      <div id="match-accept-wrap">
+        <svg id="match-accept-ring" viewBox="0 0 160 160">
+          <defs>
+            <linearGradient id="accept-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff"/>
+              <stop offset="40%" stop-color="#c8a0ff"/>
+              <stop offset="100%" stop-color="#0ff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="80" cy="80" r="72" fill="none" stroke="rgba(100,50,200,0.15)" stroke-width="5"/>
+          <circle id="match-accept-arc" cx="80" cy="80" r="72" fill="none" stroke="url(#accept-grad)" stroke-width="5" stroke-dasharray="452.389" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+        </svg>
+        <div class="menu-btn" id="btn-match-accept">ACCEPT</div>
+      </div>
+      <div id="match-accept-timer" aria-live="polite" aria-label="Time remaining to accept">10</div>
+      <div id="match-accept-status" role="status" aria-live="polite"></div>
+    </div>
+  </div>

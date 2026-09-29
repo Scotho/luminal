@@ -1,0 +1,33 @@
+/* ── Map Transition Overlay ──────────────── */
+#map-transition-overlay {
+  position: fixed; inset: 0; z-index: 190;
+  display: none; align-items: center; justify-content: center;
+  background:
+    radial-gradient(ellipse at center, rgba(var(--bg-body), 0.75) 0%, rgba(var(--bg-body), 0.9) 50%, rgba(var(--bg-body), 0.97) 100%);
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+
+  &::before {
+    content: ''; position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(var(--c-black), 0.15) 2px, rgba(var(--c-black), 0.15) 4px);
+    background-size: 100% 4px; pointer-events: none;
+    animation: scanScroll 8s linear infinite;
+  }
+
+  &.map-transition--visible {
+    opacity: 1; pointer-events: auto;
+  }
+  &.map-transition--fade-out {
+    opacity: 0; pointer-events: none;
+  }
+}
+
+.map-transition-panel {
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+}
+
+.map-transition-status {
+  font-family: 'Orbitron', sans-serif; font-size: 13px; letter-spacing: 4px;
+  color: rgba(var(--c-gold), 0.6); font-weight: 900;
+}

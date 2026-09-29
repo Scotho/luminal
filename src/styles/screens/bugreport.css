@@ -1,0 +1,39 @@
+/* ── Bug Report Overlay ──────────────────────────────── */
+
+.bugreport-content {
+  max-width:600px; width:90vw;
+}
+
+.bugreport-hint {
+  font-family:'Rajdhani',sans-serif; font-size:13px; letter-spacing:0.5px;
+  color:rgba(var(--c-white),0.4); margin:0 0 12px;
+}
+
+.bugreport-textarea {
+  width:100%; max-width:480px; box-sizing:border-box;
+  background:rgba(var(--c-black),0.35); border:1px solid rgba(var(--c-hot-deep),0.15);
+  border-radius:6px; padding:10px 12px;
+  font-family:'Rajdhani',sans-serif; font-size:14px; color:rgb(var(--c-white));
+  resize:vertical; min-height:100px;
+  outline:none; transition:border-color 0.15s;
+  &:focus { border-color:rgba(var(--c-hot-deep),0.4); }
+  &::placeholder { color:rgba(var(--c-white),0.2); }
+}
+
+.bugreport-actions {
+  display:flex; justify-content:flex-end; margin-top:10px;
+}
+
+.bugreport-btn {
+  font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:2px;
+  padding:8px 20px; border:1px solid rgba(var(--c-hot-deep),0.3);
+  border-radius:4px; background:rgba(var(--c-hot-deep),0.08);
+  color:rgba(var(--c-hot-deep),0.8); cursor:pointer;
+  transition:background 0.15s, border-color 0.15s, color 0.15s;
+  &:hover { background:rgba(var(--c-hot-deep),0.18); border-color:rgba(var(--c-hot-deep),0.5); color:rgba(var(--c-hot-deep),1); }
+}
+
+.bugreport-status {
+  font-family:'Rajdhani',sans-serif; font-size:13px;
+  color:rgba(var(--c-green),0.7); margin:10px 0 0; text-align:center;
+}

@@ -1,0 +1,199 @@
+/* ── Touch Button Controls Overlay ──────────────────────
+   Pedal-style on-screen controls for mobile.
+   Uses --safe-* custom properties from safe-area.css.
+   Responsive via clamp() — scales from compact phones to tablets.
+   Default 55% opacity so gameplay remains visible beneath.
+   ─────────────────────────────────────────────────────── */
+
+/* ── Button size tokens (fluid) ──────── */
+:root {
+  --tb-steer-size: clamp(56px, 10vw, 76px);
+  --tb-gas-w:      clamp(64px, 11vw, 84px);
+  --tb-gas-h:      clamp(96px, 16vw, 128px);
+  --tb-brake-w:    clamp(56px, 9vw, 72px);
+  --tb-brake-h:    clamp(64px, 11vw, 88px);
+  --tb-boost-size: clamp(52px, 9vw, 68px);
+  --tb-ctx-w:      clamp(64px, 11vw, 84px);
+  --tb-ctx-h:      clamp(44px, 6.5vw, 56px);
+  --tb-gap:        clamp(12px, 2vw, 20px);
+  --tb-edge:       clamp(16px, 3vw, 28px);
+  --tb-bottom:     clamp(20px, 3.5vw, 36px);
+  --tb-opacity:    0.55;
+}
+
+#touch-btn-overlay {
+  position: fixed; inset: 0; z-index: 9;
+  touch-action: none;
+  pointer-events: none;
+
+  &.hidden { display: none; }
+}
+
+/* ── Base Button ─────────────────────── */
+.tb-btn {
+  position: fixed;
+  pointer-events: auto;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  display: flex; align-items: center; justify-content: center;
+
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(var(--c-white), 0.75);
+  text-shadow: 0 0 6px rgba(var(--c-teal), 0.3);
+
+  background: rgba(var(--c-black), var(--tb-opacity));
+  border: 1.5px solid rgba(var(--c-teal), 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(3px);
+
+  transition: transform 0.06s ease, background 0.06s ease,
+              border-color 0.06s ease, box-shadow 0.06s ease,
+              opacity 0.06s ease;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Pressed state (universal) ───────── */
+.tb-btn--active {
+  transform: scale(0.93);
+  opacity: 1 !important;
+  color: rgba(var(--c-white), 1);
+}
+
+/* ── Steering (LEFT / RIGHT) ────────── */
+.tb-btn--left,
+.tb-btn--right {
+  bottom: calc(var(--safe-bottom) + var(--tb-bottom));
+  width: var(--tb-steer-size);
+  height: var(--tb-steer-size);
+  font-size: clamp(18px, 3vw, 24px);
+  border-radius: 50%;
+}
+
+.tb-btn--left {
+  left: calc(var(--safe-left) + var(--tb-edge));
+}
+.tb-btn--right {
+  left: calc(var(--safe-left) + var(--tb-edge) + var(--tb-steer-size) + var(--tb-gap));
+}
+
+.tb-btn--left.tb-btn--active,
+.tb-btn--right.tb-btn--active {
+  background: rgba(var(--c-teal), 0.2);
+  border-color: rgba(var(--c-teal), 0.5);
+  box-shadow: 0 0 14px rgba(var(--c-teal), 0.2), inset 0 0 10px rgba(var(--c-teal), 0.08);
+}
+
+/* ── Gas Pedal (tall, far right) ─────── */
+.tb-btn--gas {
+  right: calc(var(--safe-right) + var(--tb-edge));
+  bottom: calc(var(--safe-bottom) + var(--tb-bottom));
+  width: var(--tb-gas-w);
+  height: var(--tb-gas-h);
+  font-size: clamp(11px, 1.8vw, 14px);
+  border-radius: 18px 18px 22px 22px;
+  border-color: rgba(var(--c-green), 0.25);
+}
+
+.tb-btn--gas.tb-btn--active {
+  background: rgba(var(--c-green), 0.18);
+  border-color: rgba(var(--c-green), 0.5);
+  box-shadow: 0 0 14px rgba(var(--c-green), 0.22), inset 0 0 10px rgba(var(--c-green), 0.08);
+}
+
+/* ── Brake Pedal (left of gas) ───────── */
+.tb-btn--brake {
+  right: calc(var(--safe-right) + var(--tb-edge) + var(--tb-gas-w) + var(--tb-gap));
+  bottom: calc(var(--safe-bottom) + var(--tb-bottom));
+  width: var(--tb-brake-w);
+  height: var(--tb-brake-h);
+  font-size: clamp(10px, 1.6vw, 12px);
+  border-radius: 14px 14px 18px 18px;
+  border-color: rgba(var(--c-red-bright), 0.25);
+}
+
+.tb-btn--brake.tb-btn--active {
+  background: rgba(var(--c-red-bright), 0.18);
+  border-color: rgba(var(--c-red-bright), 0.5);
+  box-shadow: 0 0 14px rgba(var(--c-red-bright), 0.22), inset 0 0 10px rgba(var(--c-red-bright), 0.08);
+}
+
+/* ── Boost (circular, above brake) ───── */
+.tb-btn--boost {
+  right: calc(var(--safe-right) + var(--tb-edge) + var(--tb-gas-w) + var(--tb-gap)
+         + (var(--tb-brake-w) - var(--tb-boost-size)) / 2);
+  bottom: calc(var(--safe-bottom) + var(--tb-bottom) + var(--tb-brake-h) + var(--tb-gap));
+  width: var(--tb-boost-size);
+  height: var(--tb-boost-size);
+  font-size: clamp(9px, 1.4vw, 11px);
+  border-radius: 50%;
+  border-color: rgba(var(--c-teal), 0.3);
+}
+
+.tb-btn--boost.tb-btn--active {
+  background: rgba(var(--c-teal), 0.22);
+  border-color: rgba(var(--c-teal), 0.55);
+  box-shadow: 0 0 18px rgba(var(--c-teal), 0.28), inset 0 0 12px rgba(var(--c-teal), 0.12);
+}
+
+/* ── Context (Drift / Hover) ─────────── */
+.tb-btn--context {
+  left: 50%; transform: translateX(-50%);
+  bottom: calc(var(--safe-bottom) + var(--tb-bottom));
+  width: var(--tb-ctx-w);
+  height: var(--tb-ctx-h);
+  font-size: clamp(9px, 1.4vw, 12px);
+  border-radius: 14px;
+
+  &.hidden { display: none; }
+}
+
+.tb-btn--context-drift {
+  border-color: rgba(var(--c-orange), 0.25);
+}
+.tb-btn--context-drift.tb-btn--active {
+  background: rgba(var(--c-orange), 0.18);
+  border-color: rgba(var(--c-orange), 0.5);
+  box-shadow: 0 0 14px rgba(var(--c-orange), 0.22), inset 0 0 10px rgba(var(--c-orange), 0.08);
+}
+
+.tb-btn--context-hover {
+  border-color: rgba(var(--c-teal), 0.25);
+}
+.tb-btn--context-hover.tb-btn--active {
+  background: rgba(var(--c-teal), 0.18);
+  border-color: rgba(var(--c-teal), 0.5);
+  box-shadow: 0 0 14px rgba(var(--c-teal), 0.28), inset 0 0 10px rgba(var(--c-teal), 0.12);
+}
+
+/* ── Landscape compact (short viewports) ── */
+@media (max-height: 420px) and (orientation: landscape) {
+  :root {
+    --tb-steer-size: clamp(48px, 12vh, 64px);
+    --tb-gas-h:      clamp(72px, 20vh, 100px);
+    --tb-brake-h:    clamp(52px, 14vh, 72px);
+    --tb-boost-size: clamp(44px, 11vh, 58px);
+    --tb-bottom:     clamp(8px, 2vh, 16px);
+    --tb-gap:        clamp(8px, 1.5vh, 14px);
+  }
+}
+
+/* ── Compact phones (≤375px width) ─────── */
+@media (max-width: 375px) {
+  :root {
+    --tb-steer-size: 52px;
+    --tb-gas-w: 60px;
+    --tb-gas-h: 88px;
+    --tb-brake-w: 52px;
+    --tb-brake-h: 60px;
+    --tb-boost-size: 48px;
+    --tb-ctx-w: 60px;
+    --tb-gap: 8px;
+    --tb-edge: 12px;
+  }
+}

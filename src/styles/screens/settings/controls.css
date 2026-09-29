@@ -1,0 +1,102 @@
+
+/* ── 18. Section divider ── */
+.settings-section-divider {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: rgb(var(--orange-500));
+  opacity: 0.7;
+  padding: 16px 0 8px;
+  margin-top: 8px;
+  border-bottom: 1px solid rgba(252,116,30,0.1);
+}
+
+.settings-section-divider:first-child {
+  margin-top: 0;
+  padding-top: 8px;
+}
+
+/* ── 19. Setting row ── */
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 16px;
+  border-radius: var(--r-lg);
+  margin: 2px 0;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.setting-row:hover {
+  background: linear-gradient(90deg, rgba(73,162,178,0.08) 0%, rgba(73,162,178,0.02) 100%);
+  border: 1px solid rgba(73,162,178,0.10);
+  margin: 1px -1px;
+}
+
+.setting-row:hover label {
+  color: #aaa;
+}
+
+/* ── 20. Setting row label ── */
+.setting-row label {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: var(--ls-normal);
+  text-transform: uppercase;
+  color: #555;
+}
+
+/* ── 21. Setting row focused — THE GLOW BAR ── */
+.setting-row--focused {
+  background: linear-gradient(90deg, rgba(73,162,178,0.12) 0%, rgba(73,162,178,0.03) 100%);
+  box-shadow: 0 0 15px rgba(73,162,178,0.08), inset 0 0 30px rgba(73,162,178,0.03);
+  border: 1px solid rgba(73,162,178,0.15);
+  margin: 1px -1px;
+}
+
+/* ── 22. Focused label ── */
+.setting-row--focused label {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(73,162,178,0.3);
+}
+
+/* ── 23. Focused toggle option ── */
+.setting-row--focused .control-toggle__option--active {
+  background: rgba(73,162,178,0.3);
+  border-color: rgb(var(--teal-500));
+  color: rgb(var(--teal-500));
+  text-shadow: 0 0 8px rgba(73,162,178,0.6);
+  box-shadow: 0 0 10px rgba(73,162,178,0.15);
+}
+
+/* ── 24. Focused slider styles ── */
+.setting-row--focused .slider-wrap input[type=range]::-webkit-slider-thumb {
+  background: rgb(var(--teal-500));
+  box-shadow: 0 0 8px rgba(73,162,178,0.5);
+}
+.setting-row--focused .slider-wrap input[type=range]::-moz-range-thumb {
+  background: rgb(var(--teal-500));
+  box-shadow: 0 0 8px rgba(73,162,178,0.5);
+}
+.setting-row--focused .slider-wrap input[type=range]::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, rgb(var(--teal-500)), rgba(73,162,178,0.3));
+}
+.setting-row--focused .slider-wrap input[type=range]::-moz-range-track {
+  background: linear-gradient(90deg, rgb(var(--teal-500)), rgba(73,162,178,0.3));
+}
+
+/* ── 25. Focused value display ── */
+.setting-row--focused .setting-val {
+  color: rgb(var(--teal-500));
+  text-shadow: 0 0 8px rgba(73,162,178,0.4);
+}
+
+/* ── 26. Focused arrow ── */
+.setting-row--focused .setting-arrow {
+  color: rgb(var(--teal-500));
+  text-shadow: 0 0 8px rgba(73,162,178,0.4);
+}

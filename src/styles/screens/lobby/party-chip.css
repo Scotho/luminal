@@ -1,0 +1,56 @@
+/* ── Party Chip (mobile only) ──────────── */
+
+/* Hidden on desktop — .lobby-header-utils is shown instead */
+.lobby-party-chip {
+  display:none;
+}
+
+@media (max-width:768px) {
+  /* Hide desktop header utils on mobile */
+  .lobby-header-utils {
+    display:none;
+  }
+
+  /* Show party chip on mobile */
+  .lobby-party-chip {
+    display:flex; align-items:center; gap:6px;
+    margin-left:auto;
+    padding:5px 10px;
+    border:1px solid rgba(var(--teal-600), 0.14);
+    border-radius:12px;
+    background:rgba(var(--teal-600), 0.04);
+    cursor:pointer; pointer-events:auto;
+    position:relative; z-index:1;
+    transition:border-color 0.2s, background 0.2s;
+
+    &:active {
+      background:rgba(var(--teal-600), 0.1);
+      border-color:rgba(var(--teal-600), 0.24);
+    }
+  }
+
+  .lobby-party-chip-link {
+    width:12px; height:12px;
+    color:rgba(var(--c-gold), 0.4);
+  }
+
+  .lobby-party-chip-sep {
+    width:1px; height:12px;
+    background:rgba(var(--teal-600), 0.14);
+  }
+
+  .lobby-party-chip-dots {
+    display:flex; gap:3px; align-items:center;
+  }
+  .lobby-party-chip-dot {
+    width:6px; height:6px; border-radius:50%;
+  }
+  .lobby-party-chip-dot--ai {
+    opacity:0.4;
+  }
+
+  .lobby-party-chip-count {
+    font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:1px;
+    color:rgba(var(--c-gold), 0.45);
+  }
+}

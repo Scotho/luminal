@@ -1,0 +1,148 @@
+/* ── Vehicle Select Grid (Smash Bros style) ── */
+#lobby-vehicle-grid {
+  display:flex; flex-wrap:nowrap; gap:16px; justify-content:flex-start;
+  margin-bottom:16px; overflow-x:auto; position:relative;
+  max-width:100%;
+  padding:5px 8px; /* prevent first/last tile border clipping from fade/overflow */
+  scrollbar-width:none; -ms-overflow-style:none;
+  &::-webkit-scrollbar { display:none; }
+}
+/* Desktop: remove bottom margin — color row handles its own 20px gap */
+@media (min-width:1025px) {
+  #lobby-vehicle-grid { margin-bottom:0; }
+}
+
+.lobby-vehicle-tile {
+  width:280px; height:280px; max-height:280px; flex-shrink:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:0;
+  background:none; border:1px solid rgba(var(--teal-600),0.1);
+  border-radius:8px; cursor:pointer;
+  transition:background 0.3s, box-shadow 0.3s, border-color 0.3s, transform 0.3s, opacity 0.3s;
+  box-sizing:border-box; overflow:hidden; position:relative;
+  opacity:0.6;
+}
+.lobby-vehicle-tile:hover:not(.lobby-vehicle-tile--selected) {
+  border-color:rgba(var(--c-teal),0.3);
+  background:rgba(var(--bg-dark-cyan),0.3);
+  box-shadow:0 0 20px rgba(var(--c-teal),0.08);
+  opacity:0.75;
+}
+.lobby-vehicle-tile--selected {
+  animation:vehicleSelectPop 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  transform:scale(1.03); opacity:1;
+  border:1px solid rgba(var(--c-teal),0.6);
+  background:rgba(var(--c-teal),0.06);
+  box-shadow:
+    0 0 40px rgba(var(--c-teal),0.15),
+    0 0 80px rgba(var(--c-teal),0.08),
+    inset 0 0 20px rgba(var(--c-teal),0.04);
+}
+/* Disabled / coming soon — viewable with preview but not selectable */
+.lobby-vehicle-tile--disabled {
+  cursor:default; opacity:0.45;
+  border:1px dashed rgba(var(--c-white),0.08);
+  pointer-events:none;
+}
+.lobby-vehicle-tile--disabled:hover {
+  border-color:rgba(var(--c-white),0.12);
+  background:rgba(var(--c-white),0.02);
+  box-shadow:none;
+}
+
+/* Locked / coming soon tiles (fully hidden identity) */
+.lobby-vehicle-tile--locked {
+  cursor:default; opacity:0.35;
+  border:1px dashed rgba(var(--c-white),0.06);
+  pointer-events:none;
+}
+.lobby-vehicle-tile--locked:hover {
+  border-color:rgba(var(--c-white),0.06);
+  background:none;
+  box-shadow:none;
+}
+
+.lobby-vehicle-tile-soon {
+  font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:3px;
+  color:rgba(var(--c-white),0.4); margin-top:8px;
+}
+/* Locked tiles have no canvas — center the meta vertically */
+.lobby-vehicle-tile--locked .lobby-vehicle-tile-meta {
+  top:0; bottom:0; justify-content:center;
+}
+
+.lobby-vehicle-tile-meta {
+  position:absolute; bottom:0; left:0; right:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  padding:0 10px 10px; box-sizing:border-box; z-index:2;
+  pointer-events:none;
+}
+
+.lobby-vehicle-tile-name {
+  font-family:'Orbitron',sans-serif; font-size:var(--text-base,14px); letter-spacing:4px; font-weight:700;
+  color:rgba(var(--c-white),0.85); z-index:2;
+  text-shadow:0 1px 6px rgba(var(--c-black),0.6), 0 0 20px rgba(var(--c-black),0.4);
+  margin:4px 0 2px;
+  transition:color 0.25s, text-shadow 0.25s;
+}
+.lobby-vehicle-tile--selected .lobby-vehicle-tile-name {
+  color:rgba(var(--c-white),0.95);
+  text-shadow:0 0 12px rgba(var(--c-teal),0.35);
+}
+
+.lobby-vehicle-tile-players {
+  display:flex; flex-direction:column; align-items:center;
+  gap:4px; min-height:0; z-index:2;
+  pointer-events:none;
+}
+
+.lobby-vehicle-tile-player {
+  font-family:'Rajdhani',sans-serif; font-size:13px; letter-spacing:1.5px;
+  color:rgba(var(--c-white),0.7); line-height:1; transition:all 0.3s ease;
+  text-shadow:0 1px 4px rgba(var(--c-black),0.6);
+}
+.lobby-vehicle-tile-player--ai { color:rgba(var(--c-white),0.35); font-style:italic; }
+.lobby-vehicle-tile-player--selected {
+  text-decoration:underline; text-underline-offset:3px;
+  text-decoration-thickness:1px;
+}
+
+/* Player indicator row inside vehicle tile */
+.lobby-vtile-player-row {
+  display:flex; align-items:center; justify-content:center; gap:6px; padding:3px 6px;
+}
+.lobby-vtile-crown {
+  width:16px; height:16px; flex-shrink:0; fill:rgba(var(--c-gold),0.8); stroke:none;
+  filter:drop-shadow(0 0 4px rgba(var(--c-gold),0.5));
+}
+.lobby-vtile-icon {
+  width:12px; height:12px; flex-shrink:0; fill:none; stroke:rgba(var(--c-gold),0.7); stroke-width:2;
+}
+.lobby-vtile-check {
+  width:12px; height:12px; flex-shrink:0; opacity:0.15;
+  stroke:rgba(var(--c-white),0.4); stroke-width:2.5; fill:none;
+  transition:opacity 0.2s, stroke 0.2s;
+}
+.lobby-vtile-check--ready {
+  opacity:1; stroke:rgb(var(--c-green-bright));
+  filter:drop-shadow(0 0 4px rgba(var(--c-green-bright),0.5));
+}
+
+/* ── Drop shadow on preview canvas when selected ── */
+.lobby-vehicle-tile--selected > .lobby-card-preview {
+  filter:drop-shadow(0 6px 24px rgba(var(--c-teal),0.2));
+}
+
+/* ── Platform base glow (matches .cs-card::after) ── */
+.lobby-vehicle-tile::after {
+  content:''; position:absolute; bottom:0; left:5%; right:5%; height:2px;
+  background:linear-gradient(90deg, transparent, rgba(var(--c-teal),0.35), transparent);
+  box-shadow:0 0 12px rgba(var(--c-teal),0.15);
+  opacity:0; transition:opacity 0.3s; z-index:1;
+}
+.lobby-vehicle-tile--selected::after { opacity:1; }
+
+/* ── Floor / Reflection strip (matches .cs-floor from character-select) ── */
+.lobby-vtile-floor {
+  display:none; /* floor reflection not needed with full-card preview */
+}

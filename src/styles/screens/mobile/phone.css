@@ -1,0 +1,324 @@
+/* ══════════════════════════════════════════════
+   4. PHONE  (≤480px)
+   Standard phone portrait — most compact layout
+   Covers all phones including compact (≤360px)
+   ══════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .overlay-screen .content {
+    width: calc(100vw - 24px);
+    padding: clamp(10px, 3vw, 14px) clamp(8px, 2.5vw, 12px);
+    padding-bottom: calc(clamp(10px, 3vw, 14px) + var(--safe-bottom));
+    padding-left: calc(clamp(8px, 2.5vw, 12px) + var(--safe-left));
+    padding-right: calc(clamp(8px, 2.5vw, 12px) + var(--safe-right));
+    max-width: calc(100vw - 20px); max-height: calc(100vh - 20px); margin: calc(44px + var(--safe-top)) clamp(10px, 2.5vw, 12px) clamp(10px, 2.5vw, 12px);
+  }
+  #overlay .game-logo--menu {
+    width: min(340px, 80vw);
+    margin-bottom: clamp(10px, 3vw, 14px);
+  }
+  #menu-buttons, #result-buttons, #pause-buttons, #online-pause-buttons { width: min(100%, 320px); max-width: 100%; margin: 0 auto; padding: 0; gap: clamp(6px, 1.8vw, 8px); }
+  .menu-btn {
+    font-size: clamp(10px, 3vw, 16px);
+    letter-spacing: clamp(2px, 0.7vw, 3px);
+    padding: clamp(10px, 2.8vw, 14px) clamp(12px, 3vw, 14px);
+    min-height: clamp(44px, 11.8vw, 52px);
+    width: 100%;
+  }
+  .menu-btn.menu-btn--secondary {
+    font-size: clamp(9px, 2.6vw, 14px);
+    letter-spacing: clamp(2px, 0.5vw, 3px);
+    padding: clamp(9px, 2.4vw, 12px) clamp(12px, 3vw, 14px);
+    min-height: clamp(44px, 11vw, 48px);
+    width: 100%;
+  }
+
+  /* Top bar — trim further, preserve safe-area for camera cutouts */
+  #auth-status { height: calc(clamp(36px, 10vw, 38px) + var(--safe-top)); padding-top: var(--safe-top); }
+  .topbar-sep, .tb-sep { margin: 0 3px !important; }
+  #auth-username { font-size: 10px; letter-spacing: 1px; }
+  #btn-login { font-size: 10px; padding: 3px 10px; }
+  #notif-toast-container { top: calc(44px + var(--safe-top)); }
+
+  /* Loading */
+  .loading-panel { padding: clamp(20px, 6vw, 28px) clamp(14px, 4vw, 20px); border-radius: clamp(10px, 3vw, 16px); }
+  #loading-screen .game-logo {
+    width: min(300px, 75vw);
+  }
+  #loading-screen .loading-subtitle {
+    font-size: clamp(9px, 2.5vw, 12px);
+    letter-spacing: clamp(2px, 1vw, 6px);
+    margin-bottom: clamp(16px, 4.5vw, 20px);
+  }
+  #loading-screen .click-prompt { height: clamp(26px, 7vw, 29px); }
+  .loading-bar-wrap { width: clamp(150px, 45vw, 200px); }
+
+  /* ── Lobby ──────────────────────────────── */
+  .lobby-vehicle-tile { width: clamp(95px, 28vw, 120px); min-height: clamp(95px, 28vw, 120px); }
+  .lobby-card { width: clamp(90px, 26vw, 100px); min-height: clamp(70px, 20vw, 76px); border-radius:6px; }
+  .lobby-card-name { font-size: clamp(10px, 2.8vw, 11px); }
+  .lobby-party-chip-count { font-size: clamp(8px, 2.2vw, 10px); }
+
+  #lobby-overlay .content {
+    padding-top:var(--safe-top);
+    padding-bottom:var(--safe-bottom);
+    padding-left:var(--safe-left);
+    padding-right:var(--safe-right);
+  }
+
+  .lobby-header-title {
+    font-size:clamp(10px, 3.5vw, 12px);
+    letter-spacing:clamp(3px, 1vw, 6px);
+  }
+
+  .lobby-btn-hero { font-size: clamp(12px, 3.5vw, 14px); letter-spacing: clamp(4px, 1.2vw, 6px); padding: clamp(12px, 3.5vw, 16px) 0; }
+  .lobby-btn-sm { font-size: clamp(9px, 2.5vw, 11px); letter-spacing: clamp(2px, 0.6vw, 3px); padding: clamp(8px, 2.2vw, 10px) 0; }
+
+  #lobby-vehicle-grid { margin-inline:-8px; }
+
+  #lobby-actions { max-width:none; width:100%; }
+
+  /* Results */
+  #result h2 { font-size: clamp(22px, 6.5vw, 32px); }
+
+  /* HUD */
+  #meter-bar { width: clamp(130px, 40vw, 200px); height: clamp(7px, 2vw, 8px); border-radius: 4px; }
+  #meter-label { font-size: 10px; letter-spacing: 3px; }
+  #countdown-num { font-size: clamp(64px, 18vw, 80px); }
+
+  /* Header bar — match phone .content padding */
+  .overlay-header-bar {
+    --_ohb-px: calc(clamp(8px, 2.5vw, 12px) + var(--safe-left, 0px));
+    padding: 6px clamp(8px, 2.5vw, 12px);
+    gap: clamp(4px, 1.2vw, 6px);
+  }
+
+  /* Overlay header titles */
+  .overlay-header-title {
+    font-size: clamp(12px, 4vw, 24px) !important;
+    letter-spacing: clamp(1.5px, 0.5vw, 5px) !important;
+    padding-inline: 2px;
+  }
+
+  /* Settings */
+  .settings-section::after { font-size: 22px; }
+  .setting-row label { font-size: 13px; letter-spacing: 2px; }
+  .setting-row { min-height: 44px; }
+  #settings-overlay .settings-group { padding: 0 6px; min-width: 0; width: 100%; box-sizing: border-box; }
+  .bestof-label { min-width: clamp(110px, 32vw, 140px); font-size: clamp(9px, 2.5vw, 11px); }
+  .control-toggle .control-toggle__option { padding: clamp(5px, 1.5vw, 7px) clamp(10px, 2.8vw, 12px); font-size: clamp(11px, 3vw, 13px); }
+
+  /* Notifications */
+  .notif-toast { border-radius: 8px; }
+
+  /* Match options */
+  .color-opt { width: 22px; height: 22px; }
+  .color-options { gap: 14px; }
+
+  /* Fluid-width overrides — tighter at phone size */
+  #online-result-extra { width: 90vw; }
+  .auth-form, #username-form { width: 90vw; }
+  .bugreport-content { width: 90vw; }
+
+  /* ── Icon bar — stack vertically on phone portrait, full-width rows ── */
+  .menu-icon-bar {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  .menu-icon-bar .menu-icon-btn {
+    width: 100%;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  /* Show text labels on mobile portrait — use ::after with data-mobile-label.
+     Override the desktop scanlines ::after on icon bar buttons so the label
+     is legible inline next to the icon. */
+  .menu-icon-bar .menu-icon-btn::after {
+    content: attr(data-mobile-label);
+    position: static;
+    background: none;
+    animation: none;
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: inherit;
+    pointer-events: none;
+  }
+
+  .social-header-auth-label { display:none; }
+
+  /* ── Leaderboard — portrait fixes ──────────── */
+  /* Row layout filling full width — each filter group gets equal space */
+  .lb-filters { flex-direction: row; gap: 0; margin-bottom: 12px; width: 100%; }
+  .lb-filter-group { flex: 1; min-width: 0; gap: 2px; }
+  .lb-filter-label { min-width: 0; font-size: 8px; letter-spacing: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  /* Hide secondary columns — rank/name/value only at narrow widths */
+  .lb-col-winrate, .lb-col-extra { display: none; }
+}
+
+/* ══════════════════════════════════════════════
+   PHONE PORTRAIT — REPLAY UI (TASK-298)
+   ≤480px + portrait only. Header bar at top,
+   basic slider+play body, expand for advanced.
+   ══════════════════════════════════════════════ */
+@media (max-width: 480px) and (orientation: portrait) {
+  /* Header bar */
+  #replay-mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(56px + var(--safe-top, 0px));
+    padding-top: var(--safe-top, 0px);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: calc(16px + var(--safe-left, 0px));
+    padding-right: calc(16px + var(--safe-right, 0px));
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(var(--c-orange, 249, 115, 22), 0.32);
+    z-index: 60;
+    pointer-events: auto;
+  }
+  #replay-mobile-header[hidden] { display: none; }
+
+  .replay-mobile-back {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(15, 23, 42, 0.6);
+    color: rgb(226, 232, 240);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .replay-mobile-back .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .replay-mobile-header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .replay-mobile-header-spacer {
+    width: 40px;
+    flex-shrink: 0;
+  }
+
+  /* When the match selector is inside the header, neutralize its absolute
+     positioning from replay.css (top:72px; left:50%; transform:translateX(-50%)). */
+  .replay-mobile-header-center > #replay-match-selector {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    padding: 6px 10px;
+    gap: 8px;
+  }
+  .replay-mobile-header-center > #replay-match-selector .replay-match-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+  .replay-mobile-header-center > #replay-match-selector .replay-match-label {
+    font-size: 13px;
+    min-width: auto;
+    letter-spacing: 1px;
+  }
+
+  /* Hide the desktop top-center exit button — the header back button replaces it. */
+  #replay-overlay > #btn-replay-exit-top {
+    display: none !important;
+  }
+
+  /* ── Replay control bar — basic mode (default) ── */
+  #replay-controls {
+    left: 0 !important;
+    right: 0 !important;
+    bottom: calc(16px + var(--safe-bottom, 0px));
+    width: auto !important;
+    padding: 10px 14px;
+    min-width: 0 !important;
+    max-width: 100vw;
+    border-radius: 12px 12px 0 0;
+    transform: none !important;
+  }
+
+  /* Hide advanced controls by default on mobile portrait.
+     Targets: speed selector, camera selector, favourite, loop, restart. */
+  #replay-controls .replay-speed-select,
+  #replay-controls .replay-cam-select,
+  #replay-controls #btn-replay-fav,
+  #replay-controls #btn-replay-loop,
+  #replay-controls #btn-replay-restart {
+    display: none;
+  }
+
+  /* Expand toggle always visible on mobile portrait */
+  #replay-controls .replay-expand-toggle {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(15, 23, 42, 0.6);
+    color: rgb(226, 232, 240);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 200ms;
+    flex-shrink: 0;
+    /* Default (collapsed) — chevron points up (rotate the down chevron). */
+    transform: rotate(180deg);
+  }
+  #replay-controls .replay-expand-toggle .icon {
+    width: 18px;
+    height: 18px;
+  }
+  /* Expanded — chevron points down, meaning "collapse". */
+  #replay-overlay.replay--expanded #replay-controls .replay-expand-toggle {
+    transform: rotate(0deg);
+  }
+
+  /* Expanded state — reveal advanced controls inline with transport buttons. */
+  #replay-overlay.replay--expanded #replay-controls .replay-speed-select,
+  #replay-overlay.replay--expanded #replay-controls .replay-cam-select {
+    display: flex;
+  }
+  #replay-overlay.replay--expanded #replay-controls #btn-replay-fav,
+  #replay-overlay.replay--expanded #replay-controls #btn-replay-loop {
+    display: inline-flex;
+  }
+  /* Restart button retains its default visibility logic (only shows when finished). */
+  #replay-overlay.replay--expanded #replay-controls #btn-replay-restart:not(.hidden) {
+    display: flex;
+  }
+
+  /* Wrap replay-buttons so advanced controls flow onto second row at narrow widths. */
+  #replay-overlay.replay--expanded #replay-buttons {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  /* Hide the top-center match selector when it lives outside the header (series
+     replays place it in the header via JS; non-series replays leave it hidden). */
+  #replay-overlay > #replay-match-selector:not([hidden]) {
+    /* JS moves the selector into the header at mobile portrait. If for any
+       reason it's still a direct child, keep the visual footprint minimal so
+       it doesn't clash with the 56px header bar. */
+    top: calc(56px + var(--safe-top, 0px) + 8px);
+  }
+}

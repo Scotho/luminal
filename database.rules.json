@@ -1,0 +1,191 @@
+{
+  "rules": {
+    "status": {
+      ".read": true,
+      "$uid": {
+        ".write": "$uid === auth.uid || (auth != null && !newData.exists())"
+      }
+    },
+    "queuePresence": {
+      ".read": true,
+      "$uid": {
+        ".write": "$uid === auth.uid || (auth != null && !newData.exists())"
+      }
+    },
+    "matches": {
+      "$matchId": {
+        ".read": "auth != null",
+        ".write": "auth != null && !newData.exists() && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+        "meta": {
+          ".write": "auth != null && (!data.exists() || root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          ".validate": "newData.hasChildren(['players', 'seriesLength', 'status', 'round', 'scores', 'seed'])"
+        },
+        "accept": {
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "ready": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "inputs": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "hashes": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "state": {
+          "$uid": {
+            ".write": "$uid === auth.uid",
+            ".validate": "newData.hasChildren(['x', 'z', 'angle', 'speed', 'meter', 'alive', 'seq', 'ts']) && newData.child('speed').val() >= 0 && newData.child('speed').val() <= 110 && newData.child('meter').val() >= 0 && newData.child('meter').val() <= 100 && newData.child('x').val() >= -160 && newData.child('x').val() <= 160 && newData.child('z').val() >= -160 && newData.child('z').val() <= 160 && newData.child('angle').val() >= -7 && newData.child('angle').val() <= 7 && newData.child('seq').val() >= 0 && newData.child('alive').isBoolean() && newData.child('boosting').isBoolean() && newData.child('dashing').isBoolean()"
+          }
+        },
+        "events": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          ".validate": "newData.hasChildren() || !newData.exists()"
+        },
+        "heartbeat": {
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "roundEnd": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "result": {
+          ".write": false,
+          ".read": "auth != null"
+        },
+        "finalResult": {
+          ".write": false,
+          ".read": "auth != null"
+        },
+        "nextRound": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "rematch": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "loaded": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "chat": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          ".read": "auth != null"
+        },
+        "returnToLobby": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)"
+        },
+        "scores": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)"
+        },
+        "snapshot": {
+          ".write": "auth != null && (root.child('matches').child($matchId).child('meta').child('players').child('0').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('1').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('2').val() === auth.uid || root.child('matches').child($matchId).child('meta').child('players').child('3').val() === auth.uid)",
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "rtt": {
+          "$uid": {
+            ".write": "$uid === auth.uid"
+          }
+        }
+      }
+    },
+    "globalStats": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "meta": {
+      ".read": true,
+      ".write": "auth != null",
+      "serverVersion": {
+        ".validate": "newData.hasChildren(['version','deployedAt']) && newData.child('version').isString() && newData.child('deployedAt').isNumber() && newData.child('version').val().matches(/^v\\d+\\.\\d+\\.\\d+$/)"
+      }
+    },
+    "drawings": {
+      ".read": true,
+      "$uid": {
+        ".write": "$uid === auth.uid || (auth != null && !newData.exists())"
+      }
+    },
+    "lobbies": {
+      ".read": true,
+      ".indexOn": ["createdAt"],
+      "$lobbyId": {
+        ".write": "auth != null && (!data.exists() || (!newData.exists() && (root.child('lobbies').child($lobbyId).child('host').child('uid').val() === auth.uid || root.child('lobbies').child($lobbyId).child('host').child('presence').val() === false || root.child('lobbies').child($lobbyId).child('createdAt').val() + 86400000 < now)))",
+        "host": {
+          ".write": "auth != null && (data.child('uid').val() === auth.uid || !data.exists() || data.child('presence').val() === false)"
+        },
+        "guests": {
+          "$guestUid": {
+            ".write": "auth != null && ($guestUid === auth.uid || root.child('lobbies').child($lobbyId).child('host').child('uid').val() === auth.uid)"
+          }
+        },
+        "settings": {
+          ".write": "auth != null && root.child('lobbies').child($lobbyId).child('host').child('uid').val() === auth.uid"
+        },
+        "status": {
+          ".write": "auth != null && root.child('lobbies').child($lobbyId).child('host').child('uid').val() === auth.uid"
+        },
+        "ais": {
+          ".write": "auth != null && root.child('lobbies').child($lobbyId).child('host').child('uid').val() === auth.uid"
+        },
+        "chat": {
+          ".write": "auth != null && (root.child('lobbies').child($lobbyId).child('host').child('uid').val() === auth.uid || root.child('lobbies').child($lobbyId).child('guests').child(auth.uid).exists())"
+        }
+      }
+    },
+    "debugReports": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".indexOn": ["ts"]
+    },
+    "invites": {
+      "$toUid": {
+        ".read": "$toUid === auth.uid",
+        "$fromUid": {
+          ".write": "auth != null && ($fromUid === auth.uid || ($toUid === auth.uid && !newData.exists()))"
+        }
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth.uid === $uid",
+        "lobby": {
+          ".read": "auth != null"
+        }
+      }
+    },
+    "announcements": {
+      ".read": true,
+      ".indexOn": ["active", "priority"],
+      "$announcementId": {
+        ".write": "auth != null && auth.token.admin === true",
+        ".validate": "newData.hasChildren(['text', 'type', 'priority', 'active', 'startAt', 'endAt', 'createdBy', 'createdAt'])"
+      }
+    }
+  }
+}

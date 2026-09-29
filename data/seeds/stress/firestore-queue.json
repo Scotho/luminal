@@ -1,0 +1,13 @@
+{
+  "_collection": "queue",
+  "_note": "Matchmaking queue entries for stress testing. Uses stress bot UIDs.",
+  "templates": [
+    {
+      "count": 5,
+      "fields": {
+        "status": "waiting",
+        "color": "#ff0000"
+      }
+    }
+  ]
+}

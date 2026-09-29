@@ -1,0 +1,60 @@
+  <!-- Online Play Overlay -->
+  <div id="online-overlay" class="overlay-screen hidden" role="dialog" aria-label="Find match" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <div class="overlay-header-bar"><div class="overlay-header-title">FIND MATCH</div></div>
+      <div id="online-lobby-count" style="font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:2px; color:rgba(var(--c-teal),0.42); margin-bottom:14px;"><span id="connection-dot-lobby" style="display:inline-block; width:6px; height:6px; border-radius:50%; background:rgba(var(--c-green),0.8); box-shadow:0 0 6px rgba(var(--c-green),0.4); margin-right:6px; vertical-align:middle;"></span><span id="online-count-lobby" style="color:rgba(var(--c-gold),0.78); font-weight:700;">0</span> ONLINE</div>
+      <div class="online-option" id="btn-casual-match" role="button" tabindex="0">
+        <span class="online-option-label">CASUAL</span>
+        <span class="online-option-count" id="queue-search-count" aria-live="polite">0 in queue</span>
+      </div>
+      <div class="online-option" id="btn-ranked-match" role="button" aria-disabled="true" style="opacity:0.25;cursor:not-allowed;">
+        <span class="online-option-label">RANKED</span>
+        <span class="online-option-count">COMING SOON</span>
+      </div>
+      <div class="online-option" id="btn-open-lobbies" role="button" tabindex="0">
+        <span class="online-option-label">OPEN LOBBIES</span>
+        <span class="online-option-badge" id="open-lobbies-badge">0</span>
+      </div>
+      <div id="open-lobbies-list" class="open-lobbies-list hidden">
+        <div class="open-lobbies-toolbar">
+          <span id="open-lobbies-count" class="open-lobbies-count"></span>
+          <span class="open-lobbies-refresh-wrap">
+            <span id="open-lobbies-timer" class="open-lobbies-timer"></span>
+            <button id="open-lobbies-refresh-btn" class="open-lobbies-refresh-btn">↻</button>
+          </span>
+        </div>
+        <div id="open-lobbies-rows" class="open-lobbies-rows"></div>
+        <div id="open-lobbies-empty" class="open-lobbies-empty hidden">
+          <div class="open-lobbies-empty-title">NO OPEN LOBBIES</div>
+          <div class="open-lobbies-empty-hint">CREATE A LOBBY &amp; SET VISIBILITY TO PUBLIC</div>
+        </div>
+      </div>
+      <div style="margin-top:18px;font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:2px;color:rgba(var(--c-gold),0.45);text-align:center;max-width:280px;line-height:1.6;"><svg class="icon" style="width:0.9em;height:0.9em"><use href="/icons.svg#i-alert"/></svg> MULTIPLAYER IS BUGGY &amp; ACTIVELY BEING WORKED ON</div>
+    </div>
+  </div>
+
+  <!-- Join Lobby Overlay (for guests arriving via invite link) -->
+  <div id="join-lobby-overlay" class="overlay-screen hidden" role="dialog" aria-label="Join lobby" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <h2>LOBBY</h2>
+      <div id="join-lobby-status" role="status" aria-live="polite" style="font-family:'Rajdhani',sans-serif; font-size:16px; letter-spacing:2px; color:rgba(var(--c-white),0.6); margin-bottom:10px;">JOINING LOBBY...</div>
+      <div id="join-lobby-host" style="font-family:'Orbitron',sans-serif; font-size:12px; letter-spacing:3px; color:rgba(var(--c-gold),0.72); margin-bottom:20px;"></div>
+      <div id="join-lobby-players"></div>
+      <div id="join-lobby-waiting" style="font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:3px; color:rgba(var(--c-orange),0.6); margin-top:14px;">WAITING FOR HOST TO START...</div>
+      <div class="menu-btn menu-btn--secondary" id="btn-join-lobby-leave" style="margin-top:16px">LEAVE</div>
+    </div>
+  </div>
+
+  <!-- Match-in-progress panel (shown to spectating guests inside lobby) -->
+  <div id="match-in-progress" class="overlay-screen hidden" role="dialog" aria-label="Match in progress" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content" style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+      <h2 style="margin-bottom:6px;">MATCH IN PROGRESS</h2>
+      <div id="mip-round" style="font-family:'Rajdhani',sans-serif; font-size:14px; letter-spacing:2px; color:rgba(var(--c-white),0.5); margin-bottom:18px;"></div>
+      <div id="mip-scores" style="display:flex; flex-direction:column; gap:8px; margin-bottom:24px;"></div>
+      <div style="font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:3px; color:rgba(var(--c-orange),0.6);">WAITING FOR MATCH TO END...</div>
+      <div class="menu-btn menu-btn--secondary" id="btn-mip-leave" style="margin-top:20px;">LEAVE PARTY</div>
+    </div>
+  </div>

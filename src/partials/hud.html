@@ -1,0 +1,81 @@
+  <!-- Controller Banner -->
+  <div id="controller-banner" class="hidden ui-layer" role="status" aria-live="polite">CONTROLLER CONNECTED</div>
+  <!-- Gamepad Nav Hints (shown when controller active in menus) -->
+  <div id="gp-nav-hints" class="hidden ui-layer"></div>
+  <!-- Lobby Autostart Banner -->
+  <div id="lobby-autostart-banner" class="hidden ui-layer" role="status" aria-live="assertive">STARTING IN 5</div>
+
+  <!-- Pause Overlay -->
+  <div id="pause-overlay" class="hidden" role="dialog" aria-label="Paused" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <h2>PAUSED</h2>
+      <div id="pause-buttons">
+        <div class="menu-btn" id="btn-resume"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-play"/></svg></i>RESUME</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-pause-settings"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-settings"/></svg></i>SETTINGS</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-pause-menu">MAIN MENU</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-pause-lobby" style="display:none">RETURN TO LOBBY</div>
+      </div>
+      <div class="music-controls" style="display:flex;gap:12px;align-items:center;margin-top:24px;pointer-events:auto;">
+        <div class="replay-btn" id="btn-pause-prev" data-tip="Previous"><svg class="icon"><use href="/icons.svg#i-skip-back"/></svg></div>
+        <div class="replay-btn" id="btn-pause-mute" data-tip="Mute"><svg class="icon"><use href="/icons.svg#i-vol"/></svg></div>
+        <div class="replay-btn" id="btn-pause-skip" data-tip="Next"><svg class="icon"><use href="/icons.svg#i-skip-fwd"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online Pause Overlay (no actual pause — game continues) -->
+  <div id="online-pause-overlay" class="hidden" role="dialog" aria-label="In-game menu" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <h2>MENU</h2>
+      <div id="online-pause-buttons">
+        <div class="menu-btn" id="btn-online-resume"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-play"/></svg></i>RESUME</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-online-pause-settings"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-settings"/></svg></i>SETTINGS</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-online-forfeit" data-testid="forfeit-btn" style="color:rgb(var(--c-red-hot))">FORFEIT</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-return-lobby-pause" style="display:none">RETURN PARTY TO LOBBY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="radar-wrap">
+    <div id="radar" class="hidden">
+      <div id="radar-timer-bar">
+        <span id="match-timer" class="hidden">0:00</span>
+      </div>
+      <canvas id="radar-canvas" width="140" height="140" aria-label="Minimap radar" role="img"></canvas>
+      <div id="radar-resize"></div>
+    </div>
+    <div id="streak-display" class="hidden">
+      STREAK <span class="streak-num" data-streak="0">0</span>
+      <span class="streak-proximity"></span>
+      <div class="streak-tier-flash"></div>
+      <div class="streak-electric-sweep"></div>
+    </div>
+  </div>
+  <div id="series-score" class="hidden"></div>
+
+  <div id="disconnect-banner" data-testid="disconnect-banner" class="hidden" role="alert" aria-live="assertive"></div>
+  <div id="connecting-spinner" class="hidden" role="status" aria-live="polite">
+    <div class="connecting-spinner-icon"></div>
+    <span class="connecting-spinner-text">OPPONENT CONNECTING</span>
+  </div>
+  <div id="spectator-label" class="hidden" role="status" aria-live="polite">SPECTATING</div>
+  <div id="flow-hud" class="flow-hud menu-hidden" aria-label="FLOW counter" role="status">
+    <div class="flow-hud__label">FLOW</div>
+    <div class="flow-hud__value-wrap">
+      <div class="flow-hud__value" id="flow-hud-value">0</div>
+      <div class="flow-hud__mult" id="flow-hud-mult"></div>
+    </div>
+    <div class="flow-hud__bank-layer" id="flow-hud-bank-layer"></div>
+  </div>
+  <div id="meter-wrap" class="menu-hidden" role="meter" aria-label="Boost" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div id="meter-label">BOOST</div>
+    <div id="meter-bar">
+      <div id="meter-fill"><div id="meter-spark"></div></div>
+    </div>
+  </div>
+
+  <!-- Click Pulse Canvas -->
+  <canvas id="pulse-canvas"></canvas>

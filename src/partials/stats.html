@@ -1,0 +1,165 @@
+  <div id="stats-overlay" class="overlay-screen hidden" role="dialog" aria-label="Stats" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <div class="overlay-header-bar stats-header-bar" role="tablist" aria-label="Stats views">
+        <button class="stats-header-tab stats-header-tab--active" id="stats-tab-mystats" role="tab" aria-selected="true" aria-controls="stats-panel-mystats" data-view="mystats" type="button">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-bar-chart"/></svg>
+          <span>MY STATS</span>
+        </button>
+        <button class="stats-header-tab" id="stats-tab-history" role="tab" aria-selected="false" aria-controls="stats-panel-history" data-view="history" type="button">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-film"/></svg>
+          <span>MATCH HISTORY</span>
+        </button>
+        <button class="stats-header-tab" id="stats-tab-leaderboard" role="tab" aria-selected="false" aria-controls="stats-panel-leaderboard" data-view="leaderboard" type="button">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-trophy"/></svg>
+          <span>LEADERBOARD</span>
+        </button>
+      </div>
+
+      <!-- Mode Tabs (shared) -->
+      <div class="stats-mode-tabs">
+        <div class="stats-mode-tab stats-mode-tab--active" data-mode="ai">OFFLINE</div>
+        <div class="stats-mode-tab" data-mode="casual">CASUAL</div>
+        <div class="stats-mode-tab stats-mode-tab--disabled" data-mode="ranked">RANKED</div>
+      </div>
+
+      <!-- Series Filter (shared) -->
+      <div class="stats-series-filter">
+        <span class="stats-series-pill stats-series-pill--active" data-series="1">BO1</span>
+        <span class="stats-series-pill" data-series="3">BO3</span>
+        <span class="stats-series-pill" data-series="5">BO5</span>
+      </div>
+
+      <!-- ═══ MY STATS Panel ═══ -->
+      <div class="stats-panel" id="stats-panel-mystats" role="tabpanel" aria-labelledby="stats-tab-mystats">
+
+        <!-- Stats Grid (2-col mobile, 3-col desktop) -->
+        <div class="stats-grid" id="stats-card">
+          <div class="stats-card-item" data-metric="wins">
+            <span class="stats-card-label">WINS</span>
+            <span class="stats-card-value" id="sh-wins">—</span>
+            <span class="stats-card-rank" id="sh-wins-rank"></span>
+          </div>
+          <div class="stats-card-item" data-metric="bestStreak">
+            <span class="stats-card-label">BEST STREAK</span>
+            <span class="stats-card-value" id="sh-beststreak">—</span>
+            <span class="stats-card-rank" id="sh-beststreak-rank"></span>
+          </div>
+          <div class="stats-card-item" data-metric="fastestWin">
+            <span class="stats-card-label">FASTEST WIN</span>
+            <span class="stats-card-value" id="sh-fastestwin">—</span>
+            <span class="stats-card-rank" id="sh-fastestwin-rank"></span>
+          </div>
+          <div class="stats-card-item" data-metric="matchCount">
+            <span class="stats-card-label">MATCHES</span>
+            <span class="stats-card-value" id="sh-matches">—</span>
+            <span class="stats-card-rank" id="sh-matches-rank"></span>
+          </div>
+          <div class="stats-card-item" data-metric="currentStreak">
+            <span class="stats-card-label">CURRENT</span>
+            <span class="stats-card-value" id="sh-currentstreak">—</span>
+            <span class="stats-card-rank" id="sh-currentstreak-rank"></span>
+          </div>
+          <div class="stats-card-item stats-card-item--no-click">
+            <span class="stats-card-label">WIN RATE</span>
+            <span class="stats-card-value" id="sh-winrate">—</span>
+            <span class="stats-card-rank"></span>
+          </div>
+        </div>
+
+        <!-- W/L/D Bar -->
+        <div class="stats-wld-bar">
+          <div class="stats-wld-segment">
+            <span class="stats-wld-label">WINS</span>
+            <span class="stats-wld-value stats-wld-value--win" id="sh-wld-wins">—</span>
+          </div>
+          <div class="stats-wld-segment">
+            <span class="stats-wld-label">LOSSES</span>
+            <span class="stats-wld-value stats-wld-value--loss" id="sh-wld-losses">—</span>
+          </div>
+          <div class="stats-wld-segment">
+            <span class="stats-wld-label">DRAWS</span>
+            <span class="stats-wld-value stats-wld-value--draw" id="sh-wld-draws">—</span>
+          </div>
+        </div>
+
+        <!-- Time Played -->
+        <div id="time-played-section">
+          <div class="time-header">TIME PLAYED</div>
+          <div class="time-row"><span class="time-label" id="time-user-label" data-tip="YOU"><svg class="icon" style="width:10px;height:10px"><use href="/icons.svg#i-user"/></svg></span> <span id="total-time-played"></span></div>
+          <div class="time-row"><span class="time-label" data-tip="WORLD"><svg class="icon" style="width:10px;height:10px"><use href="/icons.svg#i-globe"/></svg></span> <span id="global-time-played"></span></div>
+        </div>
+
+        <!-- Offline Reset -->
+        <div id="stats-offline-reset" class="hidden">
+          <span class="reset-btn" id="btn-stats-reset">RESET OFFLINE STATS</span>
+        </div>
+      </div>
+
+      <!-- ═══ MATCH HISTORY Panel (TASK-294) ═══ -->
+      <div class="stats-panel hidden" id="stats-panel-history" role="tabpanel" aria-labelledby="stats-tab-history">
+        <div class="history-tabs">
+          <button class="history-tab history-tab--active" data-history-tab="recent" type="button">RECENT</button>
+          <button class="history-tab" data-history-tab="favorites" type="button">FAVORITES</button>
+        </div>
+        <div id="history-list" class="history-list"></div>
+        <div class="history-empty" hidden>No matches yet</div>
+      </div>
+
+      <!-- ═══ LEADERBOARD Panel ═══ -->
+      <div class="stats-panel hidden" id="stats-panel-leaderboard" role="tabpanel" aria-labelledby="stats-tab-leaderboard">
+
+        <!-- Metric Pills (desktop) / Metric List (mobile) -->
+        <div class="stats-metric-pills" id="stats-metric-pills">
+          <span class="stats-metric-pill stats-metric-pill--active" data-metric="wins">WINS</span>
+          <span class="stats-metric-pill" data-metric="bestStreak">BEST STREAK</span>
+          <span class="stats-metric-pill" data-metric="currentStreak">CURRENT</span>
+          <span class="stats-metric-pill" data-metric="fastestWin">FASTEST WIN</span>
+          <span class="stats-metric-pill" data-metric="matchCount">MATCHES</span>
+          <span class="stats-metric-pill" data-metric="lifetimeFlow">LIFETIME FLOW</span>
+        </div>
+        <div class="stats-metric-list" id="stats-metric-list">
+          <div class="stats-metric-list-item stats-metric-list-item--active" data-metric="wins"><span>WINS</span><span class="stats-metric-arrow">›</span></div>
+          <div class="stats-metric-list-item" data-metric="bestStreak"><span>BEST STREAK</span><span class="stats-metric-arrow">›</span></div>
+          <div class="stats-metric-list-item" data-metric="currentStreak"><span>CURRENT STREAK</span><span class="stats-metric-arrow">›</span></div>
+          <div class="stats-metric-list-item" data-metric="fastestWin"><span>FASTEST WIN</span><span class="stats-metric-arrow">›</span></div>
+          <div class="stats-metric-list-item" data-metric="matchCount"><span>MATCHES</span><span class="stats-metric-arrow">›</span></div>
+          <div class="stats-metric-list-item" data-metric="lifetimeFlow"><span>LIFETIME FLOW</span><span class="stats-metric-arrow">›</span></div>
+        </div>
+
+        <!-- Leaderboard Table -->
+        <div id="lb-table-wrap" role="table" aria-label="Leaderboard">
+          <div class="lb-header" role="row">
+            <span class="lb-col-rank" role="columnheader">#</span>
+            <span class="lb-col-name" role="columnheader">PLAYER</span>
+            <span class="lb-col-val" role="columnheader" id="lb-header-val">WINS</span>
+            <span class="lb-col-winrate" role="columnheader">WIN %</span>
+            <span class="lb-col-extra" role="columnheader">W/L</span>
+          </div>
+          <div id="lb-rows" role="rowgroup"></div>
+          <div id="lb-empty" class="hidden">NO DATA YET</div>
+          <div id="lb-loading" class="hidden">LOADING...</div>
+        </div>
+
+        <!-- Graveyard (currentStreak only) -->
+        <div id="lb-graveyard" class="hidden">
+          <div class="lb-graveyard-header">
+            <span class="lb-graveyard-title">FALLEN</span>
+            <label class="lb-graveyard-toggle">
+              <input type="checkbox" id="lb-graveyard-toggle" checked>
+              <span class="lb-graveyard-toggle-slider"></span>
+            </label>
+          </div>
+          <div id="lb-graveyard-rows"></div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="lb-paging" id="lb-paging">
+          <span class="lb-page-btn lb-page-btn--disabled" id="lb-prev" role="button" tabindex="0" aria-label="Previous page"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chevs-l"/></svg></span>
+          <span class="lb-page-info" id="lb-page-info" aria-live="polite">1 / 1</span>
+          <span class="lb-page-btn lb-page-btn--disabled" id="lb-next" role="button" tabindex="0" aria-label="Next page"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-chevs-r"/></svg></span>
+        </div>
+      </div>
+
+    </div>
+  </div>

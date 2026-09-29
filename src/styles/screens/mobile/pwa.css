@@ -1,0 +1,14 @@
+/* ══════════════════════════════════════════════
+   8. STANDALONE / PWA MODE
+   Extra padding for notch / status bar
+   ══════════════════════════════════════════════ */
+@media (display-mode: standalone), (display-mode: fullscreen) {
+  #auth-status {
+    padding-top: var(--safe-top);
+    height: calc(40px + var(--safe-top));
+  }
+  .overlay-screen { top: 0; }
+  .overlay-screen .content {
+    padding-top: calc(52px + var(--safe-top));
+  }
+}

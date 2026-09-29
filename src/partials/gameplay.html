@@ -1,0 +1,168 @@
+  <!-- Pre-Game Screen -->
+  <div id="pregame-screen" class="hidden" role="status" aria-live="polite">
+    <div class="pregame-vignette"></div>
+    <div class="pregame-panel">
+      <div id="pregame-label">MATCH</div>
+      <div id="pregame-title">BEST OF 3</div>
+      <div id="pregame-divider"></div>
+      <div id="pregame-vs"></div>
+      <div id="pregame-score"></div>
+      <div id="pregame-hint">FIRST TO 2 WINS</div>
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div id="countdown" class="hidden" aria-live="assertive" aria-atomic="true">
+    <div id="countdown-num" role="timer">3</div>
+  </div>
+
+  <!-- Game Over -->
+  <div id="result" class="overlay-screen hidden" role="dialog" aria-label="Match result" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <div id="result-summary">
+        <canvas id="result-radar" width="180" height="180" style="width:180px;height:180px;" aria-label="Match replay minimap" role="img"></canvas>
+        <div id="result-duration"></div>
+      </div>
+      <h2 id="result-text" data-testid="match-result-text" aria-live="polite"></h2>
+      <div id="flow-reveal" class="flow-reveal hidden">
+        <div class="flow-reveal__trick-log" id="flow-reveal-log"></div>
+        <div class="flow-reveal__subtotal">
+          <span class="flow-reveal__subtotal-label">SUBTOTAL</span>
+          <span class="flow-reveal__subtotal-value" id="flow-reveal-subtotal">0</span>
+        </div>
+        <div class="flow-reveal__mult hidden" id="flow-reveal-mult">
+          <span class="flow-reveal__mult-streak" id="flow-reveal-mult-streak">3+ STREAK</span>
+          <span class="flow-reveal__mult-x" id="flow-reveal-mult-x">&times;3</span>
+        </div>
+        <div class="flow-reveal__total">
+          <span class="flow-reveal__total-label">FLOW</span>
+          <span class="flow-reveal__total-value" id="flow-reveal-total">0</span>
+        </div>
+      </div>
+      <!-- XP progression bar (TASK-306) -->
+      <div id="xp-reveal" class="xp-bar hidden"></div>
+      <div id="xp-toast-container" class="xp-toast-stack hidden"></div>
+      <div id="result-streak-ended" class="hidden"></div>
+      <div class="streak-end-info hidden" id="streak-end-info">
+        <div class="streak-end-best" id="streak-end-best"></div>
+        <div class="streak-end-rank" id="streak-end-rank"></div>
+      </div>
+      <div id="result-streak" class="hidden">STREAK <span class="streak-num">0</span></div>
+      <div id="series-result" class="hidden"></div>
+      <!-- Match selector for series replays -->
+      <div id="result-match-selector" class="hidden">
+        <div class="bestof-select">
+          <span class="bestof-arrow" id="match-sel-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+          <span class="bestof-label" id="match-sel-label">MATCH 1</span>
+          <span class="bestof-arrow" id="match-sel-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+        </div>
+      </div>
+      <!-- Unified result buttons (per-button visibility for offline vs online) -->
+      <div id="result-buttons">
+        <div id="online-next-timer" style="display:none"></div>
+        <div class="menu-btn" id="btn-continue">CONTINUE <i class="btn-icon" style="margin-right:0;margin-left:8px"><svg class="icon"><use href="/icons.svg#i-play"/></svg></i></div>
+        <div class="menu-btn" id="btn-online-next" style="display:none">NEXT ROUND <i class="btn-icon" style="margin-right:0;margin-left:8px"><svg class="icon"><use href="/icons.svg#i-play"/></svg></i></div>
+        <div class="menu-sep"></div>
+        <div class="quickstart-row"><div class="menu-btn menu-btn--secondary" id="btn-replay" style="flex:1;"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-repeat"/></svg></i>REPLAY</div><div class="quickstart-toggle quickstart-toggle--disabled" id="btn-replay-fav-result" data-tip="Favorite" style="font-size:13px;"><svg class="icon"><use href="/icons.svg#i-star"/></svg></div></div>
+        <div class="menu-btn menu-btn--secondary" id="btn-online-rematch" data-testid="match-rematch-btn" style="display:none"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-repeat"/></svg></i>REMATCH</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-result-loadout" style="display:none">LOADOUT</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-go-settings"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-settings"/></svg></i>SETTINGS</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-submit-match" style="display:none" data-tip="Auto-submit every match in Settings"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-trophy"/></svg></i>SUBMIT TO LEADERBOARD</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-submit-match-online" style="display:none" data-tip="Auto-submit every match in Settings"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-trophy"/></svg></i>SUBMIT TO LEADERBOARD</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-mainmenu">MAIN MENU</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-return-lobby-result" data-testid="match-return-lobby-btn" style="display:none">RETURN PARTY TO LOBBY</div>
+        <div class="menu-btn menu-btn--secondary" id="btn-online-leave" style="display:none"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></i>LEAVE</div>
+      </div>
+    </div>
+    <!-- Map selection panel (result screen) -->
+    <div id="result-map-panel" class="result-map-panel hidden">
+      <div class="result-map-panel-label">NEXT ARENA</div>
+      <div id="result-map-carousel"></div>
+    </div>
+  </div>
+
+  <!-- Slow-mo vignette overlay (bg replay death zoom) -->
+  <div id="slowmo-overlay"></div>
+  <!-- Slipstream vignette + chromatic aberration overlay -->
+  <div id="slipstream-overlay"></div>
+
+  <!-- Replay Overlay -->
+  <div id="replay-overlay" class="hidden" role="dialog" aria-label="Replay viewer" tabindex="-1">
+    <div id="replay-mobile-header" class="replay-mobile-header" hidden>
+      <button id="replay-mobile-back" class="replay-mobile-back" type="button" aria-label="Back">
+        <svg class="icon"><use href="/icons.svg#i-arrow-left"/></svg>
+      </button>
+      <div class="replay-mobile-header-center">
+        <!-- Match selector (if series) will be relocated here by JS at mobile-portrait breakpoint -->
+      </div>
+      <div class="replay-mobile-header-spacer"></div>
+    </div>
+    <div id="replay-match-selector" class="replay-match-selector" hidden>
+      <button id="replay-match-prev" class="replay-match-nav" type="button" aria-label="Previous match">&lsaquo;</button>
+      <div class="replay-match-label">
+        MATCH <span id="replay-match-index">1</span> <span class="replay-match-sep">/</span> <span id="replay-match-total">3</span>
+      </div>
+      <button id="replay-match-next" class="replay-match-nav" type="button" aria-label="Next match">&rsaquo;</button>
+    </div>
+    <div class="replay-btn ui-layer" id="btn-replay-exit-top" style="position:absolute;top:56px;left:16px;pointer-events:auto;font-size:13px;padding:8px 16px;z-index:21;border-radius:4px;"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg> EXIT</div>
+    <div id="replay-controller-hint" class="replay-controller-hint" hidden>
+      <span class="hint-key">SELECT</span>
+      <span class="hint-label">Show controls</span>
+    </div>
+    <div id="replay-controls-overlay" class="replay-controls-overlay" hidden>
+      <div class="replay-controls-modal">
+        <h3 class="replay-controls-title">REPLAY CONTROLS</h3>
+        <table class="replay-controls-table">
+          <tbody>
+            <tr><td class="key">LB / RB</td><td class="desc">Cycle camera mode</td></tr>
+            <tr><td class="key">LT / RT</td><td class="desc">Speed down / up</td></tr>
+            <tr><td class="key">D-pad &larr; &rarr;</td><td class="desc">Skip &minus;3s / +3s</td></tr>
+            <tr><td class="key">X</td><td class="desc">Play / pause</td></tr>
+            <tr><td class="key">Y</td><td class="desc">Toggle UI</td></tr>
+            <tr><td class="key">[ / ]</td><td class="desc">Previous / next match</td></tr>
+            <tr><td class="key">ESC / B</td><td class="desc">Exit replay</td></tr>
+          </tbody>
+        </table>
+        <div class="replay-controls-footer">Press SELECT to close</div>
+      </div>
+    </div>
+    <div id="replay-controls" class="ui-layer">
+      <div id="replay-top-bar">
+        <span id="replay-status">REPLAY</span>
+      </div>
+      <div id="replay-progress-row">
+        <div id="replay-progress">
+          <div id="replay-progress-fill"></div>
+        </div>
+        <div class="replay-btn replay-end-btn hidden" id="btn-replay-restart"><svg class="icon"><use href="/icons.svg#i-rotate-ccw"/></svg></div>
+        <button id="replay-expand-toggle" class="replay-expand-toggle" type="button" aria-label="Toggle advanced controls" aria-expanded="false">
+          <svg class="icon"><use href="/icons.svg#i-chev-d"/></svg>
+        </button>
+      </div>
+      <div id="replay-bottom-bar">
+        <div id="replay-transport">
+          <div class="replay-btn" id="btn-replay-rw" data-tip="Rewind"><svg class="icon"><use href="/icons.svg#i-skip-back"/></svg></div>
+          <div class="replay-btn" id="btn-replay-play" data-testid="replay-play-btn" data-tip="Play/Pause"><svg class="icon"><use href="/icons.svg#i-pause"/></svg></div>
+          <div class="replay-btn" id="btn-replay-ff" data-tip="Fast Forward"><svg class="icon"><use href="/icons.svg#i-skip-fwd"/></svg></div>
+        </div>
+        <span id="replay-time">0:00 / 0:00</span>
+        <div id="replay-buttons">
+          <div class="replay-btn" id="btn-replay-loop" data-tip="Loop"><svg class="icon"><use href="/icons.svg#i-repeat"/></svg></div>
+          <div class="replay-btn" id="btn-replay-fav" data-tip="Favorite"><svg class="icon"><use href="/icons.svg#i-star"/></svg></div>
+          <div class="replay-cam-select">
+            <span class="replay-section-label">CAM</span>
+            <span class="replay-btn replay-speed-arrow" id="btn-replay-cam-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+            <span class="replay-speed-val" id="replay-cam-val" data-testid="replay-cam-label">OVERHEAD</span>
+            <span class="replay-btn replay-speed-arrow" id="btn-replay-cam-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+          </div>
+          <div class="replay-speed-select">
+            <span class="replay-section-label">SPEED</span>
+            <span class="replay-btn replay-speed-arrow" id="btn-replay-speed-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+            <span class="replay-speed-val" id="replay-speed-label" data-testid="replay-speed-label">1x</span>
+            <span class="replay-btn replay-speed-arrow" id="btn-replay-speed-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

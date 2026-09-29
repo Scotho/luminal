@@ -1,0 +1,92 @@
+/* ── Action Bar Divider ────────────────── */
+.lobby-action-divider {
+  width:100%; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(var(--teal-600), 0.16), transparent);
+  margin:16px 0 12px;
+}
+
+/* ── Action Buttons Row ────────────────── */
+#lobby-actions {
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  width:100%; margin-top:4px;
+}
+
+/* ── Hero Buttons (READY / START) ──────── */
+.lobby-btn-hero {
+  font-size:16px; letter-spacing:6px;
+  padding:16px 48px;
+  min-height:52px;
+  border-width:2px;
+}
+
+.lobby-btn-hero.lobby-ready-btn {
+  border-color:rgba(var(--c-hot-deep), 0.4);
+  color:rgba(var(--c-hot-pale), 0.7);
+  background:linear-gradient(180deg, rgba(var(--c-hot-dim), 0.12), rgba(var(--c-hot-dim), 0.04));
+  text-shadow:0 0 8px rgba(var(--c-hot-deep), 0.3);
+  box-shadow:none;
+}
+
+/* Active ready state — green glow */
+#btn-lobby-ready.btn-lobby-ready--active {
+  background:rgba(var(--c-green-bright), 0.12);
+  border-color:rgba(var(--c-green-bright), 0.4);
+  color:rgba(var(--c-green-bright), 0.9);
+  text-shadow:0 0 8px rgba(var(--c-green-bright), 0.3);
+  box-shadow:0 0 20px rgba(var(--c-green-bright), 0.06);
+}
+
+.lobby-start-btn {
+  border-color:rgba(var(--c-teal), 0.4);
+  color:rgba(var(--c-teal), 0.75);
+  text-shadow:0 0 6px rgba(var(--c-teal), 0.2);
+  background:rgba(var(--c-teal), 0.04);
+
+  &:hover {
+    border-color:rgba(var(--c-teal), 0.65);
+    color:rgba(var(--c-teal), 0.95);
+    background:rgba(var(--c-teal), 0.08);
+    box-shadow:0 0 12px rgba(var(--c-teal), 0.1);
+    text-shadow:0 0 10px rgba(var(--c-teal), 0.4);
+  }
+}
+
+/* ── Small Buttons (BACK / LEAVE) ──────── */
+.lobby-btn-sm {
+  font-size:10px; letter-spacing:3px;
+  padding:9px 18px;
+  min-height:38px;
+}
+
+.lobby-btn-leave {
+  border-color:rgba(var(--c-red-hot), 0.15);
+  color:rgba(var(--c-red-hot), 0.5);
+  text-shadow:0 0 6px rgba(var(--c-red-hot), 0.15);
+
+  &:hover {
+    border-color:rgba(var(--c-red-hot), 0.4);
+    color:rgba(var(--c-red-hot), 0.8);
+    background:rgba(var(--c-red-hot), 0.06);
+    box-shadow:0 0 12px rgba(var(--c-red-hot), 0.08);
+    text-shadow:0 0 10px rgba(var(--c-red-hot), 0.3);
+  }
+}
+
+/* ── Invite Button (header, cyan) — 3-class selector beats .menu-btn.menu-btn--secondary ── */
+.menu-btn.lobby-invite-action.menu-btn--secondary {
+  border-color:rgba(var(--c-teal), 0.45);
+  color:rgba(var(--c-teal), 0.6);
+  text-shadow:0 0 6px rgba(var(--c-teal), 0.15);
+  background:rgba(var(--c-teal), 0.04);
+  box-shadow:0 0 8px rgba(var(--c-teal), 0.06);
+
+  &::before { animation:btnStreak 3s linear infinite; }
+
+  &:hover, &.menu-btn--selected {
+    border-color:rgba(var(--c-teal), 0.6);
+    color:rgba(var(--c-teal), 0.9);
+    background:rgba(var(--c-teal), 0.08);
+    box-shadow:0 0 12px rgba(var(--c-teal), 0.1);
+    text-shadow:0 0 10px rgba(var(--c-teal), 0.4);
+  }
+}

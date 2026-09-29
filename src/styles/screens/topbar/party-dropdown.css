@@ -1,0 +1,153 @@
+/* ── Social Dropdown (top bar) ───────────────────────────── */
+#social-dropdown-wrap {
+  position:relative;
+  &.hidden { display:none; }
+  &:hover, &.tb-dropdown--open { background:rgba(var(--c-orange),0.06); }
+  &:hover .social-drop-trigger, &.tb-dropdown--open .social-drop-trigger { color:rgba(var(--c-hot-light),0.95); }
+}
+
+.social-drop-trigger {
+  display:flex; align-items:center; gap:4px;
+  padding:0 10px;
+  font-size:11px; letter-spacing:2px;
+  color:rgba(var(--c-hot-light),0.65); cursor:pointer;
+  position:relative; height:100%;
+  & .icon { width:12px; height:12px; }
+}
+
+.social-drop-label {
+  font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:2px;
+  color:rgba(var(--text-fog),0.7);
+  transition:color 0.15s;
+}
+
+#social-dropdown-wrap:hover .social-drop-label,
+#social-dropdown-wrap.tb-dropdown--open .social-drop-label {
+  color:rgba(var(--c-hot-pale),0.95);
+  text-shadow:0 0 10px rgba(var(--c-orange),0.26);
+}
+
+.social-drop-online {
+  display:inline-flex; align-items:center; gap:3px;
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:1px;
+  color:rgba(var(--c-teal),0.55); margin-left:2px;
+}
+
+.friends-online-dot {
+  width:5px; height:5px; border-radius:50%;
+  background:rgba(var(--c-green),0.8);
+  box-shadow:0 0 4px rgba(var(--c-green),0.4);
+}
+
+#friends-online-indicator.hidden { display:none; }
+
+/* Party member count beside trigger icon */
+.social-icon-badge {
+  position:static;
+  display:inline-flex; align-items:center; justify-content:center;
+  margin-left:4px;
+  background:rgb(var(--c-teal)); color:rgb(var(--c-white));
+  font-family:'Orbitron',sans-serif; font-size:8px; font-weight:700;
+  min-width:16px; height:16px; padding:0 4px;
+  border-radius:8px; text-align:center;
+  box-shadow:0 0 6px rgba(var(--c-teal),0.5);
+  pointer-events:none;
+
+  &.hidden { display:none; }
+}
+
+.social-drop {
+  left:50%; transform:translateX(-50%); min-width:320px;
+}
+
+.social-drop-inner {
+  padding:4px 0 0;
+}
+
+/* ── Social component inside the dropdown — compact scaling ── */
+.social-drop-inner .social-tabs {
+  margin-bottom:0;
+}
+
+.social-drop-inner .social-tab {
+  font-size:10px; letter-spacing:1.5px;
+  padding:8px 10px; min-height:36px;
+}
+
+.social-drop-inner .social-panels {
+  max-height:380px; overflow-y:auto;
+  flex:none;
+}
+
+.social-drop-inner .social-panel {
+  padding:8px 6px; gap:8px;
+}
+
+.social-drop-inner .social-empty-text {
+  font-size:12px; padding:16px 0 10px;
+}
+
+.social-drop-inner .menu-btn {
+  font-size:11px; padding:8px 14px; min-height:36px;
+}
+
+.social-drop-inner .social-party-actions {
+  margin-top:8px; gap:6px;
+}
+
+.social-drop-inner .social-party-actions .menu-btn {
+  font-size:10px; padding:6px 10px; min-height:32px;
+}
+
+/* Party members inside dropdown — compact */
+.social-drop-inner #social-party-members .party-member {
+  padding:8px 48px 8px 6px;
+  font-size:10px; min-height:auto; height:auto;
+}
+.social-drop-inner #social-party-members .party-member-dot { width:4px; height:4px; }
+.social-drop-inner #social-party-members .party-member-name { font-size:13px; }
+.social-drop-inner #social-party-members .party-member-check { width:10px; height:10px; }
+.social-drop-inner #social-party-members .party-member-action { font-size:7px; }
+.social-drop-inner #social-party-members .party-member-icon { width:10px; height:10px; }
+.social-drop-inner #social-party-members .party-member-offline { font-size:6px !important; }
+.social-drop-inner #social-party-members .party-member--open-slot { opacity:0.25; }
+.social-drop-inner #social-party-members .party-member-action--add-ai { font-size:7px; }
+.social-drop-inner .lobby-ai-inline-edit { font-size:10px; padding:4px 6px !important; margin:1px 0 3px !important; }
+
+/* Friends inside dropdown — compact */
+.social-drop-inner .friends-body {
+  max-height:240px; overflow-y:auto;
+}
+
+.social-drop-inner .friends-section-label {
+  font-size:9px;
+}
+
+.social-drop-inner .friends-add-group {
+  padding:6px 8px 4px;
+}
+
+.social-drop-inner .friends-add-field {
+  font-size:12px; min-height:36px; padding:8px 10px;
+}
+
+.social-drop-inner .friends-add-btn {
+  min-height:36px;
+}
+
+/* Notifications inside dropdown — compact */
+.social-drop-inner .social-notif-row {
+  padding:8px; font-size:12px;
+}
+
+.social-drop-inner .social-notif-actions .menu-btn {
+  font-size:10px; padding:4px 10px; min-height:30px;
+}
+
+/* Friend detail inside dropdown */
+.social-drop-inner #social-friend-detail {
+  padding:10px; margin-top:6px;
+}
+
+/* Hide controller hint in dropdown context */
+.social-drop-inner .social-hint { display:none; }

@@ -1,0 +1,109 @@
+/* ── Touch Controls Overlay ───────────────── */
+#touch-overlay {
+  position: fixed; inset: 0; z-index: 8;
+  touch-action: none;
+  pointer-events: auto;
+  background: linear-gradient(to top, rgba(var(--teal-600),0.03) 0%, transparent 18%);
+
+  &.hidden { display: none; }
+}
+
+/* ── Edge Glow Indicators ────────────────── */
+.touch-glow {
+  position: absolute; top: 0; bottom: 0;
+  pointer-events: none; opacity: 0; transition: opacity 0.12s ease;
+}
+.touch-glow--left  { left: 0; width: 60px; background: linear-gradient(to right, rgba(var(--c-teal),0.12), transparent); }
+.touch-glow--right { right: 0; width: 60px; background: linear-gradient(to left, rgba(var(--c-teal),0.12), transparent); }
+.touch-glow--active { opacity: 1; }
+
+/* ── Vertical Slide Feedback ─────────────── */
+#touch-overlay.touch-accel { border-top: 2px solid rgba(var(--c-green),0.25); }
+#touch-overlay.touch-boost { box-shadow: inset 0 0 40px rgba(var(--c-teal),0.15); }
+#touch-overlay.touch-brake { border-bottom: 2px solid rgba(var(--c-red-bright),0.25); }
+
+/* ── Drift Feedback (car only) ──────────── */
+#touch-overlay.touch-drift {
+  box-shadow: inset 0 0 60px rgba(var(--c-orange),0.12);
+  border-bottom: 2px solid rgba(var(--c-orange),0.35);
+}
+.touch-glow--drift {
+  opacity: 1 !important;
+}
+.touch-glow--left.touch-glow--drift  { background: linear-gradient(to right, rgba(var(--c-orange),0.18), transparent) !important; }
+.touch-glow--right.touch-glow--drift { background: linear-gradient(to left, rgba(var(--c-orange),0.18), transparent) !important; }
+
+/* ── Zone Labels (beside boost bar at bottom) ── */
+.touch-zone-label {
+  position: fixed; bottom: 32px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 3px; font-weight: 700;
+  color: rgba(var(--c-white),0.15);
+  pointer-events: none; user-select: none;
+  -webkit-user-select: none; z-index: 11;
+}
+.touch-zone-label--left  { left: calc(50% - 210px); transform: translateX(-100%); }
+.touch-zone-label--right { left: calc(50% + 210px); transform: translateX(0); }
+
+/* ── Slide Hint Wrapper (right side, vertically centered) ── */
+.touch-slide-wrap {
+  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  pointer-events: none; user-select: none; -webkit-user-select: none;
+  opacity: 0; transition: opacity 0.3s;
+}
+.touch-slide-wrap--visible { opacity: 1; }
+
+.touch-slide-hint {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 3px; font-weight: 700;
+  color: rgba(var(--c-white),0.25);
+}
+
+/* ── Slide-Down Gesture Animation ────────── */
+.touch-slide-anim {
+  width: 24px; height: 80px; position: relative;
+  border: 1px solid rgba(var(--c-white),0.08); border-radius: 12px;
+  overflow: hidden;
+}
+.touch-slide-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(var(--c-teal),0.5);
+  box-shadow: 0 0 8px rgba(var(--c-teal),0.4);
+  position: absolute; left: 50%; transform: translateX(-50%);
+  top: 8px; opacity: 0;
+}
+
+/* Two-cycle animation: 1.5s slide down, 1.5s slide down = 3s total */
+@keyframes slideDownGesture {
+  0%   { top: 8px;  opacity: 0; }
+  5%   { opacity: 1; }
+  40%  { top: 58px; opacity: 1; }
+  45%  { top: 58px; opacity: 0; }
+  50%  { top: 8px;  opacity: 0; }
+  55%  { opacity: 1; }
+  90%  { top: 58px; opacity: 1; }
+  95%  { top: 58px; opacity: 0; }
+  100% { top: 8px;  opacity: 0; }
+}
+
+.touch-slide-anim--play .touch-slide-dot {
+  animation: slideDownGesture 3s ease-in-out forwards;
+}
+
+/* ── Drift Label (car only) ─────────────── */
+.touch-drift-label {
+  position: absolute; left: 50%; bottom: 60px;
+  transform: translateX(-50%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px; letter-spacing: 4px; font-weight: 700;
+  color: rgba(var(--c-orange),0);
+  text-shadow: 0 0 12px rgba(var(--c-orange),0.5);
+  pointer-events: none; user-select: none;
+  -webkit-user-select: none;
+  transition: color 0.15s ease, text-shadow 0.15s ease;
+}
+.touch-drift-label--active {
+  color: rgba(var(--c-orange),0.55);
+  text-shadow: 0 0 16px rgba(var(--c-orange),0.7);
+}

@@ -1,0 +1,65 @@
+{
+  "version": "v1.0.8",
+  "collections": {
+    "users": {
+      "description": "User profiles",
+      "documentId": "{uid}",
+      "fields": {
+        "username": { "type": "string", "required": true },
+        "email": { "type": "string", "required": true },
+        "icon": { "type": "string", "default": "default" },
+        "createdAt": { "type": "timestamp", "required": true },
+        "stats": {
+          "type": "map",
+          "fields": {
+            "wins": { "type": "number" },
+            "losses": { "type": "number" },
+            "played": { "type": "number" }
+          }
+        }
+      }
+    },
+    "usernames": {
+      "description": "Username to UID index for uniqueness",
+      "documentId": "{username}",
+      "fields": {
+        "uid": { "type": "string", "required": true }
+      }
+    },
+    "queue": {
+      "description": "Matchmaking queue entries",
+      "documentId": "{uid}",
+      "fields": {
+        "uid": { "type": "string", "required": true },
+        "username": { "type": "string", "required": true },
+        "color": { "type": "string" },
+        "status": { "type": "string", "values": ["waiting", "matched"] },
+        "joinedAt": { "type": "timestamp" }
+      }
+    },
+    "chat": {
+      "description": "Global chat messages",
+      "fields": {
+        "uid": { "type": "string" },
+        "username": { "type": "string" },
+        "text": { "type": "string" },
+        "ts": { "type": "timestamp" }
+      }
+    },
+    "friendRequests": {
+      "description": "Friend request edges",
+      "fields": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "status": { "type": "string", "values": ["pending", "accepted", "rejected"] }
+      }
+    },
+    "friends": {
+      "description": "Established friend edges",
+      "fields": {
+        "users": { "type": "string[]" },
+        "since": { "type": "timestamp" }
+      }
+    }
+  }
+}

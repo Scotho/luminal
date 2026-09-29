@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap — Luminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: rgb(2, 3, 5);
+      color: rgb(230, 241, 238);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: rgb(250, 195, 34);
+      font-size: 24px;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+    }
+    a { color: rgb(73, 162, 178); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+    .rm-phase { margin-bottom: 20px; }
+    .rm-phase-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: rgb(232, 93, 117);
+      margin-bottom: 6px;
+    }
+    .rm-badge {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: rgba(230, 241, 238, 0.3);
+      margin-left: 6px;
+    }
+    .rm-status {
+      font-size: 9px;
+      letter-spacing: 1px;
+      margin-left: 8px;
+      padding: 1px 5px;
+      border-radius: 2px;
+    }
+    .rm-status--done {
+      color: rgb(74, 222, 128);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+    .rm-status--wip {
+      color: rgb(73, 162, 178);
+      border: 1px solid rgba(73, 162, 178, 0.3);
+    }
+    .rm-progress {
+      height: 2px;
+      background: rgba(45, 100, 105, 0.14);
+      border-radius: 1px;
+      margin-bottom: 8px;
+      position: relative;
+    }
+    .rm-progress::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: var(--rm-pct);
+      background: linear-gradient(to right, rgb(73, 162, 178), rgb(232, 93, 117));
+      border-radius: 1px;
+    }
+    .rm-done .rm-phase-title { color: rgba(74, 222, 128, 0.7); }
+    .rm-done .rm-progress::after { background: rgba(74, 222, 128, 0.5); }
+    .rm-active .rm-phase-title { color: rgba(73, 162, 178, 0.8); }
+    ul { margin: 0 0 4px 0; padding-left: 20px; }
+    li { margin-bottom: 4px; color: rgba(230, 241, 238, 0.6); font-size: 14px; }
+    li::marker { color: rgba(73, 162, 178, 0.3); }
+    .rm-done-item {
+      text-decoration: line-through;
+      text-decoration-color: rgba(74, 222, 128, 0.35);
+      color: rgba(230, 241, 238, 0.3);
+    }
+    .rm-done-item::marker { color: rgba(74, 222, 128, 0.25); }
+    @media (max-width: 600px) {
+      body { padding: 24px 16px; }
+      h1 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link" onclick="window.close();return false">&larr; BACK TO LUMINAL</a>
+    <h1>ROADMAP <span class="rm-status rm-status--done">v1.0.7</span></h1>
+
+    <div class="rm-phase rm-active">
+      <div class="rm-phase-title">PHASE 1 <span class="rm-badge">CORE POLISH</span> <span class="rm-status rm-status--wip">IN PROGRESS</span></div>
+      <div class="rm-progress" style="--rm-pct:85%"></div>
+      <ul>
+        <li>Mobile &mdash; touch controls, responsive UI, 9-tier breakpoints</li>
+        <li class="rm-done-item">Settings redesign &mdash; full-page sidebar with keyboard &amp; gamepad navigation</li>
+        <li class="rm-done-item">Auth overlay &mdash; progressive sign-in, forgot-password flow, controller nav</li>
+        <li class="rm-done-item">Unified design tokens &amp; button styling across all screens</li>
+        <li>Replayability &mdash; match variety, progression hooks</li>
+        <li>Tuning base mechanics</li>
+        <li>Auth &mdash; account management, session handling</li>
+        <li>Performance &mdash; shared geometry, material caching, bloom optimization</li>
+        <li>GPU leak monitoring in dev builds</li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-phase-title">PHASE 2 <span class="rm-badge">LOADOUTS</span></div>
+      <div class="rm-progress" style="--rm-pct:25%"></div>
+      <ul>
+        <li class="rm-done-item">Slingshot &mdash; drift physics, DeLorean model, per-vehicle tuning</li>
+        <li class="rm-done-item">Character select screen &mdash; showroom picker with stats &amp; color chooser</li>
+        <li class="rm-done-item">Loadout screen</li>
+        <li class="rm-done-item">Lobby screen</li>
+        <li>Procedural vehicle engine noises</li>
+        <li>Bike passive &mdash; slipstream drafting (+25% speed)</li>
+      </ul>
+    </div>
+
+    <div class="rm-phase rm-done">
+      <div class="rm-phase-title">PHASE 3 <span class="rm-badge">NETCODE</span> <span class="rm-status rm-status--done">COMPLETE</span></div>
+      <div class="rm-progress" style="--rm-pct:100%"></div>
+      <ul>
+        <li class="rm-done-item">Lockstep input-sync replacing state-sync</li>
+        <li class="rm-done-item">State hash verification between clients</li>
+        <li class="rm-done-item">Rollback with visual smoothing</li>
+        <li class="rm-done-item">Dedicated match server with auth &amp; reconnect</li>
+        <li class="rm-done-item">Social screens &mdash; friends, party management, notifications</li>
+        <li class="rm-done-item">Replayability &mdash; replay system, match history, cloud replays</li>
+        <li>Disconnect handling &mdash; graceful reconnect, forfeit detection, AFK timeout</li>
+        <li>Network reconnect / instability UI</li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-phase-title">PHASE 4 <span class="rm-badge">MAPS</span></div>
+      <div class="rm-progress" style="--rm-pct:45%"></div>
+      <ul>
+        <li class="rm-done-item">Circular arena &mdash; GLB model with dynamic radius &amp; volumetric atmosphere</li>
+        <li class="rm-done-item">Map voting system in lobbies with animated wheel tiebreaker</li>
+        <li class="rm-done-item">Map selector &mdash; solo &amp; lobby modes with background transitions</li>
+        <li class="rm-done-item">Midtown Bowl &mdash; larger circular arena with city skyline</li>
+        <li>The Undercity &mdash; obstacle arena with ceilings &amp; tunnels</li>
+        <li>Hoverboard &mdash; trail grind special with balance minigame</li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-phase-title">ALPHA RELEASE</div>
+      <div class="rm-progress" style="--rm-pct:0%"></div>
+      <ul>
+        <li>Core gameplay loop complete &amp; stable</li>
+        <li>Public playtesting &amp; feedback collection</li>
+        <li>Balance pass on existing vehicles &amp; maps</li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-phase-title">PHASE 5 <span class="rm-badge">RANKED</span></div>
+      <div class="rm-progress" style="--rm-pct:35%"></div>
+      <ul>
+        <li class="rm-done-item">Server-side match recording &mdash; matches persisted to Firebase RTDB</li>
+        <li class="rm-done-item">Stats Hub &mdash; mode tabs, series pills, stat cards with rank badges</li>
+        <li class="rm-done-item">Leaderboard drilldown redesign with graveyard stats</li>
+        <li>Elo/Glicko MMR system with ranked queue</li>
+        <li>Best-of-3 format, progressive queue expansion</li>
+        <li>Unlockable icons &amp; rewards</li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-phase-title">PHASE 6 <span class="rm-badge">CAMPAIGN</span></div>
+      <div class="rm-progress" style="--rm-pct:0%"></div>
+      <ul>
+        <li>4-stage single-player story mode</li>
+        <li>Boss fight &mdash; Tank with plasma cannon in Midtown Bowl</li>
+        <li>Each stage on a character&rsquo;s home map</li>
+        <li>Rainbow Road &mdash; narrow winding track</li>
+        <li>Auger &mdash; drill charge that destroys trails on contact</li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-phase-title">PHASE 7 <span class="rm-badge">QA &amp; POLISH</span></div>
+      <div class="rm-progress" style="--rm-pct:0%"></div>
+      <ul>
+        <li>Full QA pass across all features</li>
+        <li>Expansive E2E test coverage</li>
+        <li>Graphic polish &mdash; materials, lighting, post-processing</li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-phase-title">BETA RELEASE <span class="rm-badge">v1.0</span></div>
+      <div class="rm-progress" style="--rm-pct:0%"></div>
+      <ul>
+        <li>All phases complete &amp; polished</li>
+        <li>Public launch &amp; marketing push</li>
+        <li>Season 1 &mdash; competitive ranked ladder</li>
+        <li>Mobile app store listings (PWA)</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

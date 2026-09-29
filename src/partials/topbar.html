@@ -1,0 +1,109 @@
+  <!-- Auth Status + Players Online -->
+  <div id="auth-status" class="ui-layer" style="display:none" role="banner" aria-label="Top bar">
+    <div id="top-left">
+      <!-- Back Button (permanent, toggled by JS) -->
+      <div class="menu-btn menu-btn--secondary dyn-back" id="dyn-back" style="display:none">
+        <span class="dyn-back__glyph" aria-hidden="true">&lt;</span>
+        <span class="dyn-back__label">BACK</span>
+      </div>
+      <!-- Audio -->
+      <div class="bb-section bb-audio" id="np-audio-row">
+        <div class="eq">
+          <div class="eq-bar" id="eq1" style="height:4px"></div>
+          <div class="eq-bar" id="eq2" style="height:8px"></div>
+          <div class="eq-bar" id="eq3" style="height:6px"></div>
+          <div class="eq-bar" id="eq4" style="height:10px"></div>
+          <div class="eq-bar" id="eq5" style="height:5px"></div>
+        </div>
+        <div id="vol-dropdown-wrap" class="tb-dropdown-wrap">
+          <span id="mute-btn" class="mute-btn" role="button" tabindex="0" aria-label="Toggle mute"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-vol"/></svg></span>
+          <div class="tb-drop" id="vol-dropdown" data-drop="below" style="left:50%;transform:translateX(-50%);">
+            <div class="tb-drop-inner" id="vol-dropdown-inner">
+              <input type="range" id="vol-bar-slider" class="vol-slider" min="0" max="100" value="100" orient="vertical">
+            </div>
+            <button id="vol-open-settings" class="vol-settings-btn"><svg class="icon"><use href="/icons.svg#i-sliders-v"/></svg></button>
+          </div>
+        </div>
+        <!-- Announcement Panel (content populated by src/announcements.ts from RTDB) -->
+        <div id="announcement-panel">
+          <span class="ann-close"><svg class="icon"><use href="/icons.svg#i-x"/></svg></span>
+          <div class="ann-header">ANNOUNCEMENT</div>
+          <div class="ann-body"></div>
+        </div>
+        <span id="prev-btn" class="skip-btn" data-tip="Previous Track" role="button" tabindex="0" aria-label="Previous track"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-skip-back"/></svg></span>
+        <span id="pause-btn" class="pause-btn" data-tip="Pause/Play" role="button" tabindex="0" aria-label="Pause or play"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-pause"/></svg></span>
+        <span id="skip-btn" class="skip-btn" data-tip="Skip Track" role="button" tabindex="0" aria-label="Skip track"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-skip-fwd"/></svg></span>
+        <span id="repeat-btn" class="repeat-btn" data-tip="Repeat Track" role="button" tabindex="0" aria-label="Repeat track"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-repeat"/></svg></span>
+        <span id="shuffle-btn" class="shuffle-btn" data-tip="Shuffle Playlist" role="button" tabindex="0" aria-label="Shuffle playlist"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-shuffle"/></svg></span>
+        <div id="playlist-dropdown-wrap" class="tb-dropdown-wrap">
+          <span id="playlist-dropdown-btn" class="playlist-drop-btn" role="button" tabindex="0" aria-label="Playlists" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-list"/></svg></span>
+          <div class="tb-drop" id="playlist-dropdown" data-drop="below" style="left:50%;transform:translateX(-50%);">
+            <div class="tb-drop-inner" id="playlist-dropdown-inner">
+              <div class="dropdown-header" id="playlist-drop-header"><svg class="icon" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;opacity:.6"><use href="/icons.svg#i-list"/></svg>PLAYLISTS<span class="dropdown-header-goto" id="btn-playlist-edit">EDIT <svg class="icon" style="width:8px;height:8px;vertical-align:middle"><use href="/icons.svg#i-chev-r"/></svg></span></div>
+              <div id="playlist-drop-items"></div>
+            </div>
+          </div>
+        </div>
+        <span class="track-name"></span>
+      </div>
+      <span class="tb-sep"></span>
+    </div>
+    <div id="auth-row">
+      <span id="server-activity"><div class="server-spinner"></div><span id="server-activity-label">SYNCING</span></span>
+      <span class="tb-sep"></span>
+      <div id="social-dropdown-wrap" class="tb-dropdown-wrap hidden">
+        <span class="social-drop-trigger" id="btn-social-icon" role="button" tabindex="0" aria-label="Social" aria-expanded="false">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-users"/></svg>
+          <span class="social-drop-label">SOCIAL</span>
+          <span class="social-drop-online hidden" id="friends-online-indicator"><span class="friends-online-dot"></span><span id="friends-online-count">0</span></span>
+          <span id="social-icon-badge" class="social-icon-badge">1</span>
+        </span>
+        <div class="tb-drop social-drop" id="social-dropdown" data-drop="below">
+          <div class="tb-drop-inner social-drop-inner" id="social-drop-body">
+<!-- @include "src/partials/social-component.html" -->
+          </div>
+        </div>
+      </div>
+      <span class="tb-sep"></span>
+      <div id="user-menu-wrap" class="hidden">
+        <svg class="icon auth-user-icon" aria-hidden="true"><use href="/icons.svg#i-user"/></svg><span id="auth-username"></span>
+        <div id="user-submenu"><div class="usm-inner">
+          <div class="usm-item usm-item--flow-banked">
+            <span class="usm-item-label">BANKED FLOW</span>
+            <span class="usm-item-value" id="usm-banked-flow">&mdash;</span>
+          </div>
+          <div class="usm-item usm-item--flow-lifetime">
+            <span class="usm-item-label">LIFETIME FLOW</span>
+            <span class="usm-item-value" id="usm-lifetime-flow">&mdash;</span>
+          </div>
+          <div class="usm-item usm-item--signout" id="btn-signout">SIGN OUT</div>
+        </div></div>
+      </div>
+      <div id="btn-login" role="button" tabindex="0"><i class="btn-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-circle-dot"/></svg></i>LOG IN</div>
+      <span class="tb-sep"></span>
+      <div id="notif-wrap">
+        <span id="notif-btn" role="button" tabindex="0" aria-label="Notifications" aria-expanded="false">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-bell"/></svg>
+          <span id="notif-badge" class="notif-badge hidden" aria-live="polite">0</span>
+        </span>
+        <div id="notif-dropdown">
+          <div class="tb-drop-inner">
+            <div id="notif-list"></div>
+            <span id="notif-empty">NO NOTIFICATIONS</span>
+          </div>
+        </div>
+      </div>
+      <span class="tb-sep"></span>
+      <span id="tb-settings-btn" role="button" tabindex="0" aria-label="Settings" data-tip="Settings" data-tip-pos="below"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-settings"/></svg></span>
+      <span class="tb-sep"></span>
+      <div id="fullscreen-btn" role="button" tabindex="0" aria-label="Toggle fullscreen" data-tip="Fullscreen" data-tip-pos="below">
+        <svg class="icon" id="fs-icon" aria-hidden="true"><use href="/icons.svg#i-maximize"/></svg>
+        <span id="fs-label">FULLSCREEN</span>
+      </div>
+    </div>
+  </div>
+  <!-- FPS / Ping — fixed, stays visible even when top bar is hidden -->
+  <div id="perf-overlay" class="hidden"></div>
+
+  <!-- Notification toasts -->
+  <div id="notif-toast-container" aria-live="polite" role="status"></div>

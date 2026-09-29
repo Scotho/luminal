@@ -1,0 +1,45 @@
+#players-online {
+  font-size:11px; letter-spacing:2px; color:rgba(var(--c-teal),0.3); cursor:default; margin:0 6px;
+
+  &.hidden { display:none; }
+  &:hover #ping-tooltip { display:block; }
+}
+
+#online-count { color:rgba(var(--c-teal),0.55); font-weight:700; }
+
+#connection-dot {
+  display:inline-block; width:6px; height:6px; border-radius:50%; background:rgba(var(--c-red-hot),0.4); margin-right:5px; vertical-align:middle; transition:all 0.3s;
+
+  &.connection-dot--connected { background:rgba(var(--c-green),0.8); box-shadow:0 0 4px rgba(var(--c-green),0.4); }
+}
+
+#fullscreen-btn {
+  font-size:11px; letter-spacing:2px;
+  color:rgba(var(--c-white),0.45); cursor:pointer;
+  display:flex; align-items:center; gap:6px; white-space:nowrap;
+  transition:color 0.2s, filter 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.06); }
+}
+
+#server-activity {
+  display:none; align-items:center; gap:4px;
+  font-size:11px; letter-spacing:2px;
+  color:rgba(var(--c-hot),0.5);
+
+  &.server-activity--active { display:inline-flex; }
+}
+
+.server-spinner {
+  width:10px; height:10px; border:1.5px solid rgba(var(--c-hot),0.15);
+  border-top-color:rgba(var(--c-hot),0.6); border-radius:50%;
+  animation:spin 0.8s linear infinite;
+}
+
+/* ── Top Bar Settings Button ─────────────── */
+#tb-settings-btn {
+  font-size:11px; color:rgba(var(--c-white),0.45); cursor:pointer;
+  pointer-events:auto;
+
+  &:hover { color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.06); }
+}

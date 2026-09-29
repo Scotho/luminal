@@ -1,0 +1,83 @@
+      <div id="social-component-ovl" class="social-component social-clone" data-social-clone="overlay">
+        <div class="social-tabs" role="tablist" aria-label="Social tabs">
+          <button class="social-tab social-tab--active" id="social-tab-party-ovl" data-tab="party" data-social-tab="party" role="tab" aria-selected="true" aria-controls="social-panel-party-ovl">PARTY</button>
+          <button class="social-tab" id="social-tab-friends-ovl" data-tab="friends" data-social-tab="friends" role="tab" aria-selected="false" aria-controls="social-panel-friends-ovl">FRIENDS</button>
+          <button class="social-tab" id="social-tab-notifs-ovl" data-tab="notifs" data-social-tab="notifs" role="tab" aria-selected="false" aria-controls="social-panel-notifs-ovl">NOTIFICATIONS<span id="social-notif-badge-ovl" class="social-badge hidden" data-social-slot="notif-badge">0</span></button>
+          <button class="social-tab" id="social-tab-chat-ovl" data-tab="chat" data-social-tab="chat" role="tab" aria-selected="false" aria-controls="social-panel-chat-ovl">CHAT</button>
+          <button class="social-tab social-tab--account hidden" id="social-tab-account-ovl" data-tab="account" data-social-tab="account" aria-label="Account" role="tab" aria-selected="false" aria-controls="social-panel-account-ovl"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-user"/></svg></button>
+        </div>
+        <div class="social-hint hidden" id="social-tab-hint-ovl" data-social-slot="tab-hint">
+          <span class="social-hint-key">LB</span> / <span class="social-hint-key">RB</span> SWITCH TABS
+        </div>
+        <div class="social-panels">
+          <!-- Party Tab -->
+          <div class="social-panel" id="social-panel-party-ovl" data-social-panel="party" role="tabpanel" aria-labelledby="social-tab-party-ovl">
+            <div id="social-party-content-ovl">
+              <div id="social-party-empty-ovl" data-social-slot="party-empty">
+                <div class="social-empty-text">NO ACTIVE PARTY</div>
+                <div class="menu-btn" id="btn-social-create-party-ovl" data-social-slot="btn-create-party"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-users"/></svg></i>CREATE</div>
+              </div>
+              <div id="social-party-active-ovl" class="hidden" data-social-slot="party-active">
+                <div id="social-party-members-ovl" data-social-slot="party-members"></div>
+                <div class="social-party-actions">
+                  <div class="menu-btn menu-btn--secondary" id="btn-social-copy-invite-ovl" data-social-slot="btn-copy-invite"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-link"/></svg></i>COPY INVITE</div>
+                  <div class="menu-btn menu-btn--secondary social-btn--danger" id="btn-social-leave-party-ovl" data-social-slot="btn-leave-party"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-x"/></svg></i>LEAVE PARTY</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Friends Tab -->
+          <div class="social-panel hidden" id="social-panel-friends-ovl" data-social-panel="friends" role="tabpanel" aria-labelledby="social-tab-friends-ovl">
+            <div class="friends-body">
+              <div id="social-friends-requests-ovl" class="hidden" data-social-slot="friends-requests">
+                <div class="friends-section-label">INCOMING REQUESTS</div>
+                <div id="social-friends-requests-list-ovl" data-social-slot="friends-requests-list"></div>
+              </div>
+              <div id="social-friends-outgoing-ovl" class="hidden" data-social-slot="friends-outgoing">
+                <div class="friends-section-label">OUTGOING REQUESTS</div>
+                <div id="social-friends-outgoing-list-ovl" data-social-slot="friends-outgoing-list"></div>
+              </div>
+              <div id="social-friends-list-section-ovl" data-social-slot="friends-list-section">
+                <div class="friends-section-label">FRIENDS</div>
+                <div id="social-friends-list-ovl" data-social-slot="friends-list"></div>
+                <div id="social-friends-empty-ovl" class="friends-empty" data-social-slot="friends-empty">No friends yet — add someone below!</div>
+              </div>
+            </div>
+            <div class="friends-add-group">
+              <div class="friends-add-combined">
+                <input type="text" id="social-friends-add-input-ovl" aria-label="Add friend by username" class="friends-add-field" data-social-slot="friends-add-input" placeholder="Enter username..." maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other">
+                <div class="friends-add-btn" id="btn-social-friends-add-ovl" role="button" tabindex="0" aria-label="Send friend request" data-social-slot="btn-friends-add"><svg class="icon" aria-hidden="true" style="width:14px;height:14px"><use href="/icons.svg#i-user-plus"/></svg></div>
+              </div>
+              <div id="social-friends-add-status-ovl" data-social-slot="friends-add-status"></div>
+            </div>
+            <div id="social-friend-detail-ovl" class="hidden" data-social-slot="friend-detail">
+              <div id="social-friend-detail-name-ovl" data-social-slot="friend-detail-name"></div>
+              <div id="social-friend-detail-status-ovl" data-social-slot="friend-detail-status"></div>
+              <div class="social-friend-detail-actions">
+                <div class="menu-btn menu-btn--secondary" id="btn-social-invite-friend-ovl" data-social-slot="btn-invite-friend"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-users"/></svg></i>INVITE TO LOBBY</div>
+                <div class="menu-btn menu-btn--secondary social-btn--danger" id="btn-social-remove-friend-ovl" data-social-slot="btn-remove-friend"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-x"/></svg></i>REMOVE FRIEND</div>
+              </div>
+            </div>
+          </div>
+          <!-- Notifications Tab -->
+          <div class="social-panel hidden" id="social-panel-notifs-ovl" data-social-panel="notifs" role="tabpanel" aria-labelledby="social-tab-notifs-ovl">
+            <div id="social-notif-list-ovl" data-social-slot="notif-list"></div>
+            <div id="social-notif-empty-ovl" class="friends-empty" data-social-slot="notif-empty">NO NOTIFICATIONS</div>
+          </div>
+          <!-- Chat Tab (overlay clone intentionally left empty — chat DOM only mounts in the dropdown instance; see chatUI.ts) -->
+          <div class="social-panel hidden" id="social-panel-chat-ovl" data-social-panel="chat" data-social-slot="panel-chat" role="tabpanel" aria-labelledby="social-tab-chat-ovl"></div>
+          <!-- Account Tab -->
+          <div class="social-panel social-panel--account hidden" id="social-panel-account-ovl" data-social-panel="account" role="tabpanel" aria-labelledby="social-tab-account-ovl">
+            <div class="social-account-points-row">
+              <div class="social-account-points-label">SPECIAL POINTS</div>
+              <div class="social-account-points-value" data-social-slot="account-points">0</div>
+            </div>
+            <div class="social-account-bio-row">
+              <div class="social-account-bio-label">BIO</div>
+              <div class="social-account-bio-value" data-social-slot="account-bio">—</div>
+            </div>
+            <div class="social-account-socials-row" data-social-slot="account-socials"></div>
+            <button class="menu-btn menu-btn--secondary social-account-signout-btn" id="btn-social-account-signout-ovl" data-social-action="signout"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-x"/></svg></i>SIGN OUT</button>
+          </div>
+        </div>
+      </div>

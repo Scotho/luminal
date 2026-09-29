@@ -1,0 +1,16 @@
+{
+  "name": "LUMINAL",
+  "short_name": "Luminal",
+  "description": "A multiplayer light-cycle game",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "icons": [
+    { "src": "/favicon_io/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon_io/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "theme_color": "#04020e",
+  "background_color": "#04020e",
+  "display": "standalone",
+  "orientation": "any"
+}

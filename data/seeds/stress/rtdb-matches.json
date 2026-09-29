@@ -1,0 +1,28 @@
+{
+  "_path": "matches",
+  "_note": "Bulk match fixtures for hammering matchmaking. Generate N matches in various states.",
+  "templates": [
+    {
+      "count": 10,
+      "status": "active",
+      "meta": {
+        "seriesLength": 3,
+        "round": 1,
+        "scores": [0, 0],
+        "seed": 0,
+        "transport": "websocket"
+      }
+    },
+    {
+      "count": 5,
+      "status": "finished",
+      "meta": {
+        "seriesLength": 3,
+        "round": 3,
+        "scores": [2, 1],
+        "seed": 0,
+        "transport": "websocket"
+      }
+    }
+  ]
+}

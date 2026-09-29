@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Luminal grab cursor — open hand, cyan glow -->
+  <defs>
+    <filter id="g">
+      <feGaussianBlur stdDeviation="0.7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#g)">
+    <path d="M8 8 C8 6 10 6 10 8 L10 12
+             M10 7 C10 5 12 5 12 7 L12 12
+             M12 7 C12 5 14 5 14 7 L14 12
+             M14 8 C14 6 16 6 16 8 L16 12
+             M8 12 L6 12 C4.5 12 4 13 4 14 L4 16 C4 20 7 22 12 22
+             C17 22 19 19 19 16 L19 12 L16 12"
+          fill="rgba(4,2,14,0.85)" stroke="#00ffff" stroke-width="1.1"
+          stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+</svg>

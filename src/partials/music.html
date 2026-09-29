@@ -1,0 +1,86 @@
+  <!-- Music Overlay -->
+  <div id="music-overlay" class="overlay-screen hidden" role="dialog" aria-label="Music player" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <div class="overlay-header-bar"><div class="overlay-header-title">MUSIC</div></div>
+
+      <!-- ── Now Playing + Playback ── -->
+      <div class="music-section" id="music-np">
+        <div class="music-section-label">NOW PLAYING</div>
+        <div class="music-np-track" id="music-np-track" aria-live="polite">—</div>
+        <div class="music-np-controls">
+          <span class="music-ctrl" id="music-shuffle-btn" title="Shuffle" role="button" tabindex="0" aria-label="Shuffle"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-shuffle"/></svg></span>
+          <span class="music-ctrl" id="music-prev" title="Previous" role="button" tabindex="0" aria-label="Previous track"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-skip-back"/></svg></span>
+          <span class="music-ctrl music-ctrl-main" id="music-playpause" title="Play / Pause" role="button" tabindex="0" aria-label="Play or pause"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-pause"/></svg></span>
+          <span class="music-ctrl" id="music-next" title="Next" role="button" tabindex="0" aria-label="Next track"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-skip-fwd"/></svg></span>
+          <span class="music-ctrl" id="music-repeat-btn" title="Repeat" role="button" tabindex="0" aria-label="Repeat"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-repeat"/></svg></span>
+        </div>
+        <div class="music-scrubber-row" id="music-scrubber-row">
+          <input type="range" id="music-scrubber" class="music-scrubber" min="0" max="1000" value="0" aria-label="Track position">
+          <span class="music-scrubber-time" id="music-scrubber-time">—:—— / —:——</span>
+        </div>
+      </div>
+
+      <!-- ── Audio Mix ── -->
+      <div class="music-section">
+        <div class="music-section-label">AUDIO MIX</div>
+        <div class="music-vol-row" id="music-vol-row-master">
+          <svg class="icon music-vol-icon"><use href="/icons.svg#i-globe"/></svg>
+          <span class="music-vol-label">OVERALL</span>
+          <input type="range" id="music-master-slider" class="music-vol-slider" min="0" max="100" value="100" aria-label="Overall volume">
+        </div>
+        <div class="music-vol-row" id="music-vol-row">
+          <svg class="icon music-vol-icon"><use href="/icons.svg#i-music"/></svg>
+          <span class="music-vol-label">MUSIC</span>
+          <input type="range" id="music-vol-slider" class="music-vol-slider" min="0" max="100" value="20" aria-label="Music volume">
+        </div>
+        <div class="music-vol-row" id="music-vol-row-sfx">
+          <svg class="icon music-vol-icon"><use href="/icons.svg#i-gamepad"/></svg>
+          <span class="music-vol-label">SFX</span>
+          <input type="range" id="music-sfx-slider" class="music-vol-slider" min="0" max="100" value="40" aria-label="SFX volume">
+        </div>
+        <div class="music-vol-row" id="music-vol-row-voice">
+          <svg class="icon music-vol-icon"><use href="/icons.svg#i-mic"/></svg>
+          <span class="music-vol-label">VOICE</span>
+          <input type="range" id="music-voice-slider" class="music-vol-slider" min="0" max="100" value="80" aria-label="Voice volume">
+        </div>
+      </div>
+
+      <!-- ── Playlist ── -->
+      <div class="music-section music-section--playlist">
+        <div class="music-section-label">PLAYLIST</div>
+        <div class="setting-select" style="justify-content:center; margin-top:6px;">
+          <span class="bestof-arrow" id="playlist-mode-left"><svg class="icon"><use href="/icons.svg#i-chev-l"/></svg></span>
+          <span class="bestof-label setting-val" id="playlist-mode-label">DEFAULT TRACKS</span>
+          <span class="bestof-arrow" id="playlist-mode-right"><svg class="icon"><use href="/icons.svg#i-chev-r"/></svg></span>
+        </div>
+
+        <div class="music-tab-body">
+          <div id="music-default-editor" class="music-tab-panel">
+            <div class="playlist-list" id="music-default-list"></div>
+          </div>
+
+          <div id="music-synthwave-editor" class="music-tab-panel hidden">
+            <div class="playlist-list" id="music-synthwave-list"></div>
+          </div>
+
+          <div id="music-playlist-editor" class="music-tab-panel hidden">
+            <input type="text" id="music-yt-input" placeholder="Paste a YouTube URL to add..." class="yt-url-input yt-url-input--solo" />
+            <div class="playlist-status hidden" id="music-yt-status"></div>
+            <div class="playlist-error hidden" id="music-yt-error"></div>
+            <div class="playlist-list" id="music-playlist-list"></div>
+          </div>
+
+          <div id="music-electronic-editor" class="music-tab-panel hidden">
+            <div class="playlist-list" id="music-electronic-list"></div>
+          </div>
+
+          <div id="music-all-editor" class="music-tab-panel hidden">
+            <div class="playlist-list" id="music-all-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ambient-eq ambient-eq--bottom hidden" id="aeq-music"></div>
+    </div>
+  </div>

@@ -1,0 +1,524 @@
+/* ══════════════════════════════════════════════
+   2. PHONE / SMALL TABLET  (≤768px)
+   Full-bleed panels, condensed chrome
+   ══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* ── Full-screen overlay menus ──────────── */
+  .overlay-screen { top: 0; padding-bottom: 0; justify-content: flex-start; pointer-events: auto; touch-action: pan-x pan-y; }
+  .overlay-screen .content {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+    height: auto;
+    border-radius: 12px;
+    padding: 20px 16px;
+    padding-top: 20px;
+    padding-bottom: calc(20px + var(--safe-bottom));
+    padding-left: calc(16px + var(--safe-left));
+    padding-right: calc(16px + var(--safe-right));
+    margin: 16px;
+    margin-top: calc(48px + var(--safe-top));
+    justify-content: flex-start;
+  }
+
+  /* ── Main menu (shell → stacked mobile) ── */
+  /* Hide desktop-only shell decorations */
+  #overlay .menu-shell-outline,
+  #overlay .shell-glass,
+  #overlay .menu-shell-strokes { display: none; }
+
+  /* Revert overlay to centered layout */
+  #overlay.overlay-screen {
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* Shell wrap becomes a centered column */
+  #overlay .menu-shell-wrap {
+    position: relative;
+    inset: unset;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: calc(48px + var(--safe-top, 0px));
+  }
+
+  #overlay .menu-shell {
+    width: calc(100vw - 32px);
+    max-width: 400px;
+    margin-left: 0;
+    padding: 16px;
+    transform: none;
+    border-radius: 12px;
+    backdrop-filter: blur(8px) saturate(0.7);
+    background:
+      radial-gradient(ellipse at 40% 20%, rgba(110, 224, 240, 0.14) 0%, rgba(80, 180, 200, 0.07) 40%, transparent 70%),
+      radial-gradient(circle at bottom center, rgba(255, 111, 10, 0.025) 0%, transparent 36%),
+      linear-gradient(180deg, rgba(9, 20, 24, 0.55) 0%, rgba(3, 7, 10, 0.60) 100%);
+    border: 1px solid rgba(200, 120, 20, 0.35);
+    overflow: hidden;
+  }
+
+  /* Scanline overlay on mobile shell */
+  #overlay .menu-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--scanline);
+    background-size: var(--scanline-size);
+    pointer-events: none;
+    z-index: 0;
+    animation: scanScroll 8s linear infinite;
+    opacity: 0.5;
+  }
+
+  /* Double rail lines — mirrors desktop shell-rail + shell-rail-inner */
+  #overlay .menu-shell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background:
+      /* ── Left outer rail (2.4px, matches shell-rail stroke-width) ── */
+      linear-gradient(180deg,
+        transparent 10%,
+        rgba(255, 146, 0, 0.96) 10%,
+        rgba(255, 118, 0, 0.96) 40%,
+        rgba(255, 96, 0, 0.82) 70%,
+        rgba(255, 88, 0, 0.24) 100%)
+        0 0 / 2.5px 100% no-repeat,
+      /* ── Left inner rail (1.4px, matches shell-rail-inner) ── */
+      linear-gradient(180deg,
+        transparent 16%,
+        rgba(255, 192, 68, 0.9) 16%,
+        rgba(255, 192, 68, 0.4) 85%,
+        transparent 100%)
+        5px 0 / 1.5px 100% no-repeat,
+      /* ── Right outer rail ── */
+      linear-gradient(180deg,
+        transparent 10%,
+        rgba(255, 146, 0, 0.96) 10%,
+        rgba(255, 118, 0, 0.96) 40%,
+        rgba(255, 96, 0, 0.82) 70%,
+        rgba(255, 88, 0, 0.24) 100%)
+        right 0 top 0 / 2.5px 100% no-repeat,
+      /* ── Right inner rail ── */
+      linear-gradient(180deg,
+        transparent 16%,
+        rgba(255, 192, 68, 0.9) 16%,
+        rgba(255, 192, 68, 0.4) 85%,
+        transparent 100%)
+        right 5px top 0 / 1.5px 100% no-repeat;
+  }
+
+  /* Ensure all shell content stacks above scanlines */
+  #overlay .menu-shell > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Old header plate overrides (commented out — using logo image)
+  #overlay .menu-header-plate {
+    width: 100%;
+    min-height: auto;
+    padding: 8px 16px;
+    margin: 0 0 8px 0;
+    clip-path: none;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(8, 18, 26, 0.97), rgba(5, 12, 18, 0.95));
+    animation: none;
+  }
+  #overlay .plate-borders { display: none; }
+  #overlay .menu-title { font-size: clamp(36px, 10vw, 52px); letter-spacing: 3px; }
+  */
+
+  /* Logo: full width on mobile */
+  #overlay .menu-logo-wrap { width: 100%; margin: 0 0 12px 0; }
+  #overlay .menu-logo { width: 96%; max-width: 360px; }
+
+  /* Subplate: full width */
+  #overlay .menu-subplate { width: 100%; margin-left: 0; }
+
+  /* CTA: full width + symmetric corner cuts (top-left mirrored to bottom-right) */
+  #overlay .menu-primary { width: 100%; margin-left: 0; }
+  #overlay .menu-primary__frame {
+    clip-path: polygon(0 24px, 30px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 30px) 100%, 0 100%);
+  }
+  #overlay .menu-primary__inner {
+    padding: 0 20px;
+    clip-path: polygon(0 17px, 21px 0, 100% 0, 100% calc(100% - 17px), calc(100% - 21px) 100%, 0 100%);
+  }
+
+  /* ── menu-squared — no separate panel needed, shell provides backdrop ── */
+  #overlay .menu-squared {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0;
+  }
+  #overlay .menu-squared::before,
+  #overlay .menu-squared::after { display: none; }
+
+  /* Nav list: full width */
+  #overlay .menu-list { width: 100%; margin-left: 0; }
+  #overlay .menu-stack { gap: 8px; }
+  #overlay .menu-item {
+    min-height: clamp(46px, 10vw, 58px);
+    font-size: clamp(13px, 3vw, 18px);
+    letter-spacing: clamp(2px, 0.8vw, 4px);
+  }
+
+  /* Icon bar: full width */
+  #overlay .menu-icon-bar { width: 100%; }
+  #overlay .menu-icon-btn { min-height: clamp(42px, 9.5vw, 54px); }
+  /* Control icon: show TOUCH on mobile; hide keyboard; controller visible only when connected (via JS) */
+  #control-icon { font-size: 10px; letter-spacing: 2px; margin-top: 10px; }
+  #ci-keyboard, #ci-kb-pnum { display: none !important; }
+  /* Hide the keyboard|controller separator; touch separator managed by JS */
+  #control-icon > .ci-sep:not(.ci-sep--touch) { display: none !important; }
+  #time-played-section { margin: 6px 0 12px; }
+
+
+  /* ── Header bar — bleeds edge-to-edge inside .content on mobile ── */
+  .overlay-screen .content:has(> .overlay-header-bar) { padding-top: 0; }
+  .overlay-header-bar {
+    --_ohb-px: calc(16px + var(--safe-left, 0px));
+    width: calc(100% + 2 * var(--_ohb-px));
+    margin: 0 calc(-1 * var(--_ohb-px)) 12px;
+    padding: 6px var(--_ohb-px);
+    min-height: 56px;
+    min-width: 0;
+    gap: 8px;
+    border-radius: 12px 12px 0 0;
+    box-sizing: border-box;
+  }
+
+  /* ── Screen headings — fluid ───────────── */
+  .overlay-header-title {
+    font-size: clamp(16px, 4.6vw, 28px) !important;
+    letter-spacing: clamp(2px, 0.9vw, 7px) !important;
+    padding-inline: 4px;
+  }
+
+  /* ── Section headings ─────────────────── */
+  .section-heading {
+    font-size: clamp(14px, 3.5vw, 18px);
+    letter-spacing: clamp(3px, 1vw, 6px);
+  }
+
+  /* ── HUD ────────────────────────────────── */
+  #meter-wrap { bottom: calc(16px + var(--safe-bottom)); }
+  #meter-bar { width: clamp(160px, 50vw, 260px); height: 10px; }
+
+  /* ── Stats ──────────────────────────────── */
+  #stats-overlay .stats-grid { width: 100%; min-width: 0; }
+  #stats-overlay .stat-item { width: 100%; }
+
+  /* dyn-back now lives inside .overlay-header-bar — no overlay-specific overrides needed */
+
+  /* ── Results ────────────────────────────── */
+  #result h2 {
+    font-size: clamp(28px, 8vw, 44px);
+    letter-spacing: clamp(4px, 1.5vw, 10px);
+  }
+
+  /* ── Settings ──────────────────────────── */
+  .settings-group { min-width: unset; width: 100%; }
+  .setting-row {
+    flex-wrap: wrap; gap: 10px;
+    padding: 4px 0;
+  }
+  .setting-row label {
+    min-width: unset; width: 100%;
+    font-size: 14px;
+  }
+  .setting-row input[type="range"] { width: 100%; }
+  .slider-wrap { width: 100%; }
+  .setting-select { width: 100%; }
+  .setting-select .setting-val { flex: 1; min-width: 0; }
+
+  /* ── Lobby ──────────────────────────────── */
+  #lobby-overlay .content {
+    padding:0;
+    padding-top:var(--safe-top);
+    padding-bottom:var(--safe-bottom);
+    max-width:none;
+    max-height:calc(100vh - var(--safe-top) - var(--safe-bottom));
+    overflow-y:auto;
+  }
+
+  /* Panel fills viewport on mobile */
+  .lobby-panel {
+    border-radius:4px;
+  }
+
+  .lobby-header-bar { padding:10px 14px; min-height:40px; }
+
+  .lobby-header-title {
+    font-size:12px; letter-spacing:6px;
+  }
+
+  .lobby-body {
+    padding:14px 12px 16px;
+  }
+
+  /* Vehicle grid — horizontal snap carousel */
+  #lobby-vehicle-grid {
+    flex-wrap:nowrap !important;
+    justify-content:flex-start !important;
+    overflow-x:scroll;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding-inline:calc(50% - 85px) !important;
+    margin-inline:-12px;
+    gap:12px !important;
+    touch-action:pan-x;
+  }
+  .lobby-vehicle-tile {
+    width:200px !important; min-height:180px !important;
+    flex-shrink:0 !important;
+    scroll-snap-align:center; scroll-snap-stop:always;
+    transform:scale(0.88); opacity:0.5;
+  }
+  .lobby-vehicle-tile--snap-active {
+    transform:scale(1) !important; opacity:1 !important;
+  }
+
+  .lobby-card { width:120px; min-height:80px; padding:10px 12px 8px; border-radius:8px; }
+
+  #lobby-color-row { margin:6px 0 8px; }
+
+  .lobby-action-divider { margin:8px 0 6px; }
+
+  /* Stack action buttons vertically on mobile */
+  #lobby-actions {
+    flex-direction:column; gap:8px; margin-top:6px;
+  }
+  #lobby-actions .lobby-btn-hero {
+    width:100%; padding:14px 0; min-height:44px;
+    font-size:14px;
+  }
+  /* Hide spacers in column layout */
+  .lobby-actions-spacer { display:none; }
+
+  /* BACK + LEAVE share a row */
+  #lobby-actions .lobby-btn-sm {
+    min-height:44px;
+  }
+  /* Reorder: READY first, START second, then LEAVE full-width */
+  #lobby-actions {
+    display:flex; flex-wrap:wrap;
+  }
+  #btn-lobby-ready  { order:1; width:100%; }
+  #btn-lobby-start  { order:2; width:100%; }
+  #btn-lobby-leave  { order:3; width:100%; }
+
+  /* Hide desktop header utils on mobile (party chip handles invite) */
+  .lobby-header-utils { display:none; }
+
+  /* Hide social section on mobile — party chip handles it */
+  .lobby-social-section { display:none; }
+
+  #lobby-code-display { font-size:16px; letter-spacing:4px; }
+
+  /* ── Online ─────────────────────────────── */
+  #online-overlay .online-option { width: 100%; }
+
+  /* ── Loading screen ─────────────────────── */
+  .loading-panel { padding: 36px 32px; }
+  #loading-screen .game-logo {
+    width: min(340px, 75vw);
+  }
+  #loading-screen .bb-credit #version-loading,
+  #loading-screen .bb-credit .discord-link,
+  #loading-screen .bb-credit .btn-about,
+  #loading-screen .bb-credit .bar-sep { display: none !important; }
+  #loading-screen .loading-subtitle {
+    font-size: clamp(11px, 3vw, 16px);
+    letter-spacing: clamp(4px, 1.5vw, 10px);
+    margin-bottom: 24px;
+  }
+  .loading-bar-wrap { width: clamp(180px, 60vw, 260px); }
+  #loading-screen .click-prompt { height: 35px; }
+  #loading-screen .loading-status {
+    font-size: clamp(8px, 2.5vw, 10px);
+    letter-spacing: clamp(2px, 1vw, 4px);
+  }
+
+  /* ── Countdown ──────────────────────────── */
+  #countdown-num { font-size: clamp(72px, 20vw, 120px); }
+
+  /* ── Top bar — mobile: MUTE / PREV / PAUSE / USER / SKIP / FULLSCREEN ── */
+  #auth-status {
+    height: calc(40px + var(--safe-top));
+    padding-top: var(--safe-top);
+    padding-left: calc(8px + var(--safe-left));
+    padding-right: calc(8px + var(--safe-right));
+    overflow: hidden;
+  }
+  /* Match children to bar height so they don't overflow at reduced heights / fullscreen */
+  .bb-audio, .bb-audio .mute-btn, .bb-audio .pause-btn, .bb-audio .skip-btn,
+  #fullscreen-btn, #user-menu-wrap {
+    height: 100%;
+  }
+
+  /* Left section: hide equalizer, volume dropdown, visual section, track name */
+  .bb-audio .eq { display: none !important; }
+  #vol-dropdown-wrap .tb-drop { display: none !important; }
+  .bb-audio .track-name { display: none !important; }
+  #top-left .tb-sep { display: none !important; }
+
+  /* Left section: show prev, pause, skip — hide repeat, shuffle, playlist */
+  .bb-audio .repeat-btn { display: none !important; }
+  .bb-audio .shuffle-btn { display: none !important; }
+  .bb-audio .playlist-drop-btn { display: none !important; }
+
+  /* Right section: hide everything except user menu and fullscreen */
+  #party-dropdown-wrap { display: none !important; }
+  #players-online { display: none !important; }
+  #server-activity { display: none !important; }
+  #btn-login { display: none !important; }
+  #notif-wrap { display: none !important; }
+  #fps-counter { display: none !important; }
+  #tb-settings-btn { display: none !important; }
+  #auth-row .tb-sep { display: none !important; }
+
+  /* Fullscreen: show icon only, hide label */
+  #fullscreen-btn { display: flex !important; }
+  #fs-label { display: none !important; }
+
+  /* ── Announcements — hidden entirely on mobile ── */
+  #announcement-panel { display: none !important; }
+
+  /* ── Bottom bar — hidden at original position ─── */
+  #bottom-bar { display: none !important; }
+
+  /* ── Menu version — shown on mobile portrait ─── */
+  #menu-version { display: block !important; width: fit-content; margin: 0 auto; text-align: center; }
+  /* Strip the menu's teal→gold→red gradient; use the subtler base teal→hot sweep.
+     Must re-declare background-size + clip since background shorthand resets them. */
+  #overlay .version-glow {
+    background-image: linear-gradient(
+      90deg,
+      rgba(var(--c-white),0.25) 0%,
+      rgba(var(--c-white),0.25) 25%,
+      rgba(var(--c-teal),0.9) 45%,
+      rgba(var(--c-hot),0.9) 55%,
+      rgba(var(--c-white),0.25) 75%,
+      rgba(var(--c-white),0.25) 100%
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Mobile drawer — hidden on mobile ── */
+  #mobile-drawer {
+    display: none !important;
+  }
+  /* (mobile-drawer child rules removed — drawer is hidden) */
+
+  /* Chat lives inside social CHAT tab on mobile — hide the floating shell */
+  #global-chat { display: none !important; }
+
+  /* Chat — mobile drawer integration (no drag/resize, static flow) */
+  #global-chat {
+    position: static !important; width: 100% !important; height: auto !important;
+    min-width: 0; left: auto !important; top: auto !important;
+  }
+  #global-chat .chat-resize-handle { display: none; }
+  #global-chat #chat-tab-bar { cursor: default; touch-action: manipulation; }
+  #global-chat #chat-messages,
+  #global-chat #chat-messages-match,
+  #global-chat #chat-messages-lobby,
+  #global-chat [id^="chat-messages-dm-"] {
+    max-height: 140px;
+  }
+  #match-chat-window { display: none !important; }
+
+  /* ── Menu panels — momentum scrolling ──── */
+  .overlay-screen .content {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    overflow-x: hidden;
+  }
+
+  /* ── Generic: prevent fixed-width children from overflowing overlay panels ── */
+  .overlay-screen .content > * { max-width: 100%; box-sizing: border-box; }
+
+  /* ── Allow scroll through interactive elements inside scrollable panels ──
+     pan-x pan-y on both the overlay and .content lets the browser allow both
+     vertical (content scroll) and horizontal (carousel) gestures. The CSS
+     overflow properties already prevent unwanted scroll directions:
+       • .content has overflow-x:hidden → can't scroll content sideways
+       • carousels have overflow-x:scroll → can scroll carousels sideways
+     A pan-y-only ancestor blocks pan-x in ALL descendants (including carousels)
+     regardless of child specificity overrides — so the fix must be on the ancestor. */
+  .overlay-screen .content { touch-action: pan-x pan-y; -webkit-overflow-scrolling: touch; }
+  /* Disable callout on long-press */
+  .overlay-screen .content .menu-btn { -webkit-touch-callout: none; }
+
+  /* ── Fluid-width overrides for panels with fixed/min widths ── */
+  #online-overlay .content { min-width: unset; }
+  #online-result-extra { width: 85vw; max-width: 100%; }
+  #lb-table-wrap { min-width: unset; width: 100%; overflow-x: auto; }
+  #history-list { min-width: unset; width: 100%; }
+  .auth-form, #username-form { min-width: unset; width: 85vw; max-width: 100%; }
+  .bugreport-content { width: 85vw; max-width: 100%; }
+
+  /* ── Notifications — full-width at top ─── */
+  #notif-toast-container {
+    right: calc(8px + var(--safe-right));
+    left: calc(8px + var(--safe-left));
+    top: calc(40px + var(--safe-top));
+  }
+  .notif-toast { max-width: 100%; min-width: unset; border-radius: 10px; }
+
+
+  /* ── Replay controls ────────────────────── */
+  #replay-controls {
+    bottom: calc(24px + var(--safe-bottom));
+    padding: 10px 12px 8px;
+    max-width: min(680px, calc(100vw - 24px));
+  }
+
+  /* ── Control toggle — larger on mobile ─── */
+  .control-toggle .control-toggle__option {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  /* ── Back button — inside header bar, matches lobby-btn-sm ── */
+  .dyn-back {
+    padding: 8px 14px 8px 10px;
+    font-size: 10px;
+    min-height: 44px;
+    gap: 0;
+    min-width: 52px;
+    max-width: 52px;
+  }
+  .dyn-back__label { display: none; }
+
+  /* ── Dropdowns — wider on mobile ────────── */
+  .dropdown-panel { min-width: 180px; border-radius: 8px; }
+  .dropdown-item { padding: 12px 17px; font-size: 11px; }
+
+  /* ── Auth inputs — full-width ───────────── */
+  .auth-input { padding: 14px 16px; font-size: 14px; border-radius: 8px; }
+  .auth-oauth-btn { padding: 14px 0; font-size: 14px; min-height: 48px; }
+  .auth-pw-toggle { right: 14px; }
+
+  /* ── PWA Install button ──────────────────── */
+  #btn-install-app {
+    margin-top: 12px;
+    animation: install-glow 2.5s ease-in-out infinite;
+  }
+  @keyframes install-glow {
+    0%, 100% { box-shadow: 0 0 6px rgba(var(--c-teal-bright), 0.15); }
+    50% { box-shadow: 0 0 14px rgba(var(--c-teal-bright), 0.35); }
+  }
+}

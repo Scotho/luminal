@@ -1,0 +1,81 @@
+# Dependencies
+node_modules/
+
+# Build outputs (matches root dist/ for main game + admin/dist/ for admin vite → firebase)
+dist/
+functions/lib/
+*.tsbuildinfo
+
+# Test / coverage output
+coverage/
+test-results/
+playwright-report/
+
+# Firebase
+.firebase/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+!.env.local.example
+
+# Markdown (allow-list specific docs)
+*.md
+!docs/netcode.md
+!docs/investigations/**
+!.claude/skills/**/SKILL.md
+
+# Claude / Superpowers / worktrees
+.claude/*
+!.claude/skills/
+!.claude/skills/**
+.superpowers/
+.worktrees/
+
+# Aider
+.aider*
+
+# Sandboxes
+testbed/
+testinghub/
+testhub/
+
+# Screenshots
+screenshots/
+
+# Admin data (keep e2e matrix)
+admin/data/*
+!admin/data/e2e-matrix.json
+!admin/data/test-flakiness.json
+
+# Backups & scratch files
+*.bak
+.sv-temp.json
+.tmp-tasks.json
+
+# Headless browser profiles (base + suffixed variants like -clean, -main, -mid)
+.edge-headless*/
+
+# Codegen / build caches
+.cache-cg/
+
+# ── Open-source hygiene ─────────────────────────────────
+# Public docs (the *.md rule above ignores everything else)
+!README.md
+!NOTICE.md
+!SECURITY.md
+!CONTRIBUTING.md
+
+# Audio we are licensed to USE in the game but not to REDISTRIBUTE.
+# Kept on the maintainer's disk so deploys still ship it; never committed.
+# See NOTICE.md.
+public/music/*
+!public/music/synthwave/
+public/sfx/ui/
+
+# Local tool config
+.mcp.json
+.tmp_sessions.json

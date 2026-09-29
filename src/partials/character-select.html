@@ -1,0 +1,177 @@
+  <!-- Hub Overlay (Garage / Match / Unlocks / Shop) -->
+  <div id="character-select-overlay" class="overlay-screen hidden" role="dialog" aria-label="Hub" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content cs-root">
+
+      <!-- Header: back button + pill tabs -->
+      <div class="hub-header">
+        <button class="hub-back-btn" id="hub-back" type="button" aria-label="Back to menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </button>
+        <div class="hub-tabs" role="tablist">
+          <button class="hub-tab hub-tab--active" id="hub-tab-garage" role="tab" aria-selected="true" aria-controls="hub-panel-garage" type="button">
+            <svg class="hub-tab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span class="hub-tab__label">GARAGE</span>
+          </button>
+          <button class="hub-tab" id="hub-tab-match" role="tab" aria-selected="false" aria-controls="hub-panel-match" type="button">
+            <svg class="hub-tab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2l6 6 6-6M6 22l6-6 6 6M2 12h4m12 0h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <span class="hub-tab__label">MATCH</span>
+          </button>
+          <button class="hub-tab" id="hub-tab-unlocks" role="tab" aria-selected="false" aria-controls="hub-panel-unlocks" type="button">
+            <svg class="hub-tab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11V7a4 4 0 118 0m-9 4h10a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span class="hub-tab__label">UNLOCKS</span>
+          </button>
+          <!-- SHOP tab hidden — purchase flow disabled until re-finalized. -->
+          <button class="hub-tab hidden" id="hub-tab-shop" role="tab" aria-selected="false" aria-controls="hub-panel-shop" aria-hidden="true" type="button">
+            <svg class="hub-tab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span class="hub-tab__label">SHOP</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- GARAGE Panel -->
+      <div class="hub-panel" id="hub-panel-garage" role="tabpanel" aria-labelledby="hub-tab-garage">
+        <div class="cs-layout">
+          <div class="cs-showroom">
+            <div class="cs-section cs-section--vehicle">
+              <div class="cs-section-label">VEHICLE</div>
+              <div class="cs-carousel" id="cs-carousel" role="radiogroup" aria-label="Select vehicle">
+                <div class="cs-card" data-vehicle="bike" id="cs-card-bike" tabindex="0" role="radio" aria-checked="false" aria-label="Spectre">
+                  <div class="cs-card-canvas-wrap" id="cs-canvas-wrap-bike"></div>
+                  <span class="cs-card-name">SPECTRE</span>
+                </div>
+                <div class="cs-card" data-vehicle="car" id="cs-card-car" tabindex="0" role="radio" aria-checked="false" aria-label="Slingshot">
+                  <div class="cs-card-canvas-wrap" id="cs-canvas-wrap-car"></div>
+                  <span class="cs-card-name">SLINGSHOT</span>
+                </div>
+                <div class="cs-card" data-vehicle="hoverboard" id="cs-card-hoverboard" tabindex="0" role="radio" aria-checked="false" aria-label="Vector">
+                  <div class="cs-card-canvas-wrap" id="cs-canvas-wrap-hoverboard"></div>
+                  <span class="cs-card-name">VECTOR</span>
+                </div>
+              </div>
+              <div class="cs-floor"></div>
+            </div>
+            <div class="cs-section cs-section--color">
+              <div class="cs-section-label">COLOR</div>
+              <div class="cs-color-row">
+                <div class="cs-color-options" id="cs-color-options" role="radiogroup" aria-label="Select color"></div>
+              </div>
+            </div>
+            <!-- Emissive selector removed — will be re-added when fully implemented -->
+          </div>
+          <div class="cs-detail">
+            <div class="cs-vehicle-name" id="cs-vehicle-name" aria-live="polite">SPECTRE</div>
+            <div class="cs-coming-soon" id="cs-coming-soon" style="display:none">COMING SOON...</div>
+            <div class="cs-flavor" id="cs-flavor">Ultralight precision machine. Speed without compromise.</div>
+            <div class="cs-section cs-section--stats">
+              <div class="cs-section-label">STATS</div>
+              <div class="cs-stats" id="cs-stats"></div>
+            </div>
+            <div class="cs-special" id="cs-special">
+              <div class="cs-special-header">
+                <svg class="cs-special-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/icons.svg#i-star"/></svg>
+                <span class="cs-special-label">SPECIAL ABILITY</span>
+              </div>
+              <span class="cs-special-name" id="cs-special-name">INSTANT ACCEL</span>
+              <span class="cs-special-desc" id="cs-special-desc">Instant throttle response. Reaches peak velocity with no delay.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATCH Panel -->
+      <div class="hub-panel hidden" id="hub-panel-match" role="tabpanel" aria-labelledby="hub-tab-match">
+        <div class="hub-match-root">
+          <div class="hub-match-banner">Controls the map used for quick play matches and your default matchmaking preferences</div>
+          <div class="cs-section cs-section--arena">
+            <div class="cs-section-label">ARENA</div>
+            <div class="cs-map-row" id="cs-map-options" role="radiogroup" aria-label="Select arena"></div>
+          </div>
+          <div class="cs-section cs-section--difficulty">
+            <div class="cs-section-label">DIFFICULTY</div>
+            <div id="cs-difficulty-options"></div>
+          </div>
+          <div class="cs-section cs-section--bestof">
+            <div class="cs-section-label">BEST OF</div>
+            <div id="hub-bestof-options"></div>
+          </div>
+          <div class="cs-section cs-section--enemies">
+            <div class="cs-section-label">ENEMIES</div>
+            <div id="hub-enemies-options"></div>
+            <div class="hub-match-sublabel">Quick play only</div>
+          </div>
+          <div class="hub-match-disabled-overlay hidden" id="hub-match-disabled">
+            <span>Cannot change during an active match</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNLOCKS Panel -->
+      <div class="hub-panel hidden" id="hub-panel-unlocks" role="tabpanel" aria-labelledby="hub-tab-unlocks">
+        <div class="unlocks-level-track" id="unlocks-level-track">
+          <div class="unlocks-track-scroll" id="unlocks-track-scroll"></div>
+        </div>
+        <div class="unlocks-challenges">
+          <div class="unlocks-section-header">
+            <span>CHALLENGES</span>
+            <span class="unlocks-challenge-count" id="unlocks-challenge-count">0 active / 0 complete</span>
+          </div>
+          <div class="unlocks-challenge-grid" id="unlocks-challenge-grid"></div>
+        </div>
+      </div>
+
+      <!-- SHOP Panel -->
+      <div class="hub-panel hidden" id="hub-panel-shop" role="tabpanel" aria-labelledby="hub-tab-shop">
+        <div class="shop-header">
+          <div class="shop-categories" role="tablist" aria-label="Shop categories">
+            <button class="shop-cat shop-cat--active" data-category="color" role="tab" aria-selected="true" type="button">COLORS</button>
+            <button class="shop-cat hidden" data-category="emissive" role="tab" aria-selected="false" type="button" aria-hidden="true">EMISSIVES</button>
+          </div>
+          <div class="shop-flow-balance" id="shop-flow-balance" aria-label="FLOW balance">
+            <svg class="shop-flow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="currentColor"/></svg>
+            <span class="shop-flow-amount" id="shop-flow-amount">0</span>
+          </div>
+        </div>
+        <div class="shop-grid" id="shop-grid"></div>
+
+        <!-- Purchase Confirmation Modal -->
+        <div class="shop-modal hidden" id="shop-purchase-modal" role="dialog" aria-label="Confirm purchase">
+          <div class="shop-modal-backdrop"></div>
+          <div class="shop-modal-content">
+            <div class="shop-modal-preview" id="shop-modal-preview"></div>
+            <div class="shop-modal-title" id="shop-modal-title">Purchase Item?</div>
+            <div class="shop-modal-cost" id="shop-modal-cost"></div>
+            <div class="shop-modal-balance" id="shop-modal-balance"></div>
+            <div class="shop-modal-actions">
+              <button class="shop-modal-btn shop-modal-btn--confirm" id="shop-modal-confirm" type="button">CONFIRM</button>
+              <button class="shop-modal-btn shop-modal-btn--cancel" id="shop-modal-cancel" type="button">CANCEL</button>
+            </div>
+            <div class="shop-modal-error hidden" id="shop-modal-error"></div>
+          </div>
+        </div>
+
+        <!-- Sign-in Prompt Modal -->
+        <div class="shop-modal hidden" id="shop-signin-modal" role="dialog" aria-label="Sign in required">
+          <div class="shop-modal-backdrop"></div>
+          <div class="shop-modal-content">
+            <div class="shop-modal-title">Sign in to purchase</div>
+            <div class="shop-modal-body">Create an account to buy items with FLOW and save your progress</div>
+            <div class="shop-modal-actions">
+              <button class="shop-modal-btn shop-modal-btn--confirm" id="shop-signin-btn" type="button">SIGN IN</button>
+              <button class="shop-modal-btn shop-modal-btn--cancel" id="shop-signin-cancel" type="button">CANCEL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Prompt Bar -->
+      <div class="hub-prompts" id="hub-prompts">
+        <span class="hub-prompt" id="hub-prompt-tabs"><kbd>LB</kbd>/<kbd>RB</kbd> Switch tab</span>
+        <span class="hub-prompt" id="hub-prompt-nav"><kbd>D-PAD</kbd> Navigate</span>
+        <span class="hub-prompt" id="hub-prompt-action"><kbd>A</kbd> Select</span>
+        <span class="hub-prompt" id="hub-prompt-back"><kbd>B</kbd> Back</span>
+      </div>
+
+      <div id="cs-saved" class="cs-saved" data-testid="vehicle-confirm-btn">SAVED</div>
+    </div>
+  </div>

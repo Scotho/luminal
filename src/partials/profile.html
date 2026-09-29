@@ -1,0 +1,120 @@
+  <!-- ── Profile ── -->
+  <div id="profile-overlay" class="overlay-screen hidden" role="dialog" aria-label="Player profile" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <div class="overlay-header-bar"><div class="overlay-header-title">PROFILE</div></div>
+      <!-- Hero Section -->
+      <div class="profile-hero">
+        <div class="profile-icon-wrap">
+          <svg class="profile-icon chat-icon" id="profile-icon"><use href="/icons.svg#i-star"/></svg>
+        </div>
+        <h2 class="profile-username" id="profile-username"></h2>
+        <div class="profile-joined" id="profile-joined"></div>
+        <div class="profile-about" id="profile-about"></div>
+        <div class="profile-socials" id="profile-socials"></div>
+        <button class="profile-edit-btn" id="profile-edit-btn" style="display:none">EDIT PROFILE</button>
+      </div>
+
+      <!-- Profile Tabs -->
+      <div class="profile-tabs" role="tablist" aria-label="Profile sections">
+        <div class="profile-tab profile-tab--active" id="profile-tab-stats" data-ptab="stats" role="tab" aria-selected="true" aria-controls="profile-panel-stats" tabindex="0">STATS</div>
+        <div class="profile-tab" id="profile-tab-history" data-ptab="history" role="tab" aria-selected="false" aria-controls="profile-panel-history" tabindex="-1">MATCH HISTORY</div>
+      </div>
+
+      <!-- Stats Tab -->
+      <div class="profile-panel" id="profile-panel-stats" role="tabpanel" aria-labelledby="profile-tab-stats">
+        <div class="stats-mode-tabs" id="profile-mode-tabs">
+          <div class="stats-mode-tab stats-mode-tab--active" id="profile-mode-ai" data-mode="ai">OFFLINE</div>
+          <div class="stats-mode-tab" id="profile-mode-casual" data-mode="casual">CASUAL</div>
+          <div class="stats-mode-tab stats-mode-tab--disabled" id="profile-mode-ranked" data-mode="ranked">RANKED</div>
+        </div>
+        <div class="stats-series-filter" id="profile-series-filter">
+          <span class="stats-series-pill stats-series-pill--active" id="profile-series-1" data-series="1">BO1</span>
+          <span class="stats-series-pill" id="profile-series-3" data-series="3">BO3</span>
+          <span class="stats-series-pill" id="profile-series-5" data-series="5">BO5</span>
+        </div>
+        <div class="stats-wld-bar">
+          <div class="stats-wld-segment"><span class="stats-wld-label">W</span><span class="stats-wld-value stats-wld-value--win" id="p-wld-wins">0</span></div>
+          <div class="stats-wld-segment"><span class="stats-wld-label">L</span><span class="stats-wld-value stats-wld-value--loss" id="p-wld-losses">0</span></div>
+          <div class="stats-wld-segment"><span class="stats-wld-label">D</span><span class="stats-wld-value stats-wld-value--draw" id="p-wld-draws">0</span></div>
+        </div>
+        <div class="stats-grid">
+          <div class="stats-card-item stats-card-item--no-click">
+            <span class="stats-card-label">WINS</span>
+            <span class="stats-card-value" id="p-wins">—</span>
+            <span class="stats-card-rank"></span>
+          </div>
+          <div class="stats-card-item stats-card-item--no-click">
+            <span class="stats-card-label">BEST STREAK</span>
+            <span class="stats-card-value" id="p-beststreak">—</span>
+            <span class="stats-card-rank"></span>
+          </div>
+          <div class="stats-card-item stats-card-item--no-click">
+            <span class="stats-card-label">FASTEST WIN</span>
+            <span class="stats-card-value" id="p-fastestwin">—</span>
+            <span class="stats-card-rank"></span>
+          </div>
+          <div class="stats-card-item stats-card-item--no-click">
+            <span class="stats-card-label">MATCHES</span>
+            <span class="stats-card-value" id="p-matches">—</span>
+            <span class="stats-card-rank"></span>
+          </div>
+          <div class="stats-card-item stats-card-item--no-click">
+            <span class="stats-card-label">CURRENT</span>
+            <span class="stats-card-value" id="p-currentstreak">—</span>
+            <span class="stats-card-rank"></span>
+          </div>
+          <div class="stats-card-item stats-card-item--no-click">
+            <span class="stats-card-label">WIN RATE</span>
+            <span class="stats-card-value" id="p-winrate">—</span>
+            <span class="stats-card-rank"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Match History Tab (Phase 2 placeholder) -->
+      <div class="profile-panel hidden" id="profile-panel-history" role="tabpanel" aria-labelledby="profile-tab-history">
+        <div class="profile-coming-soon">COMING SOON</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Profile Edit Modal ── -->
+  <div id="profile-edit-modal" class="overlay-screen hidden" role="dialog" aria-label="Edit profile" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <h2>EDIT PROFILE</h2>
+      <div class="profile-edit-form">
+        <div class="profile-edit-field">
+          <label class="profile-edit-label">ABOUT</label>
+          <textarea id="profile-edit-about" aria-label="About me" class="profile-edit-input" maxlength="280" rows="3" placeholder="Tell us about yourself..."></textarea>
+          <div class="profile-edit-counter"><span id="profile-edit-about-count">0</span>/280</div>
+        </div>
+        <div class="profile-edit-field">
+          <label class="profile-edit-label">DISCORD</label>
+          <input id="profile-edit-discord" aria-label="Discord username" class="profile-edit-input" type="text" maxlength="100" placeholder="username or Name#0000">
+          <div class="profile-edit-error" id="profile-edit-discord-error"></div>
+        </div>
+        <div class="profile-edit-field">
+          <label class="profile-edit-label">STEAM</label>
+          <input id="profile-edit-steam" aria-label="Steam profile" class="profile-edit-input" type="text" maxlength="100" placeholder="custom ID or steamcommunity.com URL">
+          <div class="profile-edit-error" id="profile-edit-steam-error"></div>
+        </div>
+        <div class="profile-edit-field">
+          <label class="profile-edit-label">TWITCH</label>
+          <input id="profile-edit-twitch" aria-label="Twitch channel" class="profile-edit-input" type="text" maxlength="100" placeholder="channel name">
+          <div class="profile-edit-error" id="profile-edit-twitch-error"></div>
+        </div>
+        <div class="profile-edit-field">
+          <label class="profile-edit-label">YOUTUBE</label>
+          <input id="profile-edit-youtube" aria-label="YouTube channel" class="profile-edit-input" type="text" maxlength="100" placeholder="@handle or youtube.com URL">
+          <div class="profile-edit-error" id="profile-edit-youtube-error"></div>
+        </div>
+        <div class="profile-edit-error" id="profile-edit-save-error" style="text-align:right"></div>
+        <div class="profile-edit-actions">
+          <button class="profile-edit-cancel" id="profile-edit-cancel">CANCEL</button>
+          <button class="profile-edit-save" id="profile-edit-save">SAVE</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,37 @@
+{
+  "_collection": "users",
+  "_indexCollection": "usernames",
+  "_note": "UIDs are assigned at seed time by the Auth emulator. The seeder maps email->uid after account creation.",
+  "docs": [
+    {
+      "_matchBy": "email",
+      "_matchValue": "host@luminal-test.local",
+      "fields": {
+        "username": "TestHost",
+        "email": "host@luminal-test.local",
+        "icon": "default",
+        "stats": { "wins": 0, "losses": 0, "played": 0 }
+      }
+    },
+    {
+      "_matchBy": "email",
+      "_matchValue": "guest@luminal-test.local",
+      "fields": {
+        "username": "TestGuest",
+        "email": "guest@luminal-test.local",
+        "icon": "default",
+        "stats": { "wins": 0, "losses": 0, "played": 0 }
+      }
+    },
+    {
+      "_matchBy": "email",
+      "_matchValue": "spectator@luminal-test.local",
+      "fields": {
+        "username": "TestSpectator",
+        "email": "spectator@luminal-test.local",
+        "icon": "default",
+        "stats": { "wins": 0, "losses": 0, "played": 0 }
+      }
+    }
+  ]
+}

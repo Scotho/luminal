@@ -1,0 +1,10 @@
+{
+  "current": "v1.0.8",
+  "versions": [
+    {
+      "version": "v1.0.8",
+      "date": "2026-04-06",
+      "description": "Initial schema capture — matches, lobbies, status, users, queue"
+    }
+  ]
+}

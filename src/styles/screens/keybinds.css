@@ -1,0 +1,79 @@
+/* ── Keybinds ─────────────────────────────── */
+.keybinds-row {
+  cursor:pointer; pointer-events:auto; padding:6px 0; transition:color 0.15s;
+
+  &:hover {
+    color:rgba(var(--c-hot),0.9);
+
+    & label { color:rgba(var(--c-hot),0.9); cursor:pointer; }
+    & .keybinds-arrow { color:rgba(var(--c-hot),0.9); transform:translateX(3px); }
+  }
+}
+
+.keybinds-arrow { font-size:14px; color:rgba(var(--c-white),0.4); transition:color 0.15s, transform 0.15s; }
+
+#keybinds-overlay {
+  /* h2 styling now handled by .overlay-header-title */
+  & .menu-btn { margin-bottom:8px; }
+}
+
+.keybinds-group { display:flex; flex-direction:column; gap:12px; margin-bottom:20px; min-width:300px; }
+#keybinds-overlay .settings-group { min-width:340px; }
+#keybinds-overlay .settings-section-body { gap:0; }
+
+.keybind-row {
+  display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(var(--teal-600),0.14);
+
+  & label { font-size:13px; font-weight:600; letter-spacing:3px; color:rgba(var(--c-white),0.6); }
+}
+
+.keybind-keys { display:flex; gap:6px; }
+
+.keybind-key {
+  font-family:'Orbitron',sans-serif; font-size:13px; letter-spacing:2px; color:rgba(var(--c-hot-light),0.7); background:rgba(var(--c-hot),0.08); border:1px solid rgba(var(--c-hot),0.2); border-radius:4px; padding:4px 14px; min-width:60px; text-align:center; cursor:pointer; pointer-events:auto; transition:all 0.15s;
+
+  &:hover { background:rgba(var(--c-hot),0.15); border-color:rgba(var(--c-hot),0.4); color:rgba(var(--c-white),0.85); box-shadow:0 0 8px rgba(var(--c-hot),0.3), 0 0 16px rgba(var(--c-teal),0.15); }
+  &.keybind-key--listening { color:rgba(var(--c-gold),0.9); background:rgba(var(--c-gold),0.1); border-color:rgba(var(--c-gold),0.5); animation:keybind-pulse 0.8s ease-in-out infinite; }
+  &.keybind-key--readonly {
+    cursor:default; pointer-events:none; opacity:0.6;
+
+    &:hover { background:rgba(var(--c-hot),0.08); border-color:rgba(var(--c-hot),0.2); }
+  }
+}
+
+.keybind-hint { font-size:11px; letter-spacing:2px; color:rgba(var(--c-white),0.25); margin-bottom:20px; text-align:center; }
+.keybinds-section-title { font-family:'Orbitron',sans-serif; font-size:11px; font-weight:700; letter-spacing:4px; color:rgba(var(--c-gold),0.6); margin:18px 0 6px 0; text-align:left; width:100%; border-bottom:1px solid rgba(var(--teal-600),0.16); padding-bottom:6px; }
+
+/* ── Keybinds Input Tab Toggle ──────────────── */
+.keybinds-tabs { display:flex; justify-content:center; gap:0; margin-bottom:22px; }
+
+.keybinds-tab {
+  font-family:'Orbitron',sans-serif; font-size:11px; font-weight:700; letter-spacing:3px;
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 20px; cursor:pointer; transition:all 0.2s;
+  color:rgba(var(--c-white),0.3); border:1px solid rgba(var(--c-white),0.1);
+  background:transparent;
+
+  &:first-child { border-radius:4px 0 0 4px; border-right:none; }
+  &:last-child { border-radius:0 4px 4px 0; }
+  &.keybinds-tab--active {
+    color:rgb(var(--c-teal)); border-color:rgba(var(--c-teal),0.4);
+    background:rgba(var(--c-teal),0.08);
+    text-shadow:0 0 8px rgba(var(--c-teal),0.4);
+  }
+  &:not(.keybinds-tab--active):hover { color:rgba(var(--c-white),0.5); border-color:rgba(var(--c-white),0.2); }
+  & .icon { width:14px; height:14px; }
+}
+
+.keybinds-panel {
+  display:none;
+
+  &.keybinds-panel--active { display:block; }
+}
+
+.gp-btn {
+  font-family:'Orbitron',sans-serif; font-size:12px; letter-spacing:2px;
+  color:rgba(var(--c-hot-light),0.7); background:rgba(var(--c-hot),0.08);
+  border:1px solid rgba(var(--c-hot),0.2); border-radius:4px;
+  padding:4px 14px; min-width:60px; text-align:center;
+}

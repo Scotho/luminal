@@ -1,0 +1,120 @@
+  <!-- Bottom Bar -->
+  <div id="bottom-bar" class="ui-layer" style="display:none">
+    <!-- Credit -->
+    <div class="bb-section bb-credit"><span id="btn-report-bug" class="bb-bug-btn" data-tip="Report a Bug"><svg class="icon"><use href="/icons.svg#i-bug"/></svg> BUG</span><span class="bar-sep">&middot;</span><span class="bb-changelog-link"><span class="early-alpha">EARLY ALPHA</span><span id="version" class="version-glow">v1.0.10</span></span><span class="bar-sep"></span><a class="discord-link" href="https://discord.gg/tpfam2RY2u" target="_blank" rel="noopener" data-tip="Join our Discord"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a><span class="bar-sep">&middot;</span><a class="discord-link github-link" href="https://github.com/Scotho/luminal" target="_blank" rel="noopener" data-tip="Source on GitHub" aria-label="Source on GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><span class="bar-sep">&middot;</span><a href="/credits.html" target="_blank" rel="noopener" class="btn-about" data-tip="ABOUT | CREDITS | ROADMAP | CHANGELOG"><svg class="icon"><use href="/icons.svg#i-info"/></svg>ABOUT</a></div>
+  </div>
+  <div id="bugreport-overlay" class="overlay-screen hidden" role="dialog" aria-label="Report a bug">
+    <div class="vignette"></div>
+    <div class="content bugreport-content">
+      <h2><svg class="icon" style="width:16px;height:16px;vertical-align:middle;margin-right:6px"><use href="/icons.svg#i-bug"/></svg>REPORT A BUG</h2>
+      <p class="bugreport-hint">Describe what happened — include steps to reproduce if possible.</p>
+      <textarea id="bugreport-input" class="bugreport-textarea" rows="6" placeholder="e.g. Game desynced after round 2 when opponent disconnected..."></textarea>
+      <div class="bugreport-actions">
+        <button id="bugreport-submit" class="bugreport-btn">SUBMIT REPORT</button>
+      </div>
+      <p id="bugreport-status" class="bugreport-status hidden" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+  <div id="debug-overlay" class="overlay-screen hidden">
+    <div class="vignette"></div>
+    <div class="content">
+      <h2>DEBUG</h2>
+
+      <div class="debug-stats-row">
+        <div class="debug-stat-badge">
+          <div class="debug-stat-val" id="debug-online-count">0</div>
+          <div class="debug-stat-label">Online</div>
+        </div>
+        <div class="debug-stat-badge">
+          <div class="debug-stat-val" id="debug-lobby-count">0</div>
+          <div class="debug-stat-label">Lobbies</div>
+        </div>
+        <div class="debug-stat-badge">
+          <div class="debug-stat-val" id="debug-match-count">0</div>
+          <div class="debug-stat-label">Matches</div>
+        </div>
+        <div class="debug-stat-badge">
+          <div class="debug-stat-val" id="debug-queue-count">0</div>
+          <div class="debug-stat-label">In Queue</div>
+        </div>
+        <div class="debug-stat-badge">
+          <div class="debug-stat-val" id="debug-report-count">0</div>
+          <div class="debug-stat-label">Bug Reports</div>
+        </div>
+        <div class="debug-stat-badge">
+          <div class="debug-stat-val" id="debug-replay-count">0</div>
+          <div class="debug-stat-label">Replays</div>
+        </div>
+        <div class="debug-stat-badge">
+          <div class="debug-stat-val" id="debug-replay-size">0 KB</div>
+          <div class="debug-stat-label">Replay Size</div>
+        </div>
+      </div>
+
+      <div class="debug-grid">
+        <div class="debug-panel">
+          <div class="debug-panel-title">Online Players</div>
+          <div class="debug-scroll" id="debug-players-list"></div>
+        </div>
+
+        <div class="debug-panel">
+          <div class="debug-panel-title">Active Lobbies <div class="debug-purge-btn" id="debug-purge-unknown-lobbies" style="display:none">PURGE ? LOBBIES</div><div class="debug-purge-btn" id="debug-purge-waiting-lobbies" style="display:none">PURGE WAITING</div><div class="debug-purge-btn" id="debug-purge-stale-lobbies" style="display:none">PURGE STALE (8H)</div><div class="debug-purge-btn" id="debug-purge-lobbies" style="display:none">PURGE ALL</div></div>
+          <div class="debug-scroll" id="debug-lobbies-list"></div>
+        </div>
+
+        <div class="debug-panel">
+          <div class="debug-panel-title">Active Matches <div class="debug-purge-btn" id="debug-purge-matches" style="display:none">PURGE ALL</div></div>
+          <div class="debug-scroll" id="debug-matches-list"></div>
+        </div>
+
+        <div class="debug-panel debug-panel--full">
+          <div class="debug-panel-title">Bug Reports <div class="debug-purge-btn" id="debug-purge-reports">PURGE ALL</div></div>
+          <div class="debug-scroll" id="debug-reports-list" style="max-height:300px"></div>
+          <div class="debug-submit-row">
+            <input type="text" id="debug-bug-input" aria-label="Bug report description" placeholder="Submit a manual bug report..." maxlength="500" autocomplete="off">
+            <div class="debug-submit-btn" id="debug-submit-bug" role="button" tabindex="0">SUBMIT</div>
+          </div>
+        </div>
+
+        <div class="debug-panel debug-panel--full">
+          <div class="debug-panel-title">Data Tools</div>
+          <div class="debug-actions-row">
+            <div class="debug-purge-btn" id="debug-wipe-leaderboard">WIPE MY LEADERBOARD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="global-chat" class="hidden ui-layer">
+    <div id="chat-tab-bar" role="tablist" aria-label="Chat channels">
+      <div class="chat-tab chat-tab--active" id="chat-tab-global" role="tab" aria-selected="true" aria-controls="chat-messages" tabindex="0">GLOBAL <span class="chat-unread hidden" id="chat-tab-badge">(0)</span></div>
+      <div class="chat-tab hidden" id="chat-tab-lobby" role="tab" aria-selected="false" aria-controls="chat-messages-lobby" tabindex="-1">PARTY <span class="chat-unread hidden" id="chat-tab-lobby-badge">(0)</span><span class="chat-tab-x" id="chat-tab-lobby-close" role="button" aria-label="Close party chat">&times;</span></div>
+      <div class="chat-tab hidden" id="chat-tab-match" role="tab" aria-selected="false" aria-controls="chat-messages-match" tabindex="-1">MATCH <span class="chat-unread hidden" id="chat-tab-match-badge">(0)</span><span class="chat-tab-x" id="chat-tab-match-close" role="button" aria-label="Close match chat">&times;</span></div>
+    </div>
+    <div id="chat-messages" role="log" aria-live="polite" aria-label="Global chat messages"></div>
+    <div id="chat-messages-lobby" class="hidden" role="log" aria-live="polite" aria-label="Party chat messages"></div>
+    <div id="chat-messages-match" class="hidden" role="log" aria-live="polite" aria-label="Match chat messages"></div>
+    <div id="chat-input-row">
+      <input type="text" id="chat-input" aria-label="Chat message" placeholder="Log in to chat..." maxlength="200" disabled autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other">
+      <div id="btn-chat-send" role="button" tabindex="0" aria-label="Send message">SEND</div>
+    </div>
+    <div class="chat-resize-handle" id="chat-resize"></div>
+  </div>
+  <div id="match-chat-window" class="hidden ui-layer">
+    <div class="match-chat-header"><span id="match-chat-title">MATCH</span><div class="match-chat-dock" id="btn-match-chat-dock" data-tip="Dock back to chat">⇤</div></div>
+    <div id="match-chat-detached-msgs" role="log" aria-live="polite" aria-label="Match chat messages"></div>
+    <div class="match-chat-input-row">
+      <input type="text" id="match-chat-input" aria-label="Match chat message" placeholder="Match chat..." maxlength="200" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other">
+      <div class="match-chat-send" id="btn-match-chat-send" role="button" tabindex="0" aria-label="Send match message">SEND</div>
+    </div>
+    <div class="chat-resize-handle" id="match-chat-resize"></div>
+  </div>
+  <!-- Mobile drawer: stacks bottom bar, announcements, chat on mobile -->
+  <div id="mobile-drawer"></div>
+  <div id="ui-tooltip"></div>
+  <div id="killcam-streak-overlay">
+    <div id="killcam-new-record">NEW RECORD</div>
+    <div id="killcam-streak-num">STREAK <span id="killcam-streak-value">0</span></div>
+    <div id="killcam-sparkles"></div>
+    <canvas id="killcam-streak-canvas" width="300" height="80"></canvas>
+  </div>

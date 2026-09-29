@@ -1,0 +1,592 @@
+/* ═══════════════════════════════════════════════════════
+   Character Select Screen
+   Showroom-style vehicle selection with stat bars,
+   flavor text, special ability, and color picker.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Main Layout ──────────────────────────────────────── */
+.cs-root {
+  display:flex; flex-direction:column;
+}
+/* Override .overlay-screen .content modal constraints — hub sizes to content */
+.overlay-screen .cs-root {
+  max-height:calc(100vh - 80px); padding:0;
+  align-items:stretch; width:min(1200px, calc(100vw - 60px)); overflow:hidden;
+}
+.cs-layout {
+  display:grid;
+  grid-template-columns:55fr 45fr;
+  gap:0;
+  max-width:1180px; width:100%;
+  margin:0 auto;
+  padding:var(--sp-2xl) var(--sp-3xl);
+  flex:1 1 auto;
+}
+
+/* ── Showroom (left) ──────────────────────────────────── */
+.cs-showroom {
+  display:flex; flex-direction:column;
+  gap:var(--sp-xl);
+  padding-right:var(--sp-3xl);
+  position:relative; min-width:0;
+}
+
+.cs-carousel {
+  display:flex; gap:20px; align-items:flex-end;
+  width:100%; padding:11px 0 6px;
+  scroll-behavior:smooth;
+  overflow-x:auto; overflow-y:hidden;
+  max-width:100%;
+  scroll-snap-type:x mandatory;
+  padding-inline:calc(50% - 140px); /* center first/last 280px cards */
+  scrollbar-width:none; -ms-overflow-style:none;
+  &::-webkit-scrollbar { display:none; }
+}
+
+/* ── Vehicle Card ─────────────────────────────────────── */
+.cs-card {
+  width:280px; flex-shrink:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  padding:0;
+  background:none;
+  border:1px solid rgba(var(--c-white),0.06);
+  border-radius:var(--r-2xl); cursor:pointer;
+  box-sizing:border-box; overflow:hidden; position:relative;
+  transition:transform 0.3s var(--ease-default),
+             opacity 0.3s var(--ease-default),
+             border-color 0.3s var(--ease-default),
+             box-shadow 0.3s var(--ease-default),
+             background 0.3s var(--ease-default);
+  transform:scale(0.92); opacity:0.6;
+  outline:none;
+  scroll-snap-align:center; scroll-snap-stop:always;
+}
+.cs-card:hover:not(.cs-card--selected) {
+  border-color:rgba(var(--c-teal),0.2);
+  background:rgba(var(--bg-panel),0.3);
+  opacity:0.75;
+}
+/* Keyboard/gamepad nav cursor — separate from vehicle selection state */
+.cs-card--nav-focus:not(.cs-card--selected) {
+  opacity:0.85;
+  border-color:rgba(var(--c-teal),0.3);
+  transform:scale(0.96);
+}
+.cs-card:focus-visible {
+  outline:2px solid rgba(var(--c-teal),0.6);
+  outline-offset:3px;
+}
+.cs-card--selected {
+  animation:vehicleSelectPop 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  transform:scale(1.03); opacity:1;
+  border-color:rgba(var(--c-teal),0.6);
+  background:rgba(var(--c-teal),0.06);
+  box-shadow:
+    0 0 40px rgba(var(--c-teal),0.15),
+    0 0 80px var(--cs-glow,rgba(var(--c-teal),0.08)),
+    0 14px 48px var(--cs-glow,rgba(var(--c-teal),0.1)),
+    inset 0 0 20px rgba(var(--c-teal),0.04);
+}
+
+/* Disabled / coming soon — viewable but not selectable */
+.cs-card--disabled {
+  cursor:default;
+  border-style:dashed;
+  border-color:rgba(var(--c-white),0.06);
+}
+.cs-card--disabled .cs-card-canvas-wrap {
+  opacity:0.4;
+  filter:saturate(0.4) brightness(0.85);
+}
+.cs-card--disabled:hover {
+  border-color:rgba(var(--c-white),0.12);
+  background:rgba(var(--c-white),0.02);
+}
+/* Viewing state — centered/clicked on a disabled card */
+.cs-card--viewing {
+  transform:scale(1.0); opacity:0.85;
+  border-color:rgba(var(--c-white),0.15);
+  background:rgba(var(--c-white),0.03);
+  box-shadow:0 0 30px rgba(var(--c-white),0.04);
+}
+.cs-card-soon {
+  font-family:var(--font-display); font-size:10px; font-weight:700; letter-spacing:5px;
+  color:rgba(var(--c-white),0.6);
+  position:absolute; top:50%; left:0; right:0; text-align:center;
+  transform:translateY(-50%);
+  z-index:3;
+  pointer-events:none;
+  text-shadow:0 0 20px rgba(var(--c-black),0.8), 0 0 40px rgba(var(--c-black),0.5);
+  padding:12px;
+  background:radial-gradient(ellipse at center, rgba(var(--c-black),0.5) 0%, transparent 70%);
+}
+
+/* "COMING SOON..." badge in detail panel */
+.cs-coming-soon {
+  font-family:var(--font-display); font-size:var(--text-xs); letter-spacing:var(--ls-widest);
+  color:rgba(var(--c-white),0.35);
+  padding:var(--sp-xs) var(--sp-lg);
+  border:1px dashed rgba(var(--c-white),0.1);
+  border-radius:var(--r-md);
+  text-align:center;
+}
+
+/* Pop animation when a color swatch becomes selected */
+@keyframes cs-color-pop {
+  0%   { transform:scale(1.0); }
+  50%  { transform:scale(1.55); }
+  100% { transform:scale(1.4); }
+}
+
+.cs-card-canvas-wrap {
+  width:100%; flex:1; min-height:210px;
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+
+  .cs-card--selected & {
+    filter:drop-shadow(0 6px 24px var(--cs-glow,rgba(var(--c-teal),0.2)));
+  }
+}
+
+.cs-card-canvas-wrap canvas {
+  width:100%!important; height:100%!important;
+  pointer-events:none;
+}
+
+.cs-card-name {
+  font-family:var(--font-display); font-size:var(--text-base); letter-spacing:var(--ls-wider);
+  color:rgba(var(--c-white),0.85); z-index:2;
+  position:absolute; bottom:14px; left:0; right:0; text-align:center;
+  text-shadow:0 1px 6px rgba(var(--c-black),0.6), 0 0 20px rgba(var(--c-black),0.4);
+  transition:color 0.25s, text-shadow 0.25s;
+
+  .cs-card--selected & {
+    color:rgba(var(--c-white),0.95);
+    text-shadow:0 0 12px rgba(var(--c-teal),0.35);
+  }
+}
+
+/* ── Platform base on cards ────────────────────────────── */
+.cs-card::after {
+  content:''; position:absolute; bottom:0; left:5%; right:5%; height:2px;
+  background:linear-gradient(90deg, transparent, var(--cs-glow,rgba(var(--c-teal),0.35)), transparent);
+  box-shadow:0 0 12px var(--cs-glow,rgba(var(--c-teal),0.15));
+  opacity:0; transition:opacity 0.3s;
+}
+.cs-card--selected::after { opacity:1; }
+
+/* ── Floor / Reflection ───────────────────────────────── */
+.cs-floor {
+  width:100%; height:48px; position:relative; margin-top:8px;
+  display:flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(ellipse 60% 100% at 50% 0%, var(--cs-glow,rgba(var(--c-teal),0.06)) 0%, transparent 70%),
+    repeating-linear-gradient(90deg, rgba(var(--c-white),0.015) 0px, rgba(var(--c-white),0.015) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(0deg, rgba(var(--c-white),0.01) 0px, rgba(var(--c-white),0.01) 1px, transparent 1px, transparent 40px);
+  opacity:0.7;
+}
+
+/* ── Detail Panel (right) ─────────────────────────────── */
+.cs-detail {
+  display:flex; flex-direction:column; gap:var(--sp-xl);
+  padding-left:var(--sp-3xl);
+  border-left:1px solid rgba(var(--c-white),0.06);
+  min-width:0;
+}
+
+/* Shared emphasis for key names */
+.cs-vehicle-name,
+.cs-card-name,
+.cs-special-label,
+.cs-special-name {
+  font-weight:700;
+}
+
+.cs-vehicle-name {
+  font-family:var(--font-display); font-size:var(--text-3xl); letter-spacing:var(--ls-widest);
+  color:rgba(var(--c-white),0.95);
+  text-shadow:0 0 16px rgba(var(--c-teal),0.25);
+}
+
+.cs-flavor {
+  font-family:var(--font-body); font-size:var(--text-lg); letter-spacing:var(--ls-normal);
+  color:rgba(var(--c-white),0.45); line-height:1.5;
+  font-style:italic;
+}
+
+/* ── Stat Bars ────────────────────────────────────────── */
+.cs-stats {
+  display:flex; flex-direction:column; gap:var(--sp-md);
+}
+
+.cs-stat-row {
+  display:flex; align-items:center; gap:var(--sp-lg);
+}
+
+.cs-stat-label {
+  font-family:var(--font-display); font-size:var(--text-xs); letter-spacing:var(--ls-wide);
+  color:rgba(var(--c-white),0.5); width:72px; flex-shrink:0; text-align:right;
+}
+
+.cs-stat-track {
+  flex:1; height:5px;
+  background:rgba(var(--c-white),0.06);
+  border-radius:var(--r-sm); overflow:hidden;
+}
+
+.cs-stat-fill {
+  height:100%;
+  background:linear-gradient(90deg, rgba(var(--c-teal),0.75), rgba(var(--c-teal),0.3));
+  border-radius:var(--r-sm);
+  transition:width 0.35s var(--ease-default);
+}
+
+.cs-stat-val {
+  font-family:var(--font-display); font-size:var(--text-xs); letter-spacing:var(--ls-tight);
+  color:rgba(var(--c-teal),0.6); width:20px; flex-shrink:0; text-align:left;
+}
+
+/* ── Special Ability ──────────────────────────────────── */
+.cs-special {
+  display:flex; flex-direction:column; gap:var(--sp-xs);
+  padding:var(--sp-lg) var(--sp-xl);
+  background:rgba(var(--c-hot),0.04);
+  border:1px solid rgba(var(--c-hot),0.1);
+  border-radius:var(--r-lg);
+}
+
+.cs-special-label {
+  display:inline-block;
+  font-family:var(--font-display); font-size:var(--text-2xs); font-weight:800; letter-spacing:calc(var(--ls-widest) + 2px);
+  color:rgba(var(--c-hot),0.5); text-transform:uppercase;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--c-hot),0.5) 0%,
+    rgba(var(--c-hot),0.5) 25%,
+    rgba(var(--c-teal),0.9) 45%,
+    rgba(var(--c-hot),0.95) 55%,
+    rgba(var(--c-hot),0.5) 75%,
+    rgba(var(--c-hot),0.5) 100%
+  );
+  background-size:300% 100%;
+  background-position:100% 0;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:versionGlow 4s ease-in-out infinite;
+}
+
+.cs-special-name {
+  font-family:var(--font-display); font-size:var(--text-lg); letter-spacing:var(--ls-wider);
+  color:rgba(var(--c-hot-pale)); text-shadow:0 0 12px rgba(var(--c-hot),0.2);
+}
+
+.cs-special-desc {
+  font-family:var(--font-body); font-size:var(--text-base); letter-spacing:var(--ls-normal);
+  color:rgba(var(--c-white),0.45); line-height:1.5;
+}
+
+/* ── Color Picker Row ─────────────────────────────────── */
+.cs-color-row {
+  display:flex; justify-content:center;
+}
+
+.cs-color-options {
+  display:flex; gap:14px; pointer-events:auto;
+}
+
+.cs-color {
+  width:22px; height:22px; border-radius:50%; cursor:pointer;
+  border:2px solid rgba(var(--c-white),0.1);
+  transition:transform 0.2s var(--ease-default), border-color 0.2s, box-shadow 0.2s;
+  outline:none;
+}
+.cs-color:hover { transform:scale(1.2); }
+.cs-color:focus-visible {
+  outline:2px solid rgba(var(--c-teal),0.6);
+  outline-offset:2px;
+}
+.cs-color--selected {
+  animation:cs-color-pop 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  transform:scale(1.4);
+  border-color:rgba(var(--c-white),0.85);
+  box-shadow:0 0 14px currentColor, inset 0 0 4px rgba(var(--c-white),0.25);
+}
+
+/* ── Save Confirmation (lives in overlay-header-utils) ───── */
+.cs-saved {
+  position:absolute;
+  bottom:72px; right:var(--sp-3xl);
+  font-family:var(--font-display); font-size:var(--text-sm); letter-spacing:var(--ls-widest);
+  color:rgba(var(--c-green-bright),0.85);
+  padding:var(--sp-xs) var(--sp-xl);
+  background:rgba(var(--bg-panel),0.7);
+  border:1px solid rgba(var(--c-green-bright),0.2);
+  border-radius:var(--r-lg);
+  opacity:0; pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity 0.3s var(--ease-default), transform 0.3s var(--ease-default);
+  white-space:nowrap;
+  z-index:5;
+}
+.cs-saved::before { content:'✓'; margin-right:6px; }
+.cs-saved--visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ── Difficulty Selector ( < SELECTION > ) ────────────── */
+.cs-selector-label {
+  text-align:center;
+  font-family:var(--font-display); font-size:15px; font-weight:700;
+  letter-spacing:6px; color:rgba(var(--c-gold),0.65);
+  margin-bottom:0.6rem; text-transform:uppercase;
+}
+.cs-selector-row {
+  display:flex; align-items:center; justify-content:center; gap:0;
+  user-select:none;
+}
+.cs-selector-arrow {
+  background:none; border:1px solid rgba(var(--c-white),0.1);
+  color:rgba(var(--c-white),0.65); cursor:pointer;
+  font-size:14px; line-height:1;
+  width:48px; height:48px; min-width:48px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:var(--r-lg);
+  transition:border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+}
+.cs-selector-arrow:hover:not(:disabled) {
+  border-color:rgba(var(--c-teal),0.4); color:rgba(var(--c-teal),0.9);
+  background:rgba(var(--c-teal),0.06);
+}
+.cs-selector-arrow:active:not(:disabled) {
+  transform:scale(0.9);
+}
+.cs-selector-arrow:disabled {
+  opacity:0.2; cursor:default;
+}
+.cs-selector-value {
+  font-family:var(--font-display); font-size:var(--text-base); font-weight:700;
+  letter-spacing:var(--ls-wider); color:rgba(var(--c-white),0.85);
+  min-width:120px; text-align:center;
+  padding:0 var(--sp-lg);
+}
+
+/* ═══════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════ */
+
+/* Ultrawide */
+@media (min-width:1600px) {
+  .cs-layout { max-width:1280px; padding:var(--sp-2xl) var(--sp-4xl); }
+  .cs-showroom { padding-right:var(--sp-4xl); }
+  .cs-detail { padding-left:var(--sp-4xl); }
+}
+
+/* Tablet — stack vertically */
+@media (max-width:1024px) {
+  .cs-layout {
+    grid-template-columns:1fr;
+    gap:var(--sp-2xl);
+    padding:var(--sp-xl) var(--sp-2xl);
+  }
+  .cs-showroom {
+    padding-right:0;
+  }
+  .cs-detail {
+    padding-left:0;
+    border-left:none;
+    border-top:1px solid rgba(var(--c-white),0.06);
+    padding-top:var(--sp-2xl);
+  }
+}
+
+/* Phone landscape + portrait — scroll-snap carousel */
+@media (max-width:768px) {
+
+  .cs-carousel {
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    touch-action:pan-x pan-y;
+    padding-inline:calc(50% - 120px);
+    padding-block:10px; /* room for scale(1.03) selection pop at top and bottom */
+  }
+
+  .cs-card {
+    width:240px;
+    touch-action:pan-x pan-y;
+  }
+
+  .cs-card-canvas-wrap { width:220px; height:220px; }
+
+  .cs-detail {
+    max-width:100%; padding:0 var(--sp-xl);
+    align-items:center; text-align:center;
+  }
+
+  .cs-stat-label { width:60px; font-size:8px; }
+
+  .cs-color { width:24px; height:24px; }
+  .cs-color-options { gap:10px; flex-wrap:wrap; justify-content:center; }
+  .cs-color-row { padding:var(--sp-md) 0 var(--sp-xs); } /* reduce from 20px/12px to 8px/4px */
+
+  .cs-detail-footer { padding-top:var(--sp-md); justify-content:center; }
+  .cs-save-btn {
+    width:100%;
+    padding:8px var(--sp-2xl);
+    font-size:12px; letter-spacing:3px;
+  }
+  .cs-saved {
+    bottom:68px; right:var(--sp-xl);
+  }
+}
+
+/* Small phone */
+@media (max-width:480px) {
+.cs-vehicle-name { font-size:var(--text-2xl); }
+  .cs-card { width:210px; }
+  .cs-card-canvas-wrap { width:190px; height:190px; }
+  .cs-color { width:26px; height:26px; }
+  .cs-carousel { padding-inline:calc(50% - 105px); } /* card 210px → half = 105px */
+}
+
+/* Landscape short */
+@media (max-height:500px) and (orientation:landscape) {
+  .cs-layout { flex-direction:row; gap:var(--sp-xl); }
+  .cs-card { width:190px; }
+  .cs-card-canvas-wrap { width:170px; height:170px; }
+  .cs-detail { padding:0; }
+  .cs-stats { gap:var(--sp-xs); }
+  .cs-stat-track { height:4px; }
+
+  .cs-detail-footer { padding-top:var(--sp-sm); }
+  .cs-save-btn { padding:6px var(--sp-2xl); font-size:12px; letter-spacing:3px; }
+}
+
+/* ── Detail Footer (save button anchor) ──────────────── */
+.cs-detail-footer {
+  display:flex; justify-content:flex-end;
+  margin-top:auto;
+  padding-top:var(--sp-xl);
+}
+
+.cs-save-btn {
+  font-family:var(--font-display); font-size:13px; font-weight:700;
+  letter-spacing:4px; text-transform:uppercase;
+  color:rgba(var(--menu-cool),0.88);
+  text-shadow:
+    0 0 10px rgba(var(--menu-cool),0.22),
+    0 0 16px rgba(var(--menu-accent-core),0.05),
+    0 0 24px rgba(var(--menu-cool-deep),0.16);
+  padding:10px 34px;
+  min-height:40px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid rgba(var(--menu-cool-dim),0.56);
+  border-radius:2px;
+  background:
+    radial-gradient(circle at top center, rgba(var(--menu-cool),0.08) 0%, transparent 56%),
+    linear-gradient(90deg, rgba(var(--menu-cool),0.03) 0%, transparent 16%, transparent 70%, rgba(var(--menu-accent-warm),0.03) 88%, rgba(var(--menu-accent-core),0.06) 100%),
+    linear-gradient(180deg, rgba(var(--menu-cool-bright),0.02) 0%, transparent 26%),
+    linear-gradient(180deg, rgba(var(--menu-panel-top),0.92) 0%, rgba(var(--menu-panel-bottom),0.97) 100%);
+  cursor:pointer; outline:none;
+  position:relative; overflow:hidden; isolation:isolate;
+  box-shadow:
+    inset 0 1px 0 rgba(var(--menu-cool-bright),0.06),
+    inset 0 -1px 0 rgba(var(--c-black),0.44),
+    0 0 0 1px rgba(var(--menu-cool),0.06),
+    0 0 14px rgba(var(--menu-accent-core),0.02),
+    0 8px 20px rgba(var(--c-black),0.42),
+    0 0 0 1px rgba(var(--c-black),0.38);
+  transition:color 0.25s, background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.1s;
+}
+/* Scanlines overlay */
+.cs-save-btn::after {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(var(--c-black),0.06) 2px, rgba(var(--c-black),0.06) 4px);
+  background-size:100% 4px;
+  animation:scanScroll 8s linear infinite;
+  border-radius:inherit;
+}
+.cs-save-btn:hover {
+  background:
+    radial-gradient(circle at top center, rgba(var(--menu-accent-warm),0.13) 0%, transparent 58%),
+    linear-gradient(90deg, rgba(var(--menu-cool),0.045) 0%, transparent 14%, transparent 68%, rgba(var(--menu-accent-warm),0.07) 84%, rgba(var(--menu-accent-core),0.12) 100%),
+    linear-gradient(180deg, rgba(var(--menu-cool-bright),0.04) 0%, transparent 100%),
+    linear-gradient(180deg, rgba(20, 12, 12,0.96) 0%, rgba(var(--menu-panel-bottom),0.98) 100%);
+  border-color:rgba(var(--menu-accent-warm),0.82);
+  color:rgba(var(--menu-cool-bright),0.98);
+  text-shadow:
+    0 0 12px rgba(var(--menu-cool),0.34),
+    0 0 18px rgba(var(--menu-accent-warm),0.16),
+    0 0 28px rgba(var(--menu-accent-core),0.16);
+  box-shadow:
+    0 0 14px rgba(var(--menu-cool),0.12),
+    0 0 18px rgba(var(--menu-accent-warm),0.14),
+    0 0 22px rgba(var(--menu-accent-core),0.14),
+    0 12px 24px rgba(var(--c-black),0.42),
+    inset 0 0 18px rgba(var(--menu-glow-red),0.08);
+}
+.cs-save-btn:active {
+  transform:scale(0.972) translateY(1px);
+  box-shadow:
+    0 0 10px rgba(var(--menu-cool),0.14),
+    0 0 14px rgba(var(--menu-accent-warm),0.16),
+    inset 0 0 12px rgba(var(--menu-glow-red),0.1);
+}
+.cs-save-btn:focus-visible {
+  outline:2px solid rgba(var(--c-teal),0.6);
+  outline-offset:3px;
+}
+
+/* ── Section Wrappers ─────────────────────────────────── */
+.cs-section {
+  display:flex; flex-direction:column;
+}
+
+.cs-section-label {
+  font-family:var(--font-display); font-size:var(--text-sm); font-weight:600;
+  letter-spacing:var(--ls-widest); text-transform:uppercase;
+  color:rgba(var(--c-white),0.6);
+  text-align:center;
+  margin-bottom:var(--sp-sm);
+}
+
+/* ── Special Ability — header row with star icon ─────── */
+.cs-special-header {
+  display:flex; align-items:center; gap:var(--sp-xs);
+  margin-bottom:var(--sp-xs);
+}
+
+.cs-special-icon {
+  width:16px; height:16px;
+  fill:rgba(var(--c-hot),0.75);
+  flex-shrink:0;
+}
+
+/* ── Difficulty Selector — Compact Header Variant ─────── */
+.cs-selector-row--compact {
+  gap:var(--sp-xs);
+}
+.cs-selector-row--compact .cs-selector-arrow {
+  width:32px; height:32px; min-width:32px;
+  font-size:12px;
+  border-radius:var(--r-md);
+}
+.cs-selector-row--compact .cs-selector-value {
+  min-width:90px; font-size:var(--text-sm);
+  padding:0 var(--sp-sm);
+}
+.cs-selector-row-prefix {
+  font-family:var(--font-display); font-size:var(--text-2xs); font-weight:700;
+  letter-spacing:var(--ls-widest); text-transform:uppercase;
+  color:rgba(var(--c-white),0.4);
+  padding:var(--sp-xs) var(--sp-sm);
+  background:rgba(var(--c-white),0.04);
+  border-radius:var(--r-sm);
+  margin-right:var(--sp-xs);
+}
+
+/* ── Hub Focus Styles ─────────────────────────────────── */
+.unlocks-track-node:focus-visible { outline: 2px solid var(--color-accent, #49a2b2); outline-offset: 3px; border-radius: 50%; }
+.unlocks-challenge-card:focus-visible { outline: 2px solid var(--color-accent, #49a2b2); outline-offset: 2px; }
+.cs-emissive:focus-visible { outline: 2px solid var(--color-accent, #49a2b2); outline-offset: 2px; }

@@ -1,0 +1,83 @@
+/* ── Pause Overlay ────────────────────────── */
+#pause-overlay {
+  position: fixed; inset: 0; z-index: 22;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: 'Courier New', monospace; color: rgb(var(--c-white)); pointer-events: none;
+
+  &.hidden { display: none; }
+
+  & .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(var(--c-black),0.3) 0%, rgba(var(--c-black),0.8) 70%, rgba(var(--c-black),0.95) 100%);
+    backdrop-filter: blur(6px) saturate(0.7);
+
+    pointer-events: none;
+  }
+  & .content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+  & h2 { font-family:'Orbitron',sans-serif; font-size: 44px; letter-spacing: 10px; color: rgb(var(--c-white)); text-shadow: 0 0 16px rgba(var(--c-gold),0.46); margin-bottom: 30px; }
+}
+
+#pause-buttons { display: flex; flex-direction: column; gap: 12px; align-items: stretch; width: 280px; max-width: 300px; }
+
+/* ── Online Pause Overlay ────────────────── */
+#online-pause-overlay {
+  position: fixed; inset: 0; z-index: 22;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: 'Courier New', monospace; color: rgb(var(--c-white)); pointer-events: none;
+
+  &.hidden { display: none; }
+
+  & .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(var(--c-black),0.3) 0%, rgba(var(--c-black),0.8) 70%, rgba(var(--c-black),0.95) 100%);
+    backdrop-filter: blur(6px) saturate(0.7);
+
+    pointer-events: none;
+  }
+  & .content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+  & h2 { font-family:'Orbitron',sans-serif; font-size: 44px; letter-spacing: 10px; color: rgb(var(--c-white)); text-shadow: 0 0 16px rgba(var(--c-gold),0.46); margin-bottom: 30px; }
+}
+
+#online-pause-buttons { display: flex; flex-direction: column; gap: 12px; align-items: stretch; width: 280px; max-width: 300px; }
+
+/* ── Controller Banner ────────────────────── */
+#controller-banner {
+  position: fixed; top: 50px; left: 50%; transform: translateX(-50%);
+  font-size: 20px; font-weight: 900; letter-spacing: 6px;
+  color: rgb(var(--c-gold)); text-shadow: 0 0 12px rgb(var(--c-gold)), 0 0 30px rgba(var(--c-orange),0.8);
+  z-index: 50; pointer-events: none;
+  animation: bannerSlide 0.4s ease-out;
+
+  &.hidden { display: none; }
+}
+
+/* ── Gamepad Nav Hints ────────────────────── */
+#gp-nav-hints {
+  position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 24px; align-items: center;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); pointer-events: none; z-index: 40;
+  white-space: nowrap;
+
+  &.hidden { display: none; }
+}
+
+.gp-hint { display: inline-flex; align-items: center; gap: 6px; }
+
+.gp-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 22px; padding: 0 5px;
+  border: 1.5px solid rgba(255,255,255,0.35); border-radius: 4px;
+  font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.06);
+}
+
+#lobby-autostart-banner {
+  position: fixed; top: 50px; left: 50%; transform: translateX(-50%);
+  font-size: 20px; font-weight: 900; letter-spacing: 6px;
+  color: rgb(var(--c-gold)); text-shadow: 0 0 12px rgba(var(--c-gold),0.9), 0 0 30px rgba(var(--c-orange),0.7);
+  z-index: 50; cursor: pointer;
+  animation: bannerSlide 0.4s ease-out;
+
+  &.hidden { display: none; }
+}

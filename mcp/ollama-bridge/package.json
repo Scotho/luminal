@@ -1,0 +1,15 @@
+{
+  "name": "ollama-bridge-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server bridging Claude Code to local Ollama models for task orchestration",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "tsx": "^4.19.4"
+  }
+}

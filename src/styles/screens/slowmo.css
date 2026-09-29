@@ -1,0 +1,17 @@
+/* ── Slow-mo overlay ──────────────────────── */
+#slowmo-overlay {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:15; opacity:0;
+  transition: opacity 0.1s;
+  background:
+    radial-gradient(ellipse at center, transparent 30%, rgba(var(--c-black),0.6) 80%, rgba(var(--c-black),0.85) 100%);
+  mix-blend-mode: normal;
+
+  &.slowmo--active { opacity:1; }
+  &::after {
+    content:''; position:absolute; top:0; left:0; width:100%; height:100%;
+    background:
+      radial-gradient(ellipse at center, rgba(var(--c-hot-dim),0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, rgba(var(--c-teal),0.04) 0%, transparent 40%);
+  }
+}

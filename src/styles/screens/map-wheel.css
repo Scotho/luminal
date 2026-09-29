@@ -1,0 +1,352 @@
+/* ═══════════════════════════════════════════════════════
+   Map Wheel — Tiebreaker ceremony overlay
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Overlay ── */
+.map-wheel-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.map-wheel-overlay--visible {
+  opacity: 1;
+}
+
+/* ── Scanline intensify during ceremony ── */
+.map-wheel-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  background-size: 100% 4px;
+  animation: mw-scan-scroll 4s linear infinite;
+}
+
+@keyframes mw-scan-scroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 200px; }
+}
+
+/* ── Title ── */
+.map-wheel-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 24px;
+  color: rgba(var(--c-gold), 0.72);
+  text-shadow:
+    0 0 12px rgba(var(--c-gold), 0.34),
+    0 0 32px rgba(var(--c-orange), 0.1);
+  z-index: 2;
+  min-height: 1.4em;
+}
+
+/* ── Wheel container ── */
+.map-wheel-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  z-index: 2;
+  /* Radial offset for slice labels — keeps them out at the edge band
+     instead of bunched near the hub. Read by mapWheel.ts label transforms. */
+  --mw-label-r: 92px;
+}
+
+/* ── SVG ring (stroke-dashoffset draw animation) ── */
+.map-wheel-ring {
+  position: absolute;
+  inset: -4px;
+  z-index: 3;
+}
+
+.map-wheel-ring circle {
+  fill: none;
+  stroke: rgba(var(--c-teal), 0.5);
+  stroke-width: 2;
+  stroke-dasharray: 808;
+  stroke-dashoffset: 808;
+  transition: stroke-dashoffset 0.8s ease-out;
+}
+
+.map-wheel-ring--drawn circle {
+  stroke-dashoffset: 0;
+}
+
+/* ── Wheel disc ── */
+.map-wheel-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(var(--teal-600), 0.34);
+  box-shadow:
+    0 0 20px rgba(var(--c-teal), 0.12),
+    0 0 60px rgba(var(--c-teal), 0.04),
+    inset 0 0 40px rgba(0, 0, 0, 0.6),
+    0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Inner wheel (the spinning part) ── */
+.map-wheel-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 3s cubic-bezier(0, 0.99, 0.44, 0.99);
+}
+
+/* ── Slice labels ── */
+.map-wheel-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(var(--mist-100), 0.9);
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow:
+    0 0 8px rgba(0, 0, 0, 0.9),
+    0 1px 3px rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(0, 0, 0, 0.4);
+  z-index: 5;
+}
+
+/* ── Arrow indicator (fixed at 12 o'clock) ── */
+.map-wheel-arrow {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 18px 10px;
+  border-color: transparent transparent rgba(var(--c-orange), 0.9) transparent;
+  transform: translateX(-50%);
+  z-index: 10;
+  filter: drop-shadow(0 0 6px rgba(var(--c-orange), 0.5));
+}
+
+/* ── Center hub ── */
+.map-wheel-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  z-index: 6;
+  border: 1px solid rgba(var(--teal-600), 0.34);
+  background:
+    radial-gradient(circle at top center, rgba(var(--teal-600), 0.1) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(var(--bg-panel-raised), 0.92) 0%, rgba(var(--bg-panel-core), 0.96) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(var(--mist-100), 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Result text ── */
+.map-wheel-result {
+  margin-top: 28px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  min-height: 2rem;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  color: rgba(var(--c-gold), 0.95);
+  text-shadow:
+    0 0 8px rgba(var(--c-gold), 0.4),
+    0 0 22px rgba(var(--c-gold), 0.18);
+}
+
+.map-wheel-result--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typing cursor */
+.map-wheel-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: rgba(var(--c-gold), 0.7);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: mw-blink 0.6s step-end infinite;
+}
+
+@keyframes mw-blink {
+  50% { opacity: 0; }
+}
+
+/* ── Voter names ── */
+.map-wheel-voters {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  z-index: 2;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.map-wheel-voters--visible {
+  opacity: 1;
+}
+
+.map-wheel-voters span {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.map-wheel-voters--visible span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.map-wheel-voters--visible span:nth-child(1) { transition-delay: 0s; }
+.map-wheel-voters--visible span:nth-child(2) { transition-delay: 0.1s; }
+.map-wheel-voters--visible span:nth-child(3) { transition-delay: 0.15s; }
+.map-wheel-voters--visible span:nth-child(4) { transition-delay: 0.2s; }
+.map-wheel-voters--visible span:nth-child(5) { transition-delay: 0.25s; }
+
+/* ── Glitch effects ── */
+@keyframes mw-holo-flicker {
+  0%   { opacity: 0; transform: scale(0.97); filter: brightness(0.5) blur(2px); }
+  20%  { opacity: 0.7; transform: scale(1.005); filter: brightness(1.2) blur(0); }
+  35%  { opacity: 0.4; transform: scale(0.99); filter: brightness(0.8) blur(0.5px); }
+  55%  { opacity: 0.9; transform: scale(1.002); filter: brightness(1.1) blur(0); }
+  70%  { opacity: 0.6; transform: scale(1); filter: brightness(0.9) blur(0.3px); }
+  85%  { opacity: 0.95; transform: scale(1); filter: brightness(1.05) blur(0); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1) blur(0); }
+}
+
+.map-wheel-container--materializing {
+  animation: mw-holo-flicker 0.8s ease-in-out;
+}
+
+@keyframes mw-rgb-shift {
+  0%   { text-shadow: -2px 0 rgba(255, 0, 0, 0.4), 2px 0 rgba(0, 255, 255, 0.4); }
+  50%  { text-shadow: 2px 0 rgba(255, 0, 0, 0.3), -2px 0 rgba(0, 255, 255, 0.3); }
+  100% { text-shadow: 0 0 transparent; }
+}
+
+.map-wheel--glitch-pulse {
+  animation: mw-rgb-shift 0.12s ease-out;
+}
+
+/* ── Flash on lock-in ── */
+.map-wheel-flash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(var(--c-gold), 0.35) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    transparent 70%
+  );
+  z-index: 30;
+  opacity: 0;
+  pointer-events: none;
+  animation: mw-flash 0.45s ease-out forwards;
+}
+
+@keyframes mw-flash {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  40%  { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+/* ── Winner/loser slice states ── */
+.map-wheel-label--winner {
+  color: rgba(var(--c-gold), 1);
+  text-shadow:
+    0 0 12px rgba(var(--c-gold), 0.6),
+    0 0 24px rgba(var(--c-gold), 0.3);
+  animation: mw-winner-pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes mw-winner-pulse {
+  from { text-shadow: 0 0 12px rgba(var(--c-gold), 0.6), 0 0 24px rgba(var(--c-gold), 0.3); }
+  to   { text-shadow: 0 0 16px rgba(var(--c-gold), 0.8), 0 0 32px rgba(var(--c-gold), 0.5), 0 0 48px rgba(var(--c-gold), 0.2); }
+}
+
+.map-wheel-label--loser {
+  opacity: 0.2;
+  filter: grayscale(0.6);
+  transition: opacity 0.6s ease-out, filter 0.6s ease-out;
+}
+
+/* ── De-materialize (dissolve) ── */
+@keyframes mw-dematerialize {
+  0%   { opacity: 1; clip-path: circle(50% at 50% 50%); filter: blur(0); }
+  40%  { opacity: 0.8; clip-path: circle(35% at 50% 50%); filter: blur(0.5px); }
+  70%  { opacity: 0.4; clip-path: circle(18% at 50% 50%); filter: blur(1.5px); }
+  100% { opacity: 0; clip-path: circle(0% at 50% 50%); filter: blur(4px); }
+}
+
+.map-wheel-container--dissolving {
+  animation: mw-dematerialize 0.7s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* ── Arrow bounce on lock-in ── */
+@keyframes mw-arrow-bounce {
+  0%   { transform: translateX(-50%) translateY(0); }
+  30%  { transform: translateX(-50%) translateY(4px); }
+  60%  { transform: translateX(-50%) translateY(-2px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.map-wheel-arrow--locked {
+  animation: mw-arrow-bounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .map-wheel-container {
+    width: 100px;
+    height: 100px;
+    --mw-label-r: 36px;
+  }
+  .map-wheel-ring { inset: -3px; }
+  .map-wheel-ring circle { stroke-dasharray: 330; stroke-dashoffset: 330; }
+  .map-wheel-label { font-size: 6px; letter-spacing: 1px; max-width: 40px; }
+  .map-wheel-hub { width: 24px; height: 24px; margin: -12px 0 0 -12px; }
+  .map-wheel-arrow { border-width: 0 7px 12px 7px; top: -5px; }
+  .map-wheel-title { font-size: 11px; letter-spacing: 4px; }
+  .map-wheel-result { font-size: 14px; letter-spacing: 4px; }
+  .map-wheel-voters { flex-direction: column; align-items: center; gap: 4px; }
+}

@@ -1,0 +1,172 @@
+/* ── Tier 1: Neon Pulse (streak 3-4) ────────────────────── */
+@keyframes streak-neon-pulse {
+  0%   { text-shadow: 0 0 4px rgb(var(--c-white)), 0 0 8px rgb(var(--c-white)), 0 0 12px rgb(var(--c-teal)), 0 0 30px rgb(var(--c-teal)); }
+  100% { text-shadow: 0 0 8px rgb(var(--c-white)), 0 0 16px rgb(var(--c-white)), 0 0 24px rgb(var(--c-teal)), 0 0 60px rgb(var(--c-teal)), 0 0 80px rgb(var(--c-teal)); }
+}
+
+#streak-display.streak-tier-1 {
+  & .streak-num {
+    background: linear-gradient(180deg, rgb(var(--c-white)) 0%, rgb(var(--c-teal)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(var(--c-teal), 0.6));
+    animation: streak-neon-pulse 2.5s ease-in-out infinite alternate;
+  }
+}
+
+/* ── Tier 2: Gradient Sweep + Shake (streak 5-9) ────────── */
+@keyframes streak-gradient-shift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes streak-shake {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  10%  { transform: translate3d(-2px, 0, 0); }
+  20%  { transform: translate3d(2px, 0, 0); }
+  30%  { transform: translate3d(-1px, 0, 0); }
+  40%  { transform: translate3d(1px, 0, 0); }
+  50%  { transform: translate3d(0, 0, 0); }
+}
+
+#streak-display.streak-tier-2 {
+  & .streak-num {
+    font-size: 34px;
+    background: linear-gradient(90deg, rgb(var(--c-teal)), rgb(var(--c-magenta)), rgb(var(--c-teal)));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: streak-gradient-shift 2s linear infinite, streak-neon-pulse 1.5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 16px rgba(var(--c-teal), 0.7)) drop-shadow(0 0 16px rgba(var(--c-magenta), 0.4));
+  }
+  &.streak-shake .streak-num {
+    animation: streak-gradient-shift 2s linear infinite, streak-neon-pulse 1.5s ease-in-out infinite alternate, streak-shake 0.3s ease-out;
+  }
+}
+
+/* ── Tier 3: Chromatic Aberration Glitch (streak 10-19) ─── */
+@keyframes streak-glitch-cyan {
+  0%   { clip-path: inset(40% 0 20% 0); transform: translate(-2px, -1px); }
+  25%  { clip-path: inset(10% 0 60% 0); transform: translate(2px, 0px); }
+  50%  { clip-path: inset(50% 0 10% 0); transform: translate(-1px, 1px); }
+  75%  { clip-path: inset(20% 0 40% 0); transform: translate(1px, -1px); }
+  100% { clip-path: inset(40% 0 20% 0); transform: translate(-2px, -1px); }
+}
+@keyframes streak-glitch-red {
+  0%   { clip-path: inset(10% 0 60% 0); transform: translate(2px, 1px); }
+  25%  { clip-path: inset(50% 0 10% 0); transform: translate(-1px, -1px); }
+  50%  { clip-path: inset(20% 0 40% 0); transform: translate(2px, 0px); }
+  75%  { clip-path: inset(40% 0 20% 0); transform: translate(-2px, 1px); }
+  100% { clip-path: inset(10% 0 60% 0); transform: translate(2px, 1px); }
+}
+@keyframes streak-flicker {
+  0%, 18%, 22%, 54%, 58%, 100% { opacity: 1; }
+  20%, 56% { opacity: 0.6; }
+}
+
+#streak-display.streak-tier-3 {
+  & .streak-num {
+    position: relative;
+    background: linear-gradient(90deg, rgb(var(--c-teal)), rgb(var(--c-magenta)), rgb(var(--c-teal)));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: streak-gradient-shift 1.5s linear infinite, streak-flicker 3s infinite;
+    text-shadow:
+      0 0 10px rgba(var(--c-orange), 0.8),
+      0 0 20px rgba(var(--c-orange-deep), 0.5),
+      0 0 40px rgba(var(--c-orange-deep), 0.3),
+      0 0 60px rgba(var(--c-gold), 0.2);
+    filter: drop-shadow(0 0 20px rgba(var(--c-teal), 0.8)) drop-shadow(0 0 20px rgba(var(--c-magenta), 0.5));
+
+    &::before, &::after {
+      content: attr(data-streak);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      -webkit-text-fill-color: initial;
+      background: none;
+    }
+    &::before {
+      color: rgb(var(--c-teal));
+      animation: streak-glitch-cyan 0.3s infinite;
+      opacity: 0.6;
+    }
+    &::after {
+      color: rgb(var(--c-chromatic-red));
+      animation: streak-glitch-red 0.3s infinite;
+      opacity: 0.4;
+    }
+  }
+}
+
+/* ── Tier 4: Full CSS Legendary (streak 20+) ─────────────── */
+@keyframes streak-electric-sweep {
+  0%   { left: -100%; }
+  100% { left: 100%; }
+}
+@keyframes streak-legendary-pulse {
+  0%   { text-shadow: 0 0 10px rgb(var(--c-white)), 0 0 20px rgb(var(--c-teal)), 0 0 40px rgb(var(--c-magenta)), 0 0 60px rgb(var(--c-teal)), 0 0 80px rgb(var(--c-magenta)); }
+  50%  { text-shadow: 0 0 15px rgb(var(--c-white)), 0 0 30px rgb(var(--c-magenta)), 0 0 60px rgb(var(--c-teal)), 0 0 90px rgb(var(--c-magenta)), 0 0 120px rgb(var(--c-teal)); }
+  100% { text-shadow: 0 0 10px rgb(var(--c-white)), 0 0 20px rgb(var(--c-teal)), 0 0 40px rgb(var(--c-magenta)), 0 0 60px rgb(var(--c-teal)), 0 0 80px rgb(var(--c-magenta)); }
+}
+
+#streak-display.streak-tier-4 {
+  & .streak-num {
+    position: relative;
+    font-size: 36px;
+    background: linear-gradient(90deg, rgb(var(--c-teal)), rgb(var(--c-white)), rgb(var(--c-magenta)), rgb(var(--c-white)), rgb(var(--c-teal)));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation:
+      streak-gradient-shift 1s linear infinite,
+      streak-flicker 2s infinite,
+      streak-legendary-pulse 2s ease-in-out infinite;
+    filter:
+      drop-shadow(0 0 24px rgba(var(--c-teal), 0.9))
+      drop-shadow(0 0 24px rgba(var(--c-magenta), 0.6))
+      drop-shadow(0 0 40px rgba(var(--c-white), 0.3));
+
+    &::before, &::after {
+      content: attr(data-streak);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      -webkit-text-fill-color: initial;
+      background: none;
+    }
+    &::before {
+      color: rgb(var(--c-teal));
+      animation: streak-glitch-cyan 0.2s infinite;
+      opacity: 0.7;
+      filter: blur(1px);
+    }
+    &::after {
+      color: rgb(var(--c-magenta));
+      animation: streak-glitch-red 0.2s infinite;
+      opacity: 0.5;
+      filter: blur(1px);
+    }
+  }
+
+  & .streak-electric-sweep {
+    display: block;
+    animation: streak-electric-sweep 1.5s linear infinite;
+  }
+}
+
+/* Electric sweep overlay */
+.streak-electric-sweep {
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(90deg, transparent 77%, rgba(var(--c-teal),0.4) 89%, rgba(var(--c-white),0.8) 90%, transparent 91%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  display: none;
+}

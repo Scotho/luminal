@@ -1,0 +1,68 @@
+/* ── Result Screen Streak Elements ──────────────────────── */
+#result-streak-ended {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  letter-spacing: 5px;
+  color: rgb(var(--c-orange-deep));
+  text-shadow: 0 0 10px rgba(var(--c-orange-deep), 0.5), 0 0 25px rgba(var(--c-orange-deep), 0.3);
+  margin-bottom: 6px;
+  opacity: 0.85;
+
+  &.hidden { display: none; }
+}
+
+#result-streak {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  letter-spacing: 4px;
+  text-align: center;
+  color: rgba(var(--c-white), 0.8);
+  text-shadow: 0 0 8px rgba(var(--c-teal), 0.3);
+  margin-bottom: 8px;
+
+  & .streak-num {
+    color: rgb(var(--c-teal));
+    text-shadow: 0 0 10px rgba(var(--c-teal), 0.6);
+  }
+
+  &.hidden { display: none; }
+}
+
+/* ── Match End Streak Info ───────────────────────────────── */
+.streak-end-info {
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  margin-top: 6px;
+  margin-bottom: 0;
+
+  &.hidden { display: none; }
+}
+
+@media (max-width: 640px) {
+  .streak-end-info { margin-bottom: 10px; }
+  #result-streak { margin-bottom: 16px; }
+  #result-streak .streak-num {
+    text-align: center;
+    padding-left: 2px; /* compensate trailing letter-spacing */
+  }
+}
+.streak-end-best {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(var(--c-white), 0.5);
+}
+.streak-end-rank {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(var(--c-gold), 0.7);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  & .lb-medal { width: 16px; height: 16px; }
+}
+.streak-end-rank-up {
+  color: rgba(var(--c-green), 0.8);
+}

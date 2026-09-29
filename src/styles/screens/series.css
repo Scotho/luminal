@@ -1,0 +1,42 @@
+/* ── Series Score HUD ────────────────────── */
+#series-score {
+  position: fixed; top: var(--topbar-offset); left: 50%; transform: translateX(-50%) scale(var(--ui-scale)); transform-origin: center top;
+  transition: top 0.5s cubic-bezier(0.4,0,0.2,1);
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Orbitron', sans-serif;
+  pointer-events: none; z-index: 24;
+  padding: 6px 18px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(var(--c-hot-shadow),0.06) 0%, transparent 70%),
+    rgba(var(--bg-surface),0.75);
+  backdrop-filter: blur(10px) brightness(0.95);
+
+  border: 1px solid rgba(var(--teal-600),0.1);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(var(--c-black),0.3), 0 0 1px rgba(var(--teal-600),0.1);
+
+  &.hidden { display: none; }
+}
+
+.series-dot {
+  width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(var(--c-white),0.2); background: transparent; transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+
+  &.series-dot--won { border-color: transparent; }
+}
+
+.series-divider { font-size: 14px; letter-spacing: 4px; color: rgba(var(--c-white),0.2); font-weight: 700; }
+
+/* ── Series Result (game over) ────────────── */
+#series-result {
+  display:flex; align-items:center; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:8px;
+
+  &.hidden { display: none; }
+}
+
+.series-label {
+  width:100%; text-align:center; font-family:'Orbitron',sans-serif; font-size:14px; letter-spacing:4px; margin-top:4px;
+
+  &.series-label--won { color:rgb(var(--c-teal)); text-shadow:0 0 10px rgba(var(--c-teal),0.4); }
+  &.series-label--lost { color:rgb(var(--c-orange-deep)); text-shadow:0 0 10px rgba(var(--c-orange-deep),0.4); }
+}

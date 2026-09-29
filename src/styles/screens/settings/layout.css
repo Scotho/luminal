@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════════
+   Settings — Full-page sidebar layout
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Override overlay-screen when settings-page is present ── */
+.settings-page.overlay-screen {
+  padding: 0;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  overflow: hidden;
+  z-index: 500;
+  pointer-events: auto;
+
+  &.hidden { display: none; pointer-events: none; }
+}
+
+/* Kill child transitions when the overlay is closing so active/focused
+   elements don't visually lag behind the main fade-out */
+.settings-page.overlay-screen.hidden *,
+.settings-page.overlay-screen.hidden *::before,
+.settings-page.overlay-screen.hidden *::after {
+  transition-duration: 0s !important;
+}
+
+/* ── 1. Settings Page — full viewport flex container ── */
+/* Height is determined by position:fixed + inset from .overlay-screen.
+   We need an explicit height so flex children (sidebar, content) can
+   use flex:1 to fill space and overflow-y:auto to scroll. */
+.settings-page {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - var(--topbar-offset, 40px));
+  background: rgb(var(--menu-panel-bottom));
+}
+
+/* Scanline overlay */
+.settings-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(73,162,178,0.012) 2px,
+    rgba(73,162,178,0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Noise grain overlay */
+.settings-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── 2. Sidebar — 240px fixed width ── */
+.settings-sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: linear-gradient(180deg, rgba(var(--menu-panel-top), 1) 0%, rgba(var(--menu-panel-mid), 1) 100%);
+  border-right: 1px solid rgba(var(--menu-cool-dim), 0.18);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+/* ── Back button slot (above bumpers in sidebar) ── */
+.settings-sidebar-back.overlay-header-bar {
+  all: unset;
+  display: flex;
+  padding: 12px 18px;
+  min-height: 0;
+  min-width: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-top: 1px solid rgba(var(--settings-line), 0.18);
+}
+.settings-sidebar-back.overlay-header-bar:empty {
+  display: none;
+}
+.settings-sidebar-back .dyn-back {
+  width: 100%;
+}
+
+/* ── 3. Sidebar header ── */
+.settings-sidebar-header {
+  padding: 28px 24px 16px;
+  border-bottom: 1px solid rgba(var(--menu-cool-dim), 0.18);
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ── 4. Sidebar title ── */
+.settings-sidebar-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: var(--ls-widest);
+  color: rgb(var(--c-gold));
+  text-shadow: 0 0 20px rgba(250,195,34,0.3);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+
+/* ── 6. Sidebar nav ── */
+.settings-sidebar-nav {
+  flex: 1;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 7. Sidebar item ── */
+.settings-sidebar-item {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: #3a3a50;
+  cursor: pointer;
+  padding: 12px 24px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+/* ── 8. Sidebar item active ── */
+.settings-sidebar-item--active {
+  color: rgb(var(--c-gold));
+  background: linear-gradient(90deg, rgba(250,195,34,0.06) 0%, transparent 100%);
+  border-left-color: rgb(var(--c-gold));
+  text-shadow: 0 0 12px rgba(250,195,34,0.3);
+}
+
+/* ── 9. Sidebar bumpers (hidden until controller connected) ── */
+.settings-sidebar-bumpers {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(var(--menu-cool-dim), 0.18);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.settings-sidebar-bumpers.settings-bumpers--visible {
+  display: flex;
+}
+
+/* ── 10. Bumper row ── */
+.settings-bumper-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ── 11. Bumper key ── */
+.settings-bumper-key {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  color: rgb(var(--teal-500));
+  border: 1px solid rgba(73,162,178,0.2);
+  border-radius: var(--r-md);
+  padding: 3px 10px;
+}
+
+/* ── 12. Bumper label ── */
+.settings-bumper-label {
+  font-size: var(--text-md);
+  letter-spacing: var(--ls-tight);
+  color: #3a3a50;
+}
+

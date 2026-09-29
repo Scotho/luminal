@@ -1,0 +1,543 @@
+/* ══════════════════════════════════════════════
+   SOCIAL Menu — Controller / Mobile / Tablet
+   ══════════════════════════════════════════════ */
+
+/* ── Header Auth Button ─────────────────────── */
+.social-header-auth {
+  display:flex; align-items:center; gap:6px;
+  font-family:var(--font-display); font-size:var(--text-sm);
+  letter-spacing:2px; color:rgba(var(--c-orange),0.78);
+  cursor:pointer; pointer-events:auto;
+  padding:5px 12px; border-radius:var(--r-sm);
+  border:1px solid rgba(var(--c-orange),0.22);
+  background:rgba(var(--c-orange),0.05);
+  transition:background 0.15s, border-color 0.15s, color 0.15s;
+  white-space:nowrap;
+}
+.social-header-auth:hover {
+  background:rgba(var(--c-orange),0.12);
+  border-color:rgba(var(--c-gold),0.42);
+  color:rgba(var(--c-gold),0.92);
+}
+.social-header-auth .icon { width:14px; height:14px; flex-shrink:0; }
+
+/* ── Tab Header ──────────────────────────────── */
+.social-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(var(--teal-600), 0.18);
+  width: 100%;
+  align-self: center;
+}
+
+.social-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(var(--mist-200), 0.5);
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  border-bottom: 2px solid transparent;
+  text-transform: uppercase;
+  position: relative;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.social-tab:hover {
+  color: rgba(var(--mist-100), 0.88);
+}
+
+.social-tab--active {
+  color: rgb(var(--c-gold));
+  border-bottom-color: rgb(var(--c-gold));
+  text-shadow: 0 0 8px rgba(var(--c-gold), 0.3);
+}
+
+/* Focus state for controller navigation — only outline the active tab */
+.social-tab--selected {
+  color: rgb(var(--c-gold));
+}
+.social-tab--selected.social-tab--active {
+  outline: 1px solid rgba(var(--c-gold), 0.35);
+  outline-offset: -1px;
+}
+.social-tab:focus-visible {
+  outline: none;
+}
+
+/* ── Badge ───────────────────────────────────── */
+.social-badge {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  background: rgb(var(--c-red-hot));
+  color: #fff;
+  border-radius: 50%;
+  min-width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 0 6px rgba(var(--c-red-hot), 0.5);
+}
+/* Explicit hidden override — higher specificity needed since display:inline-flex above would win */
+.social-badge.hidden { display: none; }
+
+/* ── Controller Hint ─────────────────────────── */
+.social-hint {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  letter-spacing: 2px;
+  color: rgba(var(--c-white), var(--a-subtle));
+  text-align: center;
+  padding: 6px 0;
+}
+
+.social-hint.hidden { display: none; }
+
+.social-hint-key {
+  display: inline-block;
+  background: rgba(var(--teal-700), 0.24);
+  border: 1px solid rgba(var(--teal-600), 0.22);
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-size: var(--text-2xs);
+  letter-spacing: 1px;
+  color: rgba(var(--mist-200), 0.62);
+}
+
+/* ── Panels ──────────────────────────────────── */
+.social-panels {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  width: 100%;
+}
+
+.social-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.social-panel.hidden { display: none; }
+
+/* ── Party Tab ───────────────────────────────── */
+.social-empty-text {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  letter-spacing: 3px;
+  color: rgba(var(--mist-200), 0.62);
+  text-align: center;
+  padding: 24px 0 16px;
+}
+
+#social-party-empty .menu-btn {
+  margin: 0 auto;
+  max-width: 260px;
+}
+
+.social-party-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.social-party-actions .menu-btn {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .social-party-actions {
+    flex-direction: column;
+  }
+}
+
+.social-btn--danger {
+  color: rgb(var(--c-red-hot)) !important;
+  border-color: rgba(var(--c-red-hot), var(--a-subtle)) !important;
+}
+
+.social-btn--danger:hover {
+  background: rgba(var(--c-red-hot), var(--a-faint)) !important;
+}
+
+/* ── Party Members (reused styling from party.css) ── */
+#social-party-members .party-member {
+  padding: 10px 12px;
+  min-height: 44px;
+}
+
+/* ── Friends Tab ─────────────────────────────── */
+
+/* Friends body + add-group form a single merged panel */
+#social-panel-friends {
+  gap: 0;
+}
+
+#social-panel-friends .friends-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  border-radius: 4px 4px 0 0;
+  border-bottom: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Add-group floats as attached footer of the friends-body panel */
+#social-panel-friends .friends-add-group {
+  margin-bottom: 0;
+  background: rgba(var(--bg-surface), 0.72);
+  border: 1px solid rgba(var(--teal-600), 0.16);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  padding: 8px 12px 6px;
+}
+
+/* Match the new teal/ember color scheme of the panel */
+#social-panel-friends .friends-add-field {
+  border-color: rgba(var(--teal-600), 0.28);
+  background: rgba(var(--bg-panel), 0.4);
+
+  &:focus { border-color: rgba(var(--c-teal), 0.5); box-shadow: 0 0 8px rgba(var(--c-teal), 0.1); }
+}
+
+#social-panel-friends .friends-add-btn {
+  border-color: rgba(var(--c-orange), 0.28);
+  background: rgba(var(--c-orange), 0.06);
+  color: rgba(var(--c-hot-pale), 0.62);
+
+  &:hover { background: rgba(var(--c-orange), 0.14); border-color: rgba(var(--c-gold), 0.46); color: rgba(var(--c-hot-pale), 0.92); }
+}
+
+#social-panel-friends #social-friends-add-status {
+  color: rgba(var(--mist-300), 0.48);
+
+  &.success { color: rgba(var(--c-gold), 0.82); }
+}
+
+/* Friend detail pane */
+#social-friend-detail {
+  background: rgba(var(--bg-surface), 0.72);
+  border: 1px solid rgba(var(--teal-600), 0.16);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+#social-friend-detail.hidden { display: none; }
+
+#social-friend-detail-name {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  letter-spacing: 2px;
+  color: rgb(var(--c-white));
+  margin-bottom: 4px;
+}
+
+#social-friend-detail-status {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  letter-spacing: 1px;
+  color: rgba(var(--mist-300), 0.58);
+  margin-bottom: 12px;
+}
+
+.social-friend-detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Notifications Tab ───────────────────────── */
+#social-panel-notifs { gap: 8px; }
+
+#social-notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.social-notif-row {
+  background: rgba(var(--bg-surface), 0.7);
+  border: 1px solid rgba(var(--teal-600), 0.14);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+/* ── Embedded chat inside social CHAT tab ── */
+#social-panel-chat:not(.hidden) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  /* No extra padding — chat fills the panel edge-to-edge */
+  padding: 0;
+  gap: 0;
+}
+
+/* Tab bar sits flush at top, no drag cursor in panel context */
+#social-panel-chat #chat-tab-bar {
+  position: static;
+  width: 100%;
+  cursor: default;
+  flex-shrink: 0;
+  /* Override the default bottom border — the content border continues it */
+  border-bottom: none;
+}
+
+/* Active tab border-bottom-color must match the messages background */
+#social-panel-chat #chat-tab-bar .chat-tab--active {
+  border-bottom-color: rgba(var(--bg-panel-core), 0.97);
+  box-shadow: inset 0 1px 0 rgba(var(--mist-100), 0.06), inset 0 -1px 0 rgba(var(--bg-panel-core), 0.97);
+}
+
+/* Messages area: distinctive terminal-dark fill that contrasts with the social panel */
+#social-panel-chat #chat-messages,
+#social-panel-chat #chat-messages-match,
+#social-panel-chat #chat-messages-lobby,
+#social-panel-chat [id^="chat-messages-dm-"] {
+  flex: 1;
+  min-height: 100px;
+  max-height: none;
+  overflow-y: auto;
+  /* Reclaim the full side borders — panel already provides context */
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  /* Subtle inner glow at the top to separate from tab bar */
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.28);
+}
+
+/* Input row sits flush at the bottom — no gap */
+#social-panel-chat #chat-input-row {
+  position: static;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Input field: extend to panel edges, remove radius on embedded context */
+#social-panel-chat #chat-input {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  background: rgba(var(--bg-panel-core), 0.82);
+  border-top-color: rgba(var(--teal-600), 0.22);
+}
+
+/* Send button: flush bottom-right corner */
+#social-panel-chat #btn-chat-send {
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  background: rgba(var(--bg-panel-core), 0.82);
+  border-top-color: rgba(var(--c-orange), 0.22);
+}
+
+#social-panel-chat .chat-resize-handle { display: none; }
+
+.social-notif-row:hover,
+.social-notif-row:focus-within {
+  background: rgba(var(--teal-700), 0.22);
+}
+
+.social-notif-msg {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  letter-spacing: 1px;
+  color: rgba(var(--mist-100), 0.84);
+}
+
+.social-notif-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.social-notif-actions .menu-btn {
+  font-size: var(--text-sm);
+  padding: 6px 14px;
+  min-height: 36px;
+}
+
+/* ── Focus states for controller ─────────────── */
+#social-overlay .menu-btn--selected,
+.social-notif-row--selected {
+  outline: 1px solid rgba(var(--c-teal), 0.5);
+  outline-offset: 2px;
+  box-shadow: 0 0 8px rgba(var(--c-teal), 0.2);
+}
+
+/* ══════════════════════════════════════════════
+   Account Tab (TASK-287)
+   ══════════════════════════════════════════════ */
+.social-tab--account .icon { width: 16px; height: 16px; }
+
+.social-panel--account {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+/* Points row */
+.social-account-points-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(var(--c-gold), 0.15);
+}
+.social-account-points-label {
+  font: 700 10px/1 var(--font-display);
+  letter-spacing: 3px;
+  color: rgba(var(--mist-200), 0.5);
+  text-transform: uppercase;
+}
+.social-account-points-value {
+  font: 900 28px/1 var(--font-display);
+  color: rgb(var(--c-gold));
+  text-shadow: 0 0 8px rgba(var(--c-gold), 0.35);
+}
+
+/* Bio row */
+.social-account-bio-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0 12px;
+  border-bottom: 1px solid rgba(var(--c-gold), 0.08);
+}
+.social-account-bio-label {
+  font: 700 10px/1 var(--font-display);
+  letter-spacing: 3px;
+  color: rgba(var(--mist-200), 0.5);
+  text-transform: uppercase;
+}
+.social-account-bio-value {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(var(--mist-100), 0.82);
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.social-account-bio-value:empty::before {
+  content: '—';
+  color: rgba(var(--mist-200), 0.35);
+}
+
+/* Socials row */
+.social-account-socials-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 0 8px;
+}
+.social-account-socials-row:empty { display: none; }
+.social-account-socials-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(var(--c-teal), 0.25);
+  background: rgba(var(--c-teal), 0.06);
+  color: rgba(var(--mist-100), 0.85);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  max-width: 100%;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.social-account-socials-badge:hover {
+  background: rgba(var(--c-gold), 0.09);
+  border-color: rgba(var(--c-gold), 0.42);
+  color: rgba(var(--c-gold), 0.95);
+}
+.social-account-socials-badge-key {
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(var(--c-gold), 0.9);
+}
+.social-account-socials-badge-val {
+  color: rgba(var(--mist-100), 0.78);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+/* Sign-out button */
+.social-account-signout-btn {
+  align-self: flex-start;
+  margin-top: 6px;
+  border: 1px solid rgba(var(--c-red), 0.35);
+  background: rgba(var(--c-red), 0.08);
+  color: rgba(var(--c-red), 0.92);
+}
+.social-account-signout-btn:hover {
+  background: rgba(var(--c-red), 0.18);
+  border-color: rgba(var(--c-red), 0.6);
+  color: rgb(var(--c-red));
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 768px) {
+  .social-tab {
+    font-size: clamp(11px, 3vw, 14px);
+    letter-spacing: clamp(1px, 0.4vw, 2px);
+    padding: 10px 10px;
+  }
+
+  .social-panel { padding: 8px 0; }
+}
+
+@media (max-width: 480px) {
+  .social-tabs { gap: 0; width: 85vw; max-width: 100%; }
+  .social-tab { font-size: 11px; letter-spacing: 1px; padding: 10px 5px; }
+
+  /* Friends tab — full-width list and input */
+  #social-panel-friends .friends-body,
+  #social-panel-friends .friends-add-combined { width: 100%; box-sizing: border-box; }
+
+  /* Add-field sized to match back-button height */
+  #social-panel-friends .friends-add-field {
+    font-size: 13px;
+    min-height: 44px;
+    padding: 11px 14px;
+  }
+  #social-panel-friends .friends-add-btn { min-height: 44px; }
+
+  /* Notifications — full width */
+  .social-notif-row { width: 100%; box-sizing: border-box; }
+}
+
+/* ── Touch-friendly overrides ────────────────── */
+@media (pointer: coarse) {
+  .social-tab { min-height: 48px; }
+  .social-notif-row { padding: 14px; }
+  .social-notif-actions .menu-btn { min-height: 44px; padding: 8px 16px; }
+  #social-friend-detail .menu-btn { min-height: 44px; }
+  #social-party-members .party-member { min-height: 48px; }
+}

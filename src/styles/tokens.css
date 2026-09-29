@@ -1,0 +1,240 @@
+/* ═══════════════════════════════════════════════════════
+   Design Tokens — Luminal
+   Single source of truth for colors, typography, spacing,
+   effects, z-index, and transitions.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Raw Palette (RGB triplets for use with rgba()) ── */
+  --ink-950: 2, 3, 5;
+  --teal-900: 3, 37, 39;
+  --teal-800: 11, 54, 61;
+  --teal-700: 24, 77, 81;
+  --teal-600: 45, 100, 105;
+  --teal-500: 73, 162, 178;
+  --gold-500: 255, 180, 42;
+  --orange-500: 252, 116, 30;
+  --red-900: 109, 18, 15;
+  --brown-900: 73, 47, 30;
+  --mist-100: 230, 241, 238;
+  --mist-200: 201, 219, 215;
+  --mist-300: 164, 189, 184;
+  --success-500: 60, 255, 60;
+  --success-400: 57, 255, 20;
+  --danger-500: 176, 45, 28;
+  --danger-400: 212, 82, 52;
+  --ember-500: 255, 151, 56;
+  --ember-400: 255, 195, 100;
+
+  /* ── Menu Palette (cyan / warm accent — shared across all screens) ── */
+  --menu-cool: 110, 224, 240;
+  --menu-cool-bright: 201, 248, 255;
+  --menu-cool-dim: 46, 108, 123;
+  --menu-cool-deep: 12, 44, 54;
+  --menu-accent: 255, 182, 82;
+  --menu-accent-bright: 255, 218, 170;
+  --menu-accent-warm: 255, 162, 64;
+  --menu-accent-core: 252, 116, 30;
+  --menu-glow-red: 183, 38, 24;
+  --menu-border-strong: 170, 72, 34;
+  --menu-muted: 128, 164, 174;
+  --menu-panel-top: 10, 21, 25;
+  --menu-panel-mid: 7, 15, 19;
+  --menu-panel-bottom: 3, 7, 10;
+
+  /* ── Compatibility + UI Palette ── */
+  --c-teal: var(--teal-500);
+  --c-teal-bright: 126, 196, 212;
+  --c-teal-shadow: var(--teal-800);
+  --c-hot: var(--orange-500);
+  --c-hot-dim: 168, 84, 36;
+  --c-hot-deep: var(--red-900);
+  --c-hot-light: var(--ember-400);
+  --c-hot-pale: 255, 214, 164;
+  --c-hot-shadow: var(--brown-900);
+  --c-gold: var(--gold-500);
+  --c-gold-bright: 255, 200, 72;
+  --c-gold-warm: 255, 165, 58;
+  --c-red: var(--danger-500);
+  --c-red-bright: var(--danger-400);
+  --c-red-hot: 198, 64, 28;
+  --c-green: var(--success-500);
+  --c-green-bright: var(--success-400);
+  --c-white: var(--mist-100);
+  --c-black: var(--ink-950);
+  --c-orange: var(--orange-500);
+  --c-orange-deep: 214, 89, 20;
+  --c-discord: 88, 101, 242;
+  --c-warm: 216, 197, 172;
+  --c-chromatic-red: 210, 68, 42;
+  --c-magenta: 204, 106, 58;
+  --c-yellow: 255, 188, 62;
+  --c-silver: 173, 191, 194;
+  --c-silver-dim: 132, 150, 154;
+  --c-bronze: 154, 103, 58;
+  --c-cyan: var(--c-teal);
+  --c-purple: var(--c-hot-dim);
+  --c-purple-deep: var(--c-hot-deep);
+
+  /* ── Background Surfaces ── */
+  --bg-body: var(--ink-950);
+  --bg-panel: var(--menu-panel-mid);
+  --bg-panel-alt: 10, 22, 26;
+  --bg-surface: 7, 20, 24;
+  --bg-surface-deep: 4, 11, 14;
+  --bg-overlay: 3, 12, 15;
+  --bg-panel-core: var(--menu-panel-bottom);
+  --bg-panel-raised: var(--menu-panel-top);
+  --bg-utility: 7, 14, 18;
+  --bg-utility-alt: 9, 20, 24;
+  --bg-toast: 10, 22, 26;
+  --bg-dark-cyan: 5, 26, 30;
+  --bg-dropdown: 6, 18, 22;
+
+  /* ── Semantic Text ── */
+  --text-primary: var(--c-white);
+  --text-accent: var(--menu-cool);
+  --text-heading: var(--c-gold);
+  --text-muted: var(--menu-muted);
+  --text-fog: var(--menu-cool-bright);
+  --text-quiet: 84, 118, 127;
+  --text-danger: var(--c-red);
+  --text-success: var(--c-green);
+  --text-warning: var(--c-orange);
+
+  /* ── Semantic Borders ── */
+  --border-accent: var(--menu-cool-dim);
+  --border-glow: var(--menu-cool);
+  --border-warm: var(--menu-border-strong);
+  --border-danger: var(--c-red);
+
+  /* ── Status Indicators ── */
+  --status-online: var(--c-green);
+  --status-offline: var(--c-red);
+  --status-warning: var(--c-gold);
+  --status-ready: var(--c-green-bright);
+
+  /* ── Semantic Opacity Scale ── */
+  --a-faint: 0.08;
+  --a-subtle: 0.15;
+  --a-muted: 0.25;
+  --a-medium: 0.4;
+  --a-strong: 0.6;
+  --a-bold: 0.8;
+  --a-solid: 0.95;
+
+  /* ── Typography ── */
+  --font-display: 'Orbitron', 'Courier New', sans-serif;
+  --font-body: 'Rajdhani', 'Courier New', monospace;
+  --font-mono: 'Courier New', monospace;
+
+  --text-2xs: 8px;
+  --text-xs: 9px;
+  --text-sm: 10px;
+  --text-md: 11px;
+  --text-base: 13px;
+  --text-lg: 14px;
+  --text-xl: 18px;
+  --text-2xl: 20px;
+  --text-3xl: 28px;
+  --text-4xl: 36px;
+  --text-5xl: 44px;
+  --text-6xl: 52px;
+  --text-7xl: 72px;
+  --text-8xl: 80px;
+  --text-9xl: 160px;
+
+  /* ── Letter Spacing ── */
+  --ls-tight: 1px;
+  --ls-normal: 2px;
+  --ls-wide: 3px;
+  --ls-wider: 4px;
+  --ls-widest: 6px;
+  --ls-ultra: 10px;
+
+  /* ── Spacing ── */
+  --sp-2xs: 2px;
+  --sp-xs: 4px;
+  --sp-sm: 6px;
+  --sp-md: 8px;
+  --sp-lg: 12px;
+  --sp-xl: 16px;
+  --sp-2xl: 20px;
+  --sp-3xl: 24px;
+  --sp-4xl: 30px;
+  --sp-5xl: 40px;
+
+  /* ── Border Radii ── */
+  --r-xs: 1px;
+  --r-sm: 2px;
+  --r-md: 3px;
+  --r-lg: 4px;
+  --r-xl: 6px;
+  --r-2xl: 8px;
+  --r-3xl: 16px;
+  --r-full: 50%;
+
+  /* ── Backdrop Effects ── */
+  --blur-panel: blur(8px) saturate(0.7);
+  --blur-panel-bright: blur(8px) brightness(0.92) saturate(0.7);
+  --blur-light: blur(6px) saturate(0.75);
+  --blur-subtle: blur(4px) saturate(0.65);
+
+  /* ── Box Shadows ── */
+  --shadow-glow-teal: 0 0 20px rgba(var(--c-teal), 0.16);
+  --shadow-glow-gold: 0 0 22px rgba(var(--c-gold), 0.16);
+  --shadow-glow-hot: 0 0 14px rgba(var(--c-orange), 0.14);
+  --shadow-dropdown: 0 4px 16px rgba(var(--c-black), 0.5);
+  --shadow-panel: 0 8px 28px rgba(var(--c-black), 0.45), 0 0 0 1px rgba(var(--teal-600), 0.14), inset 0 1px 0 rgba(var(--mist-100), 0.04);
+  --shadow-overlay: 0 0 60px rgba(var(--c-black), 0.6), 0 0 100px rgba(var(--c-black), 0.3),
+    inset 0 0 20px rgba(var(--c-teal), 0.03), inset 0 1px 0 rgba(var(--mist-100), 0.05),
+    0 16px 40px rgba(var(--c-black), 0.6), 0 2px 8px rgba(var(--c-black), 0.5);
+
+  /* ── Z-Index Scale ── */
+  --z-base: 0;
+  --z-canvas: 5;
+  --z-hud: 10;
+  --z-hud-above: 12;
+  --z-scene-fade: 15;
+  --z-ambient: 18;
+  --z-countdown: 19;
+  --z-overlay: 20;
+  --z-pause: 22;
+  --z-series-score: 24;
+  --z-bar: 25;
+  --z-submenu: 30;
+  --z-match-chat: 40;
+  --z-controller: 50;
+  --z-loading: 200;
+  --z-announcement: 180;
+  --z-tooltip: 9999;
+  --z-notification: 10000;
+
+  /* ── Transitions ── */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --tr-fast: 0.15s ease;
+  --tr-normal: 0.25s ease;
+  --tr-slow: 0.35s ease;
+  --tr-panel: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── UI Scale (set dynamically via JS) ── */
+  --ui-scale: 1;
+
+  /* ── Scrollbar ── */
+  --scrollbar-w: 3px;
+  --scrollbar-thumb: rgba(var(--menu-cool), 0.34);
+
+  /* ── Scan Lines (shared across overlays) ── */
+  --scanline: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(var(--c-black), 0.08) 2px, rgba(var(--c-black), 0.08) 4px);
+  --scanline-size: 100% 4px;
+}
+
+/* Global thin scrollbars — horizontal + vertical */
+::-webkit-scrollbar { width:3px; height:3px; }
+::-webkit-scrollbar-thumb { background:var(--scrollbar-thumb); border-radius:2px; }
+::-webkit-scrollbar-track { background:transparent; }
+* { scrollbar-width:thin; scrollbar-color:var(--scrollbar-thumb) transparent; }
+
+/* Global touch-friendly scrolling — momentum scroll on iOS, prevent scroll chaining */
+* { -webkit-overflow-scrolling: touch; }
+*:not(html):not(body) { overscroll-behavior: contain; }

@@ -1,0 +1,222 @@
+/* ── Lobby Panel Frame ─────────────────── */
+
+/* overlay-header-bar used in lobby-header-bar — reset the negative margins that
+   assume it lives directly inside .content with 40px/50px padding */
+#lobby-overlay .overlay-header-bar {
+  --_ohb-pt: 0;
+  --_ohb-px: 0;
+  margin: 0;
+  border-radius: 6px 6px 0 0;
+  min-width: 0;
+}
+
+/* No padding — panel fills the viewport */
+#lobby-overlay {
+  top:0;
+  padding-bottom:0;
+}
+#lobby-overlay .content {
+  padding:0;
+  max-width:840px;
+  max-height:none;
+  border-radius:0;
+  border:none;
+  box-shadow:none;
+  background:none;
+}
+
+/* Outer panel frame — game screen, not a modal */
+.lobby-panel {
+  border:1px solid rgba(var(--teal-600), 0.14);
+  border-radius:6px;
+  background:
+    radial-gradient(circle at top center, rgba(var(--c-teal),0.04) 0%, transparent 36%),
+    linear-gradient(180deg, rgba(var(--mist-100),0.018) 0%, transparent 28%),
+    rgba(var(--bg-body), 0.84);
+  box-shadow:var(--shadow-overlay);
+  overflow:hidden;
+  width:100%;
+}
+
+/* ── Header Bar ────────────────────────── */
+.lobby-header-bar {
+  display:flex; align-items:center;
+  padding:10px 16px;
+  border-bottom:1px solid rgba(var(--teal-600), 0.08);
+  background:rgba(var(--bg-panel-alt), 0.3);
+  min-height:44px;
+  gap:8px;
+  position:relative;
+}
+
+/* Title — absolutely centered, matches .overlay-header-title */
+.lobby-header-title {
+  position:absolute; left:0; right:0;
+  text-align:center; pointer-events:none;
+  font-family:'Orbitron',sans-serif; font-size:36px; font-weight:900;
+  letter-spacing:10px;
+  color:rgb(var(--c-white));
+  text-shadow:0 0 12px rgba(var(--c-gold), 0.4);
+}
+
+/* Right-aligned utility cluster (INVITE on desktop) */
+.lobby-header-utils {
+  margin-left:auto;
+  display:flex; align-items:center; gap:8px;
+  position:relative; z-index:1;
+}
+
+/* ── Global Orbitron size bump for lobby ── */
+#lobby-overlay {
+  & .lobby-social-tab,
+  & .lobby-setting-label,
+  & .bestof-label,
+  & .lobby-settings-invite-code,
+  & .lobby-settings-invite-copy,
+  & .lobby-friend-invite {
+    font-size:11px;
+    letter-spacing:4px;
+  }
+}
+
+/* ── Content Body ──────────────────────── */
+.lobby-body {
+  display:flex; flex-direction:column; align-items:center;
+  padding:24px 28px 20px;
+  width:100%;
+  box-sizing:border-box;
+}
+
+/* ── Social Section (party/friends + settings) ── */
+.lobby-social-section {
+  display:flex;
+  width:100%;
+  border-top:1px solid rgba(var(--teal-600), 0.08);
+  margin-top:12px;
+  min-height:180px;
+}
+
+/* Left column: tabs */
+.lobby-social-tabs {
+  flex:1;
+  min-width:0;
+  border-right:1px solid rgba(var(--teal-600), 0.08);
+  display:flex;
+  flex-direction:column;
+}
+
+.lobby-social-tab-bar {
+  display:flex;
+  border-bottom:1px solid rgba(var(--teal-600), 0.08);
+}
+
+.lobby-social-tab {
+  padding:8px 16px;
+  font-family:'Orbitron',sans-serif;
+  font-size:16px; font-weight:700;
+  letter-spacing:3px;
+  color:rgba(var(--c-gold), 0.4);
+  background:none;
+  border:none;
+  border-bottom:2px solid transparent;
+  cursor:pointer;
+  transition:color 0.2s, border-color 0.2s;
+
+  &:hover {
+    color:rgba(var(--c-gold), 0.7);
+  }
+}
+
+.lobby-social-tab--active {
+  color:rgba(var(--c-teal), 0.8);
+  border-bottom-color:rgba(var(--c-teal), 0.5);
+  text-shadow:0 0 8px rgba(var(--c-teal), 0.2);
+}
+
+.lobby-social-panel {
+  flex:1;
+  overflow-y:auto;
+  padding:8px 10px;
+
+  &.hidden { display:none; }
+}
+
+/* Party members in lobby context — slightly tighter than party HUD */
+.lobby-social-panel .party-member {
+  padding:6px 42px 6px 6px;
+}
+
+/* ── Friends Invite Mode ──────────────────────────────────── */
+.lobby-friend-invite {
+  font-family:'Orbitron',sans-serif;
+  font-size:7px; letter-spacing:2px;
+  color:rgba(var(--c-teal), 0.7);
+  background:rgba(var(--c-teal), 0.08);
+  padding:2px 6px; border-radius:2px;
+  cursor:pointer;
+  position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  display:none;
+  transition:filter 0.15s;
+}
+.party-member:hover .lobby-friend-invite {
+  display:block;
+}
+.lobby-friend--offline {
+  opacity:0.3;
+  pointer-events:none;
+}
+
+/* ── Subheaders ────────────────────────── */
+.lobby-subheader {
+  font-family:'Orbitron',sans-serif; font-size:15px; font-weight:700; letter-spacing:6px;
+  color:rgba(var(--c-gold), 0.65); margin:12px 0 16px; text-align:center;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+}
+
+.lobby-subheader-cog {
+  background:none; border:none; cursor:pointer; padding:4px;
+  color:rgba(var(--c-gold), 0.45); transition:color 0.2s, transform 0.3s;
+  display:inline-flex; align-items:center; line-height:1;
+}
+.lobby-subheader-cog:hover {
+  color:rgba(var(--c-teal), 0.8); transform:rotate(90deg);
+}
+
+.lobby-label {
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:4px;
+  color:rgba(var(--c-teal), 0.4); margin-bottom:6px; text-align:center;
+}
+
+.lobby-panel {
+  background:
+    radial-gradient(circle at top center, rgba(var(--c-teal),0.045) 0%, transparent 34%),
+    radial-gradient(circle at bottom center, rgba(var(--c-orange),0.035) 0%, transparent 36%),
+    linear-gradient(180deg, rgba(var(--mist-100),0.02) 0%, transparent 28%),
+    linear-gradient(180deg, rgba(var(--bg-utility-alt), 0.82) 0%, rgba(var(--bg-panel-core), 0.94) 100%);
+}
+
+.lobby-header-bar {
+  border-bottom-color: rgba(var(--teal-600), 0.12);
+  background:
+    linear-gradient(180deg, rgba(var(--mist-100),0.02) 0%, transparent 100%),
+    linear-gradient(90deg, rgba(var(--c-orange),0.025) 0%, transparent 22%, transparent 78%, rgba(var(--c-teal),0.03) 100%),
+    rgba(var(--bg-panel-raised), 0.42);
+  gap: 12px;
+}
+
+.lobby-header-title {
+  position: static;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-inline: 8px;
+  line-height: 1.1;
+  color: rgb(var(--text-fog));
+  text-shadow: 0 0 12px rgba(var(--c-gold), 0.34), 0 0 32px rgba(var(--c-orange), 0.1);
+}

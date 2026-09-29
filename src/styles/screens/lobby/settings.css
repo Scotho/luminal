@@ -1,0 +1,93 @@
+/* ── Inline Match Settings (right column of social section) ── */
+.lobby-settings-inline {
+  width:340px;
+  flex-shrink:0;
+  padding:12px 16px;
+  /* Grid on the container so all rows share column widths */
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:6px 10px;
+}
+
+.lobby-settings-inline-title {
+  grid-column:1 / -1;
+  text-align:center;
+  font-family:'Orbitron',sans-serif;
+  font-size:16px; font-weight:700;
+  letter-spacing:4px;
+  color:rgba(var(--c-gold), 0.45);
+  margin-bottom:4px;
+}
+
+/* Each row is a subgrid fragment — label in col 1, select in col 2 */
+.lobby-settings-inline .lobby-setting-row {
+  display:contents;
+}
+
+.lobby-settings-inline .lobby-setting-label {
+  font-family:'Orbitron',sans-serif;
+  font-size:9px; letter-spacing:3px;
+  color:rgba(var(--c-gold), 0.4);
+  text-align:right;
+  white-space:nowrap;
+}
+
+.lobby-settings-inline .bestof-select {
+  margin-bottom:0; gap:4px;
+  display:flex; width:100%;
+  justify-content:flex-start;
+}
+
+.lobby-settings-inline .bestof-label {
+  font-size:9px; min-width:0;
+  flex:1; text-align:center;
+}
+
+.lobby-settings-inline .bestof-arrow .icon {
+  width:10px; height:10px;
+}
+
+/* Copy invite link row — hidden on desktop (header INVITE handles it) */
+.lobby-settings-invite {
+  grid-column:1 / -1;
+  display:none;
+  align-items:center; gap:6px;
+  padding:6px 10px; margin-top:auto;
+  border:1px solid rgba(var(--c-teal), 0.12);
+  border-radius:4px;
+  background:rgba(var(--c-teal), 0.02);
+  cursor:pointer;
+  transition:all 0.15s;
+
+  &:hover {
+    background:rgba(var(--c-teal), 0.06);
+    border-color:rgba(var(--c-teal), 0.25);
+  }
+}
+
+.lobby-settings-invite-code {
+  font-family:'Orbitron',sans-serif;
+  font-size:10px; letter-spacing:2px;
+  color:rgba(var(--c-teal), 0.6);
+  flex:1;
+}
+
+.lobby-settings-invite-copy {
+  font-family:'Orbitron',sans-serif;
+  font-size:7px; letter-spacing:2px;
+  color:rgba(var(--c-teal), 0.4);
+  padding:2px 6px;
+  border:1px solid rgba(var(--c-teal), 0.12);
+  border-radius:2px;
+  cursor:pointer;
+  transition:all 0.15s;
+}
+
+.lobby-settings-invite--copied .lobby-settings-invite-code {
+  color:rgba(var(--c-green), 0.8);
+}
+.lobby-settings-invite--copied .lobby-settings-invite-copy {
+  color:rgba(var(--c-green), 0.8);
+  border-color:rgba(var(--c-green), 0.3);
+}

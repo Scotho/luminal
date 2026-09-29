@@ -1,0 +1,75 @@
+{
+  "version": "v1.0.8",
+  "rootPaths": {
+    "matches/{matchId}": {
+      "description": "Active match state tree",
+      "children": {
+        "meta": {
+          "fields": {
+            "players": { "type": "string[]", "maxLength": 4, "required": true },
+            "seriesLength": { "type": "number", "values": [1, 3, 5], "required": true },
+            "status": { "type": "string", "values": ["waiting", "active", "finished"], "required": true },
+            "round": { "type": "number", "min": 0, "required": true },
+            "scores": { "type": "number[]", "required": true },
+            "seed": { "type": "number", "required": true },
+            "transport": { "type": "string", "values": ["websocket", "firebase"] }
+          }
+        },
+        "state/{uid}": {
+          "fields": {
+            "x": { "type": "number", "min": -160, "max": 160 },
+            "z": { "type": "number", "min": -160, "max": 160 },
+            "angle": { "type": "number", "min": -7, "max": 7 },
+            "speed": { "type": "number", "min": 0, "max": 110 },
+            "meter": { "type": "number", "min": 0, "max": 100 },
+            "alive": { "type": "boolean" },
+            "seq": { "type": "number" },
+            "ts": { "type": "number" }
+          }
+        },
+        "inputs/{uid}": { "description": "Lockstep input frames" },
+        "hashes/{uid}": { "fields": { "tick": { "type": "number" }, "hash": { "type": "number" } } },
+        "snapshot/{uid}": { "description": "Full state snapshot for desync recovery" },
+        "events": { "description": "Match events log" },
+        "heartbeat/{uid}": { "description": "Player activity heartbeat timestamp" },
+        "accept/{uid}": { "description": "Player match acceptance" },
+        "ready/{uid}": { "description": "Player ready status" },
+        "loaded/{uid}": { "description": "Client loaded confirmation" },
+        "roundEnd/{uid}": { "fields": { "round": { "type": "number" }, "winner": { "type": "string" }, "timestamp": { "type": "number" } } },
+        "result/{round}": { "fields": { "round": { "type": "number" }, "winner": { "type": "string" }, "players": { "type": "string[]" }, "ts": { "type": "number" } } },
+        "finalResult": { "description": "Series winner — server-written" },
+        "nextRound/{uid}": { "description": "Next round signal" },
+        "rematch/{uid}": { "description": "Rematch vote" },
+        "rtt/{uid}": { "description": "Round-trip time measurement" },
+        "returnToLobby": { "description": "Return to lobby signal" },
+        "chat": { "description": "Match chat messages" }
+      }
+    },
+    "lobbies/{lobbyId}": {
+      "description": "Private lobby state",
+      "children": {
+        "host": { "fields": { "uid": { "type": "string" }, "username": { "type": "string" } } },
+        "guests/{uid}": { "fields": { "username": { "type": "string" } } },
+        "settings": { "description": "Lobby settings (series length, map, etc.)" },
+        "status": { "type": "string", "values": ["waiting", "starting", "in-match"] },
+        "ais": { "description": "AI player slots" },
+        "chat": { "description": "Lobby chat messages" }
+      }
+    },
+    "status/{uid}": {
+      "description": "Player online presence",
+      "fields": {
+        "online": { "type": "boolean" },
+        "ts": { "type": "number" }
+      }
+    },
+    "queuePresence/{uid}": {
+      "description": "Matchmaking queue presence (timestamp value)"
+    },
+    "globalStats": { "description": "Aggregated match statistics" },
+    "debugReports": { "description": "Client bug reports, indexed on ts" },
+    "drawings/{uid}": { "description": "User drawings" },
+    "invites/{toUid}/{fromUid}": { "description": "Friend invite edges" },
+    "users/{uid}": { "description": "User profile (RTDB mirror)" }
+  }
+}

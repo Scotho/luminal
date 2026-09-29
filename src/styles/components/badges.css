@@ -1,0 +1,7 @@
+/* ── 10. Badge ─────────────────────────────────────── */
+
+.friend-badge {
+  position:absolute; top:-4px; right:-4px; font-family:'Orbitron',sans-serif; font-size:8px; font-weight:700; background:rgba(var(--c-red-hot),0.85); color:rgb(var(--c-white)); border-radius:8px; min-width:16px; height:16px; display:flex; align-items:center; justify-content:center; padding:0 4px; box-shadow:0 0 8px rgba(var(--c-red-hot),0.4);
+
+  &.hidden { display:none; }
+}

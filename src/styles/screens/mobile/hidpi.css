@@ -1,0 +1,12 @@
+/* ══════════════════════════════════════════════
+   9. HIGH-DPI TWEAKS
+   Sharper borders on retina displays
+   ══════════════════════════════════════════════ */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .menu-btn { border-width: 0.5px; }
+  .overlay-screen .content { border-width: 0.5px; }
+  .auth-input { border-width: 0.5px; }
+  .control-toggle { border-width: 0.5px; }
+  .dropdown-panel { border-width: 0.5px; }
+  .lobby-card { border-width: 0.5px; }
+}

@@ -1,0 +1,68 @@
+/* ── Radar Minimap ─────────────────────────── */
+#radar-wrap {
+  position: fixed; top: calc(var(--topbar-offset) + 26px); right: 14px;
+  display: none; flex-direction: column; align-items: stretch;
+  z-index: 12; pointer-events: none;
+  transition: top 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+#radar {
+  position: relative;
+  width: var(--radar-size, 140px);
+  display: flex; flex-direction: column;
+  transition: width 0.2s;
+  pointer-events: auto;
+
+  & canvas {
+    width:100%; height:auto; display:block;
+    background:rgba(var(--bg-surface-deep),0.6); border:1px solid rgba(var(--teal-600),0.14);
+    border-top:none; border-bottom:none;
+  }
+  &.radar--preview {
+    position:relative; top:auto; right:auto;
+    margin:0 auto 16px; pointer-events:none;
+  }
+  &.hidden { opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s; }
+  &.radar--timer-only {
+    width:auto;
+
+    & canvas { display:none; }
+    & #radar-timer-bar { border-radius:4px; border-bottom:1px solid rgba(var(--teal-600),0.18); }
+    & #radar-resize { display:none; }
+  }
+}
+
+#radar-timer-bar {
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:3px;
+  color:rgba(var(--c-hot),0.5);
+  background:rgba(var(--bg-surface-deep),0.7); border:1px solid rgba(var(--teal-600),0.18);
+  border-bottom:none; border-radius:4px 4px 0 0;
+  padding:5px 12px; text-align:center;
+  cursor:grab; user-select:none; touch-action:none; pointer-events:auto;
+
+  &:active { cursor:grabbing; }
+}
+
+#radar-resize {
+  position:absolute; left:0; bottom:0; width:14px; height:14px;
+  cursor:nesw-resize; pointer-events:auto; z-index:2;
+  opacity:0.25; transition:opacity 0.15s;
+
+  &:hover { opacity:0.6; }
+  &::before {
+    content:''; position:absolute; bottom:2px; left:2px;
+    width:7px; height:7px; border-left:2px solid rgba(var(--c-hot),0.5);
+    border-bottom:2px solid rgba(var(--c-hot),0.5);
+  }
+}
+
+/* ── Match Timer ──────────────────────────── */
+#match-timer {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px; letter-spacing: 3px;
+  color: rgba(var(--c-white), 0.45);
+  pointer-events: none;
+  white-space: nowrap;
+
+  &.hidden { opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s; }
+}

@@ -1,0 +1,83 @@
+            <div id="social-component" class="social-component social-clone" data-social-clone="dropdown">
+              <div class="social-tabs" role="tablist" aria-label="Social tabs">
+                <button class="social-tab social-tab--active" id="social-tab-party" data-tab="party" data-social-tab="party" role="tab" aria-selected="true" aria-controls="social-panel-party">PARTY</button>
+                <button class="social-tab" id="social-tab-friends" data-tab="friends" data-social-tab="friends" role="tab" aria-selected="false" aria-controls="social-panel-friends">FRIENDS</button>
+                <button class="social-tab" id="social-tab-notifs" data-tab="notifs" data-social-tab="notifs" role="tab" aria-selected="false" aria-controls="social-panel-notifs">NOTIFICATIONS<span id="social-notif-badge" class="social-badge hidden" data-social-slot="notif-badge">0</span></button>
+                <button class="social-tab" id="social-tab-chat" data-tab="chat" data-social-tab="chat" role="tab" aria-selected="false" aria-controls="social-panel-chat">CHAT</button>
+                <button class="social-tab social-tab--account hidden" id="social-tab-account" data-tab="account" data-social-tab="account" aria-label="Account" role="tab" aria-selected="false" aria-controls="social-panel-account"><svg class="icon" aria-hidden="true"><use href="/icons.svg#i-user"/></svg></button>
+              </div>
+              <div class="social-hint hidden" id="social-tab-hint" data-social-slot="tab-hint">
+                <span class="social-hint-key">LB</span> / <span class="social-hint-key">RB</span> SWITCH TABS
+              </div>
+              <div class="social-panels">
+                <!-- Party Tab -->
+                <div class="social-panel" id="social-panel-party" data-social-panel="party" role="tabpanel" aria-labelledby="social-tab-party">
+                  <div id="social-party-content">
+                    <div id="social-party-empty" data-social-slot="party-empty">
+                      <div class="social-empty-text">NO ACTIVE PARTY</div>
+                      <div class="menu-btn" id="btn-social-create-party" data-social-slot="btn-create-party"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-users"/></svg></i>CREATE</div>
+                    </div>
+                    <div id="social-party-active" class="hidden" data-social-slot="party-active">
+                      <div id="social-party-members" data-social-slot="party-members"></div>
+                      <div class="social-party-actions">
+                        <div class="menu-btn menu-btn--secondary" id="btn-social-copy-invite" data-social-slot="btn-copy-invite"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-link"/></svg></i>COPY INVITE</div>
+                        <div class="menu-btn menu-btn--secondary social-btn--danger" id="btn-social-leave-party" data-social-slot="btn-leave-party"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-x"/></svg></i>LEAVE PARTY</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Friends Tab -->
+                <div class="social-panel hidden" id="social-panel-friends" data-social-panel="friends" role="tabpanel" aria-labelledby="social-tab-friends">
+                  <div class="friends-body">
+                    <div id="social-friends-requests" class="hidden" data-social-slot="friends-requests">
+                      <div class="friends-section-label">INCOMING REQUESTS</div>
+                      <div id="social-friends-requests-list" data-social-slot="friends-requests-list"></div>
+                    </div>
+                    <div id="social-friends-outgoing" class="hidden" data-social-slot="friends-outgoing">
+                      <div class="friends-section-label">OUTGOING REQUESTS</div>
+                      <div id="social-friends-outgoing-list" data-social-slot="friends-outgoing-list"></div>
+                    </div>
+                    <div id="social-friends-list-section" data-social-slot="friends-list-section">
+                      <div class="friends-section-label">FRIENDS</div>
+                      <div id="social-friends-list" data-social-slot="friends-list"></div>
+                      <div id="social-friends-empty" class="friends-empty" data-social-slot="friends-empty">No friends yet — add someone below!</div>
+                    </div>
+                  </div>
+                  <div class="friends-add-group">
+                    <div class="friends-add-combined">
+                      <input type="text" id="social-friends-add-input" aria-label="Add friend by username" class="friends-add-field" data-social-slot="friends-add-input" placeholder="Enter username..." maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other">
+                      <div class="friends-add-btn" id="btn-social-friends-add" role="button" tabindex="0" aria-label="Send friend request" data-social-slot="btn-friends-add"><svg class="icon" aria-hidden="true" style="width:14px;height:14px"><use href="/icons.svg#i-user-plus"/></svg></div>
+                    </div>
+                    <div id="social-friends-add-status" data-social-slot="friends-add-status"></div>
+                  </div>
+                  <div id="social-friend-detail" class="hidden" data-social-slot="friend-detail">
+                    <div id="social-friend-detail-name" data-social-slot="friend-detail-name"></div>
+                    <div id="social-friend-detail-status" data-social-slot="friend-detail-status"></div>
+                    <div class="social-friend-detail-actions">
+                      <div class="menu-btn menu-btn--secondary" id="btn-social-invite-friend" data-social-slot="btn-invite-friend"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-users"/></svg></i>INVITE TO LOBBY</div>
+                      <div class="menu-btn menu-btn--secondary social-btn--danger" id="btn-social-remove-friend" data-social-slot="btn-remove-friend"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-x"/></svg></i>REMOVE FRIEND</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Notifications Tab -->
+                <div class="social-panel hidden" id="social-panel-notifs" data-social-panel="notifs" role="tabpanel" aria-labelledby="social-tab-notifs">
+                  <div id="social-notif-list" data-social-slot="notif-list"></div>
+                  <div id="social-notif-empty" class="friends-empty" data-social-slot="notif-empty">NO NOTIFICATIONS</div>
+                </div>
+                <!-- Chat Tab -->
+                <div class="social-panel hidden" id="social-panel-chat" data-social-panel="chat" data-social-slot="panel-chat" role="tabpanel" aria-labelledby="social-tab-chat"></div>
+                <!-- Account Tab -->
+                <div class="social-panel social-panel--account hidden" id="social-panel-account" data-social-panel="account" role="tabpanel" aria-labelledby="social-tab-account">
+                  <div class="social-account-points-row">
+                    <div class="social-account-points-label">SPECIAL POINTS</div>
+                    <div class="social-account-points-value" data-social-slot="account-points">0</div>
+                  </div>
+                  <div class="social-account-bio-row">
+                    <div class="social-account-bio-label">BIO</div>
+                    <div class="social-account-bio-value" data-social-slot="account-bio">—</div>
+                  </div>
+                  <div class="social-account-socials-row" data-social-slot="account-socials"></div>
+                  <button class="menu-btn menu-btn--secondary social-account-signout-btn" id="btn-social-account-signout" data-social-action="signout"><i class="btn-icon"><svg class="icon"><use href="/icons.svg#i-x"/></svg></i>SIGN OUT</button>
+                </div>
+              </div>
+            </div>

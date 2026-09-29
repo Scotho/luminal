@@ -1,0 +1,107 @@
+/* ══════════════════════════════════════════════
+   6. LANDSCAPE on phones (short + wide)
+   Reclaim vertical space
+   ══════════════════════════════════════════════ */
+@media (max-height: 500px) and (orientation: landscape) {
+  /* Main menu — center vertically so top/bottom gap matches side margins */
+  #overlay { justify-content: center; }
+  #overlay > .content { margin-top: auto; margin-bottom: auto; padding-bottom: 0; }
+
+  .overlay-screen .content {
+    padding-top: calc(40px + var(--safe-top));
+    padding-bottom: calc(8px + var(--safe-bottom));
+    padding-left: calc(50px + var(--safe-left));
+    padding-right: calc(50px + var(--safe-right));
+    flex-direction: column;
+    gap: 8px;
+  }
+  #overlay .game-logo--menu {
+    width: min(320px, 50vw);
+    margin-bottom: 8px;
+  }
+  #menu-buttons, #result-buttons, #pause-buttons, #online-pause-buttons { gap: 6px; width: 80vw; max-width: min(360px, 100%); }
+  .menu-btn { min-height: 42px; padding: 8px 20px; }
+  .menu-btn.menu-btn--secondary { min-height: 40px; padding: 7px 16px; }
+  #time-played-section { margin: 2px 0 6px; }
+
+  /* Loading */
+  .loading-panel { padding: 24px 32px; }
+  #loading-screen .game-logo { width: min(280px, 50vw); }
+  #loading-screen .loading-subtitle { font-size: clamp(9px, 2.5vh, 14px); margin-bottom: 12px; }
+  .loading-bar-wrap { width: clamp(140px, 40vw, 220px); }
+
+  /* HUD — slide up */
+  #meter-wrap { bottom: calc(8px + var(--safe-bottom)); }
+  #meter-bar { height: 8px; }
+
+  /* Results — fluid title sizing at all landscape widths */
+  #result h2 { font-size: clamp(20px, 5vh, 32px); margin-bottom: 4px; }
+
+  /* Results — two-column layout only when wide enough to fit */
+  @media (min-width: 600px) {
+    #result > .content {
+      display: grid;
+      grid-template-columns: auto minmax(200px, 280px);
+      grid-template-rows: auto;
+      align-items: start;
+      align-content: center;
+      gap: 0 32px;
+      max-width: 700px;
+    }
+    /* Left column: compass, result text, streak info */
+    #result-summary,
+    #result h2,
+    #result-streak-ended,
+    #result .streak-end-info,
+    #result-streak,
+    #series-result,
+    #result-match-selector { grid-column: 1; }
+
+    #result-summary { justify-self: center; }
+    #result h2 { justify-self: center; }
+
+    /* Right column: buttons */
+    #result-buttons {
+      grid-column: 2; grid-row: 1 / -1;
+      margin-top: 0; width: 100%; align-self: center;
+    }
+  }
+
+  /* Countdown */
+  #countdown-num { font-size: clamp(48px, 16vh, 80px); }
+
+  /* Settings — scroll faster */
+  .settings-section-body { gap: 10px; }
+  .setting-row { gap: 6px; }
+  .setting-row label { font-size: 12px; }
+
+  /* Header bar — match landscape .content padding */
+  .overlay-header-bar {
+    --_ohb-pt: calc(40px + var(--safe-top));
+    padding: 6px 12px;
+    min-height: 36px;
+    gap: 6px;
+  }
+
+  /* Overlay header titles */
+  .overlay-header-title {
+    font-size: clamp(14px, 3.8vh, 22px) !important;
+    letter-spacing: clamp(2px, 0.7vh, 5px) !important;
+    padding-inline: 4px;
+  }
+
+  /* Lobby tiles — horizontal row */
+  .lobby-vehicle-tile { width: 105px; min-height: 105px; }
+  .lobby-card { min-height: 70px; }
+  .lobby-btn-hero { padding: 10px 0; min-height: 40px; font-size: 13px; }
+  .lobby-action-divider { margin: 4px 0; }
+
+  /* Top bar — hide bulky sections, shorten labels */
+  #players-online,
+  #party-dropdown-wrap,
+  .track-name,
+  #playlist-dropdown-wrap { display: none !important; }
+
+  #fs-label { font-size: 0; }
+  #fs-label::after { content: 'FULL'; font-size: 11px; letter-spacing: 2px; }
+}

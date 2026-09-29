@@ -1,0 +1,97 @@
+{
+  "hosting": [
+    {
+      "site": "luminal-game",
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "!**/.well-known/**",
+        "**/node_modules/**",
+        "**/coverage/**",
+        "**/playwright-report/**",
+        "**/screenshots/**",
+        "**/test-results/**",
+        "**/testbed/**",
+        "**/testhub/**",
+        "**/testinghub/**"
+      ],
+      "headers": [
+        { "source": "**", "headers": [{ "key": "Cross-Origin-Opener-Policy", "value": "same-origin-allow-popups" }] },
+        { "source": "/index.html", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+        { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+        { "source": "/assets/**", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+        { "source": "/models/**", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] },
+        { "source": "/music/**", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] },
+        { "source": "/.well-known/**", "headers": [{ "key": "Content-Type", "value": "application/json" }] }
+      ],
+      "rewrites": [
+        { "source": "/privacy.html", "destination": "/privacy.html" },
+        { "source": "/terms.html", "destination": "/terms.html" },
+        { "source": "/changelog.html", "destination": "/changelog.html" },
+        { "source": "/roadmap.html", "destination": "/roadmap.html" },
+        { "source": "/credits.html", "destination": "/credits.html" },
+        { "source": "/.well-known/microsoft-identity-association", "destination": "/.well-known/microsoft-identity-association.json" },
+        { "source": "**", "destination": "/index.html" }
+      ]
+    },
+    {
+      "site": "luminal-test",
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "!**/.well-known/**",
+        "**/node_modules/**",
+        "**/coverage/**",
+        "**/playwright-report/**",
+        "**/screenshots/**",
+        "**/test-results/**",
+        "**/testbed/**",
+        "**/testhub/**",
+        "**/testinghub/**"
+      ],
+      "headers": [
+        { "source": "**", "headers": [{ "key": "Cross-Origin-Opener-Policy", "value": "same-origin-allow-popups" }] },
+        { "source": "/index.html", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+        { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+        { "source": "/assets/**", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+        { "source": "/models/**", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] },
+        { "source": "/music/**", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] },
+        { "source": "/.well-known/**", "headers": [{ "key": "Content-Type", "value": "application/json" }] }
+      ],
+      "rewrites": [
+        { "source": "/privacy.html", "destination": "/privacy.html" },
+        { "source": "/terms.html", "destination": "/terms.html" },
+        { "source": "/changelog.html", "destination": "/changelog.html" },
+        { "source": "/roadmap.html", "destination": "/roadmap.html" },
+        { "source": "/credits.html", "destination": "/credits.html" },
+        { "source": "/.well-known/microsoft-identity-association", "destination": "/.well-known/microsoft-identity-association.json" },
+        { "source": "**", "destination": "/index.html" }
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": ["node_modules", ".git"],
+      "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run build"]
+    }
+  ],
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "emulators": {
+    "auth": { "port": 9099 },
+    "database": { "port": 9000 },
+    "firestore": { "port": 8080 },
+    "ui": { "enabled": false }
+  }
+}

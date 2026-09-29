@@ -1,0 +1,284 @@
+/* ═══════════════════════════════════════════════════════
+   Chassis Menu Wrapper — TASK-25
+   Angular SVG-clipped panel with border overlay strokes.
+   Coordinates match testbed/svgtest.html mockup exactly.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Chassis Content — override default .content centering ── */
+.chassis-content {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+  animation: none !important;
+
+  &::before { display: none !important; }
+  &::after { display: none !important; }
+}
+
+/* ── Chassis Container ── */
+.chassis {
+  position: relative;
+  width: 760px;
+  height: 810px;
+  flex-shrink: 0;
+  /* Drop shadow instead of box-shadow (clipped away) */
+  filter:
+    drop-shadow(0 0 36px rgba(var(--menu-cool),0.06))
+    drop-shadow(0 24px 56px rgba(var(--c-black),0.5));
+}
+
+/* ── Clipped Body — background + scanlines ── */
+.chassis-body {
+  position: absolute;
+  left: 0; top: 0;
+  width: 760px; height: 810px;
+  clip-path: url(#chassis-clip);
+  background:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 58px 58px,
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 58px 58px,
+    linear-gradient(180deg,
+      rgba(var(--menu-panel-top),0.96) 0%,
+      rgba(var(--menu-panel-mid),0.98) 44%,
+      rgba(var(--menu-panel-bottom),1) 100%);
+}
+
+/* Scanline overlay — clipped to chassis polygon */
+.chassis-body::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.012) 0px,
+    rgba(255,255,255,0.012) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  animation: scanScroll 8s linear infinite;
+}
+
+/* ── SVG Border Overlay ── */
+.chassis-border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.chassis-border svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Stroke classes for the SVG border paths */
+.chassis-stroke--outer {
+  fill: rgba(255,255,255,0.01);
+  stroke: rgba(255,255,255,0.92);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+}
+
+.chassis-stroke--inner {
+  fill: none;
+  stroke: rgba(255,255,255,0.42);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+}
+
+.chassis-stroke--accent {
+  fill: rgba(255,255,255,0.02);
+  stroke: rgba(255,255,255,0.92);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+}
+
+.chassis-stroke--micro {
+  fill: none;
+  stroke: rgba(255,255,255,0.26);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 2 6;
+}
+
+/* ── Chassis Zones — absolute-positioned within the 760x810 container ── */
+/* Positions derived from viewBox(80,110) -> container offset = (x-80, y-110) */
+
+.chassis-title {
+  position: absolute;
+  left: 50px; top: 40px;
+  width: 512px; height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Logo inside chassis title zone */
+.chassis .game-logo--menu {
+  width: min(420px, 100%);
+  height: auto;
+  margin: 0;
+  position: relative;
+  filter:
+    drop-shadow(0 0 14px rgba(var(--menu-cool),0.12))
+    drop-shadow(0 0 18px rgba(var(--c-gold),0.3))
+    drop-shadow(0 0 40px rgba(var(--menu-accent-core),0.22))
+    drop-shadow(0 0 82px rgba(var(--menu-glow-red),0.14));
+  animation: neonFlicker 4s ease-in-out infinite;
+  pointer-events: auto;
+}
+
+/* CTA zone */
+.chassis-cta {
+  position: absolute;
+  left: 82px; top: 238px;
+  width: 460px; height: 80px;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+/* Menu rows zone */
+.chassis-menu {
+  position: absolute;
+  left: 82px; top: 330px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 5;
+}
+
+/* Icon bar zone */
+.chassis-icons {
+  position: absolute;
+  left: 82px; top: 600px;
+  width: 360px;
+  display: flex;
+  gap: 0;
+  z-index: 5;
+}
+
+/* ── Chassis Button Variants ── */
+.chassis-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: rgba(255,255,255,0.96);
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color 0.15s, text-shadow 0.15s;
+  overflow: visible !important;
+
+  /* Disable default .menu-btn scanline/sheen overlays inside chassis */
+  &::before { display: none !important; }
+  &::after { display: none !important; }
+}
+
+.chassis-btn:hover {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(255,255,255,0.3);
+}
+
+.chassis-btn:focus-visible {
+  outline: 1px solid rgba(255,255,255,0.5);
+  outline-offset: 2px;
+}
+
+/* CTA button style */
+.chassis-btn--cta {
+  font-size: 31px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 38px !important;
+  height: 64px;
+  width: 100%;
+  justify-content: flex-start;
+
+  & .btn-icon {
+    font-size: 24px;
+    opacity: 0.95;
+    margin-right: 8px;
+  }
+}
+
+/* Menu row button style */
+.chassis-btn--row {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  display: flex;
+  align-items: center;
+  padding-left: 60px !important;
+  height: 56px;
+  width: 280px;
+
+  & .btn-icon {
+    margin-right: 10px;
+  }
+}
+
+/* Icon bar buttons inside chassis */
+.chassis-icon-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  min-height: 44px !important;
+  width: 90px;
+  flex: 0 0 90px;
+  padding: 0 !important;
+  outline: none !important;
+  justify-content: center;
+  transition: color 0.15s, text-shadow 0.15s;
+
+  &::before { display: none !important; }
+  &::after { display: none !important; }
+}
+
+.chassis-icon-btn:not(:last-child) {
+  border-right: 1px solid rgba(255,255,255,0.42) !important;
+}
+
+.chassis-icon-btn:hover {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(255,255,255,0.3);
+}
+
+/* Controls text below chassis */
+.chassis-controls {
+  margin-top: 12px;
+}
+
+/* ── Responsive: scale chassis on smaller screens ── */
+@media (max-width: 840px) {
+  .chassis {
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 640px) {
+  .chassis {
+    transform: scale(0.55);
+    transform-origin: top center;
+  }
+}

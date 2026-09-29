@@ -1,0 +1,144 @@
+/* ── Top-bar Audio & Visual ─────────────────── */
+.bb-section { display:flex; align-items:center; gap:0; flex-shrink:0; }
+
+.bb-audio {
+  font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:2px; color:rgba(var(--c-white),0.55); min-width:0;
+
+  & .track-name {
+    overflow:hidden; text-overflow:ellipsis;
+    color:rgba(var(--c-hot-light),0.65); white-space:nowrap; margin-left:4px; margin-right:6px; max-width:125px; display:inline-block; position:relative;
+    transition:color 0.4s ease, text-shadow 0.4s ease;
+
+    &:hover {
+      color:rgba(var(--c-hot-pale),0.9);
+      text-shadow:0 0 8px rgba(var(--c-hot-deep),0.4), 0 0 20px rgba(var(--c-hot-deep),0.15);
+    }
+
+    &.track-name--scrolling { text-overflow:clip; -webkit-mask-image:linear-gradient(90deg, transparent 0%, white 8%, white 92%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0%, white 8%, white 92%, transparent 100%); }
+
+    & .track-name-inner {
+      display:inline-block; white-space:nowrap;
+
+      &.track-name-inner--scrolling { animation:trackScroll var(--scroll-dur, 8s) linear infinite; }
+    }
+  }
+  & .eq { display:flex; align-items:flex-end; gap:2px; height:14px; margin-right:6px; }
+  & .eq-bar { width:2.5px; background:rgba(var(--c-gold),0.65); border-radius:1px; transition:height 0.1s; }
+}
+
+.np-icon { width:14px; height:14px; color:rgba(var(--c-gold),0.6); flex-shrink:0; margin-right:6px; }
+
+/* Full-height click targets for top bar buttons */
+.bb-audio .mute-btn, .bb-audio .pause-btn, .bb-audio .skip-btn,
+.bb-audio .repeat-btn, .bb-audio .shuffle-btn, .bb-audio .playlist-drop-btn,
+#fullscreen-btn, #tb-settings-btn, #notif-wrap, #user-menu-wrap,
+#party-dropdown-wrap {
+  display:flex; align-items:center; justify-content:center; height:40px; padding:0 10px; border-radius:0; transition:all 0.2s;
+}
+
+.mute-btn {
+  cursor:pointer; pointer-events:auto; color:rgba(var(--c-white),0.45); transition:all 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.06); }
+  &.mute-btn--muted { color:rgba(var(--c-white),0.25); }
+}
+
+.pause-btn {
+  cursor:pointer; pointer-events:auto; color:rgba(var(--c-white),0.45); transition:all 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.06); }
+  &.pause-btn--paused { color:rgba(var(--c-white),0.3); }
+}
+
+.skip-btn {
+  cursor:pointer; pointer-events:auto; color:rgba(var(--c-white),0.45); transition:all 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.06); }
+}
+
+.repeat-btn {
+  cursor:pointer; pointer-events:auto; color:rgba(var(--c-white),0.45); transition:all 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.06); }
+  &.repeat-btn--active { color:rgba(var(--c-teal),0.95); filter:drop-shadow(0 0 8px rgba(var(--c-teal),0.5)); }
+}
+
+.shuffle-btn {
+  cursor:pointer; pointer-events:auto; color:rgba(var(--c-white),0.45); transition:all 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.06); }
+  &.shuffle-btn--active { color:rgba(var(--c-teal),0.95); filter:drop-shadow(0 0 8px rgba(var(--c-teal),0.5)); }
+}
+
+.playlist-drop-btn {
+  cursor:pointer; pointer-events:auto; color:rgba(var(--c-white),0.45); transition:all 0.2s; position:relative;
+
+  &:hover { color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.06); }
+}
+
+#playlist-dropdown-inner {
+  min-width:200px; overflow-y:auto; max-height:200px; padding-top:0; scrollbar-width:thin; scrollbar-color:rgba(var(--teal-600),0.28) transparent;
+
+  &::-webkit-scrollbar { width:3px; }
+  &::-webkit-scrollbar-thumb { background:rgba(var(--teal-600),0.28); border-radius:2px; }
+}
+
+/* Volume slider */
+.vol-slider {
+  -webkit-appearance:none; appearance:none; width:14px; height:100px;
+  background:linear-gradient(to right, transparent 4px, rgba(var(--teal-600),0.16) 4px, rgba(var(--teal-600),0.16) 10px, transparent 10px);
+  border-radius:3px; outline:none;
+  writing-mode:vertical-lr; direction:rtl;
+  cursor:pointer; padding:0; box-sizing:border-box;
+  margin:0;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance:none; width:14px; height:14px; border-radius:50%;
+    background:rgba(var(--c-hot-light),0.9); box-shadow:0 0 8px rgba(var(--c-hot-deep),0.5);
+    cursor:pointer; transition:all 0.18s cubic-bezier(0.4,0,0.2,1);
+
+    &:hover { box-shadow:0 0 14px rgba(var(--c-hot-deep),0.8); }
+  }
+  &:active::-webkit-slider-thumb {
+    width:18px; height:18px;
+    background:rgba(var(--c-hot-pale),1);
+    box-shadow:0 0 18px rgba(var(--c-hot-deep),0.9), 0 0 30px rgba(var(--c-teal),0.3);
+  }
+  &::-moz-range-thumb {
+    width:14px; height:14px; border-radius:50%; border:none;
+    background:rgba(var(--c-hot-light),0.9); box-shadow:0 0 8px rgba(var(--c-hot-deep),0.5);
+    cursor:pointer; transition:all 0.18s cubic-bezier(0.4,0,0.2,1);
+  }
+  &:active::-moz-range-thumb {
+    width:18px; height:18px;
+    background:rgba(var(--c-hot-pale),1);
+    box-shadow:0 0 18px rgba(var(--c-hot-deep),0.9), 0 0 30px rgba(var(--c-teal),0.3);
+  }
+  &::-webkit-slider-runnable-track { background:transparent; border:none; }
+  &::-moz-range-track { width:6px; background:rgba(var(--teal-600),0.16); border-radius:3px; }
+}
+
+.vol-sparkle { position:absolute; width:3px; height:3px; border-radius:50%; pointer-events:none; animation:volSparkle 0.45s ease-out forwards; }
+#vol-dropdown-inner { padding:14px 12px; display:flex; justify-content:center; border-radius:0; border-bottom:none; }
+
+.vol-settings-btn {
+  display:flex; align-items:center; justify-content:center;
+  width:100%; padding:6px 0; margin:0; border:none;
+  background:rgba(var(--bg-dropdown),0.82);
+  border-top:1px solid rgba(var(--teal-600),0.1);
+  border-left:1px solid rgba(var(--teal-600),0.16);
+  border-right:1px solid rgba(var(--teal-600),0.16);
+  border-bottom:1px solid rgba(var(--teal-600),0.16);
+  border-radius:0 0 6px 6px;
+  backdrop-filter:blur(10px) saturate(0.85);
+  color:rgba(var(--c-hot-light),0.7);
+  font-size:15px; cursor:pointer;
+  transition:color 0.2s, background 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    color:rgba(var(--c-hot-pale),1);
+    background:rgba(var(--teal-600),0.1);
+    box-shadow:0 2px 12px rgba(var(--c-hot-deep),0.15);
+  }
+  &:active { color:rgba(var(--c-hot-pale),1); }
+}

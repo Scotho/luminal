@@ -1,0 +1,29 @@
+/* ── Slipstream overlay — vignette + chromatic aberration ── */
+#slipstream-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 14; opacity: 0;
+  transition: opacity 0.15s;
+  background:
+    radial-gradient(ellipse at center, transparent 50%, rgba(0, 180, 255, var(--slip-alpha, 0)) 85%, rgba(0, 120, 200, var(--slip-alpha, 0)) 100%);
+}
+
+#slipstream-overlay.slipstream--active {
+  opacity: 1;
+}
+
+/* Chromatic aberration — red/blue offset at screen edges */
+#slipstream-overlay::before,
+#slipstream-overlay::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  border-radius: 0;
+  opacity: var(--slip-chroma, 0);
+}
+
+#slipstream-overlay::before {
+  box-shadow: inset calc(var(--slip-offset, 0) * 1px) 0 calc(var(--slip-offset, 0) * 2px) rgba(255, 40, 40, 0.12);
+}
+
+#slipstream-overlay::after {
+  box-shadow: inset calc(var(--slip-offset, 0) * -1px) 0 calc(var(--slip-offset, 0) * 2px) rgba(40, 80, 255, 0.12);
+}

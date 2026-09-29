@@ -1,0 +1,45 @@
+/* ── Post-Match XP Bar ─────────────────────────── */
+
+.xp-bar {
+  max-width: 320px;
+  margin: 12px auto 8px;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(0, 229, 255, 0.03);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+.xp-bar--visible { opacity: 1; }
+.xp-bar__header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.xp-bar__label { font-family: 'Orbitron', sans-serif; font-size: 13px; color: rgb(0, 229, 255); letter-spacing: 1px; transition: color 0.2s ease; }
+.xp-bar__badge { font-family: monospace; font-size: 11px; color: rgba(255, 255, 255, 0.4); transition: color 0.2s ease; }
+.xp-bar__track { height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
+.xp-bar__fill { height: 100%; width: 0%; background: linear-gradient(90deg, #00e5ff, #76ff03); border-radius: 3px; transition: width 0.5s ease-out; }
+.xp-bar__progress { font-family: monospace; font-size: 9px; color: rgba(255, 255, 255, 0.3); text-align: right; }
+
+/* Level-Up State */
+.xp-bar--levelup { border-color: rgba(118, 255, 3, 0.4); background: rgba(118, 255, 3, 0.06); box-shadow: 0 0 20px rgba(118, 255, 3, 0.1); }
+.xp-bar--levelup .xp-bar__label { color: #76ff03; text-shadow: 0 0 10px rgba(118, 255, 3, 0.4); }
+.xp-bar--levelup .xp-bar__badge { color: rgba(118, 255, 3, 0.6); }
+
+/* Anonymous Muted State */
+.xp-bar--anon { opacity: 0.4; position: relative; }
+.xp-bar--anon .xp-bar__fill { background: linear-gradient(90deg, #555, #777); }
+.xp-bar--anon .xp-bar__label { color: #888; }
+.xp-bar--anon .xp-bar__badge { color: #666; }
+.xp-bar__signin { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; padding: 6px 16px; font-family: monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.8); cursor: pointer; white-space: nowrap; z-index: 1; transition: opacity 0.15s ease, border-color 0.15s ease; }
+.xp-bar__signin:hover { opacity: 1; border-color: rgba(0, 229, 255, 0.4); color: #fff; }
+
+/* Toast Stack */
+.xp-toast-stack { display: flex; flex-direction: column; gap: 6px; max-width: 220px; margin: 8px auto 0; }
+.xp-toast { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 6px; background: rgba(0, 229, 255, 0.08); border-left: 3px solid #00e5ff; opacity: 0; transform: translateY(8px); animation: xp-toast-in 0.15s ease forwards; }
+.xp-toast__category { font-family: monospace; font-size: 8px; text-transform: uppercase; color: rgba(255, 255, 255, 0.3); }
+.xp-toast__name { font-family: 'Orbitron', sans-serif; font-size: 10px; color: #00e5ff; }
+.xp-toast--token { border-left-color: #facc15; background: rgba(250, 204, 21, 0.08); }
+.xp-toast--token .xp-toast__name { color: #facc15; }
+.xp-toast--fading { animation: xp-toast-out 0.3s ease forwards; }
+
+@keyframes xp-toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes xp-toast-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-4px); } }
+@keyframes xp-flash { 0% { border-color: rgba(118, 255, 3, 0.6); box-shadow: 0 0 24px rgba(118, 255, 3, 0.2); } 100% { border-color: rgba(118, 255, 3, 0.4); box-shadow: 0 0 20px rgba(118, 255, 3, 0.1); } }

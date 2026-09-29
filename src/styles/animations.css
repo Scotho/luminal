@@ -1,0 +1,217 @@
+/* ═══════════════════════════════════════════════════════
+   Animations — Luminal
+   All @keyframes in one place.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Button shine sweep (legacy) ── */
+@keyframes btnStreak {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Button double-sweep with center glitch ──
+   Two quick L→R sweeps, glitch on sweep 2 center, then a long
+   off-screen pause before the next loop.  No opacity jumps —
+   the sheen simply sits at -120% during the dwell so the
+   0%→100% seam is invisible.
+
+   Timeline (% of --sheen-dur, default 8s):
+     0-18%   sweep 1  L→R
+    18-20%   off-screen return (fast, invisible)
+    20-30%   sweep 2  L→center
+    30-35%   glitch burst at center
+    35-48%   sweep 2  center→R
+    48-100%  dwell off-screen left (pause)
+*/
+@keyframes btnSweepGlitch {
+  /* ── Sweep 1: full cross ── */
+  0%    { transform:translateX(-120%); }
+  18%   { transform:translateX(120%); }
+
+  /* ── Snap back (off-screen, invisible) ── */
+  18.5% { transform:translateX(-120%); }
+
+  /* ── Sweep 2: first half to center ── */
+  20%   { transform:translateX(-120%); }
+  30%   { transform:translateX(0%); }
+
+  /* ── Glitch burst at center ── */
+  31%   { transform:translateX(2%) skewX(-2deg);  opacity:0.55; }
+  31.8% { transform:translateX(-1.5%) skewX(3deg);  opacity:1; }
+  32.5% { transform:translateX(3%) skewX(-1.5deg);  opacity:0.4; }
+  33.2% { transform:translateX(-2%) skewX(2deg);  opacity:0.85; }
+  34%   { transform:translateX(1%) skewX(0deg);   opacity:0.5; }
+  35%   { transform:translateX(0%); opacity:1; }
+
+  /* ── Sweep 2: second half out ── */
+  48%   { transform:translateX(120%); }
+
+  /* ── Dwell: stay off-screen left until loop restarts ── */
+  48.5% { transform:translateX(-120%); }
+  100%  { transform:translateX(-120%); }
+}
+
+/* ── Version text gradient cycle ── */
+@keyframes versionGlow {
+  0%   { background-position: 100% 0; text-shadow: none; }
+  40%  { background-position: 0% 0; }
+  60%  { background-position: 0% 0; }
+  100% { background-position: 100% 0; text-shadow: none; }
+}
+
+/* ── Loading spinner ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Controller connected banner ── */
+@keyframes bannerSlide {
+  0% { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+/* contentSlideIn removed — replaced by CSS transitions on .content (scale + opacity) */
+
+/* ── CRT scan line scroll ── */
+@keyframes scanScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 200px; }
+}
+
+/* ── Overlay background drift ── */
+@keyframes bgDrift {
+  0% { background-position: 30% 20%, 70% 80%, center; }
+  33% { background-position: 40% 30%, 60% 70%, center; }
+  66% { background-position: 25% 35%, 75% 65%, center; }
+  100% { background-position: 35% 15%, 65% 85%, center; }
+}
+
+/* ── Keybind listening pulse ── */
+@keyframes keybind-pulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(var(--c-gold), 0.2); }
+  50% { box-shadow: 0 0 12px rgba(var(--c-gold), 0.5); }
+}
+
+/* ── Notification slide in/out ── */
+@keyframes notifSlideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes notifSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+/* ── Match accept ring pulse ── */
+@keyframes acceptPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(var(--c-teal), 0.2), inset 0 0 20px rgba(var(--c-teal), 0.05); }
+  50% { box-shadow: 0 0 30px rgba(var(--c-teal), 0.35), inset 0 0 30px rgba(var(--c-teal), 0.1); }
+}
+
+/* ── Opponent ready button pulse ── */
+@keyframes opponentReadyPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(var(--c-teal), 0.15), inset 0 0 12px rgba(var(--c-teal), 0.03);
+    border-color: rgba(var(--c-teal), 0.5);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(var(--c-teal), 0.3), inset 0 0 18px rgba(var(--c-teal), 0.06);
+    border-color: rgba(var(--c-teal), 0.7);
+  }
+}
+@keyframes badgeSlideIn {
+  0% { transform: translateY(-4px) scale(0.8); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes badgeGlitch {
+  0%, 100% { opacity: 1; text-shadow: 0 0 4px rgba(var(--c-teal), 0.6); }
+  48% { opacity: 1; text-shadow: 0 0 4px rgba(var(--c-teal), 0.6); }
+  49% { opacity: 0.7; text-shadow: 2px 0 4px rgba(var(--c-teal), 0.8), -1px 0 2px rgba(var(--c-orange), 0.3); }
+  51% { opacity: 1; text-shadow: -1px 0 4px rgba(var(--c-teal), 0.6); }
+  52% { opacity: 1; text-shadow: 0 0 4px rgba(var(--c-teal), 0.6); }
+}
+
+/* ── Countdown number pop ── */
+@keyframes countPop {
+  0% { transform: scale(3); opacity: 0; filter: blur(8px); }
+  20% { transform: scale(0.85); opacity: 1; filter: blur(0); }
+  35% { transform: scale(1.1); }
+  50% { transform: scale(0.97); }
+  65% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 0.85; }
+}
+
+/* ── Track name horizontal scroll ── */
+@keyframes trackScroll {
+  0% { transform: translateX(var(--scroll-start, 100%)); }
+  100% { transform: translateX(var(--scroll-dist, -100%)); }
+}
+
+/* ── Volume sparkle particle ── */
+@keyframes volSparkle {
+  0% { opacity: 1; transform: translate(var(--sx), var(--sy)) scale(1); }
+  100% { opacity: 0; transform: translate(var(--ex), var(--ey)) scale(0); }
+}
+
+/* ── Generic pulse (loading, hints) ── */
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ── Pulse variant (higher min opacity) ── */
+@keyframes pulse-restart {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ── Orientation change — smooth rotation transition ── */
+@keyframes orientationFade {
+  0%   { opacity: 0; transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+
+/* ── Vehicle card select pop (shared by lobby + character select) ── */
+@keyframes vehicleSelectPop {
+  0%   { transform:scale(0.95); }
+  50%  { transform:scale(1.06); }
+  100% { transform:scale(1.03); }
+}
+
+/* ── Neon sign flicker (irregular staccato) ── */
+@keyframes neonFlicker {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  4%   { opacity: 0.88; filter: brightness(0.85); }
+  6%   { opacity: 1; filter: brightness(1.05); }
+  52%  { opacity: 0.92; filter: brightness(0.9); }
+  54%  { opacity: 1; filter: brightness(1); }
+}
+
+/* ── Auth: neon border trace ── */
+@keyframes borderTrace {
+  0%   { stroke-dashoffset: var(--border-len); }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ── Auth: error glitch shake ── */
+@keyframes glitchShake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-4px); }
+  40%  { transform: translateX(4px); }
+  60%  { transform: translateX(-2px); }
+  80%  { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Auth: success light streak ── */
+@keyframes lightStreak {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Auth: staggered fade-slide-up for SSO icons ── */
+@keyframes fadeSlideUp {
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

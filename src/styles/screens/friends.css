@@ -1,0 +1,136 @@
+/* ── Friends ──────────────────────────────── */
+#friends-overlay .overlay-header-title {
+  display:flex; align-items:center; justify-content:flex-start; gap:14px;
+}
+#friends-overlay .content { max-width:440px; }
+
+/* ── Add Friend (quickstart-row style) ───── */
+.friends-add-group { width:100%; margin-bottom:6px; }
+
+.friends-add-combined {
+  display:flex; align-items:stretch; gap:0; width:100%;
+}
+
+.friends-add-field {
+  flex:1; min-width:0;
+  font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:2px;
+  color:rgba(var(--c-white),0.8); background:rgba(var(--bg-panel),0.65);
+  border:1px solid rgba(var(--c-teal),0.4); border-right:none;
+  border-radius:4px 0 0 4px; padding:10px 14px;
+  outline:none; transition:border-color 0.2s, box-shadow 0.2s;
+
+  &:focus { border-color:rgba(var(--c-teal),0.7); box-shadow:0 0 10px rgba(var(--c-teal),0.12); }
+  &::placeholder { color:rgba(var(--c-white),0.2); letter-spacing:1px; font-size:10px; }
+}
+
+.friends-add-btn {
+  display:flex; align-items:center; justify-content:center;
+  width:48px; border:1px solid rgba(var(--c-teal),0.4); border-left:none;
+  border-radius:0 4px 4px 0; background:rgba(var(--c-teal),0.03);
+  cursor:pointer; pointer-events:auto; transition:all 0.25s;
+  color:rgba(var(--c-teal),0.5);
+
+  &:hover { background:rgba(var(--c-teal),0.08); border-color:rgba(var(--c-teal),0.7); color:rgba(var(--c-teal),0.9); }
+}
+
+#friends-add-status {
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:2px;
+  min-height:16px; margin-top:4px; color:rgba(var(--c-white),0.4); text-align:center;
+
+  &.success { color:rgba(var(--c-teal),0.8); }
+  &.error { color:rgba(var(--c-red-bright),0.7); }
+}
+
+/* ── Friends Body (scrollable panel) ─────── */
+.friends-body {
+  width:100%; margin-top:8px;
+  background:rgba(var(--bg-surface),0.6); border:1px solid rgba(var(--teal-600),0.14);
+  border-radius:4px; padding:10px 0;
+  max-height:320px; overflow-y:auto;
+  scrollbar-width:thin; scrollbar-color:rgba(var(--teal-600),0.28) transparent;
+
+  &::-webkit-scrollbar { width:3px; }
+  &::-webkit-scrollbar-thumb { background:rgba(var(--teal-600),0.28); border-radius:2px; }
+}
+
+/* ── Section Labels ──────────────────────── */
+.friends-section-label {
+  font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:4px;
+  color:rgba(var(--c-gold),0.6); padding:0 14px; min-height:32px;
+  border-bottom:1px solid rgba(var(--teal-600),0.1); margin-bottom:2px;
+  display:flex; align-items:center;
+}
+
+/* ── Friend Row ──────────────────────────── */
+.friend-row {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 14px; border-bottom:1px solid rgba(var(--teal-600),0.06);
+  transition:background 0.15s; cursor:default; position:relative;
+
+  &:hover { background:rgba(var(--teal-600),0.06); }
+  &:last-child { border-bottom:none; }
+}
+
+/* ── Online Status Dot ───────────────────── */
+.friend-status-dot {
+  width:7px; height:7px; border-radius:50%; flex-shrink:0;
+  background:rgba(var(--c-white),0.15);
+  transition:all 0.3s;
+}
+.friend-status-dot--online {
+  background:rgba(var(--c-green),0.8);
+  box-shadow:0 0 4px rgba(var(--c-green),0.4);
+}
+
+/* ── Friend Name ─────────────────────────── */
+.friend-name {
+  font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:2px;
+  color:rgba(var(--c-white),0.7); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.friend-name--offline { color:rgba(var(--c-white),0.35); }
+
+/* ── Inline Actions ──────────────────────── */
+.friend-actions {
+  display:flex; gap:6px; flex-shrink:0;
+  opacity:0; transition:opacity 0.15s;
+}
+.friend-row:hover .friend-actions { opacity:1; }
+/* Always show actions for requests (they have ACCEPT/DENY) */
+#friends-requests-list .friend-actions { opacity:1; }
+
+.friend-action-btn {
+  font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:2px;
+  padding:4px 10px; border-radius:3px; cursor:pointer; pointer-events:auto;
+  transition:all 0.15s; white-space:nowrap;
+}
+.friend-action-btn--accept {
+  color:rgba(var(--c-teal),0.7); border:1px solid rgba(var(--c-teal),0.25);
+
+  &:hover { background:rgba(var(--c-teal),0.1); border-color:rgba(var(--c-teal),0.5); color:rgba(var(--c-teal),1); }
+}
+.friend-action-btn--deny {
+  color:rgba(var(--c-red-bright),0.5); border:1px solid rgba(var(--c-red-bright),0.15);
+
+  &:hover { background:rgba(var(--c-red-bright),0.08); border-color:rgba(var(--c-red-bright),0.4); color:rgba(var(--c-red-bright),0.9); }
+}
+.friend-action-btn--remove {
+  color:rgba(var(--c-white),0.2); border:1px solid rgba(var(--c-white),0.06);
+
+  &:hover { color:rgba(var(--c-red-bright),0.7); border-color:rgba(var(--c-red-bright),0.25); background:rgba(var(--c-red-bright),0.05); }
+}
+.friend-action-btn--invite {
+  color:rgba(var(--c-teal),0.5); border:1px solid rgba(var(--c-teal),0.15);
+
+  &:hover { background:rgba(var(--c-teal),0.08); border-color:rgba(var(--c-teal),0.4); color:rgba(var(--c-teal),0.9); }
+}
+
+/* ── Empty State ─────────────────────────── */
+.friends-empty {
+  font-family:'Rajdhani',sans-serif; font-size:13px;
+  color:rgba(var(--c-white),0.2); letter-spacing:1px; padding:24px 0;
+  text-align:center;
+}
+
+/* ── Requests section spacing ────────────── */
+#friends-requests { margin-bottom:4px; }
+#friends-requests-list { margin-bottom:8px; }

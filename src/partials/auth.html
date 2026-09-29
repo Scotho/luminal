@@ -1,0 +1,115 @@
+  <!-- Login Overlay -->
+  <div id="login-overlay" class="overlay-screen hidden" role="dialog" aria-label="Log in" tabindex="-1">
+    <div class="vignette"></div>
+    <div class="content">
+      <!-- Neon border trace SVG -->
+      <svg class="auth-border-trace" aria-hidden="true">
+        <rect class="auth-border-trace__rect" rx="6" ry="6" fill="none"
+              stroke="rgba(73,162,178,0.6)" stroke-width="1.5"
+              width="100%" height="100%"/>
+      </svg>
+
+      <div class="overlay-header-bar"><div class="overlay-header-title" id="login-header-title">SIGN IN</div><button class="auth-close" data-testid="auth-guest-btn" aria-label="Close" type="button"><svg class="icon"><use href="/icons.svg#i-x"/></svg></button></div>
+
+      <div id="login-form" class="auth-form">
+        <!-- ── Sign In Mode (default) ── -->
+        <div id="signin-mode">
+          <div class="auth-input-group">
+            <svg class="icon auth-input-icon"><use href="/icons.svg#i-mail"/></svg>
+            <input type="email" class="auth-input" id="login-email" placeholder="EMAIL" autocomplete="email" aria-label="Email address" aria-describedby="login-error">
+          </div>
+          <div class="auth-input-group auth-password-wrap">
+            <svg class="icon auth-input-icon"><use href="/icons.svg#i-lock"/></svg>
+            <input type="password" class="auth-input" id="login-password" placeholder="PASSWORD" autocomplete="current-password" aria-label="Password" aria-describedby="login-error">
+            <button type="button" class="auth-pw-toggle" id="pw-toggle-signin" aria-label="Show password"><svg class="icon"><use href="/icons.svg#i-eye"/></svg></button>
+          </div>
+          <div class="auth-error hidden" id="login-error" aria-live="polite"><svg class="icon auth-error-icon"><use href="/icons.svg#i-alert"/></svg><span id="login-error-text"></span></div>
+          <div class="auth-link auth-link--demoted auth-link--centered" id="btn-email-link-signin" role="button" tabindex="0"><svg class="icon"><use href="/icons.svg#i-link"/></svg> SIGN IN WITH EMAIL LINK</div>
+          <div id="email-sent-msg" class="auth-success-msg hidden" aria-live="polite"><svg class="icon"><use href="/icons.svg#i-mail"/></svg> CHECK YOUR EMAIL</div>
+          <div class="menu-btn hidden" id="btn-signin-submit" data-testid="auth-login-btn" role="button" tabindex="0">SIGN IN</div>
+          <div class="auth-link" id="btn-forgot-password" role="button" tabindex="0">FORGOT PASSWORD?</div>
+          <div class="auth-mode-toggle">Don't have an account? <span class="auth-link" id="btn-show-signup" role="button" tabindex="0">SIGN UP</span></div>
+        </div>
+
+        <!-- ── Sign Up Mode ── -->
+        <div id="signup-mode" class="hidden">
+          <div class="auth-input-group">
+            <svg class="icon auth-input-icon"><use href="/icons.svg#i-user"/></svg>
+            <input type="text" class="auth-input" id="signup-username" data-testid="auth-username-input" placeholder="USERNAME" maxlength="20" autocomplete="off" aria-label="Username" aria-describedby="signup-error">
+          </div>
+          <div class="auth-username-status hidden" id="username-status"></div>
+          <div class="auth-input-group">
+            <svg class="icon auth-input-icon"><use href="/icons.svg#i-mail"/></svg>
+            <input type="email" class="auth-input" id="signup-email" placeholder="EMAIL" autocomplete="email" aria-label="Email address" aria-describedby="signup-error">
+          </div>
+          <div class="auth-input-group auth-password-wrap">
+            <svg class="icon auth-input-icon"><use href="/icons.svg#i-lock"/></svg>
+            <input type="password" class="auth-input" id="signup-password" placeholder="PASSWORD" autocomplete="new-password" aria-label="Password" aria-describedby="signup-error">
+            <button type="button" class="auth-pw-toggle" id="pw-toggle-signup" aria-label="Show password"><svg class="icon"><use href="/icons.svg#i-eye"/></svg></button>
+          </div>
+          <div class="auth-error hidden" id="signup-error" aria-live="polite"><svg class="icon auth-error-icon"><use href="/icons.svg#i-alert"/></svg><span id="signup-error-text"></span></div>
+          <label class="auth-consent">
+            <input type="checkbox" id="signup-consent">
+            <span>I agree to the <a href="/privacy.html" target="_blank">Privacy Policy</a> and <a href="/terms.html" target="_blank">Terms of Service</a></span>
+          </label>
+          <div class="menu-btn" id="btn-signup-submit" data-testid="auth-signup-btn" role="button" tabindex="0">SIGN UP</div>
+          <div class="auth-mode-toggle">Already have an account? <span class="auth-link" id="btn-show-signin" role="button" tabindex="0">SIGN IN</span></div>
+        </div>
+
+        <!-- ── Forgot Password (sub-screen) ── -->
+        <div id="forgot-pw-form" class="auth-subscreen hidden">
+          <div class="auth-link" id="btn-forgot-back" role="button" tabindex="0">&larr; BACK</div>
+          <div class="auth-input-group">
+            <svg class="icon auth-input-icon"><use href="/icons.svg#i-mail"/></svg>
+            <input type="email" class="auth-input" id="forgot-pw-email" placeholder="EMAIL" autocomplete="email" aria-label="Email address" aria-describedby="forgot-pw-error">
+          </div>
+          <div class="auth-error hidden" id="forgot-pw-error" aria-live="polite"><svg class="icon auth-error-icon"><use href="/icons.svg#i-alert"/></svg><span id="forgot-pw-error-text"></span></div>
+          <div class="menu-btn menu-btn--secondary" id="btn-send-reset" role="button" tabindex="0">SEND RESET LINK</div>
+          <div id="reset-sent-msg" class="auth-success-msg hidden" aria-live="polite"><svg class="icon"><use href="/icons.svg#i-mail"/></svg> CHECK YOUR EMAIL</div>
+        </div>
+
+        <!-- ── Shared: OR divider + SSO row + phone + passwordless ── -->
+        <div id="auth-shared-section">
+        <div class="auth-divider">OR</div>
+        <div class="auth-oauth-row" role="group" aria-label="Sign in with a provider">
+          <button class="auth-oauth-btn" id="btn-google-sso" title="Sign in with Google" aria-label="Sign in with Google" type="button"><svg class="icon auth-oauth-icon"><use href="/icons.svg#i-google"/></svg></button>
+          <button class="auth-oauth-btn" id="btn-microsoft-sso" title="Sign in with Microsoft" aria-label="Sign in with Microsoft" type="button"><svg class="icon auth-oauth-icon"><use href="/icons.svg#i-microsoft"/></svg></button>
+          <button class="auth-oauth-btn" id="btn-github-sso" title="Sign in with GitHub" aria-label="Sign in with GitHub" type="button"><svg class="icon auth-oauth-icon"><use href="/icons.svg#i-github"/></svg></button>
+          <button class="auth-oauth-btn" id="btn-phone-sso" title="Sign in with Phone" aria-label="Sign in with Phone" type="button"><svg class="icon auth-oauth-icon"><use href="/icons.svg#i-phone"/></svg></button>
+          <button class="auth-oauth-btn auth-oauth-btn--disabled" id="btn-apple-sso" title="Apple — coming soon" aria-label="Apple — coming soon" type="button"><svg class="icon auth-oauth-icon"><use href="/icons.svg#i-apple"/></svg></button>
+        </div>
+
+        <!-- ── Phone Auth Panel ── -->
+        <div id="phone-panel" class="auth-phone-panel hidden">
+          <div id="phone-input-state">
+            <div class="auth-input-group">
+              <svg class="icon auth-input-icon"><use href="/icons.svg#i-phone"/></svg>
+              <input type="tel" class="auth-input" id="phone-number" placeholder="+1 555 123 4567" autocomplete="tel" aria-label="Phone number" aria-describedby="phone-error">
+            </div>
+            <div class="menu-btn menu-btn--secondary" id="btn-send-code" role="button" tabindex="0">SEND CODE</div>
+          </div>
+          <div id="phone-code-state" class="hidden">
+            <div class="auth-input-group">
+              <svg class="icon auth-input-icon"><use href="/icons.svg#i-shield"/></svg>
+              <input type="text" class="auth-input" id="phone-code" placeholder="6-DIGIT CODE" maxlength="6" inputmode="numeric" autocomplete="one-time-code" aria-label="Verification code" aria-describedby="phone-error">
+            </div>
+            <div class="menu-btn menu-btn--secondary" id="btn-verify-code" role="button" tabindex="0">VERIFY</div>
+          </div>
+          <div class="auth-error hidden" id="phone-error" aria-live="polite"><svg class="icon auth-error-icon"><use href="/icons.svg#i-alert"/></svg><span id="phone-error-text"></span></div>
+        </div>
+
+        </div>
+      </div>
+
+      <!-- ── Username Picker (post-SSO) ── -->
+      <div id="username-form" class="auth-form hidden">
+        <div class="auth-input-group">
+          <svg class="icon auth-input-icon"><use href="/icons.svg#i-user"/></svg>
+          <input type="text" class="auth-input" id="sso-username" placeholder="CHOOSE A USERNAME" maxlength="20" autocomplete="off" aria-label="Choose a username" aria-describedby="username-error">
+        </div>
+        <div class="auth-username-status hidden" id="sso-username-status"></div>
+        <div class="auth-error hidden" id="username-error" aria-live="polite"><svg class="icon auth-error-icon"><use href="/icons.svg#i-alert"/></svg><span id="username-error-text"></span></div>
+        <div class="menu-btn" id="btn-username-submit" role="button" tabindex="0">CONFIRM</div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,93 @@
+/* ── Map Selector ──────────────────────────────────── */
+
+.map-select-label {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: rgba(var(--c-gold), 0.65);
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+
+.map-select-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.map-select-tile {
+  position: relative;
+  background: rgba(10, 10, 20, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.8rem 1.6rem;
+  min-width: 120px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.map-select-tile:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.map-select-tile--selected {
+  border-color: var(--player-color, #0ff);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+}
+
+.map-select-tile--active {
+  border-color: var(--player-color, #0ff);
+}
+
+.map-select-tile-name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #aaa;
+}
+
+.map-select-tile--selected .map-select-tile-name {
+  color: var(--player-color, #0ff);
+}
+
+.map-select-tile-badge {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.4rem;
+  background: var(--player-color, #0ff);
+  color: #000;
+  font-size: 0.45rem;
+  font-weight: bold;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  letter-spacing: 1px;
+}
+
+.map-select-tile-players {
+  margin-top: 0.4rem;
+  pointer-events: none;
+}
+
+.map-select-player-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: 0.6rem;
+  line-height: 1.4;
+}
+
+.map-select-crown {
+  width: 0.7em;
+  height: 0.7em;
+  fill: gold;
+}
+
+.map-select-player-name {
+  letter-spacing: 0.5px;
+}

@@ -1,0 +1,144 @@
+/* ── Party HUD (affixed to right of central content) ──── */
+#party-hud {
+  position:fixed; top:118px; right:24px; z-index:21; margin-left:-1px;
+  background:rgba(var(--bg-surface-deep),0.52); border:1px solid rgba(var(--teal-600),0.14);
+  border-left:none; border-radius:0 3px 3px 0;
+  padding:10px 14px 8px;
+  backdrop-filter:blur(8px) saturate(0.7); pointer-events:auto;
+  min-width:250px; width:fit-content; max-width:320px;
+
+  &.hidden { display:none; }
+}
+
+.party-hud-header {
+  display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;
+}
+
+.party-hud-title {
+  font-family:'Orbitron',sans-serif; font-size:13px; letter-spacing:5px; font-weight:700;
+  color:rgba(var(--c-hot-light),0.65);
+}
+
+.party-hud-goto {
+  cursor:pointer; transition:opacity 0.2s, transform 0.2s;
+  display:flex; align-items:center; gap:3px;
+  font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:4px;
+  color:rgba(var(--c-hot),0.7);
+
+  &:hover { color:rgba(var(--c-hot),1); transform:translateX(2px); }
+}
+
+/* Party member rows */
+.party-member {
+  display:flex; align-items:center; gap:8px; margin-bottom:4px;
+  padding:6px 42px 6px 6px; border-radius:3px;
+  transition:background 0.2s, transform 0.15s;
+  cursor:default; position:relative;
+
+  &:last-child { margin-bottom:0; }
+  &.party-member--interactive {
+    cursor:pointer;
+
+    &:hover {
+      background:rgba(var(--c-white),0.06); transform:translateX(2px);
+
+      & .party-member-name { color:rgba(var(--c-white),0.95); }
+      & .party-member-action { display:block; }
+    }
+  }
+  &.party-member--open-slot {
+    cursor:pointer;
+    transition:background 0.2s, transform 0.15s, opacity 0.2s;
+
+    &:hover {
+      background:rgba(var(--c-white),0.06); transform:translateX(2px);
+      opacity:0.6 !important;
+      & .party-member-action { display:block; }
+    }
+  }
+  &.party-member--ai .party-member-name {
+    color:rgba(var(--c-white),0.35); font-style:italic;
+  }
+  &.party-member--editing {
+    background:rgba(var(--c-teal),0.08); border-left:2px solid rgba(var(--c-teal),0.5);
+    & .party-member-name { color:rgba(var(--c-teal),0.9); }
+  }
+}
+
+.party-member-dot {
+  width:8px; height:8px; border-radius:50%; flex-shrink:0; transition:box-shadow 0.2s;
+}
+
+.party-member-name {
+  font-family:'Rajdhani',sans-serif; font-size:13px; letter-spacing:1.5px;
+  color:rgba(var(--c-white),0.7); flex:1; transition:color 0.2s;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0;
+}
+
+.party-member-host {
+  font-family:'Orbitron',sans-serif; font-size:7px; letter-spacing:2px;
+  color:rgba(var(--c-gold),0.85);
+  background:rgba(var(--c-gold),0.08); border:1px solid rgba(var(--c-gold),0.2);
+  border-radius:2px; padding:1px 5px;
+  text-shadow:0 0 6px rgba(var(--c-gold),0.3);
+  transition:opacity 0.15s;
+  position:absolute; right:22px; top:50%; transform:translateY(-50%);
+}
+/* Push name truncation point left so it can't undercut HOST badge or hover action */
+.party-member:has(.party-member-host) .party-member-name { padding-right:38px; }
+.party-member--interactive:hover .party-member-name { padding-right:38px; }
+
+/* Hide host badge when action button appears on hover */
+.party-member:hover .party-member-host {
+  opacity:0;
+}
+
+.party-member-icon {
+  width:12px; height:12px; flex-shrink:0;
+  fill:none; stroke:rgba(var(--c-gold),0.7); stroke-width:2;
+  filter:drop-shadow(0 0 3px rgba(var(--c-gold),0.3));
+
+  &.party-member-icon--bot {
+    stroke:rgba(var(--c-white),0.4); stroke-width:2;
+    filter:none;
+  }
+}
+
+.party-member-check {
+  width:14px; height:14px; flex-shrink:0; opacity:0.15;
+  stroke:rgba(var(--c-white),0.4); stroke-width:2.5; fill:none;
+  transition:opacity 0.2s, stroke 0.2s;
+  position:absolute; right:6px; top:50%; transform:translateY(-50%);
+
+  &.party-member-check--ready {
+    opacity:1; stroke:rgb(var(--c-green-bright));
+    filter:drop-shadow(0 0 4px rgba(var(--c-green-bright),0.5));
+  }
+}
+
+/* Kick/leave hover hint */
+.party-member-action {
+  display:none; position:absolute; right:22px; top:50%; transform:translateY(-50%);
+  font-family:'Orbitron',sans-serif; font-size:7px; letter-spacing:2px;
+  padding:2px 6px; border-radius:2px;
+  pointer-events:auto; cursor:pointer;
+  transition:filter 0.15s;
+
+  &.party-member-action--kick {
+    color:rgba(var(--c-red-hot),0.8); background:rgba(var(--c-red-hot),0.1);
+    &:hover { filter:brightness(1.4); }
+  }
+  &.party-member-action--leave {
+    color:rgba(var(--c-gold),0.8); background:rgba(var(--c-gold),0.1);
+    &:hover { filter:brightness(1.4); }
+  }
+  &.party-member-action--promote {
+    color:rgba(var(--c-teal),0.8); background:rgba(var(--c-teal),0.1);
+    &:hover { filter:brightness(1.4); }
+  }
+  &.party-member-action--add-ai {
+    color:rgba(var(--c-white),0.5); background:rgba(var(--c-white),0.08);
+    &:hover { filter:brightness(1.4); }
+  }
+}
+

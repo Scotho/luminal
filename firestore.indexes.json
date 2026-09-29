@@ -1,0 +1,68 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "series", "order": "ASCENDING" },
+        { "fieldPath": "matchType", "order": "ASCENDING" },
+        { "fieldPath": "wins", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "series", "order": "ASCENDING" },
+        { "fieldPath": "matchType", "order": "ASCENDING" },
+        { "fieldPath": "bestStreak", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "series", "order": "ASCENDING" },
+        { "fieldPath": "matchType", "order": "ASCENDING" },
+        { "fieldPath": "currentStreak", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "series", "order": "ASCENDING" },
+        { "fieldPath": "matchType", "order": "ASCENDING" },
+        { "fieldPath": "fastestWin", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "series", "order": "ASCENDING" },
+        { "fieldPath": "matchType", "order": "ASCENDING" },
+        { "fieldPath": "matchCount", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "series", "order": "ASCENDING" },
+        { "fieldPath": "matchType", "order": "ASCENDING" },
+        { "fieldPath": "currentStreak", "order": "ASCENDING" },
+        { "fieldPath": "currentStreakBrokenAt", "order": "DESCENDING" }
+      ]
+    }
+    ,{
+      "collectionGroup": "matches",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "participantUids", "arrayConfig": "CONTAINS" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

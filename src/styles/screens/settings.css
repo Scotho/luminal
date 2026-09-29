@@ -1,0 +1,8 @@
+/* ── Settings — split into focused modules ── */
+
+@import './settings/layout.css';
+@import './settings/content.css';
+@import './settings/controls.css';
+@import './settings/keybinds.css';
+@import './settings/refresh.css';
+@import './settings/responsive.css';

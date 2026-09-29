@@ -1,0 +1,137 @@
+/* ══════════════════════════════════════════════
+   7. TOUCH-FRIENDLY TARGETS
+   Applies to any coarse-pointer device
+   ══════════════════════════════════════════════ */
+@media (pointer: coarse) {
+  /* Buttons — generous hit targets */
+  .menu-btn { min-height: 48px; }
+  .replay-btn { min-height: 48px; min-width: 48px; }
+  .dyn-back { min-height: 44px; }
+  .bestof-arrow, .setting-arrow {
+    padding: 8px 12px; min-height: 44px; min-width: 44px;
+    touch-action: manipulation;
+  }
+  .bestof-arrow:active, .setting-arrow:active:not(.setting-arrow--disabled) {
+    opacity: 0.65;
+    background: rgba(var(--c-hot-deep), 0.22);
+    transition: opacity 0.06s, background 0.06s;
+  }
+  .dropdown-item { min-height: 44px; }
+  .usm-item { min-height: 44px; }
+
+  /* Stats & profile tabs — upsized for finger targets */
+  .stats-mode-tab { min-height: 44px; padding: 12px 10px; }
+  .stats-series-pill { min-height: 44px; padding: 10px 16px; display: inline-flex; align-items: center; }
+  .profile-tab { min-height: 44px; padding: 12px 16px; display: inline-flex; align-items: center; }
+  .stats-header-tab { min-height: 44px; }
+
+  /* Character-select color swatches — larger touch targets */
+  .cs-color { width: 44px !important; height: 44px !important; }
+
+  /* Top-bar action buttons — min-width 44px, height stays 40 to fit topbar */
+  #fullscreen-btn, #tb-settings-btn, #notif-btn { min-width: 44px; min-height: 44px; }
+
+  /* Dyn-back inside menu-btn--secondary — guarantee 44 regardless of phone.css clamp */
+  .menu-btn.menu-btn--secondary.dyn-back { min-height: 44px; }
+
+  /* Auth modal — 44px minimum touch targets */
+  .auth-close { min-width: 44px; min-height: 44px; }
+  .auth-pw-toggle { min-width: 44px; min-height: 44px; }
+  .auth-link { min-height: 44px; display: inline-flex; align-items: center; }
+  .auth-link--demoted { min-height: 44px; }
+  .auth-oauth-btn { min-width: 44px; min-height: 44px; }
+
+  /* Toggle options — roomier */
+  .control-toggle .control-toggle__option { padding: 8px 14px; }
+
+  /* Slider thumbs — larger for finger precision */
+  input[type="range"]::-webkit-slider-thumb { width: 24px; height: 24px; }
+  input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; }
+  /* Re-center thumbs after enlarging: margin-top = -(thumb - track) / 2 */
+  .music-vol-slider::-webkit-slider-thumb { margin-top: -9px; }   /* 24px thumb, 6px track */
+  .music-scrubber::-webkit-slider-thumb { margin-top: -10px; }    /* 24px thumb, 4px track */
+
+  /* Slider tracks — thicker for finger targeting */
+  .music-scrubber { height: 10px; border-radius: 5px; }
+  .music-scrubber::-webkit-slider-runnable-track { height: 10px; }
+  .music-scrubber::-moz-range-track { height: 10px; border-radius: 5px; }
+  .music-scrubber::-webkit-slider-thumb { margin-top: -7px; }  /* 24px thumb, 10px track */
+  .music-vol-slider { height: 10px; border-radius: 5px; }
+  .music-vol-slider::-webkit-slider-runnable-track { height: 10px; }
+  .music-vol-slider::-moz-range-track { height: 10px; border-radius: 5px; }
+  .music-vol-slider::-webkit-slider-thumb { margin-top: -7px; } /* 24px thumb, 10px track */
+
+  /* Replay progress bar — thicker for touch */
+  #replay-progress { height: 12px; border-radius: 6px; }
+
+  /* Scrollbars — hidden on touch; users scroll natively */
+  ::-webkit-scrollbar { display: none !important; }
+  * { scrollbar-width: none !important; }
+
+  /* Buttons — no 300ms tap delay; still passes pan-y to scroll container */
+  .menu-btn, .dyn-back, .dropdown-item, .usm-item { touch-action: manipulation; }
+
+  /* Active press feedback — opacity/shadow only, not transform.
+     transform on :active fires on touchstart and causes scroll jank
+     when finger happens to land on a button during a scroll gesture. */
+  .menu-btn:active:not(.menu-btn--disabled) {
+    opacity: 0.72;
+    box-shadow: 0 0 20px rgba(var(--c-teal), 0.25), inset 0 0 16px rgba(var(--c-teal), 0.06);
+    transition: opacity 0.06s, box-shadow 0.06s;
+  }
+  .dyn-back:active { opacity: 0.65; transition: opacity 0.06s; }
+  .dropdown-item:active { background: rgba(var(--c-teal), 0.08); }
+  .lobby-vehicle-tile:active { transform: scale(0.972); transition: transform 0.06s; }
+  .lobby-card:active { transform: scale(0.972); transition: transform 0.06s; }
+
+  /* Color picker — bigger for fingers */
+  .color-opt { width: 24px; height: 24px; }
+
+  /* Disable hover sheen that doesn't apply on touch */
+  .menu-btn:hover::before { animation: none; }
+
+  /* ── Scroll Affordance — bottom fade on scrollable containers ── */
+  .overlay-screen .content,
+  .friends-body,
+  .music-tab-body,
+  .social-panels,
+  #mobile-drawer,
+  #chat-messages,
+  #chat-messages-match,
+  #chat-messages-lobby {
+    --scroll-fade: 24px;
+    mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black calc(100% - var(--scroll-fade)),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black calc(100% - var(--scroll-fade)),
+      transparent 100%
+    );
+  }
+  /* Remove fade when container is scrolled to bottom (via JS class) */
+  .scroll-at-end {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+
+  /* ── Swipeable Tab Panels ────────────── */
+  .swipe-tabs-container {
+    display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .swipe-tabs-container::-webkit-scrollbar { display: none; }
+  .swipe-tabs-container > * {
+    flex: 0 0 100%; width: 100%; min-width: 0; box-sizing: border-box;
+    scroll-snap-align: start; scroll-snap-stop: always;
+  }
+  /* Override hidden panels inside swipe container — layout is scroll, not display toggle */
+  .swipe-tabs-container > .hidden,
+  .swipe-tabs-container > :not(.keybinds-panel--active) { display: flex !important; }
+  .swipe-tabs-container > .keybinds-panel:not(.keybinds-panel--active) { display: block !important; }
+}

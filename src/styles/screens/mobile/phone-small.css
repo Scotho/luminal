@@ -1,0 +1,62 @@
+/* ══════════════════════════════════════════════
+   5. SMALL PHONE  (≤360px)
+   iPhone SE, Galaxy A-series, compact devices
+   ══════════════════════════════════════════════ */
+@media (max-width: 360px) {
+  .overlay-screen .content {
+    padding: 10px 8px;
+    padding-top: calc(42px + var(--safe-top));
+    max-width: calc(100vw - 20px); max-height: calc(100vh - 20px); margin: 10px;
+  }
+  #overlay .game-logo--menu {
+    width: min(260px, 75vw);
+    margin-bottom: 10px;
+  }
+  #menu-buttons, #result-buttons, #pause-buttons, #online-pause-buttons { width: 90vw; max-width: 100%; margin: 0 auto; gap: 6px; }
+  .menu-btn {
+    font-size: clamp(10px, 3vw, 14px); letter-spacing: 2px;
+    padding: clamp(8px, 2.5vw, 14px) 12px; min-height: clamp(40px, 11vw, 50px);
+    width: 100%;
+  }
+  .menu-btn.menu-btn--secondary {
+    font-size: clamp(9px, 2.6vw, 12px); padding: clamp(7px, 2.2vw, 12px) 12px; min-height: clamp(38px, 10vw, 46px);
+    width: 100%;
+  }
+
+  #auth-status { height: calc(36px + var(--safe-top)); padding-top: var(--safe-top); }
+  #notif-toast-container { top: calc(44px + var(--safe-top)); }
+
+  .loading-panel { padding: 20px 14px; border-radius: 10px; }
+  #loading-screen .game-logo { width: min(200px, 65vw); }
+  #loading-screen .loading-subtitle { font-size: 9px; letter-spacing: 2px; margin-bottom: 16px; }
+  #loading-screen .click-prompt { height: 26px; }
+  .loading-bar-wrap { width: 150px; }
+
+  /* Header bar — match small-phone .content padding */
+  .overlay-header-bar {
+    --_ohb-pt: calc(42px + var(--safe-top));
+    --_ohb-px: 8px;
+    padding: 6px 8px;
+    min-height: 36px;
+    gap: 4px;
+  }
+
+  .overlay-header-title {
+    font-size: clamp(12px, 4vw, 18px) !important;
+    letter-spacing: clamp(1.5px, 0.5vw, 4px) !important;
+    padding-inline: 2px;
+  }
+
+  .lobby-vehicle-tile { width: 95px; min-height: 95px; }
+  .lobby-card { width: 90px; min-height: 70px; }
+  .lobby-card-name { font-size: 10px; }
+  .lobby-btn-hero { font-size: 12px; letter-spacing: 4px; padding: 12px 0; }
+  .lobby-btn-sm { font-size: 9px; letter-spacing: 2px; padding: 8px 0; }
+  .lobby-party-chip-count { font-size: 8px; }
+
+  #meter-bar { width: 130px; height: 7px; }
+  #countdown-num { font-size: 64px; }
+
+  .bestof-label { min-width: 110px; font-size: 9px; }
+  .control-toggle .control-toggle__option { padding: 6px 10px; font-size: 11px; }
+}

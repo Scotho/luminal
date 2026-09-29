@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — Luminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: rgb(2, 3, 5);
+      color: rgb(230, 241, 238);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: rgb(250, 195, 34);
+      font-size: 24px;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+    }
+    a { color: rgb(73, 162, 178); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+    .cl-version {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: rgb(232, 93, 117);
+      margin: 20px 0 8px 0;
+    }
+    .cl-version:first-child { margin-top: 0; }
+    .cl-date {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: rgba(230, 241, 238, 0.3);
+    }
+    ul {
+      margin: 0 0 8px 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    li {
+      margin-bottom: 4px;
+      color: rgba(230, 241, 238, 0.6);
+      font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      body { padding: 24px 16px; }
+      h1 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link" onclick="window.close();return false">&larr; BACK TO LUMINAL</a>
+    <h1>CHANGELOG</h1>
+
+    <div id="changelog-body">
+    <div class="cl-version">v1.0.10 <span class="cl-date">&mdash; Apr 19, 2026</span></div>
+    <ul>
+      <li>Matchmaking: both players' map picks now sync — wheel spins when they differ, locks in directly when they match</li>
+      <li>Map wheel labels moved to the outer band (radial placement) — no more names stacked at the hub</li>
+      <li>LOADING MAP overlay no longer leaks into the match after the matchmaking tiebreaker</li>
+      <li>Chat snaps to the latest message when the CHAT tab is opened in the social panel</li>
+      <li>VECTOR (hoverboard) unlocked by default</li>
+      <li>SHOP and EMISSIVES tabs hidden while the purchase flow is rebuilt</li>
+      <li>Perf frame-time telemetry restored (was capturing zero frames)</li>
+      <li>Internal: e2e test infrastructure repairs across settings, grind, telemetry, and lobby; admin UI + shop + ranked suites scoped out of CI</li>
+    </ul>
+    <div class="cl-version">v1.0.9 <span class="cl-date">&mdash; Apr 8, 2026</span></div>
+    <ul>
+      <li>Netcode telemetry &amp; health classification — RTT/rollback percentiles, bounded ring buffers, 6 new health signals</li>
+      <li>Netcode architecture — lockstepManager split into 7 focused modules</li>
+      <li>Performance — O(1) ring buffers, zero-alloc proximity computation</li>
+      <li>Lobby finder — browse public lobbies, spectator support</li>
+      <li>Admin dashboard v3 — agent cockpit, git environment, overseer, floating panels</li>
+      <li>Audio — Slingshot sweep rewrite, slipstream lifecycle fixes</li>
+      <li>Feature flags — rollout percentages, user targeting</li>
+      <li>Bug fixes — BUG-1 through BUG-17</li>
+      <li>BUG-18 diagnostic instrumentation</li>
+    </ul>
+    <div class="cl-version">v1.0.9 <span class="cl-date">&mdash; Apr 8, 2026</span></div>
+    <ul>
+      <li>Netcode telemetry &amp; health classification — RTT/rollback percentiles, bounded ring buffers, 6 new health signals</li>
+      <li>Netcode architecture — lockstepManager split into 7 focused modules</li>
+      <li>Performance — O(1) ring buffers, zero-alloc proximity computation</li>
+      <li>Lobby finder — browse public lobbies, spectator support</li>
+      <li>Admin dashboard v3 — agent cockpit, git environment, overseer, floating panels</li>
+      <li>Audio — Slingshot sweep rewrite, slipstream lifecycle fixes</li>
+      <li>Feature flags — rollout percentages, user targeting</li>
+      <li>Bug fixes — BUG-1 through BUG-17</li>
+      <li>BUG-18 diagnostic instrumentation</li>
+    </ul>
+    <div class="cl-version">v1.0.9 <span class="cl-date">&mdash; Apr 8, 2026</span></div>
+    <ul>
+      <li>Netcode telemetry &amp; health classification — RTT/rollback percentiles, bounded ring buffers, 6 new health signals</li>
+      <li>Netcode architecture extraction — lockstepManager split into 7 focused modules (800→664 lines)</li>
+      <li>Performance fixes — O(1) ring buffers replace push/shift arrays, zero-alloc proximity computation</li>
+      <li>Lobby finder — browse public lobbies, spectator support, controller navigation</li>
+      <li>Admin dashboard v3 — agent cockpit, git environment, overseer monitoring, floating panels</li>
+      <li>Audio improvements — Slingshot sweep rewrite, slipstream lifecycle fixes, showroom engine cleanup</li>
+      <li>Feature flags — rollout percentages, user targeting, client-side flag reader</li>
+      <li>Bug fixes — BUG-1 through BUG-7 stale listeners, duplicate matches, settings sync, spatial audio</li>
+      <li>BUG-18 diagnostic instrumentation for invisible-player investigation</li>
+    </ul>
+    <div class="cl-version">v1.0.8 <span class="cl-date">&mdash; Apr 6, 2026</span></div>
+    <ul>
+      <li>Vehicle audio engine &mdash; Spectre sweep, Slingshot 9-band RPM, Hoverboard procedural, spatial pass-by system, showroom engine preview on loadout</li>
+      <li>Grind system &mdash; balance minigame, trail segment destruction, procedural grind SFX, spark VFX, world-space balance HUD</li>
+      <li>AI difficulty system &mdash; easy/medium/hard presets with scaled perception, offense, hunting, personality, reaction delay, and attack gating</li>
+      <li>Admin dashboard v2 &mdash; multi-agent CC panel, command bar, kanban, notes, sessions, activity feed, CI integration, coverage heatmap, PR reviews, E2E matrix</li>
+      <li>Profile system &mdash; profile page with stats, edit modal, social links, Firestore rules, leaderboard/friends/lobby integration</li>
+      <li>Match history &mdash; cloud replay upload/download with gzip compression, replay playback from history tab</li>
+      <li>Slipstream boost &mdash; proximity speed boost with FOV kick, trail glow VFX, procedural energy siphon sound with fade-out on death</li>
+      <li>Fumes grace buffer system with sputter SFX and visual feedback on boost expiry</li>
+      <li>Hoverboard vehicle &mdash; 3D model loader, hover bob animation, unlock system</li>
+      <li>E2E test expansion &mdash; friend lifecycle, disconnect recovery, netcode diagnostics, auto bug reporting, outcome validation</li>
+      <li>Drift tuning &mdash; low-speed slip ceiling, snap exit mechanics</li>
+      <li>Loadout screen &mdash; map carousel with voting, difficulty selector, color picker repositioning</li>
+      <li>Player death audio &mdash; graceful fade-out for engine and slipstream sounds on explosion</li>
+      <li>Local dev proxy &mdash; hot/cold/admin hostname aliases via reverse proxy</li>
+      <li>Cloud Functions &mdash; health check callable, stale match cleanup, test server version tracking</li>
+      <li>Ops triage skill &mdash; on-demand cleanup, bug spike, and CI failure triage with dry-run-first workflow</li>
+      <li>CI pipeline &mdash; GitHub Actions workflow with typecheck, lint, unit tests, relay, admin, functions, and browser E2E</li>
+    </ul>
+    <div class="cl-version">v1.0.8 <span class="cl-date">&mdash; Apr 6, 2026</span></div>
+    <ul>
+      <li>Vehicle audio engine &mdash; Spectre sweep, Slingshot 9-band RPM, Hoverboard procedural, spatial pass-by system, showroom engine preview on loadout</li>
+      <li>Grind system &mdash; balance minigame, trail segment destruction, procedural grind SFX (enter, loop, bail, exit, hop, landing), spark VFX, world-space balance HUD</li>
+      <li>AI difficulty system &mdash; easy/medium/hard presets with scaled perception, offense, hunting, personality, reaction delay, and attack gating</li>
+      <li>Admin dashboard v2 &mdash; multi-agent CC panel, command bar, kanban, notes, sessions, activity feed, CI integration, coverage heatmap, PR reviews, E2E matrix</li>
+      <li>Profile system &mdash; profile page with stats, edit modal, social links (Discord/Steam/Twitch/YouTube), Firestore rules, leaderboard/friends/lobby integration</li>
+      <li>Match history &mdash; cloud replay upload/download, replay playback from history tab, gzip compression, Firestore indexes</li>
+      <li>Slipstream boost &mdash; proximity speed boost (13-unit range, 15%), FOV kick, trail glow VFX, procedural energy siphon sound with fade-out on death</li>
+      <li>Fumes system &mdash; grace buffer on boost expiry, sputter SFX, fumes visual feedback</li>
+      <li>Hoverboard vehicle &mdash; 3D model loader, hover bob animation, unlock system</li>
+      <li>E2E test expansion &mdash; friend lifecycle, disconnect recovery, netcode diagnostics, auto bug reporting, outcome validation, trace and screenshot capture on failure</li>
+      <li>Drift tuning &mdash; low-speed slip ceiling, snap exit mechanics</li>
+      <li>Loadout screen &mdash; map carousel with voting, difficulty selector, color picker repositioning, re-click showroom engine preview</li>
+      <li>Player death audio &mdash; graceful 300ms fade-out for engine and slipstream sounds on explosion</li>
+      <li>Local dev proxy &mdash; http://hot, http://cold, http://admin hostname aliases via reverse proxy</li>
+      <li>Cloud Functions &mdash; health check callable, stale match cleanup (6h schedule), test server version tracking</li>
+      <li>Ops triage skill &mdash; on-demand cleanup, bug spike, and CI failure triage with dry-run-first workflow and Discord output</li>
+      <li>CI pipeline &mdash; GitHub Actions workflow for typecheck, lint, unit tests, relay tests, admin tests, functions tests, browser E2E</li>
+    </ul>
+      <div class="cl-version">v1.0.7 <span class="cl-date">&mdash; Apr 4, 2026</span></div>
+      <ul>
+        <li>Map system &mdash; map selector in character select with background transitions, lobby map voting with animated wheel tiebreaker and procedural sounds</li>
+        <li>Stats Hub &mdash; mode tabs, series pills, stat cards with rank badges, leaderboard drilldown with graveyard stats</li>
+        <li>Settings redesign &mdash; full-page sidebar layout with keyboard and gamepad navigation, inline keybinds</li>
+        <li>Auth overlay redesign &mdash; progressive sign-in, 12 new SVG icons, forgot-password flow, controller navigation</li>
+        <li>Arena floor reflections with quality presets and admin tuning controls</li>
+        <li>Privacy policy &amp; terms of service with signup consent</li>
+        <li>E2E testing framework &mdash; bot drivers, headless client, scenario runner, relay harness</li>
+        <li>Unified design tokens &amp; button styling across all screens</li>
+      </ul>
+      <div class="cl-version">v1.0.6 <span class="cl-date">&mdash; Apr 3, 2026</span></div>
+      <ul>
+        <li>Dedicated match server &mdash; live match packets now route through a dedicated relay server with token auth, rate limiting, and reconnect support; automatic fallback if unavailable. Fully compatible with existing lockstep netcode &mdash; adaptive input delay, rollback prediction, desync recovery, and hash verification all work seamlessly over the new transport.</li>
+        <li>Atmosphere system &mdash; layered volumetric atmosphere with fog haze, floor mist, and hero beam volume shaders with reactive bloom tuning</li>
+        <li>New arena &mdash; GLB arena model with circular boundary and dynamic radius; Milky Way panoramic skybox</li>
+        <li>AI circular arena fix &mdash; wall detection now uses circular boundary math and dynamic radius instead of hardcoded rectangular limits</li>
+        <li>Transport desync fix &mdash; player index mapping now uses deterministic sort order, fixing input-swap divergence between clients</li>
+        <li>Trail and replay stability fixes</li>
+        <li>UI polish &mdash; rainbow-order color selects, reduced stand emissives, button text accent tuning</li>
+      </ul>
+      <div class="cl-version">v1.0.5 <span class="cl-date">&mdash; Mar 31, 2026</span></div>
+      <ul>
+        <li>Arena visual overhaul &mdash; arena palette shifted from purple/violet to teal/cyan/orange, floor reflectivity increased, barrier walls taller with solid backings</li>
+        <li>Arena glow rework &mdash; orange baseboard strips, top edge strips, corner pillar accents, and wall lights recolored to warm orange</li>
+        <li>Stadium floor &mdash; circular platform at barrier height with square cutout for the arena</li>
+        <li>Player colors rebalanced &mdash; darker, more saturated tones; 2 new colors added (green, pink); emissive intensities tuned per hue</li>
+        <li>Demo camera intro &mdash; smooth ease-out rise from floor level when entering main menu</li>
+        <li>Unified overlay headers &mdash; all screens now use consistent header bar with persistent back button that moves between screens</li>
+        <li>Audio-reactive palette cycling &mdash; arena color cycling continues even when music is not playing</li>
+        <li>Rave spotlight sweep &mdash; stadium spotlights now sweep directionally with rest angles instead of static pointing</li>
+        <li>Camera distance slider max increased from 35 to 44</li>
+        <li>START button demoted from hero to small secondary size in lobby action bar</li>
+      </ul>
+      <div class="cl-version">v1.0.4 <span class="cl-date">&mdash; Mar 31, 2026</span></div>
+      <ul>
+        <li>Netcode health signals &mdash; match health classified as healthy / degraded / unstable based on rollbacks, desyncs, recoveries, late inputs, and stalls</li>
+        <li>Death-after-rollback fix &mdash; deaths caused by rollback resimulation are no longer silently lost</li>
+        <li>Peer death fallback &mdash; if lockstep sim doesn't confirm a peer death within 500ms, it promotes as fallback so the round still ends</li>
+        <li>DelayAdvisor escalation &mdash; severe late-input rates (&gt;50%) now raise input delay by +2 or +3 instead of just +1</li>
+        <li>Result ghost pre-warm &mdash; expensive GLTF clone moved from killcam to countdown "3", eliminating death-transition FPS drops</li>
+        <li>Desync diagnostics &mdash; trail mid-samples and quantize-interval context logged on hash mismatch</li>
+        <li>Integrity buffering &mdash; early remote roundEnd claims are stored and rechecked when local result is determined</li>
+        <li>Fallback activation counter &mdash; state-stream timeout fallbacks are now counted and surfaced in round stats</li>
+      </ul>
+      <div class="cl-version">v1.0.3 <span class="cl-date">&mdash; Mar 31, 2026</span></div>
+      <ul>
+        <li>Lockstep truth model &mdash; deterministic sim is sole authority for deaths and round results in lockstep mode</li>
+        <li>Disabled state-stream fallbacks &mdash; onRemoteDead, opponent roundEnd trust, and roundEnd timeout bypassed in lockstep</li>
+        <li>onAllRoundEnd integrity check &mdash; logs warnings when peer claims disagree with local deterministic result</li>
+      </ul>
+      <div class="cl-version">v1.0.2 <span class="cl-date">&mdash; Mar 30, 2026</span></div>
+      <ul>
+        <li>Netcode fixes &mdash; hash race condition, match cleanup ownership, listener dedup, vote determinism</li>
+        <li>N-player killcam &mdash; camera targets actual dead opponent, not always the first remote player</li>
+        <li>N-player replay &mdash; metadata stores all opponent names and correct winner name</li>
+        <li>N-player trail VFX &mdash; proximity glow now renders for all remote humans, not just first</li>
+        <li>N-player chat &mdash; match chat tab shows all opponent names</li>
+      </ul>
+      <div class="cl-version">v1.0.1 <span class="cl-date">&mdash; Mar 30, 2026</span></div>
+      <ul>
+        <li>N-player lockstep &mdash; game loop generalized from 1v1 to support N human players</li>
+        <li>AI desync fix &mdash; PRNG calls consumed unconditionally to keep determinism across clients</li>
+        <li>Music player &mdash; scrubber moved between track name and controls, resized to match volume sliders</li>
+        <li>Playlist dropdown &mdash; YOUR PLAYLIST always visible, persistent active selection synced with music page</li>
+        <li>Social party &mdash; kick/add-slot actions wired in social tab mirror; party dropdown hidden outside menu</li>
+        <li>Lobby previews &mdash; model centering, camera framing, and showroom rendering fixes</li>
+        <li>Mobile polish &mdash; character select, social, streak, loading, and touch breakpoint refinements</li>
+        <li>Roadmap &mdash; restructured phases, added Alpha Release milestone, completed items shown struck through</li>
+      </ul>
+      <div class="cl-version">v1.0.0 <span class="cl-date">&mdash; Mar 30, 2026</span></div>
+      <ul>
+        <li>Social system &mdash; friends list, party management, and notifications</li>
+        <li>Vehicle select screen &mdash; showroom-style picker with stat bars, flavor text, and color chooser</li>
+        <li>Lockstep netcode &mdash; adaptive input delay derived from live RTT and desync recovery</li>
+        <li>Mid-game lobby join and JOIN GAME notifications</li>
+        <li>CSS architecture &mdash; <code>--topbar-offset</code> custom property across all HUD elements</li>
+      </ul>
+      <div class="cl-version">v0.9.9 <span class="cl-date">&mdash; Mar 29, 2026</span></div>
+      <ul>
+        <li>Server-authoritative scores &mdash; both clients reconcile via Firebase before showing results</li>
+        <li>Killcam orbits until server confirms round result; dying player is authoritative on winner</li>
+        <li>Lobby AI fully integrated &mdash; collisions, killcam, spectating, and score tracking</li>
+        <li>AI deaths trigger explosion SFX; pregame popup and series HUD include AI names and colors</li>
+        <li>Spectating follows surviving AIs after death, transitions to result when 1 remains</li>
+      </ul>
+      <div class="cl-version">v0.9.8 <span class="cl-date">&mdash; Mar 29, 2026</span></div>
+      <ul>
+        <li>Streak overlay no longer persists on home screen after exiting mid-killcam</li>
+        <li>Match selector updates replay, favorite icon, and playback when cycling rounds</li>
+        <li>Series scoreboard hidden on return to menu; next-round button visible for both players</li>
+        <li>Score double-increment prevented; <code>_endSpectating</code> skips local updates in online mode</li>
+        <li>Touch indicator always visible on desktop; lazy init on first touch for touchscreen laptops</li>
+      </ul>
+      <div class="cl-version">v0.9.7 <span class="cl-date">&mdash; Mar 29, 2026</span></div>
+      <ul>
+        <li>Staggered menu entrance animation; replay on return from gameplay</li>
+        <li>Mobile portrait polish &mdash; larger title, wider buttons, fluid-width overrides, scroll-through overlays</li>
+        <li>Return-to-lobby fix &mdash; ready state and autostart timer cleared on rejoin</li>
+        <li>Loading screen dismiss race fix; larger click prompt and status text</li>
+      </ul>
+      <div class="cl-version">v0.9.5 <span class="cl-date">&mdash; Mar 28, 2026</span></div>
+      <ul>
+        <li>Stats screen, DM chat, social dropdown with party management</li>
+        <li>WASD/gamepad quickstart navigation; CSS-native cursor with hover glow</li>
+        <li>Slingshot drift decel handling; car colorization and underglow</li>
+        <li>Leaderboard medal icons; pinch-to-zoom camera on mobile</li>
+      </ul>
+      <div class="cl-version">v0.9.4 <span class="cl-date">&mdash; Mar 28, 2026</span></div>
+      <ul>
+        <li>Fixed Firebase permission errors causing online desync and broken friends list</li>
+        <li>Separate drift-brake (Space) vs regular brake (S) &mdash; active braking mid-drift</li>
+        <li>Full input prediction for rollback netcode; simulation performance optimizations</li>
+        <li>New Tron Motorcycle model (DreamLoft3D) with rider and material-aware colorization</li>
+        <li>Friends UI overhaul &mdash; online status, inline invite/remove, smart invite auto-creates lobby</li>
+        <li>Firefox dropdown compatibility fixes</li>
+        <li>Visual polish: emissive boost for dark colors, doubled ground FX, faster overlay animations</li>
+      </ul>
+      <div class="cl-version">v0.9.3 <span class="cl-date">&mdash; Mar 27, 2026</span></div>
+      <ul>
+        <li>Mobile touch controls &mdash; zone steering, slide to accelerate/brake, dual-tap boost</li>
+        <li>Mobile UI overhaul &mdash; full-viewport menus, condensed top bar, bottom-sheet chat</li>
+        <li>Fixed multiple lobby race conditions and listener stacking bugs</li>
+        <li>Netcode framework Phase 1&ndash;2 &mdash; state machine, death arbiter, match factory</li>
+      </ul>
+      <div class="cl-version">v0.9.2 <span class="cl-date">— Mar 27, 2026</span></div>
+      <ul>
+        <li>Vapor text loading screen effect; PWA install hint</li>
+        <li>Top bar polish &mdash; unified click targets, tighter spacing, reduced glow</li>
+        <li>SFX volume default lowered to 75%</li>
+      </ul>
+      <div class="cl-version">v0.9.1 <span class="cl-date">— Mar 27, 2026</span></div>
+      <ul>
+        <li>PWA title bar integration (Window Controls Overlay)</li>
+        <li>Custom SVG cursors with Luminal theme</li>
+        <li>Notification overhaul &mdash; countdown spinner, swipe-to-dismiss, shorter duration</li>
+        <li>Settings sync to server for logged-in users</li>
+        <li>Slingshot drift meter regen increased ~15%</li>
+      </ul>
+      <div class="cl-version">v0.9.0 <span class="cl-date">— Mar 27, 2026</span></div>
+      <ul>
+        <li><strong>Slingshot Mobile Controls</strong></li>
+        <li>Vehicle-aware touch system &mdash; car mode changes two-finger behavior to support drift + counter-steer</li>
+        <li>Drift on mobile: touch a side + slide down to initiate drift, second finger on opposite side to counter-steer</li>
+        <li>W-boost during drift: slide second finger up for accelerate while brake held</li>
+        <li>Boost-out: slide drift finger back up &mdash; brake releases, instant exit when aligned</li>
+        <li>Amber drift glow + DRIFT label overlay feedback when drifting</li>
+
+        <li><strong>Mobile Polish</strong></li>
+        <li>Increased font sizes for menu buttons, bottom bar, and loading screen on mobile</li>
+        <li>Loading title no longer wraps on narrow screens (nowrap + overflow visible)</li>
+        <li>Bottom bar: larger text, better spacing, icon cleanup in mobile drawer</li>
+      </ul>
+      <div class="cl-version">v0.8.9 <span class="cl-date">— Mar 27, 2026</span></div>
+      <ul>
+        <li><strong>Mobile</strong></li>
+        <li>Touch controls rewritten &mdash; two-zone 50/50 layout with vertical slide gestures for throttle, brake, and boost</li>
+        <li>Mobile drawer &mdash; bottom bar, announcements, and chat stack into a single scrollable container</li>
+        <li>Top bar condensed for mobile &mdash; icon-only mute/prev/pause/skip/fullscreen, non-essential controls hidden</li>
+        <li>Radar hidden during gameplay on mobile (toggle in settings), shown on pause</li>
+        <li>Chat disabled on mobile to save screen space</li>
+        <li>Loading screen text sizing tweaks for small screens</li>
+
+        <li><strong>AI</strong></li>
+        <li>Vehicle-aware AI &mdash; separate tuning constants for Bike vs Slingshot (turn speed, base/boost/dash/drift speeds)</li>
+        <li>AI now uses brake input &mdash; drift commit/cooldown/exit timers for Slingshot driving</li>
+
+        <li><strong>UI</strong></li>
+        <li>Changelog &amp; Roadmap converted from draggable popovers to full overlay-screen panels with back-button navigation</li>
+        <li>Mouse wheel now scrolls chat naturally when hovered instead of zooming camera</li>
+
+        <li><strong>Infrastructure</strong></li>
+        <li>Firebase rules &amp; indexes updated</li>
+        <li>Favicon assets moved to public/</li>
+        <li>New tests: lockstep manager, seeded random, online match class, lobby</li>
+      </ul>
+      <div class="cl-version">v0.8.8 <span class="cl-date">— Mar 27, 2026</span></div>
+      <ul>
+        <li><strong>Party &amp; Lobby Fixes</strong></li>
+        <li>Offline kick countdown now ticks down correctly (was stuck at 30s and never firing)</li>
+        <li>Auto-kick at 0s now executes reliably when a player stays offline</li>
+        <li>Party HUD minimum width increased — LEAVE button no longer collides with long names</li>
+        <li>AI selection preserved when changing vehicle — no longer drops selection after Firebase sync</li>
+        <li>Clicking the same AI name no longer deselects it; only switching to a different name changes selection</li>
+
+        <li><strong>Mobile</strong></li>
+        <li>Announcements hidden on mobile</li>
+        <li>Bottom bar hidden on mobile</li>
+      </ul>
+      <div class="cl-version">v0.8.7 <span class="cl-date">— Mar 27, 2026</span></div>
+      <ul>
+        <li><strong>Mobile</strong></li>
+        <li>PWA install button — mobile users can now install Luminal as an app (service worker, manifest, native install prompt)</li>
+        <li>Complete mobile breakpoint overhaul — 9 responsive tiers from tablet (1024px) down to small phone (360px), landscape, PWA standalone, and retina</li>
+        <li>Native mobile feel: safe-area insets for notch/island, fluid clamp() typography, :active press feedback, larger touch targets, app-native border-radius</li>
+        <li>Smooth orientation change animation with fade overlay and scale-in reveal</li>
+
+        <li><strong>Lobby &amp; Party</strong></li>
+        <li>Return Party to Lobby — host can pull all players back to lobby from pause menu or between rounds</li>
+        <li>Party HUD: check marks pinned right, kick/leave buttons to the left on hover, visible on all rows</li>
+        <li>Clicking yourself in party HUD deselects AI and syncs color picker back to your color</li>
+
+        <li><strong>Chat</strong></li>
+        <li>Chat always hidden at match start (local and online), always restored on menu return</li>
+        <li>Joining a party forces chat visible (overrides manual close)</li>
+        <li>Removed countdown messages (3, 2, 1, GO) from match chat</li>
+        <li>Fixed party chat tab not filling resized chat window</li>
+
+        <li><strong>Slingshot Tuning</strong></li>
+        <li>Dash drain reduced 10% (60 → 54) — longer boost windows</li>
+        <li>Drift meter regen increased 10% (15 → 16.5) — more rewarding drifts</li>
+        <li>Per-vehicle dash drain now configurable (bike unchanged at 60)</li>
+      </ul>
+      <div class="cl-version">v0.8.6 <span class="cl-date">— Mar 26, 2026</span></div>
+      <ul>
+        <li><strong>Security &amp; Anti-Cheat</strong></li>
+        <li>Server-side rule hardening across all real-time systems</li>
+        <li>State validation and bounds enforcement on all networked fields</li>
+        <li>Client-side integrity checks with sequence-based ordering</li>
+        <li>Transactional writes for matchmaking, lobbies, and leaderboards</li>
+
+        <li><strong>Matchmaking</strong></li>
+        <li>Fixed race conditions in queue matching</li>
+        <li>Faster match lookups with indexed queries</li>
+        <li>Improved queue presence cleanup</li>
+
+        <li><strong>Netcode</strong></li>
+        <li>Adaptive RTT estimation with EMA-smoothed jitter tracking</li>
+        <li>Dynamic grace windows and interpolation delay tuned to connection quality</li>
+        <li>Sequence-based packet ordering with per-round resets</li>
+
+        <li><strong>Lockstep</strong></li>
+        <li>Trail overflow protection for long matches</li>
+        <li>Smoother input prediction decay</li>
+        <li>Extended desync detection window</li>
+        <li>Improved round transition stability</li>
+
+        <li><strong>Car/Slingshot in Lockstep</strong></li>
+        <li>Drift physics fully ported to deterministic simulation</li>
+        <li>Lockstep now supports all vehicle combinations</li>
+        <li>Drift state included in cross-client hash verification</li>
+        <li>9 new determinism tests across vehicle matchups</li>
+      </ul>
+      <div class="cl-version">v0.8.5 <span class="cl-date">— Mar 26, 2026</span></div>
+      <ul>
+        <li>Lobby redesigned with Smash Bros-style vehicle select — large tiles with 3D model previews, player name indicators, and host crown badges</li>
+        <li>New party dock panel showing host, guest, AI bots, and empty slots with inline AI editing and add/remove controls</li>
+        <li>Lobby layout restructured into flex row with vehicle grid, color picker, collapsible match settings, and docked party panel</li>
+      </ul>
+      <div class="cl-version">v0.8.4 <span class="cl-date">— Mar 26, 2026</span></div>
+      <ul>
+        <li>Full sound system overhaul — 4 new procedural Web Audio sounds: screen transition swoosh, notification chime, victory arpeggio, and defeat tone wired across all UI flows</li>
+      </ul>
+      <div class="cl-version">v0.8.3 <span class="cl-date">— Mar 26, 2026</span></div>
+      <ul>
+        <li>Fixed replays always rendering bikes regardless of selected vehicle</li>
+        <li>Fixed online match-start desync where one player could begin ~2 seconds early due to stale server-clock offset</li>
+        <li>Fixed ghost focus border on first vehicle tile in lobby</li>
+        <li>Fixed lobby button navigation order to match visual layout</li>
+      </ul>
+      <div class="cl-version">v0.8.2 <span class="cl-date">— Mar 26, 2026</span></div>
+      <ul>
+        <li>New vehicle model: Cyberpunk Ghetto DeLorean replaces the classic DeLorean</li>
+        <li>Vehicle glow now dynamically recolors to match player color selection</li>
+        <li>Fixed trail and exhaust glow to emit from the rear of the new model</li>
+      </ul>
+      <div class="cl-version">v0.8.1 <span class="cl-date">— Mar 26, 2026</span></div>
+      <ul>
+        <li>New vehicle: Slingshot (DeLorean) with Rocket League-style drift physics — brake + turn to powerslide, drifting builds meter and gains speed</li>
+        <li>Vehicle selector in quickstart match options and lobby player cards</li>
+        <li>New controls: Shift = boost (meter burst), Space = brake/drift, W = accelerate</li>
+        <li>Server-clock synchronized countdown starts for tighter online match sync</li>
+        <li>Replays now store and render vehicle type — old replays default to bike</li>
+        <li>Launched <a href="https://luminal.live" target="_blank" rel="noopener">luminal.live</a> — custom domain</li>
+        <li>Draw grace window reduced to 100ms for fairer simultaneous death detection</li>
+        <li>Updated credits with full tech stack and DeLorean model attribution</li>
+      </ul>
+      <div class="cl-version">v0.8.0 <span class="cl-date">— Mar 26, 2026</span></div>
+      <ul>
+        <li>All-new persistent Lobby system supporting 2-4 players with host migration, real-time color sync, and AI bot fill for empty slots</li>
+        <li>Draggable Party HUD overlay added with ready toggles, host controls, and a dedicated top-bar visibility toggle</li>
+        <li>Overhauled social system featuring a unified notification center, right-click context menus, and smart push invites</li>
+        <li>Added "Early Adopter" gold star icons and animated username gradients to chat, leaderboards, and lobbies for legacy players</li>
+        <li>Unified match end screen featuring series replay browsing to save and favorite specific rounds from an online set</li>
+        <li>Chat now strictly auto-hides during active gameplay, and browser autofill/spellcheck has been fully disabled on inputs</li>
+        <li>Complete keyboard and gamepad navigation parity across all UI screens, including horizontal selectors and B-button mapping</li>
+        <li>Massive CSS architecture rewrite, splitting a monolithic stylesheet into 30 modular files using native nesting and BEM naming</li>
+        <li>Built a comprehensive E2E DOM testing infrastructure from scratch, achieving 413 passing tests across all UI flows</li>
+      </ul>
+      <div class="cl-version">v0.7.1 <span class="cl-date">— Mar 25, 2026</span></div>
+      <ul>
+        <li>Fix replay camera zooming to map center on old replays</li>
+        <li>Add forgiving defaults for old replay format compatibility</li>
+      </ul>
+      <div class="cl-version">v0.7.0 <span class="cl-date">— Mar 25, 2026</span></div>
+      <ul>
+        <li>Full TypeScript migration — all 45 source files converted to strict TypeScript with shared type definitions and full annotations</li>
+        <li>119 automated tests across 8 test suites (utils, contentFilter, spatialGrid, replay, graphics, ai, onlineMatch, replayStore)</li>
+        <li>ESLint with typescript-eslint for static analysis, internal <code>any</code> usage reduced from 197 to 19</li>
+        <li>Online forfeit system — Escape no longer quits online matches; new pause overlay with Resume, Settings, and Forfeit buttons</li>
+        <li>Online round protection — Escape between rounds no longer returns to homescreen</li>
+        <li>Pregame info screen repositioned below match scoreboard</li>
+        <li>Fixed replay camera zoom bug — death zoom FOV no longer persists between background replays, added null guards for old replay data compatibility</li>
+        <li>Bike model preloading — home menu waits for GLTF model before starting demo</li>
+        <li>Fixed errant border on Line Ride Assist toggle in settings</li>
+        <li>Back button styling — increased icon padding and stroke thickness</li>
+        <li>Firebase cache headers — no-cache for index.html, immutable for hashed assets, 30-day cache for models and music</li>
+        <li>Changelog now stays open until explicitly closed</li>
+      </ul>
+      <div class="cl-version">v0.6.0 <span class="cl-date">— Mar 25, 2026</span></div>
+      <ul>
+        <li>Full codebase refactor — CSS design system (tokens, components, screens, animations), 12 UI modules extracted from main.js, game subsystem decomposition</li>
+        <li>Online latency reduced ~30ms — 20Hz netcode (was 15Hz), 50ms interpolation buffer (was 80ms)</li>
+        <li>Fixed false draws in online matches — only local player collisions checked, opponent death comes via netcode</li>
+        <li>Fixed matchmaking race condition — failed createMatch now detects if opponent already matched you</li>
+        <li>Fixed queue presence ordering — presence written before queue doc to prevent stale pruning</li>
+        <li>Match callbacks registered before entering queue to prevent missed instant matches</li>
+        <li>Playlist drag reorder no longer garbles play order — shuffle indices remapped instead of re-randomized</li>
+        <li>Now-playing cyan highlight syncs across all track change sources (skip, auto-advance, click)</li>
+        <li>Streak HUD repositioned below radar, follows radar drag, hidden during death screen</li>
+        <li>FPS tooltip updates live while hovering, removed hint message</li>
+        <li>Removed planet assets from arena skybox</li>
+        <li>Anonymous users can access matchmaking without login redirect</li>
+      </ul>
+      <div class="cl-version">v0.5.1 <span class="cl-date">— Mar 25, 2026</span></div>
+      <ul>
+        <li>Neon palette overhaul — all 9 colors optimized for vibrant futuristic theme with better hue distribution</li>
+        <li>WCAG luminance/contrast scoring for AI color selection — opponents are always visually distinct</li>
+        <li>Anonymous users can now play casual matchmaking without signing in</li>
+        <li>Fixed online match "waiting" hang — missing Firebase RTDB rules for loaded path</li>
+        <li>Online match accept button animation — pulses cyan with "ACCEPTED" text on click</li>
+        <li>Freecam mouse axes fixed (were inverted), ESC exits freecam back to overhead</li>
+        <li>"PRESS ESC TO EXIT FREE CAM" toast on entering freecam mode</li>
+        <li>Loading screen styled to match main menu — scanlines, vignette, gradient</li>
+        <li>Fixed page load flash — body background matches loading screen color</li>
+        <li>Loading screen uses real asset checks instead of arbitrary timeouts</li>
+        <li>Fixed menu swap scanline flash — combined contentSlideIn + bgDrift animations</li>
+        <li>Online opponent disconnect now handled during waitingOnline state</li>
+        <li>signalLoaded retry on failure, listener setup before write to prevent race conditions</li>
+      </ul>
+      <div class="cl-version">v0.5.0 <span class="cl-date">— Mar 25, 2026</span></div>
+      <ul>
+        <li>ANNIHILATED the 0 FPS death lag — hunted down a brutal Three.js shader recompilation bug where hiding the player group nuked every light from the scene graph, forcing the GPU to recompile every single MeshStandardMaterial shader in the entire arena on the death frame. Deaths are now buttery smooth, zero stutter, zero mercy</li>
+        <li>SpotLight headlight beam now properly managed — was created but never returned from bike builder, making it impossible to zero on death. Dragged it out of the shadows and gave it a proper killswitch</li>
+        <li>Trail vibration segments no longer haunt you from beyond the grave — glowing wall segments that were vibrating near the player now properly reset when the bike dies, instead of frozen mid-jiggle for eternity</li>
+        <li>destroy() now zeros all light intensities before ripping objects from the scene — prevents shader recompilation cascade during cleanup transitions</li>
+        <li>Playlist selector overhaul — replaced the DEFAULT TRACKS / YOUR PLAYLIST tab bar with a clean arrow-style selector matching the settings UI pattern</li>
+        <li>New PLAYLIST section header in the music overlay — sits below the volume slider, styled to match NOW PLAYING</li>
+        <li>Speed rebalance — W-boost reduced from 60 to 55, dash increased from 93.5 to 98.5</li>
+        <li>Dash VFX cranked up — bigger particles, wider electric arcs, higher opacity, longer burst timers</li>
+        <li>W-boost sparks removed — ground FX now only activates during dash</li>
+        <li>Camera zoom rebalanced — boost pulls 6.5% FOV (was 4.2%), dash pulls 12% (was 9.2%), transition speed boosted to 5.0</li>
+        <li>Killcam smoothed out — frame-rate independent lerp replaces raw constants, direct blend orbit replaces jittery chase-lerp</li>
+        <li>FPS counter in top bar — updates every 500ms, Orbitron font, lives left of the settings button</li>
+        <li>Trail spawn point moved forward — now aligned with back of bike wheel frame instead of bike center</li>
+        <li>Settings focus fix — collapsed section items no longer steal keyboard/gamepad focus highlight</li>
+      </ul>
+      <div class="cl-version">v0.4.9 <span class="cl-date">— Mar 25, 2026</span></div>
+      <ul>
+        <li>New bike model — Tron BlackGuard Bike by SpringSociety replaces procedural geometry</li>
+        <li>Integrated rider — model includes full character, removing 280+ lines of procedural rider code</li>
+        <li>Dynamic color tinting — emissive light strips on bike recolor to match player color</li>
+        <li>Trail repositioned — now spawns from the back of the bike instead of center</li>
+        <li>Bike light moved behind rider for better visual balance</li>
+        <li>Lean reduced 15% for the new model proportions</li>
+        <li>Credits screen — new About link in bottom bar opens credits overlay</li>
+        <li>GLTFLoader added — bikes loaded from .glb models, preloaded during loading screen</li>
+        <li>Spatial hash grid — O(1) trail collision and proximity queries replace O(n) linear scans</li>
+        <li>InstancedMesh trail walls — thousands of draw calls reduced to ~4 per trail</li>
+        <li>Partial GPU buffer uploads — only changed instance data sent to GPU, not the full buffer</li>
+        <li>Glow lines merged — single pre-allocated BufferGeometry per trail instead of per-segment</li>
+        <li>AI computation staggered — each AI updates every 3rd frame with cached results</li>
+        <li>AI angle offsets reduced from 21 to 13, trap directions from 16 to 8</li>
+        <li>Pre-allocated death particles — explosion system created at spawn, eliminating death-frame lag</li>
+        <li>Merged proximity queries — wall repulsion, speed boost, VFX, and recharge share one grid lookup</li>
+      </ul>
+      <div class="cl-version">v0.4.8 <span class="cl-date">— Mar 23, 2026</span></div>
+      <ul>
+        <li>Real asset loading — progress bar tracks fonts and audio instead of faking it</li>
+        <li>Loading status text — shows LOADING FONTS → LOADING AUDIO → BUILDING WORLD → READY</li>
+        <li>Font preload — Google Fonts moved from @import to link tag for faster load</li>
+        <li>First track preloaded — road runner uses rel=preload instead of prefetch</li>
+        <li>Top bar font normalization — all text 11px, all icons 14px, consistent letter-spacing</li>
+        <li>Music controls — zero-gap clickable regions, no dead space between buttons</li>
+        <li>Scrolling track name — max 125px, long names marquee-scroll left to right</li>
+        <li>Settings icon in top bar — dedicated cog between notifications and fullscreen</li>
+        <li>Memory/ping moved to settings overlay — positioned top-right, out of the top bar</li>
+        <li>Notifications bell dropdown — empty state with NO NOTIFICATIONS</li>
+        <li>Navigation dedup — pressing the same screen button twice no longer stacks history</li>
+        <li>Default volume raised to 30%</li>
+      </ul>
+      <div class="cl-version">v0.4.7 <span class="cl-date">— Mar 23, 2026</span></div>
+      <ul>
+        <li>Homepage keyboard/controller toggle — segmented KEYBOARD | CONTROLLER switch, auto-detects input</li>
+        <li>Keybinds controller tab — Xbox-layout button icons for gameplay, menu, and replay sections</li>
+        <li>Top bar reorganized — perf stats moved left, settings cog in perf section, notifications bell dropdown</li>
+        <li>Top bar hover fix — hover highlight covers full vertical slice, not just icon</li>
+        <li>Now Showing icon fix — film icon no longer renders as solid cyan block</li>
+        <li>AI overhaul — smarter steering, trail-cutting, space denial, ambush maneuvers, escape logic</li>
+        <li>AI demo 30s cap — menu demos reset instead of going in circles</li>
+        <li>Shared drawing — mouse trails synced between all players via Firebase, fade over 8s</li>
+        <li>Local trail color — matches selected bike color instead of hardcoded gradient</li>
+        <li>New colors — Blue (#4488ff) and Orange (#ff8800) added to color picker</li>
+        <li>Changelog popover closes on outside click</li>
+        <li>Pause button desync fix — inner SVG clicks no longer break state</li>
+        <li>Section label opacity bumped from 0.4 to 0.7, settings carets bolded</li>
+      </ul>
+      <div class="cl-version">v0.4.6 <span class="cl-date">— Mar 23, 2026</span></div>
+      <ul>
+        <li>Repeat/shuffle toggle fix — active state now applies correctly when clicking SVG icons</li>
+        <li>Keybind keys restyled — purple theme with glow box-shadow on hover</li>
+        <li>Top bar icons enlarged +2px, fullscreen gap widened, more spacing between controls</li>
+        <li>Full-height click targets — top bar buttons activate from anywhere in their vertical column</li>
+        <li>Quick start row toggles widened (+4px padding each side)</li>
+        <li>Home screen buttons normalized to consistent width</li>
+        <li>Playlist drag reorder — reduced magnetic snap with dead zone hysteresis</li>
+        <li>Track name display no longer wrapped in quotes</li>
+        <li>Announcement panel repositioned below volume slider</li>
+      </ul>
+      <div class="cl-version">v0.4.5 <span class="cl-date">— Mar 23, 2026</span></div>
+      <ul>
+        <li>Lucide icon pack — 36 inline SVG icons replace all Unicode/emoji icons across the entire UI</li>
+        <li>Top bar normalization — consistent 11px font size and unified button opacity (0.45 base)</li>
+        <li>SVG hover glow — filter:drop-shadow replaces text-shadow for crisp icon effects</li>
+        <li>Replay keybinds — all replay controls added to keybinds tab (8 rebindable + 4 readonly)</li>
+        <li>Menu font weight boost — headers and labels bolded for readability</li>
+        <li>Zoom range increased ~75% for in-game camera and replay</li>
+        <li>Changelog is now draggable — only X button closes it</li>
+        <li>Dropdown padding and user submenu margin fixes</li>
+      </ul>
+      <div class="cl-version">v0.4.4 <span class="cl-date">— Mar 23, 2026</span></div>
+      <ul>
+        <li>Replay overhaul — full keyboard shortcuts (Space, Q/E, arrows, H, J/L, number keys)</li>
+        <li>Reverse playback — -1x and -2x speeds with proper trail rebuilding</li>
+        <li>Speed presets reordered — [-2x, -1x, 0.25x, 0.5x, 1x, 2x, 4x] linear progression</li>
+        <li>Death markers on timeline — colored dots at elimination points</li>
+        <li>Smooth camera transitions — 0.4s interpolation when switching camera modes</li>
+        <li>Auto-pause at death — playback pauses on elimination with status text</li>
+        <li>Gamepad replay controls — LB/RB cycle camera, LT/RT adjust speed, X play/pause, Y toggle UI</li>
+        <li>D-pad skips time during replay instead of changing songs</li>
+        <li>H key / Select / Y button hides all replay UI for clean viewing</li>
+        <li>Free cam: left-click drag, slower turning, 20% faster movement, 15% more momentum</li>
+        <li>Free cam: WASD disabled for menu nav, controller stick inverted to match expected direction</li>
+      </ul>
+      <div class="cl-version">v0.4.3 <span class="cl-date">— Mar 23, 2026</span></div>
+      <ul>
+        <li>Music overlay redesigned — chat-style tab bar replaces toggle for Default Tracks / Your Playlist</li>
+        <li>Shuffle is now a toggle — when on, next track is random; current track keeps playing</li>
+        <li>YouTube URL auto-detects on paste — no button needed, just paste a link</li>
+        <li>Speaker icons replace checkmarks for track enable/disable (matches top bar audio)</li>
+        <li>Drag-to-reorder handles on all playlist items with smooth animation</li>
+        <li>Custom playlist tracks now have mute toggle and remove button</li>
+        <li>Music overlay now has all playback controls: prev, play/pause, next, repeat, shuffle, mute</li>
+        <li>Default track order: Road Runner, Start The Engine, Rainbow Dance lead-in; rest randomized</li>
+        <li>Rommii link uses magenta color pulse instead of bounce</li>
+        <li>Audio error recovery — resume instead of skip when track already playing</li>
+        <li>Drag grab offset fix — item stays pinned to cursor position</li>
+        <li>Settings section carets doubled in size</li>
+        <li>Settings toggle fix — proper box-sizing and flex-shrink</li>
+      </ul>
+      <div class="cl-version">v0.4.2 <span class="cl-date">— Mar 23, 2026</span></div>
+      <ul>
+        <li>Navigation stack — unified menu system with dynamic back buttons, open any screen from anywhere</li>
+        <li>Removed 9 hardcoded back buttons, replaced with stack-driven dynamic injection</li>
+        <li>Centralized screen hooks for enter/exit logic (radar preview, keybind listeners, data loading)</li>
+        <li>ESC and gamepad back now use single navigateBack() instead of per-screen handlers</li>
+        <li>Announcement panel more transparent and subtle</li>
+        <li>Skip button glyphs no longer overlap (letter-spacing fix)</li>
+      </ul>
+      <div class="cl-version">v0.4.1 <span class="cl-date">— Mar 23, 2026</span></div>
+      <ul>
+        <li>Expanded default playlist — 9 tracks including 4 new Rommii songs</li>
+        <li>Default tracks list in Music submenu — disable/enable individual songs with checkmark toggle</li>
+        <li>Disabled tracks are skipped during playback with dimmed strikethrough appearance</li>
+        <li>Static playlist lead-in: Road Runner, Rainbow Dance, Start The Engine, Valor play first</li>
+        <li>Shuffle button in top bar audio controls</li>
+        <li>Announcement panel on home screen — top-left, changelog-styled, auto-hides on game start</li>
+        <li>Rommii credit announcement with glowing animated link</li>
+        <li>Replay exit button repositioned with equal padding from top bar</li>
+      </ul>
+      <div class="cl-version">v0.4.0 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Line Ride Assist — course correction gently aligns you with nearby trails for boost gathering</li>
+        <li>New Gameplay settings section with Line Ride Assist toggle</li>
+        <li>Distant galaxies added to skybox with procedural spiral arms and music-reactive glow</li>
+        <li>Star twinkle effect across the sky</li>
+        <li>Brighter spectator camera lights</li>
+        <li>Discord invite link added to loading screen and bottom bar</li>
+        <li>Galaxies now glow through arena walls correctly</li>
+      </ul>
+      <div class="cl-version">v0.3.9 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Music overlay title restyled to match stats/leaderboard (larger, bold, scanline effect)</li>
+        <li>Music EQ anchored to bottom of panel like home screen</li>
+        <li>Your Playlist section now full width</li>
+        <li>Improved AI wall avoidance with speed-scaled multi-distance lookahead</li>
+      </ul>
+      <div class="cl-version">v0.3.8 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Killcam slow-motion — 0.5s slow-mo before orbiting the crash site</li>
+        <li>Death-frame lag fix: deferred particle creation, pre-warmed materials, pre-created flash lights</li>
+        <li>Music panel restyled — larger labels, better spacing, chat-style thin scrollbar on playlist</li>
+        <li>Audio-reactive equalizer added to music overlay</li>
+        <li>Volume slider grows on grab with sparkle particle effects</li>
+        <li>Smoother settings collapse/expand with cubic-bezier easing and rotating caret</li>
+        <li>All settings groups collapsed by default</li>
+        <li>Audio controls glow cyan on hover</li>
+        <li>Countdown number centering fix ("1" no longer off-center)</li>
+        <li>Top bar dropdowns no longer clipped</li>
+        <li>Removed username dropdown caret and settings gear from top bar</li>
+        <li>Settings section headers reduced 25%, carets match arrow selectors</li>
+        <li>Keyboard/gamepad nav skips hidden match options when panel is closed</li>
+        <li>Overlays no longer overlap bottom bar</li>
+        <li>"ENEMY" → "OPPONENT" in controls hint</li>
+      </ul>
+      <div class="cl-version">v0.3.6 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>All overlay menus scroll and never overlap the top bar</li>
+        <li>Top bar frosted glass with blur, radial gradients, and scanlines</li>
+        <li>Settings gear icon in top bar (left of username)</li>
+        <li>Changelog tab sized to content instead of full-width</li>
+        <li>Removed Match History button from Stats (already on home screen)</li>
+        <li>Main menu nudged upward 15px</li>
+      </ul>
+      <div class="cl-version">v0.3.5 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Graphics quality settings — 4 presets (Low/Med/High/Ultra) with GPU auto-detect</li>
+        <li>Per-setting overrides: bloom, render scale, arena detail, rave lights, audio react, trail glow, player VFX, lighting</li>
+        <li>Quality preset as segmented toggle [LOW|MED|HIGH|ULTRA]</li>
+        <li>Control toggles restyled — frosted glass, cyan glow, menu-button depth</li>
+        <li>Tooltips on all graphics and camera settings</li>
+        <li>Collapsible settings sections with animated expand/collapse</li>
+        <li>Settings panel vertically centered, scrollable, 15% wider</li>
+        <li>New SERVER settings section with Auto Submit</li>
+        <li>Changelog restyled to match chat panel — tab header, scrollable body, draggable</li>
+        <li>Color allocation optimized — reusable THREE.Color instances in palette functions</li>
+      </ul>
+      <div class="cl-version">v0.3.3 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Replay scrub preserves play/pause state</li>
+        <li>Loop button for replay playback</li>
+        <li>Freecam starts positioned near first visible character</li>
+        <li>Compass resize handle flipped to bottom-left</li>
+        <li>Timer bar moved to top as drag handle for compass</li>
+        <li>Radar UI refactored to match chat panel style</li>
+      </ul>
+      <div class="cl-version">v0.3.2 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Google Analytics integrated</li>
+        <li>Volume and playlist dropdowns open downward with configurable direction</li>
+        <li>Top bar UI scaled up ~20%, pushed closer to screen edges</li>
+        <li>Mute button always shows speaker icon</li>
+        <li>Compass drag-to-resize synced with settings slider</li>
+        <li>Killcam spin slowed 20%, extended 0.5s</li>
+        <li>Playlist mode swap updates music overlay</li>
+        <li>First custom track auto-plays on add</li>
+        <li>Replay controls widened, all buttons on single row</li>
+      </ul>
+      <div class="cl-version">v0.3.0 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Music files included in build (fixed missing audio after deploy)</li>
+        <li>Audio error recovery no longer rapid-cycles through all tracks</li>
+        <li>Audio controls moved left of track name in top bar</li>
+        <li>Menus disabled during game transition — no more multi-start on spam click</li>
+      </ul>
+      <div class="cl-version">v0.2.9 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Fixed audio not playing on click to start</li>
+        <li>Fixed countdown beep missing on "3"</li>
+        <li>Volume slider dropdown on top bar mute button</li>
+        <li>Removed playlist settings from settings overlay (now in Music)</li>
+      </ul>
+      <div class="cl-version">v0.2.8 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Frosted glass blur on all menu backgrounds</li>
+        <li>Normalized menu system — only one screen visible at a time</li>
+        <li>Smooth fade/slide transitions between menus</li>
+        <li>Previous track button + playlist dropdown in top bar audio</li>
+        <li>Unified dropdown styling across all menus (20% larger rows)</li>
+        <li>Background auto-switches to replays if player has any</li>
+        <li>Fixed time played formatting (days support, centered)</li>
+        <li>Fixed changelog popover opening off-screen</li>
+      </ul>
+      <div class="cl-version">v0.2.7 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Resizable chat with drag handle, viewport clamping, size persists</li>
+        <li>Right-click CHAT toggle resets position</li>
+        <li>Invite button disabled with Coming Soon tooltip</li>
+        <li>Fixed gameplay blur — stripped CSS filter/backdrop-filter from loading transition</li>
+        <li>MediaSession API — keyboard media keys control music player</li>
+        <li>Track metadata shown in browser/OS media controls</li>
+        <li>Lowered EQ sensitivity for YouTube simulation and real audio</li>
+      </ul>
+      <div class="cl-version">v0.2.6 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Cinematic focus-in polish — loading text fades instantly, canvas unblurs over 2s with saturation sweep</li>
+        <li>Fixed chat drag — switched from pointer capture to window mouse events</li>
+        <li>Gentler momentum — lower friction, softer bounce, velocity cap</li>
+        <li>Fixed min-width on perf stats to prevent top bar layout shift</li>
+        <li>Player icon replaces username in time played section</li>
+      </ul>
+      <div class="cl-version">v0.2.5 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Cinematic focus-in — blurred 3D scene behind loading screen, smooth unblur on click to start</li>
+        <li>Fixed user dropdown — hover bridge eliminates gap, inner wrapper for styling</li>
+        <li>SVG trophy icon for leaderboard buttons (monochrome, matches UI)</li>
+        <li>Player icon and globe icon in time played section</li>
+        <li>Real-time seconds ticker on global time played</li>
+        <li>Tooltips skip empty data-tip attributes</li>
+        <li>Chat drag follows cursor in real time, reduced momentum 15%</li>
+      </ul>
+      <div class="cl-version">v0.2.4 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Top bar breathing room — wider padding, increased separators</li>
+        <li>Username hover submenu — Friends and Sign Out on hover</li>
+        <li>Polished chat drag with momentum, bounce physics, and edge snap</li>
+        <li>Auto-scaling overlay panels for small viewports</li>
+        <li>Memory and ping tooltips with detailed stats (heap, avg/min/max ping)</li>
+        <li>Global time can never regress — monotonic transaction guard</li>
+        <li>Fixed null classList errors, tooltip errors, ping using CDN HEAD</li>
+      </ul>
+      <div class="cl-version">v0.2.3 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Titan Panel top bar — full-width gradient bar with all items omnipresent</li>
+        <li>Memory usage and Firebase ping in top bar</li>
+        <li>Physics-based draggable chat with momentum and edge bounce</li>
+        <li>Smart tooltip positioning and YT EQ boost</li>
+        <li>Quickstart options panel shrunk — smaller arrows, labels, color dots</li>
+        <li>Leaderboard column widths and paging refinements</li>
+      </ul>
+      <div class="cl-version">v0.2.2 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Omnipresent draggable chat with tab bar, close button, unread count</li>
+        <li>Leaderboard — paging, wider columns, trophy icon, removed RANKED tab</li>
+        <li>Smooth camera transition from menu to game start</li>
+        <li>Audio &amp; visual controls moved to top bar</li>
+        <li>Friends moved to top bar (visible when logged in)</li>
+        <li>Smart tooltips — auto-flip below when near top edge</li>
+        <li>Boosted YouTube EQ simulation for visible equalizer animation</li>
+        <li>Compass shows in-game position during settings</li>
+        <li>Favicon added</li>
+      </ul>
+      <div class="cl-version">v0.2.1 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Omnipresent chat with tab bar and X close button</li>
+        <li>Chat visible on all screens, not just main menu</li>
+        <li>CHAT toggle and badge always in top bar</li>
+        <li>Custom styled tooltips — Orbitron font, glow effect, smart positioning</li>
+        <li>Replaced all native title popups with JS-powered floating tooltips</li>
+      </ul>
+      <div class="cl-version">v0.2.0 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Custom YouTube playlists with playlist import</li>
+        <li>Music overlay on homepage</li>
+        <li>Chat toggle in top bar with unread badge, persisted show/hide</li>
+        <li>Loading screen version matches bottom bar glow style</li>
+        <li>Replay panel: removed bottom EXIT, added SPEED/CAM labels</li>
+        <li>Leaderboard query fix with client-side fallback</li>
+        <li>Bottom bar audio overflow fix</li>
+      </ul>
+      <div class="cl-version">v0.1.9 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Server-synced time played — Firestore delta-based global counter</li>
+        <li>Friends button moved below Character</li>
+        <li>Online stats synced from Firestore leaderboard data</li>
+        <li>Replay fav star uses purple secondary color</li>
+        <li>Compass lowered 20px from top bar</li>
+      </ul>
+      <div class="cl-version">v0.1.8 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Bottom bar grid layout — center section always dead center, sides push outward</li>
+        <li>Top and bottom bar visual parity — matching margins, separators, spacing</li>
+        <li>Universal UI click sound on all interactive elements</li>
+        <li>Replay panel raised 20px with backdrop, more padding and breathing room</li>
+        <li>Keyboard controls moved below time section</li>
+      </ul>
+      <div class="cl-version">v0.1.7 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Friends system — add by username, accept/deny requests, real-time notifications</li>
+        <li>Boost meter hidden on game over screen, resets to full before countdown</li>
+        <li>Auto-submit no longer flashes button when enabled</li>
+        <li>Replay fav star flush-attached like Quick Start</li>
+      </ul>
+      <div class="cl-version">v0.1.6 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Fixed game over screen not showing (broken #now-playing/#credit refs)</li>
+        <li>Top bar (auth, online count, fullscreen) always visible</li>
+        <li>Settings toggles redesigned as segmented OFF | ON controls</li>
+        <li>Compass moved below top bar, max size doubled to 440px</li>
+      </ul>
+      <div class="cl-version">v0.1.5 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Submit to Leaderboard button on every post-game screen</li>
+        <li>Auto Submit toggle in Settings for automatic leaderboard submission</li>
+        <li>Global rank shown after submission (RANK #X)</li>
+        <li>Centralized bottom bar (audio, visual, credit in one row)</li>
+        <li>Fullscreen button inline with top-right auth bar</li>
+        <li>Duplicate submission protection (client + server)</li>
+        <li>Matchmaking promoted to full menu button</li>
+      </ul>
+      <div class="cl-version">v0.1.4 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Removed play icon from Quick Start</li>
+        <li>Wider menu buttons</li>
+      </ul>
+      <div class="cl-version">v0.1.3 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Merged matchmaking &amp; invite into Quick Start row</li>
+        <li>Removed arrow icons from Main Menu buttons</li>
+      </ul>
+      <div class="cl-version">v0.1.2 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Deploy script with auto version bump, changelog &amp; chat announcement</li>
+        <li>Sound &amp; visual icons replace NOW PLAYING / NOW SHOWING text</li>
+        <li>Clickable now-showing row to cycle background modes</li>
+        <li>Fullscreen toggle button (hover top-right corner)</li>
+        <li>System chat messages for release announcements</li>
+        <li>Match options panel flush-attached to quickstart button</li>
+      </ul>
+      <div class="cl-version">v0.1.1 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Leaderboard with wins, win rate, streak, fastest, and time metrics</li>
+        <li>Per-settings filters (series length &amp; opponent count)</li>
+        <li>Post-match auto-submission to global leaderboard</li>
+        <li>Click your entries to replay the match</li>
+      </ul>
+      <div class="cl-version">v0.1.0 <span class="cl-date">— Mar 22, 2026</span></div>
+      <ul>
+        <li>Private lobbies: invite friends via shareable link for direct matches</li>
+        <li>NOW SHOWING toggle: switch menu background between AI matches &amp; saved replays</li>
+        <li>Glowing sweep animation on version number</li>
+      </ul>
+      <div class="cl-version">v0.0.8 <span class="cl-date">— Mar 21, 2026</span></div>
+      <ul>
+        <li>Live total time played counter on home screen (persists across sessions)</li>
+      </ul>
+      <div class="cl-version">v0.0.7 <span class="cl-date">— Mar 21, 2026</span></div>
+      <ul>
+        <li>Cinematic slow-mo death zoom on background replay with shatter effect</li>
+        <li>Vignette &amp; bloom surge during slow-mo for dramatic impact</li>
+        <li>Consistent button widths &amp; heights across all menu sections</li>
+      </ul>
+      <div class="cl-version">v0.0.6 <span class="cl-date">— Mar 21, 2026</span></div>
+      <ul>
+        <li>Code hygiene refactor: shared utility module for deduplication</li>
+        <li>Fixed netcode using hardcoded dt instead of actual frame delta</li>
+        <li>Fixed audio gain ignoring user volume setting on init</li>
+        <li>Arena audio reactivity now uses real frame delta</li>
+      </ul>
+      <div class="cl-version">v0.0.5 <span class="cl-date">— Mar 21, 2026</span></div>
+      <ul>
+        <li>Background replay on victory screen with cycling camera views</li>
+        <li>Music controls on pause &amp; victory screens</li>
+        <li>Controller support for settings menu &amp; match options</li>
+        <li>Quick start options dropdown with gear icon toggle</li>
+        <li>Asset preloading on initial load</li>
+        <li>B button / back closes dropdowns</li>
+      </ul>
+      <div class="cl-version">v0.0.4 <span class="cl-date">— Mar 21, 2026</span></div>
+      <ul>
+        <li>Fixed netcode death sync across multiple rounds</li>
+        <li>Fixed matchmaking ghost queue entries</li>
+        <li>Wireless controller detection &amp; non-standard input support</li>
+        <li>Camera zoom defaults increased, max range extended</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

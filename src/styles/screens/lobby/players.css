@@ -1,0 +1,92 @@
+/* ── Player Cards ──────────────────────── */
+#lobby-players-col {
+  display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center; gap:8px;
+  margin-bottom:12px;
+}
+
+.lobby-card {
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  padding:12px 18px 10px; width:150px; min-height:100px;
+  background:rgba(var(--bg-dark-cyan),0.4); border:1px solid rgba(var(--c-white),0.06);
+  border-radius:6px; position:relative;
+}
+
+/* Empty slot card */
+.lobby-card--empty {
+  border:1px dashed rgba(var(--c-white),0.08);
+  background:rgba(var(--bg-dark-cyan),0.2);
+  justify-content:center; cursor:default;
+}
+.lobby-card--empty .lobby-card-add {
+  font-family:'Orbitron',sans-serif; font-size:28px; letter-spacing:2px;
+  color:rgba(var(--c-teal),0.15); transition:color 0.2s, transform 0.2s, text-shadow 0.2s;
+  cursor:pointer; user-select:none;
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+}
+.lobby-card--empty:hover .lobby-card-add {
+  color:rgba(var(--c-teal),0.7); transform:scale(1.2);
+  text-shadow:0 0 12px rgba(var(--c-teal),0.3);
+}
+/* AI card */
+.lobby-card--ai .lobby-card-name { color:rgba(var(--c-white),0.4); font-style:italic; }
+.lobby-card--ai .lobby-card-tag { color:rgba(var(--c-white),0.25); }
+
+.lobby-card--selected {
+  outline:1px solid rgba(var(--c-teal),0.5);
+  box-shadow:0 0 12px rgba(var(--c-teal),0.15);
+}
+
+/* AI card controls */
+.lobby-ai-color-row {
+  display:flex; align-items:center; gap:6px; margin-top:6px; justify-content:center;
+}
+.lobby-ai-arrow {
+  cursor:pointer; opacity:0.4; transition:opacity 0.15s, transform 0.15s; display:flex; align-items:center;
+  &:hover { opacity:1; transform:scale(1.2); }
+  & .icon { fill:none; stroke:rgba(var(--c-white),0.7); stroke-width:2; }
+}
+.lobby-ai-color-preview {
+  width:14px; height:14px; border-radius:50%; flex-shrink:0; transition:background 0.2s, box-shadow 0.2s;
+}
+.lobby-ai-remove {
+  margin-top:8px; cursor:pointer; text-align:center;
+  font-family:'Orbitron',sans-serif; font-size:7px; letter-spacing:2px;
+  color:rgba(var(--c-red-hot),0.6); padding:3px 8px; border-radius:2px;
+  background:rgba(var(--c-red-hot),0.08); transition:color 0.15s, background 0.15s;
+  &:hover { color:rgba(var(--c-red-hot),0.9); background:rgba(var(--c-red-hot),0.15); }
+}
+
+.lobby-card-tag {
+  font-family:'Orbitron',sans-serif; font-size:7px; letter-spacing:3px;
+  color:rgba(var(--c-gold),0.65);
+}
+
+.lobby-vehicle-tile > .lobby-card-preview {
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.lobby-card-preview {
+  display:flex; justify-content:center; width:100%;
+}
+.lobby-vehicle-tile > .lobby-card-preview .lobby-preview-canvas {
+  width:100%!important; height:100%!important; object-fit:cover;
+}
+.lobby-preview-canvas {
+  border-radius:4px; display:block; width:100%; height:auto;
+}
+
+.lobby-card-dot {
+  width:18px; height:18px; border-radius:50%;
+  background:rgba(var(--c-white),0.15); transition:all 0.3s;
+}
+
+.lobby-card-name {
+  font-family:'Rajdhani',sans-serif; font-size:15px; letter-spacing:2px;
+  color:rgba(var(--c-white),0.8); min-height:20px;
+}
+
+.lobby-card-colors {
+  display:flex; flex-wrap:wrap; gap:5px; margin-top:2px; min-height:16px;
+  max-width:calc(5 * 14px + 4 * 5px);
+}

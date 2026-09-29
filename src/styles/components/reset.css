@@ -1,0 +1,8 @@
+/* ── 1. Reset & Base ───────────────────────────────── */
+
+:root { --ui-scale: 1; }
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+html, body { overflow: hidden; overscroll-behavior: none; }
+body { background: rgb(var(--bg-body)); font-family: 'Rajdhani', 'Courier New', monospace; }
+canvas { display: block; touch-action: none; }
+.hidden { display: none; }

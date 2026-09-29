@@ -1,0 +1,14 @@
+/* ── 15. Tooltip ───────────────────────────────────── */
+
+#ui-tooltip {
+  position:fixed; z-index:9999; pointer-events:none;
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:2px; white-space:pre-line;
+  color:rgba(var(--c-teal),0.85); background:rgba(var(--bg-panel),0.92);
+  border:1px solid rgba(var(--c-hot-deep),0.3); border-radius:4px;
+  padding:5px 10px;
+  opacity:0; transform:scale(0.85); transition:opacity 0.15s, transform 0.15s;
+  box-shadow:0 2px 12px rgba(var(--c-black),0.5), 0 0 8px rgba(var(--c-hot-deep),0.1);
+  text-shadow:0 0 6px rgba(var(--c-teal),0.3);
+
+  &.tooltip--visible { opacity:1; transform:scale(1); }
+}

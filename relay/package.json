@@ -1,0 +1,27 @@
+{
+  "name": "luminal-relay",
+  "version": "1.0.0",
+  "description": "WebSocket relay for Luminal lockstep match traffic",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch & node --watch dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "ws": "^8.18.0",
+    "firebase-admin": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.13",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.2"
+  }
+}

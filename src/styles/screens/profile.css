@@ -1,0 +1,304 @@
+/* ── Profile Page ─────────────────────────── */
+
+/* ── Hero Section ── */
+.profile-hero {
+  display:flex; flex-direction:column; align-items:center;
+  gap:6px; margin-bottom:18px; padding-bottom:16px;
+  border-bottom:1px solid rgba(var(--teal-600),0.1);
+}
+
+.profile-icon-wrap {
+  width:64px; height:64px; border-radius:50%;
+  border:2px solid rgba(var(--c-teal),0.5);
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(var(--teal-700),0.15);
+  box-shadow:0 0 12px rgba(var(--c-teal),0.15);
+  margin-bottom:4px;
+}
+
+.profile-icon {
+  width:32px; height:32px;
+  filter:drop-shadow(0 0 6px rgba(var(--c-teal),0.5));
+}
+
+.profile-username {
+  font-family:'Orbitron',sans-serif; font-size:18px; font-weight:700;
+  color:rgba(var(--mist-100),0.95); letter-spacing:2px;
+  margin:0; text-align:center;
+}
+
+.profile-joined {
+  font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:1.5px;
+  color:rgba(var(--mist-200),0.35); text-transform:uppercase;
+}
+
+.profile-about {
+  font-family:'Rajdhani',sans-serif; font-size:13px; line-height:1.5;
+  color:rgba(var(--mist-200),0.6); text-align:center;
+  max-width:400px; white-space:pre-wrap; word-break:break-word;
+}
+
+/* ── Socials ── */
+.profile-socials {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  margin-top:2px;
+}
+
+.profile-social-badge {
+  position:relative; display:inline-flex; align-items:center; gap:5px;
+  padding:4px 10px; border-radius:3px; font-family:'Orbitron',sans-serif;
+  font-size:8px; letter-spacing:1.5px; cursor:pointer; pointer-events:auto;
+  text-decoration:none; transition:opacity 0.2s, transform 0.15s;
+  user-select:none;
+
+  &:hover { opacity:0.85; transform:translateY(-1px); }
+  &:hover .profile-social-tip,
+  &:focus .profile-social-tip,
+  &:active .profile-social-tip { opacity:1; pointer-events:none; }
+}
+
+.profile-social-badge--discord {
+  background:rgba(88,101,242,0.18); color:rgba(88,101,242,0.9);
+  border:1px solid rgba(88,101,242,0.3);
+}
+.profile-social-badge--steam {
+  background:rgba(27,40,56,0.5); color:rgba(180,195,210,0.85);
+  border:1px solid rgba(100,130,160,0.25);
+}
+.profile-social-badge--twitch {
+  background:rgba(145,70,255,0.18); color:rgba(145,70,255,0.9);
+  border:1px solid rgba(145,70,255,0.3);
+}
+.profile-social-badge--youtube {
+  background:rgba(255,0,0,0.14); color:rgba(255,60,60,0.9);
+  border:1px solid rgba(255,0,0,0.25);
+}
+
+.profile-social-tip {
+  position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
+  background:rgba(var(--teal-900),0.95); border:1px solid rgba(var(--teal-600),0.2);
+  border-radius:3px; padding:3px 8px; white-space:nowrap;
+  font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:0.5px;
+  color:rgba(var(--mist-100),0.85); opacity:0; transition:opacity 0.15s;
+  pointer-events:none; z-index:10;
+
+  &::after {
+    content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+    border:4px solid transparent; border-top-color:rgba(var(--teal-600),0.3);
+  }
+}
+
+/* ── Edit Button ── */
+.profile-edit-btn {
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:2px;
+  color:rgba(var(--c-teal),0.7); background:transparent;
+  border:1px solid rgba(var(--c-teal),0.25); border-radius:3px;
+  padding:5px 14px; cursor:pointer; pointer-events:auto; transition:all 0.2s;
+  margin-top:4px;
+
+  &:hover {
+    color:rgba(var(--c-teal),0.95); border-color:rgba(var(--c-teal),0.55);
+    background:rgba(var(--c-teal),0.06);
+  }
+}
+
+/* ── Profile Tabs ── */
+.profile-tabs {
+  display:flex; border-bottom:1px solid rgba(var(--teal-600),0.1); margin-bottom:16px;
+}
+
+.profile-tab {
+  flex:1; padding:9px 4px; text-align:center; font-family:'Orbitron',sans-serif;
+  font-size:9px; letter-spacing:2px; color:rgba(var(--mist-200),0.3);
+  border-bottom:2px solid transparent; cursor:pointer; pointer-events:auto; transition:all 0.2s;
+
+  &:hover:not(.profile-tab--active) { color:rgba(var(--mist-200),0.55); }
+  &.profile-tab--active {
+    color:rgba(var(--c-teal),0.95); border-bottom-color:rgba(var(--c-teal),0.8);
+    text-shadow:0 0 8px rgba(var(--c-teal),0.25);
+  }
+}
+
+/* ── Profile Panels ── */
+.profile-panel { width:100%; }
+.profile-panel.hidden { display:none; }
+
+/* ── Coming Soon placeholder ── */
+.profile-coming-soon {
+  text-align:center; padding:40px 0;
+  font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:4px;
+  color:rgba(var(--mist-200),0.2);
+}
+
+/* ── Controller nav focus states ── */
+.profile-tab--selected { color:rgba(var(--c-teal),0.75); }
+.profile-tab--selected.profile-tab--active {
+  outline:1px solid rgba(var(--c-teal),0.35); outline-offset:-1px;
+}
+
+.stats-mode-tab--selected { color:rgba(var(--c-gold),0.75); }
+.stats-mode-tab--selected.stats-mode-tab--active {
+  outline:1px solid rgba(var(--c-gold),0.35); outline-offset:-1px;
+}
+
+.stats-series-pill--selected { color:rgba(var(--c-teal),0.75); border-color:rgba(var(--c-teal),0.3); }
+.stats-series-pill--selected.stats-series-pill--active {
+  outline:1px solid rgba(var(--c-teal),0.35); outline-offset:-1px;
+}
+
+/* ── Match History ── */
+.profile-match-row {
+  display:flex; align-items:center; gap:8px; padding:8px 10px;
+  font-family:'Rajdhani',sans-serif; font-size:13px; letter-spacing:0.5px;
+  color:rgba(var(--mist-200),0.6); border-bottom:1px solid rgba(var(--mist-100),0.05);
+}
+
+.profile-match-date {
+  width:60px; flex-shrink:0; font-size:11px; color:rgba(var(--mist-200),0.3);
+}
+
+.profile-match-opponent {
+  flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+.profile-match-result {
+  width:40px; text-align:center; font-family:'Orbitron',sans-serif; font-size:9px;
+  letter-spacing:1px; font-weight:700;
+}
+.profile-match-result--win { color:rgba(var(--c-green),0.85); }
+.profile-match-result--loss { color:rgba(var(--c-red),0.7); }
+.profile-match-result--draw { color:rgba(var(--mist-200),0.35); }
+
+.profile-match-score {
+  width:30px; text-align:center; font-family:'Orbitron',sans-serif; font-size:10px;
+  color:rgba(var(--mist-200),0.5);
+}
+
+.profile-match-duration {
+  width:50px; text-align:right; font-size:11px; color:rgba(var(--mist-200),0.3);
+}
+
+.profile-match-map {
+  width:60px; text-align:right; font-size:11px; color:rgba(var(--mist-200),0.25);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+.profile-match-replay {
+  font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:1px;
+  color:rgba(var(--c-teal),0.6); cursor:pointer; pointer-events:auto;
+  padding:2px 8px; border:1px solid rgba(var(--c-teal),0.2); border-radius:3px;
+  transition:all 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),0.9); border-color:rgba(var(--c-teal),0.5); }
+}
+
+.profile-history-more {
+  text-align:center; padding:12px; cursor:pointer; pointer-events:auto;
+  font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:2px;
+  color:rgba(var(--c-teal),0.5); transition:color 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),0.9); }
+}
+
+.profile-history-loading {
+  text-align:center; padding:20px;
+  font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:2px;
+  color:rgba(var(--mist-200),0.3);
+}
+
+/* ── Edit Modal ── */
+#profile-edit-modal { z-index: 200; }
+
+.profile-edit-form {
+  display:flex; flex-direction:column; gap:14px; width:100%;
+}
+
+.profile-edit-field {
+  display:flex; flex-direction:column; gap:4px;
+}
+
+.profile-edit-label {
+  font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:2.5px;
+  color:rgba(var(--mist-200),0.4);
+}
+
+.profile-edit-input {
+  font-family:'Rajdhani',sans-serif; font-size:14px; letter-spacing:0.5px;
+  color:rgba(var(--mist-100),0.9); background:rgba(var(--teal-700),0.1);
+  border:1px solid rgba(var(--teal-600),0.2); border-radius:3px;
+  padding:7px 10px; resize:none; outline:none; transition:border-color 0.2s;
+  width:100%; box-sizing:border-box;
+
+  &::placeholder { color:rgba(var(--mist-200),0.25); }
+  &:focus { border-color:rgba(var(--c-teal),0.4); background:rgba(var(--teal-700),0.15); }
+}
+
+.profile-edit-counter {
+  font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:0.5px;
+  color:rgba(var(--mist-200),0.3); text-align:right;
+}
+
+.profile-edit-error {
+  font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:0.5px;
+  color:rgba(var(--c-red),0.75); min-height:14px;
+}
+
+.profile-edit-actions {
+  display:flex; gap:10px; justify-content:flex-end; margin-top:4px;
+}
+
+.profile-edit-cancel {
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:2px;
+  color:rgba(var(--mist-200),0.45); background:transparent;
+  border:1px solid rgba(var(--mist-200),0.15); border-radius:3px;
+  padding:7px 18px; cursor:pointer; pointer-events:auto; transition:all 0.2s;
+
+  &:hover { color:rgba(var(--mist-200),0.8); border-color:rgba(var(--mist-200),0.35); }
+}
+
+.profile-edit-save {
+  font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:2px;
+  color:rgba(var(--c-teal),0.9); background:rgba(var(--c-teal),0.08);
+  border:1px solid rgba(var(--c-teal),0.35); border-radius:3px;
+  padding:7px 18px; cursor:pointer; pointer-events:auto; transition:all 0.2s;
+
+  &:hover { color:rgba(var(--c-teal),1); border-color:rgba(var(--c-teal),0.6); background:rgba(var(--c-teal),0.14); }
+  &:disabled { opacity:0.4; cursor:not-allowed; pointer-events:none; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  /* Increase touch targets */
+  .profile-tab { padding: 12px 4px; }
+  .profile-edit-btn { padding: 10px 20px; font-size: 10px; }
+  .profile-social-badge { padding: 8px 12px; font-size: 12px; min-height: 36px; }
+
+  /* Match history: hide map and duration on small screens, let opponent flex */
+  .profile-match-map { display: none; }
+  .profile-match-duration { display: none; }
+
+  /* Match history: make rows wrap better */
+  .profile-match-row { padding: 10px 8px; gap: 6px; }
+  .profile-match-replay { padding: 6px 10px; }
+
+  /* Edit modal: scrollable on small viewport */
+  #profile-edit-modal .content {
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .profile-edit-input { font-size: 16px; } /* prevents iOS zoom on focus */
+  .profile-edit-cancel, .profile-edit-save { padding: 12px 28px; }
+}
+
+@media (max-width: 480px) {
+  .profile-hero { gap: 4px; }
+  .profile-username { font-size: 16px; letter-spacing: 2px; }
+  .profile-about { font-size: 12px; }
+
+  /* Stack match history into 2 lines on very narrow screens */
+  .profile-match-row { flex-wrap: wrap; }
+  .profile-match-date { width: auto; }
+  .profile-match-score { width: auto; }
+}

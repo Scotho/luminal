@@ -1,0 +1,50 @@
+[
+  {
+    "email": "host@luminal-test.local",
+    "password": "luminal-emulator-only",
+    "username": "TestHost",
+    "role": "host"
+  },
+  {
+    "email": "guest@luminal-test.local",
+    "password": "luminal-emulator-only",
+    "username": "TestGuest",
+    "role": "guest"
+  },
+  {
+    "email": "spectator@luminal-test.local",
+    "password": "luminal-emulator-only",
+    "username": "TestSpectator",
+    "role": "spectator"
+  },
+  {
+    "email": "bot1@luminal-test.local",
+    "password": "luminal-emulator-only",
+    "username": "StressBot1",
+    "role": "stress"
+  },
+  {
+    "email": "bot2@luminal-test.local",
+    "password": "luminal-emulator-only",
+    "username": "StressBot2",
+    "role": "stress"
+  },
+  {
+    "email": "bot3@luminal-test.local",
+    "password": "luminal-emulator-only",
+    "username": "StressBot3",
+    "role": "stress"
+  },
+  {
+    "email": "bot4@luminal-test.local",
+    "password": "luminal-emulator-only",
+    "username": "StressBot4",
+    "role": "stress"
+  },
+  {
+    "email": "bot5@luminal-test.local",
+    "password": "luminal-emulator-only",
+    "username": "StressBot5",
+    "role": "stress"
+  }
+]
