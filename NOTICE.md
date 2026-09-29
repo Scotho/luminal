@@ -7,7 +7,8 @@ branding are reserved, and the third-party assets each have their own license.**
 
 Luminal source code is Copyright © 2026 Craig Smith.
 
-Parts of the code were written with AI assistance under the author's direction.
+The project was developed over about 2-3 weeks in early April 2026 as an agentic coding experiment. Most of the
+code was written by AI models under the author's direction. The models are listed in the README.
 
 ## 2. License for the code
 

@@ -12,8 +12,8 @@ Play it: **https://luminal-game.web.app**
 >
 > It comes with **no warranty of any kind**. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
 
-> **Experimental, and a lot of it is outdated.** This project was an experiment, in the game and in how it was
-> built. Much of the process in here (the workflows, tooling, agent setup, docs and plans) is out of date and I
+> **Experimental, and a lot of it is outdated.** This project was an agentic coding experiment, built over about
+> 2-3 weeks in early April 2026 (see [How it was built](#how-it-was-built)). Much of the process in here (the workflows, tooling, agent setup, docs and plans) is out of date and I
 > wouldn't do it the same way now. **Use it as a reference**, not as a template or a guide to follow.
 
 ## What's in here
@@ -121,8 +121,20 @@ Things to know:
 
 ## How it was built
 
-Mostly by me and Claude (through Claude Code), with some local models along the way. A lot of the code was written
-by AI under my direction. Read it with that in mind.
+Luminal was an agentic coding experiment. It was developed over about 2-3 weeks in early April 2026, with AI
+agents writing most of the code under my direction. Read it with that in mind.
+
+Models used:
+
+| Model | Role |
+|---|---|
+| Claude Opus 4.6 (incl. 1M context) | Most of the work, through Claude Code |
+| Claude Sonnet 4.6 | A good share of the rest, plus subagents |
+| Claude Opus 4.7 | A handful of late commits |
+| Qwen3 / Qwen3-Coder (local, via Ollama and aider) | Side tasks and experiments with local models |
+
+The `.claude/` skills, the admin dashboard and the plans under `docs/` are the machinery from that experiment.
+They show how it was run at the time. They are not how I'd do it today.
 
 ## License
 
